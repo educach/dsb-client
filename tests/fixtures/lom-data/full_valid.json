@@ -1,0 +1,414 @@
+{
+   "lomId":"8aaa3afb37a14bee858aaa3afb37a14bee85",
+   "general":{
+      "identifier":[
+         {
+            "catalog":"URL",
+            "entry":"http:\/\/example.ch",
+            "title":{
+                "fr":"Example"
+            }
+         }
+      ],
+      "title":{
+         "fr":"Example : title, with special characters, like \u2019 and \u00e9"
+      },
+      "language":[
+         "fr"
+      ],
+      "description":{
+         "fr":"Example : description, with special characters, like \u2019 and \u00e9. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc accumsan augue et elit elementum viverra. Nulla eget vulputate justo, et mollis urna. Nullam sed eros scelerisque, scelerisque augue a, pretium lectus. Aenean commodo dui in mi euismod vulputate. Suspendisse ultrices orci id ullamcorper lacinia. Mauris facilisis lacus congue lorem gravida posuere. Quisque aliquam, ligula at eleifend sollicitudin, turpis neque semper dolor, eu imperdiet tellus velit a neque. Donec non tristique sapien."
+      },
+      "keyword":[
+         {
+            "fr":"Exp\u00e9riences"
+         },
+         {
+            "fr":"Laboratoire"
+         },
+         {
+            "fr":"Some word"
+         }
+      ],
+      "coverage":[
+         {
+            "de":"Samen"
+         },
+         {
+            "de":"Fauna",
+            "fr":"Faune"
+         }
+      ],
+      "aggregationLevel":{
+         "source":"LOMv1.0",
+         "value":"2"
+      }
+   },
+   "lifeCycle":{
+      "version":{
+         "fr":"Version 1",
+         "de":"Version 1"
+      },
+      "contribute":[
+         {
+            "role":{
+               "source":"LOMv1.0",
+               "value":"publisher"
+            },
+            "entity":[
+               "BEGIN:VCARD...END:VCARD"
+            ]
+         },
+         {
+            "role":{
+               "source":"LOMv1.0",
+               "value":"author"
+            },
+            "entity":[
+               "BEGIN:VCARD\r\nVERSION:3.0\r\nFN:Karl Perron\r\nN:Perron;Karl;;;\r\nADR;WORK:;Some street 30;Universit\u00e9 de Townville, Facult\u00e9 des Sciences;Townville 4;;1211;Suisse\r\nTEL;WORK;VOICE:+412208884484\r\nEMAIL;PREF;INTERNET:email@site.ch\r\nORG:Example;;\r\nURL;PREF:http:\/\/www.example.com\r\nUID:670f311af2a68c0119f32e5c197b6eeb\r\nEND:VCARD"
+            ]
+         }
+      ]
+   },
+   "metaMetadata":{
+      "identifier":[
+         {
+            "catalog":"archibald",
+            "entry":"8aaa3afb37a14bee858aaa3afb37a14bee85"
+         }
+      ],
+      "contribute":[
+         {
+            "role":{
+               "source":"LOMv1.0",
+               "value":"creator"
+            },
+            "entity":[
+               "BEGIN:VCARD\r\nVERSION:3.0\r\nFN:John Doe\r\nN:Doe;John;;;\r\nADR;WORK:;;;;;;\r\nLOGO;VALUE:uri:archibald_file\/24\/logo.gif\r\nORG:educa.ch;;\r\nUID:598201093f4b12aebf60e628889c8b45\r\nEND:VCARD"
+            ],
+            "date":"2013-11-18T13:35:26+00:00"
+         },
+         {
+            "role":{
+               "source":"LOMv1.0",
+               "value":"creator"
+            },
+            "entity":[
+               "BEGIN:VCARD\r\nVERSION:3.0\r\nFN:Angela Rittener\r\nN:Rittener;Angela;;;\r\nADR;WORK:;;;;;;\r\nLOGO;VALUE:uri:archibald_file\/24\/logo.gif\r\nORG:educa.ch;;\r\nUID:218e181fd37b174fe2b8ec4826d4573b\r\nEND:VCARD"
+            ],
+            "date":"2014-02-18T13:34:21+00:00"
+         },
+         {
+            "role":{
+               "source":"LOMv1.0",
+               "value":"creator"
+            },
+            "entity":[
+               "BEGIN:VCARD\r\nVERSION:3.0\r\nFN:\r\nN:;;;;\r\nLOGO;VALUE:uri:http:\/\/file-api-dsb.educa.ch\/files\/300\/logo_3.gif\r\nORG:default;;\r\nEND:VCARD"
+            ],
+            "date":"2014-02-18T13:36:14+00:00"
+         }
+      ],
+      "metaDataSchema":"LOM-CHv1.1",
+      "language":"fr"
+   },
+   "technical":{
+      "format":[
+         "application/pdf"
+      ],
+      "size":0,
+      "location":[
+         ""
+      ],
+      "otherPlatformRequirements": {
+         "de": "Textverarbeitungsprogramm"
+      },
+      "duration":"",
+      "previewImage":{
+         "image":"http:\/\/example.com\/files\/421\/Example.jpg",
+         "copyright":""
+      }
+   },
+   "education":{
+      "learningResourceType":{
+         "documentary":[
+            {
+               "source":"LREv3.0",
+               "value":"image"
+            },
+            {
+               "source":"LREv3.0",
+               "value":"text"
+            }
+         ],
+         "pedagogical":[
+            {
+               "source":"LOMv1.0",
+               "value":"experiment"
+            }
+         ]
+      },
+      "intendedEndUserRole":[
+         {
+            "source":"LOMv1.0",
+            "value":"learner"
+         },
+         {
+            "source":"LOMv1.0",
+            "value":"teacher"
+         }
+      ],
+      "context":[
+         {
+            "source":"LREv3.0",
+            "value":"compulsory education"
+         },
+         {
+            "source":"LOM-CHv1.0",
+            "value":"post-compulsory education"
+         }
+      ],
+      "typicalAgeRange":[
+         {
+            "en":"0-0"
+         }
+      ],
+      "difficultyLevel":{
+         "source":"LOMv1.0",
+         "value":""
+      },
+      "typicalLearningTime":{
+         "learningTime" : {
+            "source":"LOMv1.0",
+            "value":""
+         }
+      },
+      "description":{
+         "fr":"Pellentesque nunc erat, lacinia ut luctus non, interdum ut metus. Proin lacinia tincidunt eros. Cras cursus id arcu in vehicula. Sed sollicitudin ultricies neque at consectetur. Nam pulvinar massa nibh, vitae porttitor dui condimentum vitae. Nam ante turpis, consequat ut metus quis, scelerisque rhoncus elit. Phasellus et elementum mauris, vitae consequat felis. Aliquam rhoncus tellus nibh, at sodales turpis ullamcorper quis. Vivamus accumsan, lorem ut vehicula commodo, dolor urna semper massa, id egestas mi orci et mi. Aenean ac elit ut elit consectetur cursus. Cras at malesuada erat, elementum lobortis enim. Aliquam luctus at lorem eget elementum. Mauris magna sapien, ornare non fringilla sit amet, consequat vel urna. Praesent nec vulputate ligula."
+      }
+   },
+   "rights":{
+      "cost":{
+         "source":"LOMv1.0",
+         "value":"no"
+      },
+      "description":{
+         "de":"Alle Rechte vorbehalten",
+         "fr":"Tous droits r\u00e9serv\u00e9s",
+         "it":"Tutti i diritti riservati"
+      }
+   },
+   "relation": [
+      {
+         "kind": {
+            "source": "LOMv1.0",
+            "value": "is_based_on"
+         },
+         "resource": [
+            {
+               "identifier": {
+                  "catalog": "REL_URL",
+                  "entry": "http://www.example.com/"
+               },
+               "description": {
+                  "de": "Pellentesque nunc erat, lacinia ut luctus non, interdum ut metus. Proin lacinia tincidunt eros. Cras cursus id arcu in vehicula. Sed sollicitudin ultricies neque at consectetur. Nam pulvinar massa nibh, vitae porttitor dui condimentum vitae. Nam ante turpis, consequat ut metus quis, scelerisque rhoncus elit. Phasellus et elementum mauris, vitae consequat felis. Aliquam rhoncus tellus nibh, at sodales turpis ullamcorper quis. Vivamus accumsan, lorem ut vehicula commodo, dolor urna semper massa, id egestas mi orci et mi. Aenean ac elit ut elit consectetur cursus. Cras at malesuada erat, elementum lobortis enim. Aliquam luctus at lorem eget elementum. Mauris magna sapien, ornare non fringilla sit amet, consequat vel urna. Praesent nec vulputate ligula."
+               }
+            }
+         ]
+      },
+      {
+         "kind": {
+            "source": "LOMv1.0",
+            "value": "is_part_of"
+         },
+         "resource": [
+            {
+               "identifier": {
+                  "catalog": "REL_URL",
+                  "entry": "http://www.example.com/"
+               },
+               "description": {
+                  "de": "Pellentesque nunc erat, lacinia ut luctus non, interdum ut metus. Proin lacinia tincidunt eros. Cras cursus id arcu in vehicula. Sed sollicitudin ultricies neque at consectetur. Nam pulvinar massa nibh, vitae porttitor dui condimentum vitae. Nam ante turpis, consequat ut metus quis, scelerisque rhoncus elit. Phasellus et elementum mauris, vitae consequat felis. Aliquam rhoncus tellus nibh, at sodales turpis ullamcorper quis. Vivamus accumsan, lorem ut vehicula commodo, dolor urna semper massa, id egestas mi orci et mi. Aenean ac elit ut elit consectetur cursus. Cras at malesuada erat, elementum lobortis enim. Aliquam luctus at lorem eget elementum. Mauris magna sapien, ornare non fringilla sit amet, consequat vel urna. Praesent nec vulputate ligula."
+               }
+            }
+         ]
+      }
+   ],
+   "classification":[
+      {
+         "purpose":{
+            "source":"LOMv1.0",
+            "value":"educational level"
+         },
+         "taxonPath":[
+            {
+               "source":{
+                  "en":"educa"
+               },
+               "taxon":[
+                  {
+                     "id":"compulsory education",
+                     "entry":{
+                        "de":"Obligatorische Schule",
+                        "en":"Compulsory education",
+                        "fr":"Scolarit\u00e9 obligatoire",
+                        "it":"Scuola dell'obbligo"
+                     }
+                  },
+                  {
+                     "id":"cycle_3",
+                     "entry":{
+                        "de":"3. Zyklus (9. bis 11. Schuljahr)",
+                        "en":"3rd cycle (9th to 11th school year)",
+                        "fr":"3e cycle (9\u00e8me \u00e0 11\u00e8me ann\u00e9e scolaire)",
+                        "it":"3\u00b0 ciclo"
+
+                     }
+                  }
+               ]
+            }
+         ]
+      },
+      {
+         "purpose":{
+            "source":"LOMv1.0",
+            "value":"discipline"
+         },
+         "taxonPath":[
+            {
+               "source":{
+                  "en":"educa"
+               },
+               "taxon":[
+                  {
+                     "id":"compulsory education",
+                     "entry":{
+                        "de":"Obligatorische Schule",
+                        "en":"Compulsory education",
+                        "fr":"Scolarit\u00e9 obligatoire",
+                        "it":"Scuola dell'obbligo"
+                     }
+                  },
+                  {
+                     "id":"cycle_3",
+                     "entry":{
+                        "de":"3. Zyklus (9. bis 11. Schuljahr)",
+                        "en":"3rd cycle (9th to 11th school year)",
+                        "fr":"3e cycle (9\u00e8me \u00e0 11\u00e8me ann\u00e9e scolaire)",
+                        "it":"3\u00b0 ciclo"
+                     }
+                  },
+                  {
+                     "id":"mathematics and natural science",
+                     "entry":{
+                        "de":"Mathematik und Naturwissenschaften",
+                        "en":"Mathematics and Natural Science",
+                        "fr":"Math\u00e9matiques et sciences de la nature",
+                        "it":"Ita_Mathematics and Natural Science"
+                     }
+                  },
+                  {
+                     "id":"natural sciences",
+                     "entry":{
+                        "de":"Naturwissenschaften",
+                        "en":"Natural sciences",
+                        "fr":"Sciences de la nature",
+                        "it":"Ita_Natural sciences"
+                     }
+                  },
+                  {
+                     "id":"biology",
+                     "entry":{
+                        "de":"Biologie",
+                        "en":"Biology",
+                        "fr":"Biologie",
+                        "it":"Biology"
+                     }
+                  }
+               ]
+            }
+         ]
+      },
+      {
+         "purpose":{
+            "source":"LOMv1.0",
+            "value":"educational level"
+         },
+         "taxonPath":[
+            {
+               "source":{
+                  "en":"educa"
+               },
+               "taxon":[
+                  {
+                     "id":"post compulsory education",
+                     "entry":{
+                        "de":"Sekundarstufe II",
+                        "en":"Post-compulsory education",
+                        "fr":"Degr\u00e9 secondaire II",
+                        "it":"Livello secondario II"
+                     }
+                  }
+               ]
+            }
+         ]
+      },
+      {
+         "purpose":{
+            "source":"LOMv1.0",
+            "value":"discipline"
+         },
+         "taxonPath":[
+            {
+               "source":{
+                  "en":"educa"
+               },
+               "taxon":[
+                  {
+                     "id":"post compulsory education",
+                     "entry":{
+                        "de":"Sekundarstufe II",
+                        "en":"Post-compulsory education",
+                        "fr":"Degr\u00e9 secondaire II",
+                        "it":"Livello secondario II"
+                     }
+                  },
+                  {
+                     "id":"mathematics and natural science",
+                     "entry":{
+                        "de":"Mathematik und Naturwissenschaften",
+                        "en":"Mathematics and Natural Science",
+                        "fr":"Math\u00e9matiques et sciences de la nature",
+                        "it":"Ita_Mathematics and Natural Science"
+                     }
+                  },
+                  {
+                     "id":"natural sciences",
+                     "entry":{
+                        "de":"Naturwissenschaften",
+                        "en":"Natural sciences",
+                        "fr":"Sciences de la nature",
+                        "it":"Ita_Natural sciences"
+                     }
+                  },
+                  {
+                     "id":"biology",
+                     "entry":{
+                        "de":"Biologie",
+                        "en":"Biology",
+                        "fr":"Biologie",
+                        "it":"Biology"
+                     }
+                  }
+               ]
+            }
+         ]
+      }
+   ],
+   "curriculum":[
+      {
+         "source": "per",
+         "entity": "{}"
+      }
+   ]
+}

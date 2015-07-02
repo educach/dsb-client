@@ -98,18 +98,18 @@ class LomDescription implements LomDescriptionInterface
     public function getContributorLogos()
     {
         $logos = array();
-        $contributors = $this->getField('metaMetadata.contributors');
+        $contributors = $this->getField('metaMetadata.contribute');
 
         if (!empty($contributors)) {
           foreach ($contributors as $contributor) {
             // Does it have a VCARD?
             if (!empty($contributor['entity'])) {
               foreach ($contributor['entity'] as $vcard) {
-                // We don't want to parse the VCARD; overkill. Just try to extract the
-                // logo.
+                // We don't want to parse the VCARD; overkill. Just try to
+                // extract the logo.
                 $match;
                 if (preg_match('/^LOGO;VALUE:uri:(.+)$/m', $vcard, $match)) {
-                  $logos[] = $match[1];
+                  $logos[] = trim($match[1]);
                 }
               }
             }
