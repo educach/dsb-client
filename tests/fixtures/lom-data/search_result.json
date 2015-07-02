@@ -1,0 +1,13 @@
+{
+	"lomId":"5ad12b78b09e52cb6bcef2134bb4ab9e",
+	"title":"Example : title, with special characters, like \u2019 and \u00e9",
+	"teaser":"\u0022Example!\u0022 example teaser with accented words: zugeh\u00f6rig \u00fcbernehmen Exp\u00e9riences",
+	"language":"de",
+	"previewImage":"http:\/\/example.ch\/files\/image.jpg",
+	"metaContributorLogos":[
+		"http:\/\/example.com\/files\/logo.jpg",
+		"http:\/\/example.com\/files\/logo.png"
+	],
+	"ownerUsername":"email@site.com",
+	"ownerDisplayName":"Partner name \/ suffix"
+}
