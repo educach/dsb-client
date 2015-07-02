@@ -9,106 +9,114 @@ namespace Educa\DSB\Client\Lom;
 
 use Educa\DSB\Client\Lom\LomDescriptionInterface;
 
-class LomDescription implements LomDescriptionInterface {
+class LomDescription implements LomDescriptionInterface
+{
 
-  protected $rawData;
+    protected $rawData;
 
-  public function __construct($data) {
-    $this->rawData = $data;
-  }
-
-  /**
-   * @{inheritdoc}
-   */
-  public function getField($fieldName, $languageFallback = array('de', 'fr', 'it', 'rm', 'en')) {
-    // We accept fields using a dot-notation to signify a hierarchy. For
-    // example, technical.previewImage.image is a valid parameter. Explode the
-    // field name on '.', and recursively get the desired key.
-    $hierarchy = explode('.', $fieldName);
-    $fieldValue = $this->rawData;
-
-    while ($fieldValue && count($hierarchy)) {
-      $part = array_shift($hierarchy);
-
-      $fieldValue = isset($fieldValue[$part]) ? $fieldValue[$part] : FALSE;
+    public function __construct($data)
+    {
+        $this->rawData = $data;
     }
 
-    // If the value is not an array, return now.
-    if (!is_array($fieldValue)) {
-      return $fieldValue;
-    }
-    else {
-      // It could be a LangString. In that case, we use the language fallback.
-      foreach ($languageFallback as $language) {
-        if (isset($fieldValue[$language])) {
-          return $fieldValue[$language];
+    /**
+     * @{inheritdoc}
+     */
+    public function getField($fieldName, $languageFallback = array('de', 'fr', 'it', 'rm', 'en'))
+    {
+        // We accept fields using a dot-notation to signify a hierarchy. For
+        // example, technical.previewImage.image is a valid parameter. Explode the
+        // field name on '.', and recursively get the desired key.
+        $hierarchy = explode('.', $fieldName);
+        $fieldValue = $this->rawData;
+
+        while ($fieldValue && count($hierarchy)) {
+          $part = array_shift($hierarchy);
+
+          $fieldValue = isset($fieldValue[$part]) ? $fieldValue[$part] : FALSE;
         }
-      }
 
-      // If we didn't find a language key, we simply return the data as-is.
-      return $fieldValue;
+        // If the value is not an array, return now.
+        if (!is_array($fieldValue)) {
+          return $fieldValue;
+        } else {
+          // It could be a LangString. In that case, we use the language fallback.
+          foreach ($languageFallback as $language) {
+            if (isset($fieldValue[$language])) {
+              return $fieldValue[$language];
+            }
+          }
+
+          // If we didn't find a language key, we simply return the data as-is.
+          return $fieldValue;
+        }
     }
-  }
 
-  /**
-   * @{inheritdoc}
-   */
-  public function getLomId() {
-    return $this->getField('lomId');
-  }
+    /**
+     * @{inheritdoc}
+     */
+    public function getLomId()
+    {
+        return $this->getField('lomId');
+    }
 
-  /**
-   * @{inheritdoc}
-   */
-  public function getTitle($languageFallback = array('de', 'fr', 'it', 'rm', 'en')) {
-    return $this->getField('general.title', $languageFallback);
-  }
+    /**
+     * @{inheritdoc}
+     */
+    public function getTitle($languageFallback = array('de', 'fr', 'it', 'rm', 'en'))
+    {
+        return $this->getField('general.title', $languageFallback);
+    }
 
-  /**
-   * @{inheritdoc}
-   */
-  public function getDescription($languageFallback = array('de', 'fr', 'it', 'rm', 'en')) {
-    return $this->getField('general.description', $languageFallback);
-  }
+    /**
+     * @{inheritdoc}
+     */
+    public function getDescription($languageFallback = array('de', 'fr', 'it', 'rm', 'en'))
+    {
+        return $this->getField('general.description', $languageFallback);
+    }
 
-  /**
-   * @{inheritdoc}
-   */
-  public function getPreviewImage() {
-    return $this->getField('technical.previewImage.image');
-  }
+    /**
+     * @{inheritdoc}
+     */
+    public function getPreviewImage()
+    {
+        return $this->getField('technical.previewImage.image');
+    }
 
-  /**
-   * @{inheritdoc}
-   */
-  public function getOwnerUsername() {
-    return $this->getField('ownerUsername');
-  }
+    /**
+     * @{inheritdoc}
+     */
+    public function getOwnerUsername()
+    {
+        return $this->getField('ownerUsername');
+    }
 
-  /**
-   * @{inheritdoc}
-   */
-  public function getContributorLogos() {
-    $logos = array();
-    $contributors = $this->getField('metaMetadata.contributors');
+    /**
+     * @{inheritdoc}
+     */
+    public function getContributorLogos()
+    {
+        $logos = array();
+        $contributors = $this->getField('metaMetadata.contributors');
 
-    if (!empty($contributors)) {
-      foreach ($contributors as $contributor) {
-        // Does it have a VCARD?
-        if (!empty($contributor['entity'])) {
-          foreach ($contributor['entity'] as $vcard) {
-            // We don't want to parse the VCARD; overkill. Just try to extract the
-            // logo.
-            $match;
-            if (preg_match('/^LOGO;VALUE:uri:(.+)$/m', $vcard, $match)) {
-              $logos[] = $match[1];
+        if (!empty($contributors)) {
+          foreach ($contributors as $contributor) {
+            // Does it have a VCARD?
+            if (!empty($contributor['entity'])) {
+              foreach ($contributor['entity'] as $vcard) {
+                // We don't want to parse the VCARD; overkill. Just try to extract the
+                // logo.
+                $match;
+                if (preg_match('/^LOGO;VALUE:uri:(.+)$/m', $vcard, $match)) {
+                  $logos[] = $match[1];
+                }
+              }
             }
           }
         }
-      }
-    }
 
-    return $logos;
-  }
+        return $logos;
+    }
 
 }

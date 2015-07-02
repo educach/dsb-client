@@ -7,6 +7,7 @@
 
 namespace Educa\DSB\Client\ApiClient;
 
-class ClientAuthenticationException extends \Exception {
+class ClientAuthenticationException extends \Exception
+{
 
 }
