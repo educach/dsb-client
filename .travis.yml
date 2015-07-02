@@ -1,0 +1,14 @@
+language: php
+php:
+  - 5.5
+  - 5.4
+  - 5.3
+  - hhvm
+install:
+  - rm composer.json
+  - cp composer.json.dist composer.json
+  - composer install
+  - mkdir -p build/logs
+script: phpunit
+after_script:
+  - php vendor/bin/coveralls
