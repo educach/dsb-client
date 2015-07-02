@@ -3,3 +3,4 @@
 /coverage-report/
 *.sublime-*
 composer.lock
+phpunit.xml
