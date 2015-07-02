@@ -1,0 +1,25 @@
+{
+    "name": "educach/dsb-client",
+    "description": "Client library for communicating with the REST API of the national catalog of the Swiss digital school library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "educa.ch",
+            "email": "info@educa.ch"
+        },
+        {
+            "name": "Diego Pizarro",
+            "email": "d.pizarro@educa.ch"
+        },
+        {
+            "name": "Wouter Admiraal",
+            "email": "w.admiraal@educa.ch"
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "^4.7"
+    },
+    "require": {
+        "guzzlehttp/guzzle": "~5.0"
+    }
+}
