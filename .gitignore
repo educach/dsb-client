@@ -1,0 +1,4 @@
+/vendor/
+/build/
+*.sublime-*
+composer.lock
