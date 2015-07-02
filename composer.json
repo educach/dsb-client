@@ -21,5 +21,10 @@
     },
     "require": {
         "guzzlehttp/guzzle": "~5.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Educa\\DSB\\Client\\": "src/Educa/DSB/Client"
+        }
     }
 }
