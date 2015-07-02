@@ -107,7 +107,7 @@ class LomDescription implements LomDescriptionInterface
               foreach ($contributor['entity'] as $vcard) {
                 // We don't want to parse the VCARD; overkill. Just try to
                 // extract the logo.
-                $match;
+                $match = array();
                 if (preg_match('/^LOGO;VALUE:uri:(.+)$/m', $vcard, $match)) {
                   $logos[] = trim($match[1]);
                 }
