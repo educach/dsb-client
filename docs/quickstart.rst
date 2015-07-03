@@ -32,7 +32,7 @@ Search
 
 It is possible to search the catalog for specific descriptions. The search is very powerful and flexible, and beyond the scope of this documentation. Refer to the `RESTful API documentation <https://dsb-api.educa.ch/latest/doc/#api-Search>`_ for more information.
 
-Search results are not *LOM-CH* objects, but do contain some of their information. The Educa\DSB\Client\Lom\LomDescriptionSearchResult class can take a JSON decoded data structure and facilitate it's usage.
+Search results are not *LOM-CH* objects, but do contain some of their information. The Educa\\DSB\\Client\\Lom\\LomDescriptionSearchResult class can take a JSON decoded data structure and facilitate it's usage.
 
 .. code-block:: php
 
@@ -105,7 +105,7 @@ Fields that contain data in multiple languages can be instructed to return the i
     // This will look for French first and fallback to English.
     echo $lomDescription->getDescription(['fr', 'en']);
 
-Not all fields have shortcut methods. For fields that the ``Educa\DSB\Client\Lom\LomDescriptionInterface`` interface does not define shortcuts for, you can use the ``getField()`` method. For nested fields, use a *dot* (``.``) notation:
+Not all fields have shortcut methods. For fields that the ``Educa\\DSB\\Client\\Lom\\LomDescriptionInterface`` interface does not define shortcuts for, you can use the ``getField()`` method. For nested fields, use a *dot* (``.``) notation:
 
 .. code-block:: php
 
