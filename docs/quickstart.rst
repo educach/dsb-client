@@ -87,18 +87,25 @@ It is also possible to load a full LOM-CH description. This will contain a lot m
         // The authentication failed.
     }
 
-    // Fetch the field data. LOM-CH descriptions can contain information in
-    // multiple languages. Fields that contain data in multiple languages can
-    // be told to return the information in one language only by specifying
-    // a language fallback array. The first language that matches will be
-    // returned.
+It is possible to fetch LOM-CH field data using special methods:
+
+.. code-block:: php
+
+    echo $lomDescription->getLomId();
+    echo $lomDescription->getPreviewImage();
+
+Fields that contain data in multiple languages can be instructed to return the information in one language only by specifying a language fallback array. The first language that matches will be returned. If no match is found, the field will be returned in "raw" format (meaning, multilingual fields will be returned as an associative array, with field values keyed by language).
+
+.. code-block:: php
+
     // This will first look for a German title, then fallback to French and
     // finally Italian.
     echo $lomDescription->getTitle(['de', 'fr', 'it']);
+
     // This will look for French first and fallback to English.
     echo $lomDescription->getDescription(['fr', 'en']);
 
-Not all fields have shortcut methods. For fields that the ``Educa\DSB\Client\Lom\LomDescriptionInterface`` interface does not define shortcuts for, you can use the ``getField()`` method:
+Not all fields have shortcut methods. For fields that the ``Educa\DSB\Client\Lom\LomDescriptionInterface`` interface does not define shortcuts for, you can use the ``getField()`` method. For nested fields, use a *dot* (``.``) notation:
 
 .. code-block:: php
 
