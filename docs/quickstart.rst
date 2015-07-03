@@ -45,14 +45,11 @@ Search results are not *LOM-CH* objects, but do contain some of their informatio
 
     try {
         $client->authenticate();
-    } catch(ClientAuthenticationException $e) {
-        // The authentication failed.
-    }
-
-    try {
         $searchResult = $client->search('Cookies');
     } catch(ClientRequestException $e) {
         // The request failed.
+    } catch(ClientAuthenticationException $e) {
+        // The authentication failed.
     }
 
     $results = array();
@@ -70,6 +67,8 @@ Search results are not *LOM-CH* objects, but do contain some of their informatio
 Loading a description
 =====================
 
+It is also possible to load a full LOM-CH description. This will contain a lot more information than the search results.
+
 .. code-block:: php
 
     use Educa\DSB\Client\ApiClient\ClientV2;
@@ -81,14 +80,11 @@ Loading a description
 
     try {
         $client->authenticate();
-    } catch(ClientAuthenticationException $e) {
-        // The authentication failed.
-    }
-
-    try {
         $lomDescription = $client->loadDescription('asd789asd9hasd-asd7asdas-asd897asd978');
     } catch(ClientRequestException $e) {
         // The request failed.
+    } catch(ClientAuthenticationException $e) {
+        // The authentication failed.
     }
 
     // Fetch the field data. LOM-CH descriptions can contain information in
@@ -101,3 +97,19 @@ Loading a description
     echo $lomDescription->getTitle(['de', 'fr', 'it']);
     // This will look for French first and fallback to English.
     echo $lomDescription->getDescription(['fr', 'en']);
+
+Not all fields have shortcut methods. For fields that the ``Educa\DSB\Client\Lom\LomDescriptionInterface`` interface does not define shortcuts for, you can use the ``getField()`` method:
+
+.. code-block:: php
+
+    echo $lomDescription->getField('lomId');
+
+    // Use a dot (.) notation to fetch nested fields.
+    echo $lomDescription->getField('lifeCycle.version');
+
+    // Fields that are arrays can use numeric field names to get specific items.
+    echo $lomDescription->getField('technical.keyword.0');
+
+    // Fields that are multilingual can use a language fallback array as the
+    // second parameter.
+    echo $lomDescription->getField('general.title', ['de', 'fr']);
