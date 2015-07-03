@@ -138,8 +138,7 @@ class ClientV2Test extends \PHPUnit_Framework_TestCase
         $client = new ClientV2(
             'http://localhost',
             'user@site.com',
-            FIXTURES_DIR . '/user/privatekey_nopassphrase.pem',
-            'passphrase'
+            FIXTURES_DIR . '/user/privatekey_nopassphrase.pem'
         );
         $client->setClient($guzzle);
 
