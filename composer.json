@@ -2,6 +2,9 @@
     "name": "educach/dsb-client",
     "description": "Client library for communicating with the REST API of the national catalog of the Swiss digital school library",
     "license": "MIT",
+    "type": "library",
+    "homepage": "https://github.com/educach/dsb-client",
+    "keywords": ["education","lom"],
     "authors": [
         {
             "name": "educa.ch",
