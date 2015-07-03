@@ -64,8 +64,6 @@ class ClientV2 extends AbstractClient
             throw new ClientAuthenticationException(sprintf("Authentication failed. Status: %s. Error message: %s", $e->getCode(), $e->getMessage()));
         }
 
-
-
         // Support chaining.
         return $this;
     }
