@@ -5,6 +5,17 @@ Client to the national catalog of the Swiss digital school library
 
 This is the official PHP library for connecting and communicating with the REST API to the national catalog of the Swiss digital school library. It handles authentication, reading descriptions, searching, etc.
 
+Installation
+------------
+
+Install using [Composer](https://getcomposer.org/). Add the following to your `composer.json`:
+
+    {
+      "require": {
+        "educach/dsb-client": "dev-master"
+      }
+    }
+
 Documentation
 -------------
 
