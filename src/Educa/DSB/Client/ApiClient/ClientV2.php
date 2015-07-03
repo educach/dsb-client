@@ -12,6 +12,7 @@ namespace Educa\DSB\Client\ApiClient;
 use GuzzleHttp\Exception\ClientException as GuzzleClientException;
 use Educa\DSB\Client\ApiClient\AbstractClient;
 use Educa\DSB\Client\ApiClient\ClientAuthenticationException;
+use Educa\DSB\Client\ApiClient\ClientRequestException;
 
 class ClientV2 extends AbstractClient
 {
@@ -97,12 +98,15 @@ class ClientV2 extends AbstractClient
           ),
         );
 
-        $response = $this->get('/search', $options);
-
-        if ($response->getStatusCode() == 200) {
-          return json_decode($response->getBody(), true);
-        } else {
-          throw new ClientAuthenticationException(sprintf("Request to /search failed. Status: %s. Error message: %s", $response->getStatusCode(), $response->getBody()));
+        try {
+            $response = $this->get('/search', $options);
+            if ($response->getStatusCode() == 200) {
+                return json_decode($response->getBody(), true);
+            } else {
+                throw new ClientRequestException(sprintf("Request to /search failed. Status: %s. Error message: %s", $response->getStatusCode(), $response->getBody()));
+            }
+        } catch(GuzzleClientException $e) {
+            throw new ClientRequestException(sprintf("Request to /search failed. Status: %s. Error message: %s", $e->getCode(), $e->getMessage()));
         }
     }
 
@@ -115,12 +119,15 @@ class ClientV2 extends AbstractClient
           throw new ClientAuthenticationException(sprintf("No token found. Cannot load a LOM description without a token."));
         }
 
-        $response = $this->get('/description/' . urlencode($lomId));
-
-        if ($response->getStatusCode() == 200) {
-          return json_decode($response->getBody(), true);
-        } else {
-          throw new ClientAuthenticationException(sprintf("Request to /description/%s failed. Status: %s. Error message: %s", $lomId, $response->getStatusCode(), $response->getBody()));
+        try {
+            $response = $this->get('/description/' . urlencode($lomId));
+            if ($response->getStatusCode() == 200) {
+                return json_decode($response->getBody(), true);
+            } else {
+              throw new ClientRequestException(sprintf("Request to /description/%s failed. Status: %s. Error message: %s", $lomId, $response->getStatusCode(), $response->getBody()));
+            }
+        } catch(GuzzleClientException $e) {
+            throw new ClientRequestException(sprintf("Request to /search failed. Status: %s. Error message: %s", $e->getCode(), $e->getMessage()));
         }
     }
 
@@ -133,14 +140,18 @@ class ClientV2 extends AbstractClient
           throw new ClientAuthenticationException(sprintf("No token found. Cannot load a LOM description without a token."));
         }
 
-        $response = $this->get(
-          '/ontology/list' . (!empty($vocabularyIds) ? '/' . implode(',', $vocabularyIds) : '')
-        );
+        try {
+            $response = $this->get(
+              '/ontology/list' . (!empty($vocabularyIds) ? '/' . implode(',', $vocabularyIds) : '')
+            );
 
-        if ($response->getStatusCode() == 200) {
-          return json_decode($response->getBody(), true);
-        } else {
-          throw new ClientAuthenticationException(sprintf("Request to /ontology/list/%s failed. Status: %s. Error message: %s", implode(',', $vocabularyIds), $response->getStatusCode(), $response->getBody()));
+            if ($response->getStatusCode() == 200) {
+                return json_decode($response->getBody(), true);
+            } else {
+                throw new ClientRequestException(sprintf("Request to /ontology/list/%s failed. Status: %s. Error message: %s", implode(',', $vocabularyIds), $response->getStatusCode(), $response->getBody()));
+            }
+        } catch(GuzzleClientException $e) {
+            throw new ClientRequestException(sprintf("Request to /search failed. Status: %s. Error message: %s", $e->getCode(), $e->getMessage()));
         }
     }
 }
