@@ -3,10 +3,13 @@
 /**
  * @file
  * Contains \Educa\DSB\Client\ApiClient\ClientV2.
+ *
+ * This client is compatible with the version 2.x of the REST API.
  */
 
 namespace Educa\DSB\Client\ApiClient;
 
+use GuzzleHttp\Exception\ClientException as GuzzleClientException;
 use Educa\DSB\Client\ApiClient\AbstractClient;
 use Educa\DSB\Client\ApiClient\ClientAuthenticationException;
 
@@ -18,6 +21,10 @@ class ClientV2 extends AbstractClient
      */
     public function authenticate()
     {
+        if (!file_exists($this->privateKeyPath)) {
+            throw new ClientAuthenticationException("Private key could not be loaded. Is the path correct ?");
+        }
+
         $privateKeyRaw = file_get_contents($this->privateKeyPath);
         if (empty($this->privateKeyPassphrase)) {
           $privateKey = openssl_pkey_get_private($privateKeyRaw);
@@ -40,19 +47,24 @@ class ClientV2 extends AbstractClient
           ),
         );
 
-        $response = $this->post('/auth', $options);
-
-        if ($response->getStatusCode() == 200) {
-          $data = json_decode($response->getBody(), true);
-          if (!empty($data['token'])) {
-            $this->tokenKey = $data['token'];
-          }
-          else {
-            throw new ClientAuthenticationException(sprintf("Authentication failed. Status was correct, but couldn't find a token in the body. Body: %s", $response->getBody()));
-          }
-        } else {
-          throw new ClientAuthenticationException(sprintf("Authentication failed. Status: %s. Error message: %s", $response->getStatusCode(), $response->getBody()));
+        try {
+            $response = $this->post('/auth', $options);
+            if ($response->getStatusCode() == 200) {
+                $data = json_decode($response->getBody(), true);
+                if (!empty($data['token'])) {
+                    $this->tokenKey = $data['token'];
+                }
+                else {
+                    throw new ClientAuthenticationException(sprintf("Authentication failed. Status was correct, but couldn't find a token in the body. Body: %s", $response->getBody()));
+                }
+            } else {
+                throw new ClientAuthenticationException(sprintf("Authentication failed. Status: %s. Error message: %s", $response->getStatusCode(), $response->getBody()));
+            }
+        } catch (GuzzleClientException $e) {
+            throw new ClientAuthenticationException(sprintf("Authentication failed. Status: %s. Error message: %s", $e->getCode(), $e->getMessage()));
         }
+
+
 
         // Support chaining.
         return $this;

@@ -8,6 +8,7 @@
 namespace Educa\DSB\Client\ApiClient;
 
 use GuzzleHttp\Client as GuzzleClient;
+use GuzzleHttp\ClientInterface as GuzzleClientInterface;
 
 abstract class AbstractClient implements ClientInterface
 {
@@ -44,6 +45,30 @@ abstract class AbstractClient implements ClientInterface
         $this->privateKeyPath = $privateKeyPath;
         $this->privateKeyPassphrase = $privateKeyPassphrase;
         $this->client = new GuzzleClient();
+    }
+
+    /**
+     * Set the HTTP client.
+     *
+     * By default, a simple GuzzleHttp\Client is used. But it is possible to
+     * override this property and use another client class.
+     *
+     * @param GuzzleHttp\ClientInterface $client
+     */
+    public function setClient(GuzzleClientInterface $client)
+    {
+        $this->client = $client;
+        return $this;
+    }
+
+    /**
+     * Get the HTTP client.
+     *
+     * @return GuzzleHttp\ClientInterface $client
+     */
+    public function getClient()
+    {
+        return $this->client;
     }
 
     /**
