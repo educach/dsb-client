@@ -95,7 +95,7 @@ It is possible to pass more than one facet to the Client:
         // The authentication failed.
     }
 
-A full list of available facets can be found `here <https://dsb-api.educa.ch/latest/doc/#api-Search-GetSearch>`_. A live-example of how these facets can be used can be found `here <biblio.educa.ch>`_.
+A full list of available facets can be found `here <https://dsb-api.educa.ch/latest/doc/#api-Search-GetSearch>`_. A live-example of how these facets can be used can be found `here <http://biblio.educa.ch>`_.
 
 Filtering results
 -----------------
