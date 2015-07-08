@@ -161,8 +161,8 @@ It is possible to add more fields to the search results. The 4th parameters pass
 
 Read the `API documentation <https://dsb-api.educa.ch/latest/doc/#api-Search-GetSearch>`_ for more information.
 
-Paging and limiting the number of results
------------------------------------------
+Pagination and limiting the number of results
+---------------------------------------------
 
 It is possible to limit the number of results by passing a number as the 5th parameter. The following will only show 20 results (instead of 50, the default):
 
