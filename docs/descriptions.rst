@@ -4,7 +4,7 @@ LOM-CH Descriptions
 
 A *description* is a piece of data following the *LOM-CH* standard. The *LOM-CH* standard is a superset of the international `LOM <https://en.wikipedia.org/wiki/Learning_object_metadata>`_ standard. *LOM* stands for *Learning Object Metadata*. It is a standard for representing learning resources, be it books, videos, websites, games, etc. The dsb (*Digitale Schulbibliothek*) groups many of these descriptions in a large catalog, with an API for searching for descriptions, loading a full description, or even adding new ones.
 
-All communication with the API regarding descriptions requires prior authentication. See :doc:`Authentication<authentication>`_ for more information.
+All communication with the API regarding descriptions requires prior authentication. See :doc:`Authentication<authentication>` for more information.
 
 Searching descriptions
 ======================
