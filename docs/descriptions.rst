@@ -292,7 +292,7 @@ Loading a description requires knowing its *LOM identifier*. This is a UUID, or 
         // The authentication failed.
     }
 
-This loads the description data as an associative array into ``$descriptionData``. Look at `the API documentation <>`_ for more information on this data's structure.
+This loads the description data as an associative array into ``$descriptionData``. Look at `the API documentation <https://dsb-api.educa.ch/latest/doc/#api-Description-GetDescription>`_ for more information on this data's structure.
 
 Manipulating a description
 --------------------------
