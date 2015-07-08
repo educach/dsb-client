@@ -95,7 +95,7 @@ It is possible to pass more than one facet to the Client:
         // The authentication failed.
     }
 
-A full list of available facets can be found `here <https://dsb-api.educa.ch/latest/doc/#api-Search-GetSearch>`_. A live-example of how these facets can be used can be found `here <http://biblio.educa.ch>`_.
+A full list of available facets can be found `here <https://dsb-api.educa.ch/latest/doc/#api-Search-GetSearch>`_. A live-example of how these facets can be used can be found `here <http://portal.dsb.educa.ch>`_.
 
 Filtering results
 -----------------
@@ -259,4 +259,95 @@ Of course, this also works for the default fields:
 Loading a description
 =====================
 
-todo
+It is possible to load the full data for a resource. This will contain all meta-data, as well as data from the `Ontology server <http://ontology.biblio.educa.ch/>`_.
+
+Ontology data
+-------------
+
+Ontology data provides human-readable strings for *vocabulary* entries. For example, a description can have several *contributors*. Each of these contributors has a *role*, like *author*, *editor*, etc. These are *machine-readable* names, and are always the same, regardless of which language the description is in. In order to keep the human-readable values, as well as translations, of these vocabulary entries centralized, one can query the *Ontology Server*. This can be done directly through the API. See :doc:`ontology` for more information. However, the API "injects" most if this data directly into the loaded descriptions, which saves us the hassle.
+
+Multilingual descriptions
+-------------------------
+
+Because this is communicating with the *Swiss* national catalog (which has 4 official languages), many descriptions are multilingual. When loading a description, many fields, like *title*, *keyword*, etc, can have different values per language.
+
+Loading a description
+---------------------
+
+Loading a description requires knowing its *LOM identifier*. This is a UUID, or a MD5 hash prefixed with *archibald###* for older versions.
+
+.. code-block:: php
+
+    use Educa\DSB\Client\ApiClient\ClientV2;
+    use Educa\DSB\Client\ApiClient\ClientAuthenticationException;
+    use Educa\DSB\Client\ApiClient\ClientRequestException;
+
+    $client = new ClientV2('https://dsb-api.educa.ch/v2', 'user@site.com', '/path/to/privatekey.pem', 'passphrase');
+
+    try {
+        $descriptionData = $client->authenticate()->loadDescription('asd89iowqe-sadjqw98-asd87a9doiiuowqe');
+    } catch(ClientRequestException $e) {
+        // The request failed.
+    } catch(ClientAuthenticationException $e) {
+        // The authentication failed.
+    }
+
+This loads the description data as an associative array into ``$descriptionData``. Look at `the API documentation <>`_ for more information on this data's structure.
+
+Manipulating a description
+--------------------------
+
+This object can be pretty hard to manipulate. That is where ``LomDescription`` comes in. The ``LomDescription`` class can take a JSON-decoded LOM-CH data object and expose its properties in a much more convenient way:
+
+.. code-block:: php
+
+    use Educa\DSB\Client\ApiClient\ClientV2;
+    use Educa\DSB\Client\ApiClient\ClientAuthenticationException;
+    use Educa\DSB\Client\ApiClient\ClientRequestException;
+    use Educa\DSB\Client\Lom\LomDescription;
+
+    $client = new ClientV2('https://dsb-api.educa.ch/v2', 'user@site.com', '/path/to/privatekey.pem', 'passphrase');
+
+    $client = new ClientV2('https://dsb-api.educa.ch/v2', 'user@site.com', '/path/to/privatekey.pem', 'passphrase');
+
+    try {
+        $descriptionData = $client->authenticate()->loadDescription('asd89iowqe-sadjqw98-asd87a9doiiuowqe');
+    } catch(ClientRequestException $e) {
+        // The request failed.
+    } catch(ClientAuthenticationException $e) {
+        // The authentication failed.
+    }
+
+    $lomDescription = new LomDescription($descriptionData);
+
+    echo $lomDescription->getTitle();
+    echo $lomDescription->getDescription();
+    echo $lomDescription->getLomId();
+    echo $lomDescription->getPreviewImage();
+
+Fields that contain data in multiple languages can be instructed to return the information in one language only by specifying a language fallback array. The first language that matches will be returned. If no match is found, the field will be returned in "raw" format (meaning, multilingual fields will be returned as an associative array, with field values keyed by language).
+
+.. code-block:: php
+
+    // This will first look for a German title, then fallback to French and
+    // finally Italian.
+    echo $lomDescription->getTitle(['de', 'fr', 'it']);
+
+    // This will look for French first and fallback to English.
+    echo $lomDescription->getDescription(['fr', 'en']);
+
+Not all fields have shortcut methods. For fields that the ``LomDescriptionInterface`` interface does not define shortcuts for, you can use the ``getField()`` method. For nested fields, use a *dot* (``.``) notation:
+
+.. code-block:: php
+
+    echo $lomDescription->getField('lomId');
+
+    // Use a dot (.) notation to fetch nested fields.
+    echo $lomDescription->getField('lifeCycle.version');
+
+    // Fields that are arrays can use numeric field names to get specific items.
+    echo $lomDescription->getField('technical.keyword.0');
+
+    // Fields that are multilingual can use a language fallback array as the
+    // second parameter.
+    echo $lomDescription->getField('general.title', ['de', 'fr']);

@@ -19,4 +19,5 @@ User Guide
     quickstart
     authentication
     descriptions
+    ontology
     testing
