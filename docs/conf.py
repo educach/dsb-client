@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# DSB API Client PHP library documentation build configuration file, created by
+# dsb API Client PHP library documentation build configuration file, created by
 # sphinx-quickstart on Thu Jul  2 14:42:47 2015.
 #
 # This file is execfile()d with the current directory set to its
@@ -52,7 +52,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'DSB API Client PHP library'
+project = u'dsb API Client PHP library'
 copyright = u'2015, educa.ch'
 author = u'educa.ch'
 
@@ -228,7 +228,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-  (master_doc, 'DSBAPIClientPHPlibrary.tex', u'DSB API Client PHP library Documentation',
+  (master_doc, 'DSBAPIClientPHPlibrary.tex', u'dsb API Client PHP library Documentation',
    u'educa.ch', 'manual'),
 ]
 
@@ -258,7 +258,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'dsbapiclientphplibrary', u'DSB API Client PHP library Documentation',
+    (master_doc, 'dsbapiclientphplibrary', u'dsb API Client PHP library Documentation',
      [author], 1)
 ]
 
@@ -272,7 +272,7 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  (master_doc, 'DSBAPIClientPHPlibrary', u'DSB API Client PHP library Documentation',
+  (master_doc, 'DSBAPIClientPHPlibrary', u'dsb API Client PHP library Documentation',
    author, 'DSBAPIClientPHPlibrary', 'One line description of project.',
    'Miscellaneous'),
 ]

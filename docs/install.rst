@@ -32,4 +32,4 @@ Manual installation
 
 If you wish to use this library without using Composer, you can download a release `here <https://github.com/educach/dsb-client/releases>`_, or do a checkout using Git at ``https://github.com/educach/dsb-client.git``.
 
-Make sure you have some sort of autoloading mechanism in place. The DSB Client library is `PSR-4 <http://www.php-fig.org/psr/psr-4/>`_ compatible.
+Make sure you have some sort of autoloading mechanism in place. The dsb Client library is `PSR-4 <http://www.php-fig.org/psr/psr-4/>`_ compatible.

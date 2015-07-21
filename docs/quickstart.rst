@@ -5,7 +5,7 @@ Quickstart
 A note on API versions
 ======================
 
-At the time of writing, the RESTful API is at version 2. It is highly likely that this API will undergo backward incompatible changes in the future, as the LOM-CH standard evolves. In order to plan for this in advance, the DSB Client library has an abstract, base class for client implementations, and version specific implementations that inherit from it.
+At the time of writing, the RESTful API is at version 2. It is highly likely that this API will undergo backward incompatible changes in the future, as the LOM-CH standard evolves. In order to plan for this in advance, the dsb Client library has an abstract, base class for client implementations, and version specific implementations that inherit from it.
 
 Make sure to choose the correct client version, depending on which version of the RESTful API your connecting to. For instance, for communicating with the version 2 of the RESTful API, you should use ``ClientV2``.
 
