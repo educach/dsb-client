@@ -28,24 +28,24 @@ class ClientV2 extends AbstractClient
 
         $privateKeyRaw = file_get_contents($this->privateKeyPath);
         if (empty($this->privateKeyPassphrase)) {
-          $privateKey = openssl_pkey_get_private($privateKeyRaw);
+            $privateKey = openssl_pkey_get_private($privateKeyRaw);
         } else {
-          $privateKey = openssl_pkey_get_private($privateKeyRaw, $this->privateKeyPassphrase);
+            $privateKey = openssl_pkey_get_private($privateKeyRaw, $this->privateKeyPassphrase);
         }
 
         if (!$privateKey) {
-          throw new ClientAuthenticationException("Private key could not be loaded. Is the passphrase correct ?");
+            throw new ClientAuthenticationException("Private key could not be loaded. Is the passphrase correct ?");
         }
 
         $vector = md5($this->username . time());
         openssl_sign($vector, $signature, $privateKey);
 
         $options = array(
-          'body' => array(
-            'user' => $this->username,
-            'signature' => base64_encode($signature),
-            'vector' => $vector,
-          ),
+            'body' => array(
+                'user' => $this->username,
+                'signature' => base64_encode($signature),
+                'vector' => $vector,
+            ),
         );
 
         try {
@@ -73,29 +73,29 @@ class ClientV2 extends AbstractClient
      * @{inheritdoc}
      */
     public function search(
-      $query = '',
-      array $useFacets = array(),
-      array $filters = array(),
-      array $additionalFields = array(),
-      $offset = 0,
-      $limit = 50,
-      $sortBy = 'random'
+        $query = '',
+        array $useFacets = array(),
+        array $filters = array(),
+        array $additionalFields = array(),
+        $offset = 0,
+        $limit = 50,
+        $sortBy = 'random'
     )
     {
         if (empty($this->tokenKey)) {
-          throw new ClientAuthenticationException(sprintf("No token found. Cannot make a search request without a token."));
+            throw new ClientAuthenticationException(sprintf("No token found. Cannot make a search request without a token."));
         }
 
         $options = array(
-          'query' => array(
-            'query' => $query,
-            'facets' => empty($useFacets) ? '[]' : json_encode($useFacets),
-            'filters' => empty($filters) ? '{}' : json_encode($filters),
-            'additionalFields' => empty($additionalFields) ? '[]' : json_encode($additionalFields),
-            'offset' => $offset,
-            'limit' => $limit,
-            'sortBy' => $sortBy,
-          ),
+            'query' => array(
+              'query' => $query,
+              'facets' => empty($useFacets) ? '[]' : json_encode($useFacets),
+              'filters' => empty($filters) ? '{}' : json_encode($filters),
+              'additionalFields' => empty($additionalFields) ? '[]' : json_encode($additionalFields),
+              'offset' => $offset,
+              'limit' => $limit,
+              'sortBy' => $sortBy,
+            ),
         );
 
         try {
@@ -116,7 +116,7 @@ class ClientV2 extends AbstractClient
     public function loadDescription($lomId)
     {
         if (empty($this->tokenKey)) {
-          throw new ClientAuthenticationException(sprintf("No token found. Cannot load a LOM description without a token."));
+            throw new ClientAuthenticationException(sprintf("No token found. Cannot load a LOM description without a token."));
         }
 
         try {
@@ -124,7 +124,7 @@ class ClientV2 extends AbstractClient
             if ($response->getStatusCode() == 200) {
                 return json_decode($response->getBody(), true);
             } else {
-              throw new ClientRequestException(sprintf("Request to /description/%s failed. Status: %s. Error message: %s", $lomId, $response->getStatusCode(), $response->getBody()));
+                throw new ClientRequestException(sprintf("Request to /description/%s failed. Status: %s. Error message: %s", $lomId, $response->getStatusCode(), $response->getBody()));
             }
         } catch(GuzzleClientException $e) {
             throw new ClientRequestException(sprintf("Request to /search failed. Status: %s. Error message: %s", $e->getCode(), $e->getMessage()));
@@ -137,12 +137,12 @@ class ClientV2 extends AbstractClient
     public function loadOntologyData(array $vocabularyIds = null)
     {
         if (empty($this->tokenKey)) {
-          throw new ClientAuthenticationException(sprintf("No token found. Cannot load a LOM description without a token."));
+            throw new ClientAuthenticationException(sprintf("No token found. Cannot load a LOM description without a token."));
         }
 
         try {
             $response = $this->get(
-              '/ontology/list' . (!empty($vocabularyIds) ? '/' . implode(',', $vocabularyIds) : '')
+                '/ontology/list' . (!empty($vocabularyIds) ? '/' . implode(',', $vocabularyIds) : '')
             );
 
             if ($response->getStatusCode() == 200) {
@@ -155,3 +155,4 @@ class ClientV2 extends AbstractClient
         }
     }
 }
+

@@ -49,13 +49,13 @@ interface ClientInterface
      *    - facets: A tree of facets.
      */
     public function search(
-      $query = '',
-      array $useFacets = array(),
-      array $filters = array(),
-      array $additionalFields = array(),
-      $offset = 0,
-      $limit = 50,
-      $sortBy = 'random'
+        $query = '',
+        array $useFacets = array(),
+        array $filters = array(),
+        array $additionalFields = array(),
+        $offset = 0,
+        $limit = 50,
+        $sortBy = 'random'
     );
 
     /**

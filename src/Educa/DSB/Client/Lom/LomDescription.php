@@ -31,24 +31,24 @@ class LomDescription implements LomDescriptionInterface
         $fieldValue = $this->rawData;
 
         while ($fieldValue && count($hierarchy)) {
-          $part = array_shift($hierarchy);
+            $part = array_shift($hierarchy);
 
-          $fieldValue = isset($fieldValue[$part]) ? $fieldValue[$part] : FALSE;
+            $fieldValue = isset($fieldValue[$part]) ? $fieldValue[$part] : FALSE;
         }
 
         // If the value is not an array, return now.
         if (!is_array($fieldValue)) {
-          return $fieldValue;
+            return $fieldValue;
         } else {
-          // It could be a LangString. In that case, we use the language fallback.
-          foreach ($languageFallback as $language) {
-            if (isset($fieldValue[$language])) {
-              return $fieldValue[$language];
+            // It could be a LangString. In that case, we use the language fallback.
+            foreach ($languageFallback as $language) {
+                if (isset($fieldValue[$language])) {
+                    return $fieldValue[$language];
+                }
             }
-          }
 
-          // If we didn't find a language key, we simply return the data as-is.
-          return $fieldValue;
+            // If we didn't find a language key, we simply return the data as-is.
+            return $fieldValue;
         }
     }
 
@@ -101,22 +101,23 @@ class LomDescription implements LomDescriptionInterface
         $contributors = $this->getField('metaMetadata.contribute');
 
         if (!empty($contributors)) {
-          foreach ($contributors as $contributor) {
-            // Does it have a VCARD?
-            if (!empty($contributor['entity'])) {
-              foreach ($contributor['entity'] as $vcard) {
-                // We don't want to parse the VCARD; overkill. Just try to
-                // extract the logo.
-                $match = array();
-                if (preg_match('/^LOGO;VALUE:uri:(.+)$/m', $vcard, $match)) {
-                  $logos[] = trim($match[1]);
+            foreach ($contributors as $contributor) {
+                // Does it have a VCARD?
+                if (!empty($contributor['entity'])) {
+                    foreach ($contributor['entity'] as $vcard) {
+                        // We don't want to parse the VCARD; overkill. Just try to
+                        // extract the logo.
+                        $match = array();
+                        if (preg_match('/^LOGO;VALUE:uri:(.+)$/m', $vcard, $match)) {
+                            $logos[] = trim($match[1]);
+                        }
+                    }
                 }
-              }
             }
-          }
         }
 
         return $logos;
     }
 
 }
+

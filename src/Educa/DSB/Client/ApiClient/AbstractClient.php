@@ -37,7 +37,7 @@ abstract class AbstractClient implements ClientInterface
         // For clarity, code uses URLs with a prefixing slash. If the URL has a
         // trailing slash, remove it.
         if (preg_match('/\/$/', $apiUrl)) {
-          $apiUrl = substr($apiUrl, 0, strlen($apiUrl)-1);
+            $apiUrl = substr($apiUrl, 0, strlen($apiUrl)-1);
         }
 
         $this->apiUrl = $apiUrl;
@@ -91,7 +91,7 @@ abstract class AbstractClient implements ClientInterface
     public function post($path, array $options = array())
     {
         if (!empty($this->tokenKey)) {
-          $options['headers']['X-TOKEN-KEY'] = $this->tokenKey;
+            $options['headers']['X-TOKEN-KEY'] = $this->tokenKey;
         }
         return $this->client->post($this->apiUrl . $path, $options);
     }
@@ -116,7 +116,7 @@ abstract class AbstractClient implements ClientInterface
     public function get($path, array $options = array())
     {
         if (!empty($this->tokenKey)) {
-          $options['headers']['X-TOKEN-KEY'] = $this->tokenKey;
+            $options['headers']['X-TOKEN-KEY'] = $this->tokenKey;
         }
         return $this->client->get($this->apiUrl . $path, $options);
     }
