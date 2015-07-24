@@ -93,6 +93,81 @@ class TestClient extends AbstractClient
                     ),
                     'resultCount' => 0,
                 ),
+                'educaSchoolLevels' => array(
+                    'ontologyId' => 'educa_school_levels',
+                    'name' => array(
+                        'en' => 'School Levels',
+                        'rm' => 'stgalims da furmaziun',
+                        'fr' => 'Contexte',
+                        'de' => 'Kontext',
+                        'it' => 'Contesto',
+                    ),
+                    'childTerms' => array(
+                        array(
+                            'ontologyId' => 'pre-school',
+                            'name' => array(
+                                'en' => 'Pre-compulsory',
+                                'rm' => 'Prescola',
+                                'it' => 'Livello prescolare',
+                                'fr' => 'Préobligatoire',
+                                'de' => 'Vorschule',
+                            ),
+                            'childTerms' => array(),
+                            'resultCount' => 10,
+                        ),
+                        array(
+                            'ontologyId' => 'compulsory education',
+                            'name' => array(
+                                'rm' => 'Scola obligatorica',
+                                'it' => 'Scuola dell\'obbligo',
+                                'fr' => 'Scolarité obligatoire',
+                                'de' => 'Obligatorische Schule',
+                                'en' => 'Compulsory education',
+                            ),
+                            'childTerms' => array(
+                                array(
+                                    'ontologyId' => 'cycle_1',
+                                    'name' => array(
+                                        'en' => '1st cycle (up to 4th school year)',
+                                        'rm' => 'Emprim ciclus',
+                                        'fr' => 'Cycle 1 (1ère à 4ème année scolaire) ',
+                                        'de' => '1. Zyklus (bis 4. Schuljahr)',
+                                        'it' => '1ê ciclo',
+                                    ),
+                                    'childTerms' => array(
+                                        array(
+                                            'ontologyId' => '1st_and_2nd_year',
+                                            'name' => array(
+                                                'rm' => 'emprim e segund onn da scola (ccolina)',
+                                                'it' => '1ê e 2ê anno scolastico (scuola dell\'infanzia)',
+                                                'de' => '1. und 2. Schuljahr (Kindergarten)',
+                                                'en' => '1st and 2nd year (kindergarten)',
+                                                'fr' => '1e et 2e année (école enfantine)',
+                                            ),
+                                            'childTerms' => array(),
+                                            'resultCount' => 2,
+                                        ),
+                                    ),
+                                    array(
+                                        'ontologyId' => '3rd_and_4th_year',
+                                        'name' => array(
+                                            'en' => '3rd and 4th year',
+                                            'rm' => '3. e 4. classa',
+                                            'fr' => '3e et 4e année',
+                                            'de' => '3. und 4. Schuljahr',
+                                            'it' => '3ê e 4ê anno scolastico',
+                                        ),
+                                        'childTerms' => array(),
+                                        'resultCount' => 22,
+                                    ),
+                                ),
+                            ),
+                            'resultCount' => 196,
+                        ),
+                        'resultCount' => 196,
+                    ),
+                    'resultCount' => 196,
+                ),
             ),
         );
     }
