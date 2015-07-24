@@ -165,7 +165,6 @@ class TestClient extends AbstractClient
                             ),
                             'resultCount' => 196,
                         ),
-                        'resultCount' => 196,
                     ),
                     'resultCount' => 196,
                 ),
