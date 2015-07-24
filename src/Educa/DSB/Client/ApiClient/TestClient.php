@@ -60,6 +60,9 @@ class TestClient extends AbstractClient
             'numFound' => rand(2, 20),
             'result' => array_map(function() use($randomString) {
                 $languages = array('de', 'fr');
+                $ownerUsernames = array('user1@site.com', 'user2@site.com');
+                $ownerDisplayNames = array('John Doe', 'Jane Doe');
+                $ownerRand = array_rand($ownerUsernames);
                 return array(
                     'lomId' => uniqid(),
                     'teaser' => $randomString(120),
@@ -69,8 +72,8 @@ class TestClient extends AbstractClient
                     'metaContributorLogos' => array(
                         'http://biblio.educa.ch/sites/all/themes/subthemes/biblio/img/logo_portal.gif',
                     ),
-                    'ownerUsername' => 'some@email.com',
-                    'ownerDisplayName' => $randomString(20),
+                    'ownerUsername' => $ownerUsernames[$ownerRand],
+                    'ownerDisplayName' => $ownerDisplayNames[$ownerRand],
                 );
             }, array_fill(1, 10, null)),
             'facets' => array(
