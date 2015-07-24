@@ -60,19 +60,19 @@ class TestClient extends AbstractClient
             'numFound' => rand(2, 20),
             'result' => array_map(function() use($randomString) {
                 $languages = array('de', 'fr');
-                    return array(
-                        'lomId' => uniqid(),
-                        'teaser' => $randomString(120),
-                        'language' => $languages[array_rand($languages)],
-                        'title' => $randomString(50),
-                        'previewImage' => 'http://biblio.educa.ch/sites/all/themes/subthemes/biblio/img/logo_portal.gif',
-                        'metaContributorLogos' => array(
-                            'http://biblio.educa.ch/sites/all/themes/subthemes/biblio/img/logo_portal.gif',
-                        ),
-                        'ownerUsername' => 'some@email.com',
-                        'ownerDisplayName' => $randomString(20),
-                  );
-                }, array_fill(1, 10, null)),
+                return array(
+                    'lomId' => uniqid(),
+                    'teaser' => $randomString(120),
+                    'language' => $languages[array_rand($languages)],
+                    'title' => $randomString(50),
+                    'previewImage' => 'http://biblio.educa.ch/sites/all/themes/subthemes/biblio/img/logo_portal.gif',
+                    'metaContributorLogos' => array(
+                        'http://biblio.educa.ch/sites/all/themes/subthemes/biblio/img/logo_portal.gif',
+                    ),
+                    'ownerUsername' => 'some@email.com',
+                    'ownerDisplayName' => $randomString(20),
+                );
+            }, array_fill(1, 10, null)),
             'facets' => array(
                 'language' => array(
                     'ontologyId' => null,
