@@ -1,0 +1,4 @@
+exclude_paths:
+- src/Educa/DSB/Client/ApiClient/TestClient.php
+- tests/**/*
+
