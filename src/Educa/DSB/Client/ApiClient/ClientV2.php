@@ -154,5 +154,27 @@ class ClientV2 extends AbstractClient
             throw new ClientRequestException(sprintf("Request to /ontology/%s/%s failed. Status: %s. Error message: %s", $type, implode(',', $vocabularyIds), $e->getCode(), $e->getMessage()));
         }
     }
+
+    /**
+     * @{inheritdoc}
+     */
+    public function loadPartners()
+    {
+        if (empty($this->tokenKey)) {
+            throw new ClientAuthenticationException(sprintf("No token found. Cannot load a LOM description without a token."));
+        }
+
+        try {
+            $response = $this->get('/partner');
+
+            if ($response->getStatusCode() == 200) {
+                return json_decode($response->getBody(), true);
+            } else {
+                throw new ClientRequestException(sprintf("Request to /partner failed. Status: %s. Error message: %s", $response->getStatusCode(), $response->getBody()));
+            }
+        } catch(GuzzleClientException $e) {
+            throw new ClientRequestException(sprintf("Request to /partner failed. Status: %s. Error message: %s", $e->getCode(), $e->getMessage()));
+        }
+    }
 }
 

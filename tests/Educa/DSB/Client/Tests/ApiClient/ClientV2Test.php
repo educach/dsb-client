@@ -376,6 +376,62 @@ class ClientV2Test extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test loading content partner data.
+     */
+    public function testGetPartners()
+    {
+        // Prepare a new client.
+        $guzzle = $this->getGuzzleTestClient([
+            new Response(200, [], Stream::factory('{"token":"asjhasd987asdhasd87"}')),
+            new Response(200),
+            new Response(400),
+            new Response(304),
+        ]);
+
+        // Prepare a client.
+        $client = new ClientV2(
+            'http://localhost',
+            'user@site.com',
+            FIXTURES_DIR . '/user/privatekey_nopassphrase.pem'
+        );
+        $client->setClient($guzzle);
+
+        // Loading content partners without being authenticated throws an error.
+        try {
+            $client->loadPartners();
+            $this->fail("Loading content partners without being authenticated should throw an exception.");
+        } catch(ClientAuthenticationException $e) {
+            $this->assertTrue(true, "Loading content partners without being authenticated throws an exception.");
+        }
+
+        // Loading content partners while authenticated doesn't throw an error.
+        try {
+            $client->authenticate();
+            $partners = $client->loadPartners();
+            $this->assertTrue(true, "Loading content partners while being authenticated does not throw an exception.");
+        } catch(ClientAuthenticationException $e) {
+            $this->fail("Loading content partners while being authenticated should not throw an exception.");
+        }
+
+        // Failing to load Ontology data throws an exception.
+        try {
+            $client->loadPartners();
+            $this->fail("Failing to load Ontology data should throw an exception.");
+        } catch(ClientRequestException $e) {
+            $this->assertTrue(true, "Failing to load Ontology data throws an exception.");
+        }
+
+        // A status different from 200 while loading Ontology data throws an
+        // exception.
+        try {
+            $client->loadPartners();
+            $this->fail("A status different from 200 while loading Ontology data should throw an exception.");
+        } catch(ClientRequestException $e) {
+            $this->assertTrue(true, "A status different from 200 while loading Ontology data throws an exception.");
+        }
+    }
+
+    /**
      * Get a test client.
      *
      * This returns a GuzzleHttp\Client instance, with a mocked HTTP responses.

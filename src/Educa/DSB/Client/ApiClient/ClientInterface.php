@@ -83,4 +83,12 @@ interface ClientInterface
      */
     public function loadOntologyData($type = 'list', array $vocabularyIds = null);
 
+    /**
+     * Load content partner data.
+     *
+     * @return array
+     *    The list of content partners.
+     */
+    public function loadPartners();
+
 }

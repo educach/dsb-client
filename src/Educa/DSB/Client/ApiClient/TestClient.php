@@ -177,6 +177,7 @@ class TestClient extends AbstractClient
 
     /**
      * @{inheritdoc}
+     * @todo
      */
     public function loadDescription($lomId)
     {
@@ -187,8 +188,18 @@ class TestClient extends AbstractClient
 
     /**
      * @{inheritdoc}
+     * @todo
      */
     public function loadOntologyData($type = 'list', array $vocabularyIds = null)
+    {
+        return null;
+    }
+
+    /**
+     * @{inheritdoc}
+     * @todo
+     */
+    public function loadPartners()
     {
         return null;
     }
