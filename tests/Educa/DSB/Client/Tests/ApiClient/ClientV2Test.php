@@ -342,7 +342,7 @@ class ClientV2Test extends \PHPUnit_Framework_TestCase
 
         // Loading Ontology data without being authenticated throws an error.
         try {
-            $client->loadOntologyData(['id']);
+            $client->loadOntologyData('list', ['id']);
             $this->fail("Loading Ontology data without being authenticated should throw an exception.");
         } catch(ClientAuthenticationException $e) {
             $this->assertTrue(true, "Loading Ontology data without being authenticated throws an exception.");
@@ -351,7 +351,7 @@ class ClientV2Test extends \PHPUnit_Framework_TestCase
         // Loading Ontology data while authenticated doesn't throw an error.
         try {
             $client->authenticate();
-            $client->loadOntologyData(['id']);
+            $client->loadOntologyData('list', ['id']);
             $this->assertTrue(true, "Loading Ontology data while being authenticated does not throw an exception.");
         } catch(ClientAuthenticationException $e) {
             $this->fail("Loading Ontology data while being authenticated should not throw an exception.");
@@ -359,7 +359,7 @@ class ClientV2Test extends \PHPUnit_Framework_TestCase
 
         // Failing to load Ontology data throws an exception.
         try {
-            $client->loadOntologyData(['id']);
+            $client->loadOntologyData('list', ['id']);
             $this->fail("Failing to load Ontology data should throw an exception.");
         } catch(ClientRequestException $e) {
             $this->assertTrue(true, "Failing to load Ontology data throws an exception.");
@@ -368,7 +368,7 @@ class ClientV2Test extends \PHPUnit_Framework_TestCase
         // A status different from 200 while loading Ontology data throws an
         // exception.
         try {
-            $client->loadOntologyData(['id']);
+            $client->loadOntologyData('list', ['id']);
             $this->fail("A status different from 200 while loading Ontology data should throw an exception.");
         } catch(ClientRequestException $e) {
             $this->assertTrue(true, "A status different from 200 while loading Ontology data throws an exception.");

@@ -188,7 +188,7 @@ class TestClient extends AbstractClient
     /**
      * @{inheritdoc}
      */
-    public function loadOntologyData(array $vocabularyIds = null)
+    public function loadOntologyData($type = 'list', array $vocabularyIds = null)
     {
         return null;
     }

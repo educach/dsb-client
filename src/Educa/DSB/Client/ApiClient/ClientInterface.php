@@ -71,12 +71,16 @@ interface ClientInterface
     /**
      * Load Ontology data.
      *
+     * @param string $type
+     *    (optional) The format the data must be returned in. Check the official
+     *    REST API documentation for the available types. Defaults to 'list'.
      * @param array $vocabularyIds
-     *    (optional) The vocabularies to load.
+     *    (optional) The vocabularies to load. Check the official REST API
+     *    documentation for the available vocabularies.
      *
      * @return array
      *    The Ontology data.
      */
-    public function loadOntologyData(array $vocabularyIds = null);
+    public function loadOntologyData($type = 'list', array $vocabularyIds = null);
 
 }

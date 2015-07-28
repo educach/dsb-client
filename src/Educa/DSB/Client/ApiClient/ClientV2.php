@@ -134,7 +134,7 @@ class ClientV2 extends AbstractClient
     /**
      * @{inheritdoc}
      */
-    public function loadOntologyData(array $vocabularyIds = null)
+    public function loadOntologyData($type = 'list', array $vocabularyIds = null)
     {
         if (empty($this->tokenKey)) {
             throw new ClientAuthenticationException(sprintf("No token found. Cannot load a LOM description without a token."));
@@ -142,16 +142,16 @@ class ClientV2 extends AbstractClient
 
         try {
             $response = $this->get(
-                '/ontology/list' . (!empty($vocabularyIds) ? '/' . implode(',', $vocabularyIds) : '')
+                "/ontology/{$type}" . (!empty($vocabularyIds) ? '/' . implode(',', $vocabularyIds) : '')
             );
 
             if ($response->getStatusCode() == 200) {
                 return json_decode($response->getBody(), true);
             } else {
-                throw new ClientRequestException(sprintf("Request to /ontology/list/%s failed. Status: %s. Error message: %s", implode(',', $vocabularyIds), $response->getStatusCode(), $response->getBody()));
+                throw new ClientRequestException(sprintf("Request to /ontology/%s/%s failed. Status: %s. Error message: %s", $type, implode(',', $vocabularyIds), $response->getStatusCode(), $response->getBody()));
             }
         } catch(GuzzleClientException $e) {
-            throw new ClientRequestException(sprintf("Request to /search failed. Status: %s. Error message: %s", $e->getCode(), $e->getMessage()));
+            throw new ClientRequestException(sprintf("Request to /ontology/%s/%s failed. Status: %s. Error message: %s", $type, implode(',', $vocabularyIds), $e->getCode(), $e->getMessage()));
         }
     }
 }
