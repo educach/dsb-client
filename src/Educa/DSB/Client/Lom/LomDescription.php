@@ -8,6 +8,7 @@
 namespace Educa\DSB\Client\Lom;
 
 use Educa\DSB\Client\Lom\LomDescriptionInterface;
+use Educa\DSB\Client\Utils;
 
 class LomDescription implements LomDescriptionInterface
 {
@@ -40,15 +41,10 @@ class LomDescription implements LomDescriptionInterface
         if (!is_array($fieldValue)) {
             return $fieldValue;
         } else {
-            // It could be a LangString. In that case, we use the language fallback.
-            foreach ($languageFallback as $language) {
-                if (isset($fieldValue[$language])) {
-                    return $fieldValue[$language];
-                }
-            }
-
-            // If we didn't find a language key, we simply return the data as-is.
-            return $fieldValue;
+            // It could be a LangString. In that case, we use the language
+            // fallback. If we didn't find a language key, we simply return the
+            // data as-is.
+            return Utils::getLSValue($fieldValue, $languageFallback);
         }
     }
 
