@@ -22,3 +22,16 @@ Documentation
 * Documentation for the client library can be found [here](http://dsb-client.readthedocs.org/en/latest/).
 * Documentation for the REST API can be found [here](https://dsb-api.educa.ch/latest/doc/).
 * Documentation for the LOM-CH standard (v1.1) can be found here: [German](https://dsb-api.educa.ch/lom-ch/LOM-CHv1.1_de.pdf), [French](https://dsb-api.educa.ch/lom-ch/LOM-CHv1.1_fr.pdf)
+
+Contributing
+------------
+
+Contributions are more than welcome. There's still lots of work to be done before we reach [version 1.0.0](https://github.com/educach/dsb-client/milestones).
+
+General guide lines:
+
+* Respect the [PSR-2](http://www.php-fig.org/psr/psr-2/) standard (coding style guide).
+* Respect the [PSR-4](http://www.php-fig.org/psr/psr-4/) standard (autoloading).
+* Write unit tests. Our aim is to remain at +90% coverage.
+
+Check the existing interfaces and try to remain consistent in regards to method naming, parameters, usage, etc.
