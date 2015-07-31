@@ -146,13 +146,13 @@ interface CurriculumInterface
      * Example:
      * @code
      * --- a
-     *     +--- d
-     *     +--- e
+     *     +-- d
+     *     +-- e
      * --- b
      * --- c
-     *     +--- f
-     *          +--- g
-     *          +--- h
+     *     +-- f
+     *          +-- g
+     *          +-- h
      * @endcode
      *
      * Where each item has the format "type:name", where "type" is the term's
