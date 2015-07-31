@@ -17,9 +17,118 @@ However, all curricula implementations *must* implement the ``CurriculumInterfac
 
 For example, the ``describeDataStructure()`` method returns a standard format of describing relationships and types of curriculum *terms*.
 
+.. code-block:: php
+
+    use Educa\DSB\Client\Curriculum\EducaCurriculum;
+
+    $curriculum = new EducaCurriculum();
+
+    var_export($curriculum->describeDataStructure());
+    // Results in:
+    // array(
+    //     stdClass::__set_state(array(
+    //         'type' => 'root',
+    //         'child_types' => array(
+    //             stdClass::__set_state(array(
+    //                 'type' => 'context',
+    //                 'required' => true,
+    //             )),
+    //         ),
+    //     )),
+    //     stdClass::__set_state(array(
+    //         'type' => 'context',
+    //         'child_types' => array(
+    //             stdClass::__set_state(array(
+    //                 'type' => 'school_level',
+    //                 'required' => false,
+    //             )),
+    //             stdClass::__set_state(array(
+    //                 'type' => 'discipline',
+    //                 'required' => false,
+    //             )),
+    //         ),
+    //     )),
+    //     stdClass::__set_state(array(
+    //         'type' => 'school_level',
+    //         'child_types' => array(
+    //             stdClass::__set_state(array(
+    //                 'type' => 'discipline',
+    //                 'required' => true,
+    //             )),
+    //         ),
+    //     )),
+    //     stdClass::__set_state(array(
+    //         'type' => 'discipline',
+    //         'child_types' => array(
+    //             stdClass::__set_state(array(
+    //                 'type' => 'discipline',
+    //                 'required' => false,
+    //             )),
+    //         ),
+    //     )),
+    // );
+
 ``describeTermTypes()`` provides even more information on what the term *types* actually stand for.
 
+.. code-block:: php
+
+    use Educa\DSB\Client\Curriculum\EducaCurriculum;
+
+    $curriculum = new EducaCurriculum();
+
+    var_export($curriculum->describeTermTypes());
+    // Results in:
+    // array(
+    //     stdClass::__set_state(array(
+    //         'type' => 'root',
+    //         'name' => stdClass::__set_state(array(
+    //             'en' => "Root",
+    //         )),
+    //         'description' => stdClass::__set_state(array(
+    //             'en' => "Not technically part of the curriculum. The educa curriculum can have multiple contexts, which are, according to the standard, the root elements. As the we must return a single element, this root type defines the top most parent of the curriculum tree.",
+    //         )),
+    //     )),
+    //     stdClass::__set_state(array(
+    //         'type' => 'context',
+    //         'name' => stdClass::__set_state(array(
+    //             'en' => "Context",
+    //         )),
+    //     )),
+    //     stdClass::__set_state(array(
+    //         'type' => 'school level',
+    //         'name' => stdClass::__set_state(array(
+    //             'en' => "School level",
+    //         )),
+    //     )),
+    //     stdClass::__set_state(array(
+    //         'type' => 'discipline',
+    //         'name' => stdClass::__set_state(array(
+    //             'en' => "Discipline",
+    //         )),
+    //     )),
+    // );
+
 ``asciiDump()`` provides a way to dump a tree representation to a ASCII string, helping in debugging.
+
+.. code-block:: php
+
+    use Educa\DSB\Client\Curriculum\EducaCurriculum;
+
+    // $tree contains information about the tree data, in a format that
+    // EducaCurriculum understands.
+    $curriculum = EducaCurriculum::createFromData($tree);
+
+    print $curriculum->asciiDump();
+    // Results in:
+    // --- root:root
+    //     +-- context:compulsory education
+    //         +-- school level:cycle_3
+    //             +-- discipline:languages
+    //                 +-- discipline:french school language
+    //     +-- context:special_needs_education
+    //         +-- discipline:languages
+    //             +-- discipline:french school language
+
 
 The standard, static ``createFromData()`` method provides a standard factory method for creating new curriculum elements, although the format of the actual data passed to the method is completely left to the implementor.
 
