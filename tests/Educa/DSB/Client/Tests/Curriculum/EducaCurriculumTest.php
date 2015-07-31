@@ -72,4 +72,27 @@ class EducaCurriculumTest extends \PHPUnit_Framework_TestCase
             "Found the correct data in the dictionary for item 'cycle_1'."
         );
     }
+
+    /**
+     * Test treating a taxonomy path.
+     */
+    public function testTaxonomyPathHandling()
+    {
+        $json = file_get_contents(FIXTURES_DIR . '/curriculum-data/educa_curriculum.json');
+
+        $paths = json_decode(
+            file_get_contents(FIXTURES_DIR . '/curriculum-data/educa_taxonomy_path.json'),
+            true
+        );
+
+        // Create a new curriculum element.
+        $curriculum = EducaCurriculum::createFromData($json, EducaCurriculum::CURRICULUM_JSON);
+
+        $curriculum->setTreeBasedOnTaxonPath($paths);
+
+        // Load the expected ASCII tree.
+        $expectedAsciiTree = file_get_contents(FIXTURES_DIR . '/curriculum-data/educa_taxonomy_path.ascii');
+
+        $this->assertEquals(trim($expectedAsciiTree), $curriculum->asciiDump(), "The ASCII representation of the curriculum tree, based on the taxonomy path, is as expected.");
+    }
 }

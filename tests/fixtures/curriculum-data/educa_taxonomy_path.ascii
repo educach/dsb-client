@@ -1,0 +1,17 @@
+--- root:root
+    +-- context:compulsory education
+        +-- school level:cycle_3
+            +-- discipline:languages
+                +-- discipline:german school language
+            +-- discipline:social and human sciences
+                +-- discipline:citizenship
+                +-- discipline:history
+    +-- context:post compulsory education
+        +-- discipline:languages
+            +-- discipline:german school language
+        +-- discipline:social and human sciences
+            +-- discipline:history
+            +-- discipline:psychology
+            +-- discipline:philosophy
+        +-- discipline:general_education
+            +-- discipline:identity

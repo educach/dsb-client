@@ -7,6 +7,7 @@
 
 namespace Educa\DSB\Client\Curriculum;
 
+use Educa\DSB\Client\Utils;
 use Educa\DSB\Client\Curriculum\Term\TermInterface;
 use Educa\DSB\Client\Curriculum\Term\BaseTerm;
 use Educa\DSB\Client\Curriculum\CurriculumInvalidContextException;
@@ -42,16 +43,17 @@ class EducaCurriculum extends BaseCurriculum
     public static function createFromData($data, $context = null)
     {
         switch ($context) {
-            case self::TAXON_PATH:
+            case self::CURRICULUM_JSON:
                 $curriculum = new EducaCurriculum();
-                $curriculum->setCurriculumDefinition($data);
+                $data = self::parseCurriculumJson($data);
+                $curriculum->setCurriculumDefinition($data->curriculum);
+                $curriculum->setCurriculumDictionary($data->dictionary);
                 return $curriculum;
-                break;
-
-            default:
-                throw new CurriculumInvalidContextException();
-                break;
         }
+
+        // @codeCoverageIgnoreStart
+        throw new CurriculumInvalidContextException();
+        // @codeCoverageIgnoreEnd
     }
 
     /**
@@ -209,7 +211,7 @@ class EducaCurriculum extends BaseCurriculum
                 // Store the term definition in the dictionary.
                 $dictionary[$term->identifier] = (object) array(
                     'name' => $term->name,
-                    'type' => $type,
+                    'type' => $type
                 );
 
                 // Did we already create this term, on a temporary basis?
@@ -325,7 +327,7 @@ class EducaCurriculum extends BaseCurriculum
      *
      * @return this
      */
-    public function createTreeFromTaxonPath($paths, $purpose = 'discipline')
+    public function setTreeBasedOnTaxonPath($paths, $purpose = 'discipline')
     {
         // Prepare a new root item.
         $this->root = new BaseTerm('root', 'root');
@@ -342,20 +344,21 @@ class EducaCurriculum extends BaseCurriculum
         foreach ($paths as $path) {
             // Cast to an array, just in case.
             $path = (array) $path;
-            $pathPurpose = Utils::getVCName($path['purpose']);
+            $pathPurpose = $path['purpose']['value'];
 
             if ($pathPurpose == $purpose) {
                 foreach ($path['taxonPath'] as $taxonPath) {
                     // Prepare the parent. For the first item, it is always the
                     // root element.
                     $parent = $terms['root'];
+                    $parentId = 'root';
                     foreach ($taxonPath['taxon'] as $taxon) {
                         // Cast to an array, just in case.
                         $taxon = (array) $taxon;
 
                         // Do we already have this term prepared?
-                        if (isset($terms[$taxon['id']])) {
-                            $term = $terms[$taxon['id']];
+                        if (isset($terms["$parentId:{$taxon['id']}"])) {
+                            $term = $terms["$parentId:{$taxon['id']}"];
                         } else {
                             // Prepare a new term object. First, look for the
                             // term's type. This is defined in the official
@@ -367,14 +370,21 @@ class EducaCurriculum extends BaseCurriculum
 
                             // Create the new term.
                             $term = new BaseTerm($type, $taxon['id'], $name);
+
+                            // Store it.
+                            $terms["$parentId:{$taxon['id']}"] = $term;
                         }
 
-                        // Add our term to the tree.
-                        $parent->addChild($term);
+                        // Did we already add this term to the parent?
+                        if (!$parent->hasChildren() || !in_array($term, $parent->getChildren())) {
+                            // Add our term to the tree.
+                            $parent->addChild($term);
+                        }
 
                         // Our term is now the parent, in preparation for the
                         // next item.
                         $parent = $term;
+                        $parentId .= ":{$taxon['id']}";
                     }
                 }
             }
@@ -398,7 +408,7 @@ class EducaCurriculum extends BaseCurriculum
      */
     protected function getTermType($identifier)
     {
-        return isset($this->$curriculumDictionary[$identifier]) ? $this->$curriculumDictionary[$identifier]->type : 'root';
+        return isset($this->curriculumDictionary[$identifier]) ? $this->curriculumDictionary[$identifier]->type : 'root';
     }
 
     /**
@@ -417,6 +427,6 @@ class EducaCurriculum extends BaseCurriculum
      */
     protected function getTermName($identifier)
     {
-        return isset($this->$curriculumDictionary[$identifier]) ? $this->$curriculumDictionary[$identifier]->name : 'n/a';
+        return isset($this->curriculumDictionary[$identifier]) ? $this->curriculumDictionary[$identifier]->name : 'n/a';
     }
 }
