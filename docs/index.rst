@@ -20,5 +20,6 @@ User Guide
     authentication
     descriptions
     ontology
+    curricula
     testing
 
