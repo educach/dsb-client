@@ -1,0 +1,1965 @@
+--- root:root
+    +-- context:pre-school
+        +-- discipline:languages
+            +-- discipline:german school language
+            +-- discipline:german foreign language
+            +-- discipline:french school language
+            +-- discipline:french foreign language
+            +-- discipline:italian_school_language
+            +-- discipline:italian foreign language
+            +-- discipline:rhaeto-romanic_school_language
+            +-- discipline:english foreign language
+            +-- discipline:ancient languages
+                +-- discipline:latin
+                +-- discipline:greek
+                +-- discipline:hebrew
+            +-- discipline:spanish_foreign_language
+            +-- discipline:chinese_foreign_language
+            +-- discipline:russian_foreign_language
+        +-- discipline:mathematics and natural science
+            +-- discipline:mathematics
+                +-- discipline:applied mathematics
+                +-- discipline:geometry
+            +-- discipline:natural sciences
+                +-- discipline:biology
+                +-- discipline:chemistry
+                +-- discipline:physics
+            +-- discipline:computer_science_programming
+        +-- discipline:social and human sciences
+            +-- discipline:citizenship
+            +-- discipline:geography
+            +-- discipline:history
+            +-- discipline:economy
+                +-- discipline:commercial accounting
+                +-- discipline:accounting
+                +-- discipline:computer science management
+                +-- discipline:office_and_typing
+                +-- discipline:home economics
+            +-- discipline:law
+            +-- discipline:pedagogy
+            +-- discipline:psychology
+            +-- discipline:philosophy
+            +-- discipline:ethics and religions
+            +-- discipline:religious instruction
+        +-- discipline:arts
+            +-- discipline:visual arts
+            +-- discipline:creative activities
+            +-- discipline:technical design
+            +-- discipline:music
+        +-- discipline:sport
+            +-- discipline:domestic science
+            +-- discipline:motion and sport
+        +-- discipline:general_education
+            +-- discipline:early_childhood_education
+            +-- discipline:media and ict
+            +-- discipline:development
+            +-- discipline:complexity_and_dependencies
+            +-- discipline:environment_and_dependencies
+            +-- discipline:environment
+            +-- discipline:prevention_and_health
+            +-- discipline:identity
+            +-- discipline:personal_and_professional_orientation
+            +-- discipline:personal_projects
+            +-- discipline:collective_projects
+            +-- discipline:life_of_the_class_and_of_the_school
+    +-- context:compulsory education
+        +-- school level:cycle_1
+            +-- school level:1st_and_2nd_year
+                +-- discipline:languages
+                    +-- discipline:german school language
+                    +-- discipline:german foreign language
+                    +-- discipline:french school language
+                    +-- discipline:french foreign language
+                    +-- discipline:italian_school_language
+                    +-- discipline:italian foreign language
+                    +-- discipline:rhaeto-romanic_school_language
+                    +-- discipline:english foreign language
+                    +-- discipline:ancient languages
+                        +-- discipline:latin
+                        +-- discipline:greek
+                        +-- discipline:hebrew
+                    +-- discipline:spanish_foreign_language
+                    +-- discipline:chinese_foreign_language
+                    +-- discipline:russian_foreign_language
+                +-- discipline:mathematics and natural science
+                    +-- discipline:mathematics
+                        +-- discipline:applied mathematics
+                        +-- discipline:geometry
+                    +-- discipline:natural sciences
+                        +-- discipline:biology
+                        +-- discipline:chemistry
+                        +-- discipline:physics
+                    +-- discipline:computer_science_programming
+                +-- discipline:social and human sciences
+                    +-- discipline:citizenship
+                    +-- discipline:geography
+                    +-- discipline:history
+                    +-- discipline:economy
+                        +-- discipline:commercial accounting
+                        +-- discipline:accounting
+                        +-- discipline:computer science management
+                        +-- discipline:office_and_typing
+                        +-- discipline:home economics
+                    +-- discipline:law
+                    +-- discipline:pedagogy
+                    +-- discipline:psychology
+                    +-- discipline:philosophy
+                    +-- discipline:ethics and religions
+                    +-- discipline:religious instruction
+                +-- discipline:arts
+                    +-- discipline:visual arts
+                    +-- discipline:creative activities
+                    +-- discipline:technical design
+                    +-- discipline:music
+                +-- discipline:sport
+                    +-- discipline:domestic science
+                    +-- discipline:motion and sport
+                +-- discipline:general_education
+                    +-- discipline:early_childhood_education
+                    +-- discipline:media and ict
+                    +-- discipline:development
+                    +-- discipline:complexity_and_dependencies
+                    +-- discipline:environment_and_dependencies
+                    +-- discipline:environment
+                    +-- discipline:prevention_and_health
+                    +-- discipline:identity
+                    +-- discipline:personal_and_professional_orientation
+                    +-- discipline:personal_projects
+                    +-- discipline:collective_projects
+                    +-- discipline:life_of_the_class_and_of_the_school
+            +-- school level:3rd_and_4th_year
+                +-- discipline:languages
+                    +-- discipline:german school language
+                    +-- discipline:german foreign language
+                    +-- discipline:french school language
+                    +-- discipline:french foreign language
+                    +-- discipline:italian_school_language
+                    +-- discipline:italian foreign language
+                    +-- discipline:rhaeto-romanic_school_language
+                    +-- discipline:english foreign language
+                    +-- discipline:ancient languages
+                        +-- discipline:latin
+                        +-- discipline:greek
+                        +-- discipline:hebrew
+                    +-- discipline:spanish_foreign_language
+                    +-- discipline:chinese_foreign_language
+                    +-- discipline:russian_foreign_language
+                +-- discipline:mathematics and natural science
+                    +-- discipline:mathematics
+                        +-- discipline:applied mathematics
+                        +-- discipline:geometry
+                    +-- discipline:natural sciences
+                        +-- discipline:biology
+                        +-- discipline:chemistry
+                        +-- discipline:physics
+                    +-- discipline:computer_science_programming
+                +-- discipline:social and human sciences
+                    +-- discipline:citizenship
+                    +-- discipline:geography
+                    +-- discipline:history
+                    +-- discipline:economy
+                        +-- discipline:commercial accounting
+                        +-- discipline:accounting
+                        +-- discipline:computer science management
+                        +-- discipline:office_and_typing
+                        +-- discipline:home economics
+                    +-- discipline:law
+                    +-- discipline:pedagogy
+                    +-- discipline:psychology
+                    +-- discipline:philosophy
+                    +-- discipline:ethics and religions
+                    +-- discipline:religious instruction
+                +-- discipline:arts
+                    +-- discipline:visual arts
+                    +-- discipline:creative activities
+                    +-- discipline:technical design
+                    +-- discipline:music
+                +-- discipline:sport
+                    +-- discipline:domestic science
+                    +-- discipline:motion and sport
+                +-- discipline:general_education
+                    +-- discipline:early_childhood_education
+                    +-- discipline:media and ict
+                    +-- discipline:development
+                    +-- discipline:complexity_and_dependencies
+                    +-- discipline:environment_and_dependencies
+                    +-- discipline:environment
+                    +-- discipline:prevention_and_health
+                    +-- discipline:identity
+                    +-- discipline:personal_and_professional_orientation
+                    +-- discipline:personal_projects
+                    +-- discipline:collective_projects
+                    +-- discipline:life_of_the_class_and_of_the_school
+        +-- school level:cycle_2
+            +-- school level:5th_and_6th_year
+                +-- discipline:languages
+                    +-- discipline:german school language
+                    +-- discipline:german foreign language
+                    +-- discipline:french school language
+                    +-- discipline:french foreign language
+                    +-- discipline:italian_school_language
+                    +-- discipline:italian foreign language
+                    +-- discipline:rhaeto-romanic_school_language
+                    +-- discipline:english foreign language
+                    +-- discipline:ancient languages
+                        +-- discipline:latin
+                        +-- discipline:greek
+                        +-- discipline:hebrew
+                    +-- discipline:spanish_foreign_language
+                    +-- discipline:chinese_foreign_language
+                    +-- discipline:russian_foreign_language
+                +-- discipline:mathematics and natural science
+                    +-- discipline:mathematics
+                        +-- discipline:applied mathematics
+                        +-- discipline:geometry
+                    +-- discipline:natural sciences
+                        +-- discipline:biology
+                        +-- discipline:chemistry
+                        +-- discipline:physics
+                    +-- discipline:computer_science_programming
+                +-- discipline:social and human sciences
+                    +-- discipline:citizenship
+                    +-- discipline:geography
+                    +-- discipline:history
+                    +-- discipline:economy
+                        +-- discipline:commercial accounting
+                        +-- discipline:accounting
+                        +-- discipline:computer science management
+                        +-- discipline:office_and_typing
+                        +-- discipline:home economics
+                    +-- discipline:law
+                    +-- discipline:pedagogy
+                    +-- discipline:psychology
+                    +-- discipline:philosophy
+                    +-- discipline:ethics and religions
+                    +-- discipline:religious instruction
+                +-- discipline:arts
+                    +-- discipline:visual arts
+                    +-- discipline:creative activities
+                    +-- discipline:technical design
+                    +-- discipline:music
+                +-- discipline:sport
+                    +-- discipline:domestic science
+                    +-- discipline:motion and sport
+                +-- discipline:general_education
+                    +-- discipline:early_childhood_education
+                    +-- discipline:media and ict
+                    +-- discipline:development
+                    +-- discipline:complexity_and_dependencies
+                    +-- discipline:environment_and_dependencies
+                    +-- discipline:environment
+                    +-- discipline:prevention_and_health
+                    +-- discipline:identity
+                    +-- discipline:personal_and_professional_orientation
+                    +-- discipline:personal_projects
+                    +-- discipline:collective_projects
+                    +-- discipline:life_of_the_class_and_of_the_school
+            +-- school level:7th_and_8th_year
+                +-- discipline:languages
+                    +-- discipline:german school language
+                    +-- discipline:german foreign language
+                    +-- discipline:french school language
+                    +-- discipline:french foreign language
+                    +-- discipline:italian_school_language
+                    +-- discipline:italian foreign language
+                    +-- discipline:rhaeto-romanic_school_language
+                    +-- discipline:english foreign language
+                    +-- discipline:ancient languages
+                        +-- discipline:latin
+                        +-- discipline:greek
+                        +-- discipline:hebrew
+                    +-- discipline:spanish_foreign_language
+                    +-- discipline:chinese_foreign_language
+                    +-- discipline:russian_foreign_language
+                +-- discipline:mathematics and natural science
+                    +-- discipline:mathematics
+                        +-- discipline:applied mathematics
+                        +-- discipline:geometry
+                    +-- discipline:natural sciences
+                        +-- discipline:biology
+                        +-- discipline:chemistry
+                        +-- discipline:physics
+                    +-- discipline:computer_science_programming
+                +-- discipline:social and human sciences
+                    +-- discipline:citizenship
+                    +-- discipline:geography
+                    +-- discipline:history
+                    +-- discipline:economy
+                        +-- discipline:commercial accounting
+                        +-- discipline:accounting
+                        +-- discipline:computer science management
+                        +-- discipline:office_and_typing
+                        +-- discipline:home economics
+                    +-- discipline:law
+                    +-- discipline:pedagogy
+                    +-- discipline:psychology
+                    +-- discipline:philosophy
+                    +-- discipline:ethics and religions
+                    +-- discipline:religious instruction
+                +-- discipline:arts
+                    +-- discipline:visual arts
+                    +-- discipline:creative activities
+                    +-- discipline:technical design
+                    +-- discipline:music
+                +-- discipline:sport
+                    +-- discipline:domestic science
+                    +-- discipline:motion and sport
+                +-- discipline:general_education
+                    +-- discipline:early_childhood_education
+                    +-- discipline:media and ict
+                    +-- discipline:development
+                    +-- discipline:complexity_and_dependencies
+                    +-- discipline:environment_and_dependencies
+                    +-- discipline:environment
+                    +-- discipline:prevention_and_health
+                    +-- discipline:identity
+                    +-- discipline:personal_and_professional_orientation
+                    +-- discipline:personal_projects
+                    +-- discipline:collective_projects
+                    +-- discipline:life_of_the_class_and_of_the_school
+        +-- school level:cycle_3
+            +-- school level:9th_year
+                +-- discipline:languages
+                    +-- discipline:german school language
+                    +-- discipline:german foreign language
+                    +-- discipline:french school language
+                    +-- discipline:french foreign language
+                    +-- discipline:italian_school_language
+                    +-- discipline:italian foreign language
+                    +-- discipline:rhaeto-romanic_school_language
+                    +-- discipline:english foreign language
+                    +-- discipline:ancient languages
+                        +-- discipline:latin
+                        +-- discipline:greek
+                        +-- discipline:hebrew
+                    +-- discipline:spanish_foreign_language
+                    +-- discipline:chinese_foreign_language
+                    +-- discipline:russian_foreign_language
+                +-- discipline:mathematics and natural science
+                    +-- discipline:mathematics
+                        +-- discipline:applied mathematics
+                        +-- discipline:geometry
+                    +-- discipline:natural sciences
+                        +-- discipline:biology
+                        +-- discipline:chemistry
+                        +-- discipline:physics
+                    +-- discipline:computer_science_programming
+                +-- discipline:social and human sciences
+                    +-- discipline:citizenship
+                    +-- discipline:geography
+                    +-- discipline:history
+                    +-- discipline:economy
+                        +-- discipline:commercial accounting
+                        +-- discipline:accounting
+                        +-- discipline:computer science management
+                        +-- discipline:office_and_typing
+                        +-- discipline:home economics
+                    +-- discipline:law
+                    +-- discipline:pedagogy
+                    +-- discipline:psychology
+                    +-- discipline:philosophy
+                    +-- discipline:ethics and religions
+                    +-- discipline:religious instruction
+                +-- discipline:arts
+                    +-- discipline:visual arts
+                    +-- discipline:creative activities
+                    +-- discipline:technical design
+                    +-- discipline:music
+                +-- discipline:sport
+                    +-- discipline:domestic science
+                    +-- discipline:motion and sport
+                +-- discipline:general_education
+                    +-- discipline:early_childhood_education
+                    +-- discipline:media and ict
+                    +-- discipline:development
+                    +-- discipline:complexity_and_dependencies
+                    +-- discipline:environment_and_dependencies
+                    +-- discipline:environment
+                    +-- discipline:prevention_and_health
+                    +-- discipline:identity
+                    +-- discipline:personal_and_professional_orientation
+                    +-- discipline:personal_projects
+                    +-- discipline:collective_projects
+                    +-- discipline:life_of_the_class_and_of_the_school
+            +-- school level:10th_year
+                +-- discipline:languages
+                    +-- discipline:german school language
+                    +-- discipline:german foreign language
+                    +-- discipline:french school language
+                    +-- discipline:french foreign language
+                    +-- discipline:italian_school_language
+                    +-- discipline:italian foreign language
+                    +-- discipline:rhaeto-romanic_school_language
+                    +-- discipline:english foreign language
+                    +-- discipline:ancient languages
+                        +-- discipline:latin
+                        +-- discipline:greek
+                        +-- discipline:hebrew
+                    +-- discipline:spanish_foreign_language
+                    +-- discipline:chinese_foreign_language
+                    +-- discipline:russian_foreign_language
+                +-- discipline:mathematics and natural science
+                    +-- discipline:mathematics
+                        +-- discipline:applied mathematics
+                        +-- discipline:geometry
+                    +-- discipline:natural sciences
+                        +-- discipline:biology
+                        +-- discipline:chemistry
+                        +-- discipline:physics
+                    +-- discipline:computer_science_programming
+                +-- discipline:social and human sciences
+                    +-- discipline:citizenship
+                    +-- discipline:geography
+                    +-- discipline:history
+                    +-- discipline:economy
+                        +-- discipline:commercial accounting
+                        +-- discipline:accounting
+                        +-- discipline:computer science management
+                        +-- discipline:office_and_typing
+                        +-- discipline:home economics
+                    +-- discipline:law
+                    +-- discipline:pedagogy
+                    +-- discipline:psychology
+                    +-- discipline:philosophy
+                    +-- discipline:ethics and religions
+                    +-- discipline:religious instruction
+                +-- discipline:arts
+                    +-- discipline:visual arts
+                    +-- discipline:creative activities
+                    +-- discipline:technical design
+                    +-- discipline:music
+                +-- discipline:sport
+                    +-- discipline:domestic science
+                    +-- discipline:motion and sport
+                +-- discipline:general_education
+                    +-- discipline:early_childhood_education
+                    +-- discipline:media and ict
+                    +-- discipline:development
+                    +-- discipline:complexity_and_dependencies
+                    +-- discipline:environment_and_dependencies
+                    +-- discipline:environment
+                    +-- discipline:prevention_and_health
+                    +-- discipline:identity
+                    +-- discipline:personal_and_professional_orientation
+                    +-- discipline:personal_projects
+                    +-- discipline:collective_projects
+                    +-- discipline:life_of_the_class_and_of_the_school
+            +-- school level:11th_year
+                +-- discipline:languages
+                    +-- discipline:german school language
+                    +-- discipline:german foreign language
+                    +-- discipline:french school language
+                    +-- discipline:french foreign language
+                    +-- discipline:italian_school_language
+                    +-- discipline:italian foreign language
+                    +-- discipline:rhaeto-romanic_school_language
+                    +-- discipline:english foreign language
+                    +-- discipline:ancient languages
+                        +-- discipline:latin
+                        +-- discipline:greek
+                        +-- discipline:hebrew
+                    +-- discipline:spanish_foreign_language
+                    +-- discipline:chinese_foreign_language
+                    +-- discipline:russian_foreign_language
+                +-- discipline:mathematics and natural science
+                    +-- discipline:mathematics
+                        +-- discipline:applied mathematics
+                        +-- discipline:geometry
+                    +-- discipline:natural sciences
+                        +-- discipline:biology
+                        +-- discipline:chemistry
+                        +-- discipline:physics
+                    +-- discipline:computer_science_programming
+                +-- discipline:social and human sciences
+                    +-- discipline:citizenship
+                    +-- discipline:geography
+                    +-- discipline:history
+                    +-- discipline:economy
+                        +-- discipline:commercial accounting
+                        +-- discipline:accounting
+                        +-- discipline:computer science management
+                        +-- discipline:office_and_typing
+                        +-- discipline:home economics
+                    +-- discipline:law
+                    +-- discipline:pedagogy
+                    +-- discipline:psychology
+                    +-- discipline:philosophy
+                    +-- discipline:ethics and religions
+                    +-- discipline:religious instruction
+                +-- discipline:arts
+                    +-- discipline:visual arts
+                    +-- discipline:creative activities
+                    +-- discipline:technical design
+                    +-- discipline:music
+                +-- discipline:sport
+                    +-- discipline:domestic science
+                    +-- discipline:motion and sport
+                +-- discipline:general_education
+                    +-- discipline:early_childhood_education
+                    +-- discipline:media and ict
+                    +-- discipline:development
+                    +-- discipline:complexity_and_dependencies
+                    +-- discipline:environment_and_dependencies
+                    +-- discipline:environment
+                    +-- discipline:prevention_and_health
+                    +-- discipline:identity
+                    +-- discipline:personal_and_professional_orientation
+                    +-- discipline:personal_projects
+                    +-- discipline:collective_projects
+                    +-- discipline:life_of_the_class_and_of_the_school
+    +-- context:post compulsory education
+        +-- school level:matura_schools
+            +-- school level:specialised_middle_school
+                +-- discipline:languages
+                    +-- discipline:german school language
+                    +-- discipline:german foreign language
+                    +-- discipline:french school language
+                    +-- discipline:french foreign language
+                    +-- discipline:italian_school_language
+                    +-- discipline:italian foreign language
+                    +-- discipline:rhaeto-romanic_school_language
+                    +-- discipline:english foreign language
+                    +-- discipline:ancient languages
+                        +-- discipline:latin
+                        +-- discipline:greek
+                        +-- discipline:hebrew
+                    +-- discipline:spanish_foreign_language
+                    +-- discipline:chinese_foreign_language
+                    +-- discipline:russian_foreign_language
+                +-- discipline:mathematics and natural science
+                    +-- discipline:mathematics
+                        +-- discipline:applied mathematics
+                        +-- discipline:geometry
+                    +-- discipline:natural sciences
+                        +-- discipline:biology
+                        +-- discipline:chemistry
+                        +-- discipline:physics
+                    +-- discipline:computer_science_programming
+                +-- discipline:social and human sciences
+                    +-- discipline:citizenship
+                    +-- discipline:geography
+                    +-- discipline:history
+                    +-- discipline:economy
+                        +-- discipline:commercial accounting
+                        +-- discipline:accounting
+                        +-- discipline:computer science management
+                        +-- discipline:office_and_typing
+                        +-- discipline:home economics
+                    +-- discipline:law
+                    +-- discipline:pedagogy
+                    +-- discipline:psychology
+                    +-- discipline:philosophy
+                    +-- discipline:ethics and religions
+                    +-- discipline:religious instruction
+                +-- discipline:arts
+                    +-- discipline:visual arts
+                    +-- discipline:creative activities
+                    +-- discipline:technical design
+                    +-- discipline:music
+                +-- discipline:sport
+                    +-- discipline:domestic science
+                    +-- discipline:motion and sport
+                +-- discipline:general_education
+                    +-- discipline:early_childhood_education
+                    +-- discipline:media and ict
+                    +-- discipline:development
+                    +-- discipline:complexity_and_dependencies
+                    +-- discipline:environment_and_dependencies
+                    +-- discipline:environment
+                    +-- discipline:prevention_and_health
+                    +-- discipline:identity
+                    +-- discipline:personal_and_professional_orientation
+                    +-- discipline:personal_projects
+                    +-- discipline:collective_projects
+                    +-- discipline:life_of_the_class_and_of_the_school
+            +-- school level:vocational_baccalaureate_school
+                +-- discipline:languages
+                    +-- discipline:german school language
+                    +-- discipline:german foreign language
+                    +-- discipline:french school language
+                    +-- discipline:french foreign language
+                    +-- discipline:italian_school_language
+                    +-- discipline:italian foreign language
+                    +-- discipline:rhaeto-romanic_school_language
+                    +-- discipline:english foreign language
+                    +-- discipline:ancient languages
+                        +-- discipline:latin
+                        +-- discipline:greek
+                        +-- discipline:hebrew
+                    +-- discipline:spanish_foreign_language
+                    +-- discipline:chinese_foreign_language
+                    +-- discipline:russian_foreign_language
+                +-- discipline:mathematics and natural science
+                    +-- discipline:mathematics
+                        +-- discipline:applied mathematics
+                        +-- discipline:geometry
+                    +-- discipline:natural sciences
+                        +-- discipline:biology
+                        +-- discipline:chemistry
+                        +-- discipline:physics
+                    +-- discipline:computer_science_programming
+                +-- discipline:social and human sciences
+                    +-- discipline:citizenship
+                    +-- discipline:geography
+                    +-- discipline:history
+                    +-- discipline:economy
+                        +-- discipline:commercial accounting
+                        +-- discipline:accounting
+                        +-- discipline:computer science management
+                        +-- discipline:office_and_typing
+                        +-- discipline:home economics
+                    +-- discipline:law
+                    +-- discipline:pedagogy
+                    +-- discipline:psychology
+                    +-- discipline:philosophy
+                    +-- discipline:ethics and religions
+                    +-- discipline:religious instruction
+                +-- discipline:arts
+                    +-- discipline:visual arts
+                    +-- discipline:creative activities
+                    +-- discipline:technical design
+                    +-- discipline:music
+                +-- discipline:sport
+                    +-- discipline:domestic science
+                    +-- discipline:motion and sport
+                +-- discipline:general_education
+                    +-- discipline:early_childhood_education
+                    +-- discipline:media and ict
+                    +-- discipline:development
+                    +-- discipline:complexity_and_dependencies
+                    +-- discipline:environment_and_dependencies
+                    +-- discipline:environment
+                    +-- discipline:prevention_and_health
+                    +-- discipline:identity
+                    +-- discipline:personal_and_professional_orientation
+                    +-- discipline:personal_projects
+                    +-- discipline:collective_projects
+                    +-- discipline:life_of_the_class_and_of_the_school
+            +-- school level:gymnasium
+                +-- discipline:languages
+                    +-- discipline:german school language
+                    +-- discipline:german foreign language
+                    +-- discipline:french school language
+                    +-- discipline:french foreign language
+                    +-- discipline:italian_school_language
+                    +-- discipline:italian foreign language
+                    +-- discipline:rhaeto-romanic_school_language
+                    +-- discipline:english foreign language
+                    +-- discipline:ancient languages
+                        +-- discipline:latin
+                        +-- discipline:greek
+                        +-- discipline:hebrew
+                    +-- discipline:spanish_foreign_language
+                    +-- discipline:chinese_foreign_language
+                    +-- discipline:russian_foreign_language
+                +-- discipline:mathematics and natural science
+                    +-- discipline:mathematics
+                        +-- discipline:applied mathematics
+                        +-- discipline:geometry
+                    +-- discipline:natural sciences
+                        +-- discipline:biology
+                        +-- discipline:chemistry
+                        +-- discipline:physics
+                    +-- discipline:computer_science_programming
+                +-- discipline:social and human sciences
+                    +-- discipline:citizenship
+                    +-- discipline:geography
+                    +-- discipline:history
+                    +-- discipline:economy
+                        +-- discipline:commercial accounting
+                        +-- discipline:accounting
+                        +-- discipline:computer science management
+                        +-- discipline:office_and_typing
+                        +-- discipline:home economics
+                    +-- discipline:law
+                    +-- discipline:pedagogy
+                    +-- discipline:psychology
+                    +-- discipline:philosophy
+                    +-- discipline:ethics and religions
+                    +-- discipline:religious instruction
+                +-- discipline:arts
+                    +-- discipline:visual arts
+                    +-- discipline:creative activities
+                    +-- discipline:technical design
+                    +-- discipline:music
+                +-- discipline:sport
+                    +-- discipline:domestic science
+                    +-- discipline:motion and sport
+                +-- discipline:general_education
+                    +-- discipline:early_childhood_education
+                    +-- discipline:media and ict
+                    +-- discipline:development
+                    +-- discipline:complexity_and_dependencies
+                    +-- discipline:environment_and_dependencies
+                    +-- discipline:environment
+                    +-- discipline:prevention_and_health
+                    +-- discipline:identity
+                    +-- discipline:personal_and_professional_orientation
+                    +-- discipline:personal_projects
+                    +-- discipline:collective_projects
+                    +-- discipline:life_of_the_class_and_of_the_school
+        +-- school level:middle_schools
+            +-- school level:middle_school
+                +-- discipline:languages
+                    +-- discipline:german school language
+                    +-- discipline:german foreign language
+                    +-- discipline:french school language
+                    +-- discipline:french foreign language
+                    +-- discipline:italian_school_language
+                    +-- discipline:italian foreign language
+                    +-- discipline:rhaeto-romanic_school_language
+                    +-- discipline:english foreign language
+                    +-- discipline:ancient languages
+                        +-- discipline:latin
+                        +-- discipline:greek
+                        +-- discipline:hebrew
+                    +-- discipline:spanish_foreign_language
+                    +-- discipline:chinese_foreign_language
+                    +-- discipline:russian_foreign_language
+                +-- discipline:mathematics and natural science
+                    +-- discipline:mathematics
+                        +-- discipline:applied mathematics
+                        +-- discipline:geometry
+                    +-- discipline:natural sciences
+                        +-- discipline:biology
+                        +-- discipline:chemistry
+                        +-- discipline:physics
+                    +-- discipline:computer_science_programming
+                +-- discipline:social and human sciences
+                    +-- discipline:citizenship
+                    +-- discipline:geography
+                    +-- discipline:history
+                    +-- discipline:economy
+                        +-- discipline:commercial accounting
+                        +-- discipline:accounting
+                        +-- discipline:computer science management
+                        +-- discipline:office_and_typing
+                        +-- discipline:home economics
+                    +-- discipline:law
+                    +-- discipline:pedagogy
+                    +-- discipline:psychology
+                    +-- discipline:philosophy
+                    +-- discipline:ethics and religions
+                    +-- discipline:religious instruction
+                +-- discipline:arts
+                    +-- discipline:visual arts
+                    +-- discipline:creative activities
+                    +-- discipline:technical design
+                    +-- discipline:music
+                +-- discipline:sport
+                    +-- discipline:domestic science
+                    +-- discipline:motion and sport
+                +-- discipline:general_education
+                    +-- discipline:early_childhood_education
+                    +-- discipline:media and ict
+                    +-- discipline:development
+                    +-- discipline:complexity_and_dependencies
+                    +-- discipline:environment_and_dependencies
+                    +-- discipline:environment
+                    +-- discipline:prevention_and_health
+                    +-- discipline:identity
+                    +-- discipline:personal_and_professional_orientation
+                    +-- discipline:personal_projects
+                    +-- discipline:collective_projects
+                    +-- discipline:life_of_the_class_and_of_the_school
+            +-- school level:bridging_courses
+                +-- discipline:languages
+                    +-- discipline:german school language
+                    +-- discipline:german foreign language
+                    +-- discipline:french school language
+                    +-- discipline:french foreign language
+                    +-- discipline:italian_school_language
+                    +-- discipline:italian foreign language
+                    +-- discipline:rhaeto-romanic_school_language
+                    +-- discipline:english foreign language
+                    +-- discipline:ancient languages
+                        +-- discipline:latin
+                        +-- discipline:greek
+                        +-- discipline:hebrew
+                    +-- discipline:spanish_foreign_language
+                    +-- discipline:chinese_foreign_language
+                    +-- discipline:russian_foreign_language
+                +-- discipline:mathematics and natural science
+                    +-- discipline:mathematics
+                        +-- discipline:applied mathematics
+                        +-- discipline:geometry
+                    +-- discipline:natural sciences
+                        +-- discipline:biology
+                        +-- discipline:chemistry
+                        +-- discipline:physics
+                    +-- discipline:computer_science_programming
+                +-- discipline:social and human sciences
+                    +-- discipline:citizenship
+                    +-- discipline:geography
+                    +-- discipline:history
+                    +-- discipline:economy
+                        +-- discipline:commercial accounting
+                        +-- discipline:accounting
+                        +-- discipline:computer science management
+                        +-- discipline:office_and_typing
+                        +-- discipline:home economics
+                    +-- discipline:law
+                    +-- discipline:pedagogy
+                    +-- discipline:psychology
+                    +-- discipline:philosophy
+                    +-- discipline:ethics and religions
+                    +-- discipline:religious instruction
+                +-- discipline:arts
+                    +-- discipline:visual arts
+                    +-- discipline:creative activities
+                    +-- discipline:technical design
+                    +-- discipline:music
+                +-- discipline:sport
+                    +-- discipline:domestic science
+                    +-- discipline:motion and sport
+                +-- discipline:general_education
+                    +-- discipline:early_childhood_education
+                    +-- discipline:media and ict
+                    +-- discipline:development
+                    +-- discipline:complexity_and_dependencies
+                    +-- discipline:environment_and_dependencies
+                    +-- discipline:environment
+                    +-- discipline:prevention_and_health
+                    +-- discipline:identity
+                    +-- discipline:personal_and_professional_orientation
+                    +-- discipline:personal_projects
+                    +-- discipline:collective_projects
+                    +-- discipline:life_of_the_class_and_of_the_school
+        +-- school level:vocational schools
+            +-- school level:technical_college
+                +-- discipline:languages
+                    +-- discipline:german school language
+                    +-- discipline:german foreign language
+                    +-- discipline:french school language
+                    +-- discipline:french foreign language
+                    +-- discipline:italian_school_language
+                    +-- discipline:italian foreign language
+                    +-- discipline:rhaeto-romanic_school_language
+                    +-- discipline:english foreign language
+                    +-- discipline:ancient languages
+                        +-- discipline:latin
+                        +-- discipline:greek
+                        +-- discipline:hebrew
+                    +-- discipline:spanish_foreign_language
+                    +-- discipline:chinese_foreign_language
+                    +-- discipline:russian_foreign_language
+                +-- discipline:mathematics and natural science
+                    +-- discipline:mathematics
+                        +-- discipline:applied mathematics
+                        +-- discipline:geometry
+                    +-- discipline:natural sciences
+                        +-- discipline:biology
+                        +-- discipline:chemistry
+                        +-- discipline:physics
+                    +-- discipline:computer_science_programming
+                +-- discipline:social and human sciences
+                    +-- discipline:citizenship
+                    +-- discipline:geography
+                    +-- discipline:history
+                    +-- discipline:economy
+                        +-- discipline:commercial accounting
+                        +-- discipline:accounting
+                        +-- discipline:computer science management
+                        +-- discipline:office_and_typing
+                        +-- discipline:home economics
+                    +-- discipline:law
+                    +-- discipline:pedagogy
+                    +-- discipline:psychology
+                    +-- discipline:philosophy
+                    +-- discipline:ethics and religions
+                    +-- discipline:religious instruction
+                +-- discipline:arts
+                    +-- discipline:visual arts
+                    +-- discipline:creative activities
+                    +-- discipline:technical design
+                    +-- discipline:music
+                +-- discipline:sport
+                    +-- discipline:domestic science
+                    +-- discipline:motion and sport
+                +-- discipline:general_education
+                    +-- discipline:early_childhood_education
+                    +-- discipline:media and ict
+                    +-- discipline:development
+                    +-- discipline:complexity_and_dependencies
+                    +-- discipline:environment_and_dependencies
+                    +-- discipline:environment
+                    +-- discipline:prevention_and_health
+                    +-- discipline:identity
+                    +-- discipline:personal_and_professional_orientation
+                    +-- discipline:personal_projects
+                    +-- discipline:collective_projects
+                    +-- discipline:life_of_the_class_and_of_the_school
+            +-- school level:business_college
+                +-- discipline:languages
+                    +-- discipline:german school language
+                    +-- discipline:german foreign language
+                    +-- discipline:french school language
+                    +-- discipline:french foreign language
+                    +-- discipline:italian_school_language
+                    +-- discipline:italian foreign language
+                    +-- discipline:rhaeto-romanic_school_language
+                    +-- discipline:english foreign language
+                    +-- discipline:ancient languages
+                        +-- discipline:latin
+                        +-- discipline:greek
+                        +-- discipline:hebrew
+                    +-- discipline:spanish_foreign_language
+                    +-- discipline:chinese_foreign_language
+                    +-- discipline:russian_foreign_language
+                +-- discipline:mathematics and natural science
+                    +-- discipline:mathematics
+                        +-- discipline:applied mathematics
+                        +-- discipline:geometry
+                    +-- discipline:natural sciences
+                        +-- discipline:biology
+                        +-- discipline:chemistry
+                        +-- discipline:physics
+                    +-- discipline:computer_science_programming
+                +-- discipline:social and human sciences
+                    +-- discipline:citizenship
+                    +-- discipline:geography
+                    +-- discipline:history
+                    +-- discipline:economy
+                        +-- discipline:commercial accounting
+                        +-- discipline:accounting
+                        +-- discipline:computer science management
+                        +-- discipline:office_and_typing
+                        +-- discipline:home economics
+                    +-- discipline:law
+                    +-- discipline:pedagogy
+                    +-- discipline:psychology
+                    +-- discipline:philosophy
+                    +-- discipline:ethics and religions
+                    +-- discipline:religious instruction
+                +-- discipline:arts
+                    +-- discipline:visual arts
+                    +-- discipline:creative activities
+                    +-- discipline:technical design
+                    +-- discipline:music
+                +-- discipline:sport
+                    +-- discipline:domestic science
+                    +-- discipline:motion and sport
+                +-- discipline:general_education
+                    +-- discipline:early_childhood_education
+                    +-- discipline:media and ict
+                    +-- discipline:development
+                    +-- discipline:complexity_and_dependencies
+                    +-- discipline:environment_and_dependencies
+                    +-- discipline:environment
+                    +-- discipline:prevention_and_health
+                    +-- discipline:identity
+                    +-- discipline:personal_and_professional_orientation
+                    +-- discipline:personal_projects
+                    +-- discipline:collective_projects
+                    +-- discipline:life_of_the_class_and_of_the_school
+            +-- school level:design_college
+                +-- discipline:languages
+                    +-- discipline:german school language
+                    +-- discipline:german foreign language
+                    +-- discipline:french school language
+                    +-- discipline:french foreign language
+                    +-- discipline:italian_school_language
+                    +-- discipline:italian foreign language
+                    +-- discipline:rhaeto-romanic_school_language
+                    +-- discipline:english foreign language
+                    +-- discipline:ancient languages
+                        +-- discipline:latin
+                        +-- discipline:greek
+                        +-- discipline:hebrew
+                    +-- discipline:spanish_foreign_language
+                    +-- discipline:chinese_foreign_language
+                    +-- discipline:russian_foreign_language
+                +-- discipline:mathematics and natural science
+                    +-- discipline:mathematics
+                        +-- discipline:applied mathematics
+                        +-- discipline:geometry
+                    +-- discipline:natural sciences
+                        +-- discipline:biology
+                        +-- discipline:chemistry
+                        +-- discipline:physics
+                    +-- discipline:computer_science_programming
+                +-- discipline:social and human sciences
+                    +-- discipline:citizenship
+                    +-- discipline:geography
+                    +-- discipline:history
+                    +-- discipline:economy
+                        +-- discipline:commercial accounting
+                        +-- discipline:accounting
+                        +-- discipline:computer science management
+                        +-- discipline:office_and_typing
+                        +-- discipline:home economics
+                    +-- discipline:law
+                    +-- discipline:pedagogy
+                    +-- discipline:psychology
+                    +-- discipline:philosophy
+                    +-- discipline:ethics and religions
+                    +-- discipline:religious instruction
+                +-- discipline:arts
+                    +-- discipline:visual arts
+                    +-- discipline:creative activities
+                    +-- discipline:technical design
+                    +-- discipline:music
+                +-- discipline:sport
+                    +-- discipline:domestic science
+                    +-- discipline:motion and sport
+                +-- discipline:general_education
+                    +-- discipline:early_childhood_education
+                    +-- discipline:media and ict
+                    +-- discipline:development
+                    +-- discipline:complexity_and_dependencies
+                    +-- discipline:environment_and_dependencies
+                    +-- discipline:environment
+                    +-- discipline:prevention_and_health
+                    +-- discipline:identity
+                    +-- discipline:personal_and_professional_orientation
+                    +-- discipline:personal_projects
+                    +-- discipline:collective_projects
+                    +-- discipline:life_of_the_class_and_of_the_school
+            +-- school level:social_school
+                +-- discipline:languages
+                    +-- discipline:german school language
+                    +-- discipline:german foreign language
+                    +-- discipline:french school language
+                    +-- discipline:french foreign language
+                    +-- discipline:italian_school_language
+                    +-- discipline:italian foreign language
+                    +-- discipline:rhaeto-romanic_school_language
+                    +-- discipline:english foreign language
+                    +-- discipline:ancient languages
+                        +-- discipline:latin
+                        +-- discipline:greek
+                        +-- discipline:hebrew
+                    +-- discipline:spanish_foreign_language
+                    +-- discipline:chinese_foreign_language
+                    +-- discipline:russian_foreign_language
+                +-- discipline:mathematics and natural science
+                    +-- discipline:mathematics
+                        +-- discipline:applied mathematics
+                        +-- discipline:geometry
+                    +-- discipline:natural sciences
+                        +-- discipline:biology
+                        +-- discipline:chemistry
+                        +-- discipline:physics
+                    +-- discipline:computer_science_programming
+                +-- discipline:social and human sciences
+                    +-- discipline:citizenship
+                    +-- discipline:geography
+                    +-- discipline:history
+                    +-- discipline:economy
+                        +-- discipline:commercial accounting
+                        +-- discipline:accounting
+                        +-- discipline:computer science management
+                        +-- discipline:office_and_typing
+                        +-- discipline:home economics
+                    +-- discipline:law
+                    +-- discipline:pedagogy
+                    +-- discipline:psychology
+                    +-- discipline:philosophy
+                    +-- discipline:ethics and religions
+                    +-- discipline:religious instruction
+                +-- discipline:arts
+                    +-- discipline:visual arts
+                    +-- discipline:creative activities
+                    +-- discipline:technical design
+                    +-- discipline:music
+                +-- discipline:sport
+                    +-- discipline:domestic science
+                    +-- discipline:motion and sport
+                +-- discipline:general_education
+                    +-- discipline:early_childhood_education
+                    +-- discipline:media and ict
+                    +-- discipline:development
+                    +-- discipline:complexity_and_dependencies
+                    +-- discipline:environment_and_dependencies
+                    +-- discipline:environment
+                    +-- discipline:prevention_and_health
+                    +-- discipline:identity
+                    +-- discipline:personal_and_professional_orientation
+                    +-- discipline:personal_projects
+                    +-- discipline:collective_projects
+                    +-- discipline:life_of_the_class_and_of_the_school
+            +-- school level:nursing_school
+                +-- discipline:languages
+                    +-- discipline:german school language
+                    +-- discipline:german foreign language
+                    +-- discipline:french school language
+                    +-- discipline:french foreign language
+                    +-- discipline:italian_school_language
+                    +-- discipline:italian foreign language
+                    +-- discipline:rhaeto-romanic_school_language
+                    +-- discipline:english foreign language
+                    +-- discipline:ancient languages
+                        +-- discipline:latin
+                        +-- discipline:greek
+                        +-- discipline:hebrew
+                    +-- discipline:spanish_foreign_language
+                    +-- discipline:chinese_foreign_language
+                    +-- discipline:russian_foreign_language
+                +-- discipline:mathematics and natural science
+                    +-- discipline:mathematics
+                        +-- discipline:applied mathematics
+                        +-- discipline:geometry
+                    +-- discipline:natural sciences
+                        +-- discipline:biology
+                        +-- discipline:chemistry
+                        +-- discipline:physics
+                    +-- discipline:computer_science_programming
+                +-- discipline:social and human sciences
+                    +-- discipline:citizenship
+                    +-- discipline:geography
+                    +-- discipline:history
+                    +-- discipline:economy
+                        +-- discipline:commercial accounting
+                        +-- discipline:accounting
+                        +-- discipline:computer science management
+                        +-- discipline:office_and_typing
+                        +-- discipline:home economics
+                    +-- discipline:law
+                    +-- discipline:pedagogy
+                    +-- discipline:psychology
+                    +-- discipline:philosophy
+                    +-- discipline:ethics and religions
+                    +-- discipline:religious instruction
+                +-- discipline:arts
+                    +-- discipline:visual arts
+                    +-- discipline:creative activities
+                    +-- discipline:technical design
+                    +-- discipline:music
+                +-- discipline:sport
+                    +-- discipline:domestic science
+                    +-- discipline:motion and sport
+                +-- discipline:general_education
+                    +-- discipline:early_childhood_education
+                    +-- discipline:media and ict
+                    +-- discipline:development
+                    +-- discipline:complexity_and_dependencies
+                    +-- discipline:environment_and_dependencies
+                    +-- discipline:environment
+                    +-- discipline:prevention_and_health
+                    +-- discipline:identity
+                    +-- discipline:personal_and_professional_orientation
+                    +-- discipline:personal_projects
+                    +-- discipline:collective_projects
+                    +-- discipline:life_of_the_class_and_of_the_school
+            +-- school level:agricultural_school
+                +-- discipline:languages
+                    +-- discipline:german school language
+                    +-- discipline:german foreign language
+                    +-- discipline:french school language
+                    +-- discipline:french foreign language
+                    +-- discipline:italian_school_language
+                    +-- discipline:italian foreign language
+                    +-- discipline:rhaeto-romanic_school_language
+                    +-- discipline:english foreign language
+                    +-- discipline:ancient languages
+                        +-- discipline:latin
+                        +-- discipline:greek
+                        +-- discipline:hebrew
+                    +-- discipline:spanish_foreign_language
+                    +-- discipline:chinese_foreign_language
+                    +-- discipline:russian_foreign_language
+                +-- discipline:mathematics and natural science
+                    +-- discipline:mathematics
+                        +-- discipline:applied mathematics
+                        +-- discipline:geometry
+                    +-- discipline:natural sciences
+                        +-- discipline:biology
+                        +-- discipline:chemistry
+                        +-- discipline:physics
+                    +-- discipline:computer_science_programming
+                +-- discipline:social and human sciences
+                    +-- discipline:citizenship
+                    +-- discipline:geography
+                    +-- discipline:history
+                    +-- discipline:economy
+                        +-- discipline:commercial accounting
+                        +-- discipline:accounting
+                        +-- discipline:computer science management
+                        +-- discipline:office_and_typing
+                        +-- discipline:home economics
+                    +-- discipline:law
+                    +-- discipline:pedagogy
+                    +-- discipline:psychology
+                    +-- discipline:philosophy
+                    +-- discipline:ethics and religions
+                    +-- discipline:religious instruction
+                +-- discipline:arts
+                    +-- discipline:visual arts
+                    +-- discipline:creative activities
+                    +-- discipline:technical design
+                    +-- discipline:music
+                +-- discipline:sport
+                    +-- discipline:domestic science
+                    +-- discipline:motion and sport
+                +-- discipline:general_education
+                    +-- discipline:early_childhood_education
+                    +-- discipline:media and ict
+                    +-- discipline:development
+                    +-- discipline:complexity_and_dependencies
+                    +-- discipline:environment_and_dependencies
+                    +-- discipline:environment
+                    +-- discipline:prevention_and_health
+                    +-- discipline:identity
+                    +-- discipline:personal_and_professional_orientation
+                    +-- discipline:personal_projects
+                    +-- discipline:collective_projects
+                    +-- discipline:life_of_the_class_and_of_the_school
+        +-- school level:post_compulsory_education_others
+            +-- discipline:languages
+                +-- discipline:german school language
+                +-- discipline:german foreign language
+                +-- discipline:french school language
+                +-- discipline:french foreign language
+                +-- discipline:italian_school_language
+                +-- discipline:italian foreign language
+                +-- discipline:rhaeto-romanic_school_language
+                +-- discipline:english foreign language
+                +-- discipline:ancient languages
+                    +-- discipline:latin
+                    +-- discipline:greek
+                    +-- discipline:hebrew
+                +-- discipline:spanish_foreign_language
+                +-- discipline:chinese_foreign_language
+                +-- discipline:russian_foreign_language
+            +-- discipline:mathematics and natural science
+                +-- discipline:mathematics
+                    +-- discipline:applied mathematics
+                    +-- discipline:geometry
+                +-- discipline:natural sciences
+                    +-- discipline:biology
+                    +-- discipline:chemistry
+                    +-- discipline:physics
+                +-- discipline:computer_science_programming
+            +-- discipline:social and human sciences
+                +-- discipline:citizenship
+                +-- discipline:geography
+                +-- discipline:history
+                +-- discipline:economy
+                    +-- discipline:commercial accounting
+                    +-- discipline:accounting
+                    +-- discipline:computer science management
+                    +-- discipline:office_and_typing
+                    +-- discipline:home economics
+                +-- discipline:law
+                +-- discipline:pedagogy
+                +-- discipline:psychology
+                +-- discipline:philosophy
+                +-- discipline:ethics and religions
+                +-- discipline:religious instruction
+            +-- discipline:arts
+                +-- discipline:visual arts
+                +-- discipline:creative activities
+                +-- discipline:technical design
+                +-- discipline:music
+            +-- discipline:sport
+                +-- discipline:domestic science
+                +-- discipline:motion and sport
+            +-- discipline:general_education
+                +-- discipline:early_childhood_education
+                +-- discipline:media and ict
+                +-- discipline:development
+                +-- discipline:complexity_and_dependencies
+                +-- discipline:environment_and_dependencies
+                +-- discipline:environment
+                +-- discipline:prevention_and_health
+                +-- discipline:identity
+                +-- discipline:personal_and_professional_orientation
+                +-- discipline:personal_projects
+                +-- discipline:collective_projects
+                +-- discipline:life_of_the_class_and_of_the_school
+    +-- context:special_needs_education
+        +-- school level:school_for_handicapped_children
+            +-- discipline:languages
+                +-- discipline:german school language
+                +-- discipline:german foreign language
+                +-- discipline:french school language
+                +-- discipline:french foreign language
+                +-- discipline:italian_school_language
+                +-- discipline:italian foreign language
+                +-- discipline:rhaeto-romanic_school_language
+                +-- discipline:english foreign language
+                +-- discipline:ancient languages
+                    +-- discipline:latin
+                    +-- discipline:greek
+                    +-- discipline:hebrew
+                +-- discipline:spanish_foreign_language
+                +-- discipline:chinese_foreign_language
+                +-- discipline:russian_foreign_language
+            +-- discipline:mathematics and natural science
+                +-- discipline:mathematics
+                    +-- discipline:applied mathematics
+                    +-- discipline:geometry
+                +-- discipline:natural sciences
+                    +-- discipline:biology
+                    +-- discipline:chemistry
+                    +-- discipline:physics
+                +-- discipline:computer_science_programming
+            +-- discipline:social and human sciences
+                +-- discipline:citizenship
+                +-- discipline:geography
+                +-- discipline:history
+                +-- discipline:economy
+                    +-- discipline:commercial accounting
+                    +-- discipline:accounting
+                    +-- discipline:computer science management
+                    +-- discipline:office_and_typing
+                    +-- discipline:home economics
+                +-- discipline:law
+                +-- discipline:pedagogy
+                +-- discipline:psychology
+                +-- discipline:philosophy
+                +-- discipline:ethics and religions
+                +-- discipline:religious instruction
+            +-- discipline:arts
+                +-- discipline:visual arts
+                +-- discipline:creative activities
+                +-- discipline:technical design
+                +-- discipline:music
+            +-- discipline:sport
+                +-- discipline:domestic science
+                +-- discipline:motion and sport
+            +-- discipline:general_education
+                +-- discipline:early_childhood_education
+                +-- discipline:media and ict
+                +-- discipline:development
+                +-- discipline:complexity_and_dependencies
+                +-- discipline:environment_and_dependencies
+                +-- discipline:environment
+                +-- discipline:prevention_and_health
+                +-- discipline:identity
+                +-- discipline:personal_and_professional_orientation
+                +-- discipline:personal_projects
+                +-- discipline:collective_projects
+                +-- discipline:life_of_the_class_and_of_the_school
+        +-- school level:training_center
+            +-- discipline:languages
+                +-- discipline:german school language
+                +-- discipline:german foreign language
+                +-- discipline:french school language
+                +-- discipline:french foreign language
+                +-- discipline:italian_school_language
+                +-- discipline:italian foreign language
+                +-- discipline:rhaeto-romanic_school_language
+                +-- discipline:english foreign language
+                +-- discipline:ancient languages
+                    +-- discipline:latin
+                    +-- discipline:greek
+                    +-- discipline:hebrew
+                +-- discipline:spanish_foreign_language
+                +-- discipline:chinese_foreign_language
+                +-- discipline:russian_foreign_language
+            +-- discipline:mathematics and natural science
+                +-- discipline:mathematics
+                    +-- discipline:applied mathematics
+                    +-- discipline:geometry
+                +-- discipline:natural sciences
+                    +-- discipline:biology
+                    +-- discipline:chemistry
+                    +-- discipline:physics
+                +-- discipline:computer_science_programming
+            +-- discipline:social and human sciences
+                +-- discipline:citizenship
+                +-- discipline:geography
+                +-- discipline:history
+                +-- discipline:economy
+                    +-- discipline:commercial accounting
+                    +-- discipline:accounting
+                    +-- discipline:computer science management
+                    +-- discipline:office_and_typing
+                    +-- discipline:home economics
+                +-- discipline:law
+                +-- discipline:pedagogy
+                +-- discipline:psychology
+                +-- discipline:philosophy
+                +-- discipline:ethics and religions
+                +-- discipline:religious instruction
+            +-- discipline:arts
+                +-- discipline:visual arts
+                +-- discipline:creative activities
+                +-- discipline:technical design
+                +-- discipline:music
+            +-- discipline:sport
+                +-- discipline:domestic science
+                +-- discipline:motion and sport
+            +-- discipline:general_education
+                +-- discipline:early_childhood_education
+                +-- discipline:media and ict
+                +-- discipline:development
+                +-- discipline:complexity_and_dependencies
+                +-- discipline:environment_and_dependencies
+                +-- discipline:environment
+                +-- discipline:prevention_and_health
+                +-- discipline:identity
+                +-- discipline:personal_and_professional_orientation
+                +-- discipline:personal_projects
+                +-- discipline:collective_projects
+                +-- discipline:life_of_the_class_and_of_the_school
+    +-- context:indipendent_of_levels
+        +-- school level:music_school
+            +-- discipline:languages
+                +-- discipline:german school language
+                +-- discipline:german foreign language
+                +-- discipline:french school language
+                +-- discipline:french foreign language
+                +-- discipline:italian_school_language
+                +-- discipline:italian foreign language
+                +-- discipline:rhaeto-romanic_school_language
+                +-- discipline:english foreign language
+                +-- discipline:ancient languages
+                    +-- discipline:latin
+                    +-- discipline:greek
+                    +-- discipline:hebrew
+                +-- discipline:spanish_foreign_language
+                +-- discipline:chinese_foreign_language
+                +-- discipline:russian_foreign_language
+            +-- discipline:mathematics and natural science
+                +-- discipline:mathematics
+                    +-- discipline:applied mathematics
+                    +-- discipline:geometry
+                +-- discipline:natural sciences
+                    +-- discipline:biology
+                    +-- discipline:chemistry
+                    +-- discipline:physics
+                +-- discipline:computer_science_programming
+            +-- discipline:social and human sciences
+                +-- discipline:citizenship
+                +-- discipline:geography
+                +-- discipline:history
+                +-- discipline:economy
+                    +-- discipline:commercial accounting
+                    +-- discipline:accounting
+                    +-- discipline:computer science management
+                    +-- discipline:office_and_typing
+                    +-- discipline:home economics
+                +-- discipline:law
+                +-- discipline:pedagogy
+                +-- discipline:psychology
+                +-- discipline:philosophy
+                +-- discipline:ethics and religions
+                +-- discipline:religious instruction
+            +-- discipline:arts
+                +-- discipline:visual arts
+                +-- discipline:creative activities
+                +-- discipline:technical design
+                +-- discipline:music
+            +-- discipline:sport
+                +-- discipline:domestic science
+                +-- discipline:motion and sport
+            +-- discipline:general_education
+                +-- discipline:early_childhood_education
+                +-- discipline:media and ict
+                +-- discipline:development
+                +-- discipline:complexity_and_dependencies
+                +-- discipline:environment_and_dependencies
+                +-- discipline:environment
+                +-- discipline:prevention_and_health
+                +-- discipline:identity
+                +-- discipline:personal_and_professional_orientation
+                +-- discipline:personal_projects
+                +-- discipline:collective_projects
+                +-- discipline:life_of_the_class_and_of_the_school
+        +-- school level:indipendent_of_levels_others
+            +-- discipline:languages
+                +-- discipline:german school language
+                +-- discipline:german foreign language
+                +-- discipline:french school language
+                +-- discipline:french foreign language
+                +-- discipline:italian_school_language
+                +-- discipline:italian foreign language
+                +-- discipline:rhaeto-romanic_school_language
+                +-- discipline:english foreign language
+                +-- discipline:ancient languages
+                    +-- discipline:latin
+                    +-- discipline:greek
+                    +-- discipline:hebrew
+                +-- discipline:spanish_foreign_language
+                +-- discipline:chinese_foreign_language
+                +-- discipline:russian_foreign_language
+            +-- discipline:mathematics and natural science
+                +-- discipline:mathematics
+                    +-- discipline:applied mathematics
+                    +-- discipline:geometry
+                +-- discipline:natural sciences
+                    +-- discipline:biology
+                    +-- discipline:chemistry
+                    +-- discipline:physics
+                +-- discipline:computer_science_programming
+            +-- discipline:social and human sciences
+                +-- discipline:citizenship
+                +-- discipline:geography
+                +-- discipline:history
+                +-- discipline:economy
+                    +-- discipline:commercial accounting
+                    +-- discipline:accounting
+                    +-- discipline:computer science management
+                    +-- discipline:office_and_typing
+                    +-- discipline:home economics
+                +-- discipline:law
+                +-- discipline:pedagogy
+                +-- discipline:psychology
+                +-- discipline:philosophy
+                +-- discipline:ethics and religions
+                +-- discipline:religious instruction
+            +-- discipline:arts
+                +-- discipline:visual arts
+                +-- discipline:creative activities
+                +-- discipline:technical design
+                +-- discipline:music
+            +-- discipline:sport
+                +-- discipline:domestic science
+                +-- discipline:motion and sport
+            +-- discipline:general_education
+                +-- discipline:early_childhood_education
+                +-- discipline:media and ict
+                +-- discipline:development
+                +-- discipline:complexity_and_dependencies
+                +-- discipline:environment_and_dependencies
+                +-- discipline:environment
+                +-- discipline:prevention_and_health
+                +-- discipline:identity
+                +-- discipline:personal_and_professional_orientation
+                +-- discipline:personal_projects
+                +-- discipline:collective_projects
+                +-- discipline:life_of_the_class_and_of_the_school
+    +-- context:tertiary_level
+        +-- school level:colleges_of_higher_vocational_education
+            +-- discipline:languages
+                +-- discipline:german school language
+                +-- discipline:german foreign language
+                +-- discipline:french school language
+                +-- discipline:french foreign language
+                +-- discipline:italian_school_language
+                +-- discipline:italian foreign language
+                +-- discipline:rhaeto-romanic_school_language
+                +-- discipline:english foreign language
+                +-- discipline:ancient languages
+                    +-- discipline:latin
+                    +-- discipline:greek
+                    +-- discipline:hebrew
+                +-- discipline:spanish_foreign_language
+                +-- discipline:chinese_foreign_language
+                +-- discipline:russian_foreign_language
+            +-- discipline:mathematics and natural science
+                +-- discipline:mathematics
+                    +-- discipline:applied mathematics
+                    +-- discipline:geometry
+                +-- discipline:natural sciences
+                    +-- discipline:biology
+                    +-- discipline:chemistry
+                    +-- discipline:physics
+                +-- discipline:computer_science_programming
+            +-- discipline:social and human sciences
+                +-- discipline:citizenship
+                +-- discipline:geography
+                +-- discipline:history
+                +-- discipline:economy
+                    +-- discipline:commercial accounting
+                    +-- discipline:accounting
+                    +-- discipline:computer science management
+                    +-- discipline:office_and_typing
+                    +-- discipline:home economics
+                +-- discipline:law
+                +-- discipline:pedagogy
+                +-- discipline:psychology
+                +-- discipline:philosophy
+                +-- discipline:ethics and religions
+                +-- discipline:religious instruction
+            +-- discipline:arts
+                +-- discipline:visual arts
+                +-- discipline:creative activities
+                +-- discipline:technical design
+                +-- discipline:music
+            +-- discipline:sport
+                +-- discipline:domestic science
+                +-- discipline:motion and sport
+            +-- discipline:general_education
+                +-- discipline:early_childhood_education
+                +-- discipline:media and ict
+                +-- discipline:development
+                +-- discipline:complexity_and_dependencies
+                +-- discipline:environment_and_dependencies
+                +-- discipline:environment
+                +-- discipline:prevention_and_health
+                +-- discipline:identity
+                +-- discipline:personal_and_professional_orientation
+                +-- discipline:personal_projects
+                +-- discipline:collective_projects
+                +-- discipline:life_of_the_class_and_of_the_school
+        +-- school level:universities_of_applied_sciences
+            +-- discipline:languages
+                +-- discipline:german school language
+                +-- discipline:german foreign language
+                +-- discipline:french school language
+                +-- discipline:french foreign language
+                +-- discipline:italian_school_language
+                +-- discipline:italian foreign language
+                +-- discipline:rhaeto-romanic_school_language
+                +-- discipline:english foreign language
+                +-- discipline:ancient languages
+                    +-- discipline:latin
+                    +-- discipline:greek
+                    +-- discipline:hebrew
+                +-- discipline:spanish_foreign_language
+                +-- discipline:chinese_foreign_language
+                +-- discipline:russian_foreign_language
+            +-- discipline:mathematics and natural science
+                +-- discipline:mathematics
+                    +-- discipline:applied mathematics
+                    +-- discipline:geometry
+                +-- discipline:natural sciences
+                    +-- discipline:biology
+                    +-- discipline:chemistry
+                    +-- discipline:physics
+                +-- discipline:computer_science_programming
+            +-- discipline:social and human sciences
+                +-- discipline:citizenship
+                +-- discipline:geography
+                +-- discipline:history
+                +-- discipline:economy
+                    +-- discipline:commercial accounting
+                    +-- discipline:accounting
+                    +-- discipline:computer science management
+                    +-- discipline:office_and_typing
+                    +-- discipline:home economics
+                +-- discipline:law
+                +-- discipline:pedagogy
+                +-- discipline:psychology
+                +-- discipline:philosophy
+                +-- discipline:ethics and religions
+                +-- discipline:religious instruction
+            +-- discipline:arts
+                +-- discipline:visual arts
+                +-- discipline:creative activities
+                +-- discipline:technical design
+                +-- discipline:music
+            +-- discipline:sport
+                +-- discipline:domestic science
+                +-- discipline:motion and sport
+            +-- discipline:general_education
+                +-- discipline:early_childhood_education
+                +-- discipline:media and ict
+                +-- discipline:development
+                +-- discipline:complexity_and_dependencies
+                +-- discipline:environment_and_dependencies
+                +-- discipline:environment
+                +-- discipline:prevention_and_health
+                +-- discipline:identity
+                +-- discipline:personal_and_professional_orientation
+                +-- discipline:personal_projects
+                +-- discipline:collective_projects
+                +-- discipline:life_of_the_class_and_of_the_school
+        +-- school level:teacher_training_colleges
+            +-- discipline:languages
+                +-- discipline:german school language
+                +-- discipline:german foreign language
+                +-- discipline:french school language
+                +-- discipline:french foreign language
+                +-- discipline:italian_school_language
+                +-- discipline:italian foreign language
+                +-- discipline:rhaeto-romanic_school_language
+                +-- discipline:english foreign language
+                +-- discipline:ancient languages
+                    +-- discipline:latin
+                    +-- discipline:greek
+                    +-- discipline:hebrew
+                +-- discipline:spanish_foreign_language
+                +-- discipline:chinese_foreign_language
+                +-- discipline:russian_foreign_language
+            +-- discipline:mathematics and natural science
+                +-- discipline:mathematics
+                    +-- discipline:applied mathematics
+                    +-- discipline:geometry
+                +-- discipline:natural sciences
+                    +-- discipline:biology
+                    +-- discipline:chemistry
+                    +-- discipline:physics
+                +-- discipline:computer_science_programming
+            +-- discipline:social and human sciences
+                +-- discipline:citizenship
+                +-- discipline:geography
+                +-- discipline:history
+                +-- discipline:economy
+                    +-- discipline:commercial accounting
+                    +-- discipline:accounting
+                    +-- discipline:computer science management
+                    +-- discipline:office_and_typing
+                    +-- discipline:home economics
+                +-- discipline:law
+                +-- discipline:pedagogy
+                +-- discipline:psychology
+                +-- discipline:philosophy
+                +-- discipline:ethics and religions
+                +-- discipline:religious instruction
+            +-- discipline:arts
+                +-- discipline:visual arts
+                +-- discipline:creative activities
+                +-- discipline:technical design
+                +-- discipline:music
+            +-- discipline:sport
+                +-- discipline:domestic science
+                +-- discipline:motion and sport
+            +-- discipline:general_education
+                +-- discipline:early_childhood_education
+                +-- discipline:media and ict
+                +-- discipline:development
+                +-- discipline:complexity_and_dependencies
+                +-- discipline:environment_and_dependencies
+                +-- discipline:environment
+                +-- discipline:prevention_and_health
+                +-- discipline:identity
+                +-- discipline:personal_and_professional_orientation
+                +-- discipline:personal_projects
+                +-- discipline:collective_projects
+                +-- discipline:life_of_the_class_and_of_the_school
+        +-- school level:universities
+            +-- discipline:languages
+                +-- discipline:german school language
+                +-- discipline:german foreign language
+                +-- discipline:french school language
+                +-- discipline:french foreign language
+                +-- discipline:italian_school_language
+                +-- discipline:italian foreign language
+                +-- discipline:rhaeto-romanic_school_language
+                +-- discipline:english foreign language
+                +-- discipline:ancient languages
+                    +-- discipline:latin
+                    +-- discipline:greek
+                    +-- discipline:hebrew
+                +-- discipline:spanish_foreign_language
+                +-- discipline:chinese_foreign_language
+                +-- discipline:russian_foreign_language
+            +-- discipline:mathematics and natural science
+                +-- discipline:mathematics
+                    +-- discipline:applied mathematics
+                    +-- discipline:geometry
+                +-- discipline:natural sciences
+                    +-- discipline:biology
+                    +-- discipline:chemistry
+                    +-- discipline:physics
+                +-- discipline:computer_science_programming
+            +-- discipline:social and human sciences
+                +-- discipline:citizenship
+                +-- discipline:geography
+                +-- discipline:history
+                +-- discipline:economy
+                    +-- discipline:commercial accounting
+                    +-- discipline:accounting
+                    +-- discipline:computer science management
+                    +-- discipline:office_and_typing
+                    +-- discipline:home economics
+                +-- discipline:law
+                +-- discipline:pedagogy
+                +-- discipline:psychology
+                +-- discipline:philosophy
+                +-- discipline:ethics and religions
+                +-- discipline:religious instruction
+            +-- discipline:arts
+                +-- discipline:visual arts
+                +-- discipline:creative activities
+                +-- discipline:technical design
+                +-- discipline:music
+            +-- discipline:sport
+                +-- discipline:domestic science
+                +-- discipline:motion and sport
+            +-- discipline:general_education
+                +-- discipline:early_childhood_education
+                +-- discipline:media and ict
+                +-- discipline:development
+                +-- discipline:complexity_and_dependencies
+                +-- discipline:environment_and_dependencies
+                +-- discipline:environment
+                +-- discipline:prevention_and_health
+                +-- discipline:identity
+                +-- discipline:personal_and_professional_orientation
+                +-- discipline:personal_projects
+                +-- discipline:collective_projects
+                +-- discipline:life_of_the_class_and_of_the_school
+        +-- school level:tertiary_level_others
+            +-- discipline:languages
+                +-- discipline:german school language
+                +-- discipline:german foreign language
+                +-- discipline:french school language
+                +-- discipline:french foreign language
+                +-- discipline:italian_school_language
+                +-- discipline:italian foreign language
+                +-- discipline:rhaeto-romanic_school_language
+                +-- discipline:english foreign language
+                +-- discipline:ancient languages
+                    +-- discipline:latin
+                    +-- discipline:greek
+                    +-- discipline:hebrew
+                +-- discipline:spanish_foreign_language
+                +-- discipline:chinese_foreign_language
+                +-- discipline:russian_foreign_language
+            +-- discipline:mathematics and natural science
+                +-- discipline:mathematics
+                    +-- discipline:applied mathematics
+                    +-- discipline:geometry
+                +-- discipline:natural sciences
+                    +-- discipline:biology
+                    +-- discipline:chemistry
+                    +-- discipline:physics
+                +-- discipline:computer_science_programming
+            +-- discipline:social and human sciences
+                +-- discipline:citizenship
+                +-- discipline:geography
+                +-- discipline:history
+                +-- discipline:economy
+                    +-- discipline:commercial accounting
+                    +-- discipline:accounting
+                    +-- discipline:computer science management
+                    +-- discipline:office_and_typing
+                    +-- discipline:home economics
+                +-- discipline:law
+                +-- discipline:pedagogy
+                +-- discipline:psychology
+                +-- discipline:philosophy
+                +-- discipline:ethics and religions
+                +-- discipline:religious instruction
+            +-- discipline:arts
+                +-- discipline:visual arts
+                +-- discipline:creative activities
+                +-- discipline:technical design
+                +-- discipline:music
+            +-- discipline:sport
+                +-- discipline:domestic science
+                +-- discipline:motion and sport
+            +-- discipline:general_education
+                +-- discipline:early_childhood_education
+                +-- discipline:media and ict
+                +-- discipline:development
+                +-- discipline:complexity_and_dependencies
+                +-- discipline:environment_and_dependencies
+                +-- discipline:environment
+                +-- discipline:prevention_and_health
+                +-- discipline:identity
+                +-- discipline:personal_and_professional_orientation
+                +-- discipline:personal_projects
+                +-- discipline:collective_projects
+                +-- discipline:life_of_the_class_and_of_the_school
+    +-- context:distance_learning
+        +-- discipline:languages
+            +-- discipline:german school language
+            +-- discipline:german foreign language
+            +-- discipline:french school language
+            +-- discipline:french foreign language
+            +-- discipline:italian_school_language
+            +-- discipline:italian foreign language
+            +-- discipline:rhaeto-romanic_school_language
+            +-- discipline:english foreign language
+            +-- discipline:ancient languages
+                +-- discipline:latin
+                +-- discipline:greek
+                +-- discipline:hebrew
+            +-- discipline:spanish_foreign_language
+            +-- discipline:chinese_foreign_language
+            +-- discipline:russian_foreign_language
+        +-- discipline:mathematics and natural science
+            +-- discipline:mathematics
+                +-- discipline:applied mathematics
+                +-- discipline:geometry
+            +-- discipline:natural sciences
+                +-- discipline:biology
+                +-- discipline:chemistry
+                +-- discipline:physics
+            +-- discipline:computer_science_programming
+        +-- discipline:social and human sciences
+            +-- discipline:citizenship
+            +-- discipline:geography
+            +-- discipline:history
+            +-- discipline:economy
+                +-- discipline:commercial accounting
+                +-- discipline:accounting
+                +-- discipline:computer science management
+                +-- discipline:office_and_typing
+                +-- discipline:home economics
+            +-- discipline:law
+            +-- discipline:pedagogy
+            +-- discipline:psychology
+            +-- discipline:philosophy
+            +-- discipline:ethics and religions
+            +-- discipline:religious instruction
+        +-- discipline:arts
+            +-- discipline:visual arts
+            +-- discipline:creative activities
+            +-- discipline:technical design
+            +-- discipline:music
+        +-- discipline:sport
+            +-- discipline:domestic science
+            +-- discipline:motion and sport
+        +-- discipline:general_education
+            +-- discipline:early_childhood_education
+            +-- discipline:media and ict
+            +-- discipline:development
+            +-- discipline:complexity_and_dependencies
+            +-- discipline:environment_and_dependencies
+            +-- discipline:environment
+            +-- discipline:prevention_and_health
+            +-- discipline:identity
+            +-- discipline:personal_and_professional_orientation
+            +-- discipline:personal_projects
+            +-- discipline:collective_projects
+            +-- discipline:life_of_the_class_and_of_the_school
+    +-- context:main_others
+        +-- discipline:languages
+            +-- discipline:german school language
+            +-- discipline:german foreign language
+            +-- discipline:french school language
+            +-- discipline:french foreign language
+            +-- discipline:italian_school_language
+            +-- discipline:italian foreign language
+            +-- discipline:rhaeto-romanic_school_language
+            +-- discipline:english foreign language
+            +-- discipline:ancient languages
+                +-- discipline:latin
+                +-- discipline:greek
+                +-- discipline:hebrew
+            +-- discipline:spanish_foreign_language
+            +-- discipline:chinese_foreign_language
+            +-- discipline:russian_foreign_language
+        +-- discipline:mathematics and natural science
+            +-- discipline:mathematics
+                +-- discipline:applied mathematics
+                +-- discipline:geometry
+            +-- discipline:natural sciences
+                +-- discipline:biology
+                +-- discipline:chemistry
+                +-- discipline:physics
+            +-- discipline:computer_science_programming
+        +-- discipline:social and human sciences
+            +-- discipline:citizenship
+            +-- discipline:geography
+            +-- discipline:history
+            +-- discipline:economy
+                +-- discipline:commercial accounting
+                +-- discipline:accounting
+                +-- discipline:computer science management
+                +-- discipline:office_and_typing
+                +-- discipline:home economics
+            +-- discipline:law
+            +-- discipline:pedagogy
+            +-- discipline:psychology
+            +-- discipline:philosophy
+            +-- discipline:ethics and religions
+            +-- discipline:religious instruction
+        +-- discipline:arts
+            +-- discipline:visual arts
+            +-- discipline:creative activities
+            +-- discipline:technical design
+            +-- discipline:music
+        +-- discipline:sport
+            +-- discipline:domestic science
+            +-- discipline:motion and sport
+        +-- discipline:general_education
+            +-- discipline:early_childhood_education
+            +-- discipline:media and ict
+            +-- discipline:development
+            +-- discipline:complexity_and_dependencies
+            +-- discipline:environment_and_dependencies
+            +-- discipline:environment
+            +-- discipline:prevention_and_health
+            +-- discipline:identity
+            +-- discipline:personal_and_professional_orientation
+            +-- discipline:personal_projects
+            +-- discipline:collective_projects
+            +-- discipline:life_of_the_class_and_of_the_school
