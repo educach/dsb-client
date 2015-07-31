@@ -114,9 +114,9 @@ For example, the ``describeDataStructure()`` method returns a standard format of
 
     use Educa\DSB\Client\Curriculum\EducaCurriculum;
 
-    // $tree contains information about the tree data, in a format that
-    // EducaCurriculum understands.
-    $curriculum = EducaCurriculum::createFromData($tree);
+    $curriculum = new EducaCurriculum();
+
+    // Do some treatment, constructing the curriculum tree...
 
     print $curriculum->asciiDump();
     // Results in:
@@ -154,7 +154,62 @@ There is a basic implementation for terms, ``BaseTerm``. It also implements the 
 "Standard" (educa) curriculum
 =============================
 
-todo
+The "standard" (or *educa*) curriculum is a non-official curriculum that aims to provide some basic curriculum that all Swiss cantons can more or less relate to. Its definition can be found `here <http://ontology.biblio.educa.ch/>`_.
+
+The definition file is a JSON file that can be downloaded from the site. The ``EducaCurriculum`` class can parse this information for re-use. The reason this data does not *have* to be passed to ``EducaCurriculum`` every time is that application might want to cache the parsing result, and pass the cached data in future calls. This can save time, as the parsing can be quite time-consuming and memory intensive.
+
+.. code-block:: php
+
+    use Educa\DSB\Client\Curriculum\EducaCurriculum;
+
+    // $json contains the official curriculum data in JSON format.
+    $json = file_get_contents('/path/to/curriculum.json');
+    $curriculum = EducaCurriculum::createFromData($json);
+
+    // We can also simply parse it, and cache $data for future use.
+    $data = EducaCurriculum::parseCurriculumJson($json);
+
+    // Demonstration of re-use of cached data.
+    $curriculum = new EducaCurriculum();
+    $curriculum->setCurriculumDefinition($data->curriculum);
+    $curriculum->setCurriculumDictionary($data->dictionary);
+
+The curriculum class supports the handling of LOM *classification* field data (field no 9). This is represented as a series of *taxonomy paths*. Please refer to the `REST API documentation <https://dsb-api.educa.ch/latest/doc/>`_ for more information. By default, it only considers *discipline* taxonomy paths. If you wish to parse a taxonomy path with another *purpose* key, pass it as the second parameter to ``setTreeBasedOnTaxonPath()``.
+
+.. code-block:: php
+
+    use Educa\DSB\Client\Curriculum\EducaCurriculum;
+
+    // Re-use cached data for the dictionary and curriculum definition.
+    $curriculum = new EducaCurriculum();
+    $curriculum->setCurriculumDefinition($data->curriculum);
+    $curriculum->setCurriculumDictionary($data->dictionary);
+
+    // $paths is an array of taxonomy paths. See official REST API documentation
+    // for more info.
+    $curriculum->setTreeBasedOnTaxonPath($paths);
+
+    print $curriculum->asciiDump();
+    // Results in:
+    // --- root:root
+    //     +-- context:compulsory education
+    //         +-- school level:cycle_3
+    //             +-- discipline:languages
+    //                 +-- discipline:german school language
+    //             +-- discipline:social and human sciences
+    //                 +-- discipline:citizenship
+    //                 +-- discipline:history
+    //     +-- context:post compulsory education
+    //         +-- discipline:languages
+    //             +-- discipline:german school language
+    //         +-- discipline:social and human sciences
+    //             +-- discipline:history
+    //             +-- discipline:psychology
+    //             +-- discipline:philosophy
+    //         +-- discipline:general_education
+    //             +-- discipline:identity
+
+Of course, you can call ``getTree()`` to get the root item of the tree, and navigate it.
 
 PER curriculum
 ==============
