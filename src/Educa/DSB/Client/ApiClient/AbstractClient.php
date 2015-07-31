@@ -36,9 +36,11 @@ abstract class AbstractClient implements ClientInterface
     {
         // For clarity, code uses URLs with a prefixing slash. If the URL has a
         // trailing slash, remove it.
+        // @codeCoverageIgnoreStart
         if (preg_match('/\/$/', $apiUrl)) {
             $apiUrl = substr($apiUrl, 0, strlen($apiUrl)-1);
         }
+        // @codeCoverageIgnoreEnd
 
         $this->apiUrl = $apiUrl;
         $this->username = $username;
@@ -65,6 +67,8 @@ abstract class AbstractClient implements ClientInterface
      * Get the HTTP client.
      *
      * @return GuzzleHttp\ClientInterface $client
+     *
+     * @codeCoverageIgnore
      */
     public function getClient()
     {
