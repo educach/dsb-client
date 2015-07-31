@@ -28,6 +28,8 @@ abstract class BaseCurriculum implements CurriculumInterface
      * {@inheritdoc}
      *
      * @throws \RuntimeException
+     *
+     * @codeCoverageIgnore
      */
     public static function createFromData($data)
     {
