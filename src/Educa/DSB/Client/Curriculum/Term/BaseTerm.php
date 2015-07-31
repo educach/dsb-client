@@ -61,10 +61,16 @@ class BaseTerm implements EditableTermInterface
      */
     protected $id;
 
-    public function __construct($type, $id)
+    /**
+     * The term's name, if any.
+     *
+     * @var string
+     */
+    protected $name;
+
+    public function __construct($type, $id, $name = null)
     {
-        $this->type = $type;
-        $this->id = $id;
+        $this->setDescription($type, $id, $name);
         $this->children = array();
     }
 
@@ -75,10 +81,37 @@ class BaseTerm implements EditableTermInterface
      */
     public function describe()
     {
-        return (object) array(
+        $description = (object) array(
             'type' => $this->type,
             'id' => $this->id,
         );
+
+        if (!empty($this->name)) {
+            $description->name = $this->name;
+        }
+
+        return $description;
+    }
+
+    /**
+     * Set the description information.
+     *
+     * Update the description information set in the constructor.
+     *
+     * @param string $type
+     *    The term type.
+     * @param string $id
+     *    The term identifier.
+     * @param array|object $name
+     *    (optional) The term name, in LangString format.
+     *
+     * @return this
+     */
+    public function setDescription($type, $id, $name = null)
+    {
+        $this->type = $type;
+        $this->id = $id;
+        $this->name = $name;
     }
 
     /**
@@ -179,6 +212,34 @@ class BaseTerm implements EditableTermInterface
         } else {
             throw new TermHasNoNextSiblingException("Term {$this->type}:{$this->id} has no next sibling.");
         }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function asciiDump()
+    {
+        $recursiveStringify = function($items, $depth = 0) use(&$recursiveStringify) {
+            $string = '';
+            foreach ($items as $item) {
+                // Fetch the term description.
+                $data = $item->describe();
+
+                // Prepare the indentation, using whitespace. We use 4 spaces
+                // for each level of depth.
+                if ($depth) {
+                    $string .= implode('', array_fill(0, $depth * 4, ' '));
+                }
+                $string .= ($depth ? '+' : '-') . "-- {$data->type}:{$data->id}\n";
+
+                if ($item->hasChildren()) {
+                    $string .= $recursiveStringify($item->getChildren(), $depth+1);
+                }
+            }
+            return $string;
+        };
+
+        return trim($recursiveStringify(array($this)));
     }
 
     /**

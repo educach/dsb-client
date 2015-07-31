@@ -24,6 +24,10 @@ interface TermInterface
      *      \Educa\DSB\Client\Curriculum\CurriculumInterface::describeTermTypes()
      *      for more information.
      *    - id: The identifier for this term, usually a string.
+     *    - name: (optional) A human-readable name for this term. This data is
+     *      formatted as a LangString, meaning it is a hash of strings, each
+     *      string keyed by its language code (ISO ISO_639-1). See
+     *      Educa\DSB\Client\Utils::getLSValue() for more information.
      */
     public function describe();
 
@@ -106,5 +110,31 @@ interface TermInterface
      * @throws \Educa\DSB\Client\Curriculum\Term\TermHasNoNextSiblingException
      */
     public function getNextSibling();
+
+    /**
+     * Return a ASCII representation of the tree.
+     *
+     * Useful for debugging, this method converts the term's children tree to a
+     * string representation and returns it as a string.
+     *
+     * Example:
+     * @code
+     * --- element
+     *     +-- child a
+     *     +-- child b
+     *     +-- child c
+     *          +-- child d
+     *          +-- child e
+     * @endcode
+     *
+     * Where each item has the format "type:id", where "type" is the term's
+     * type (see
+     * \Educa\DSB\Client\Curriculum\CurriculumInterface::describeTermTypes())
+     * and "id" is the item identifier.
+     *
+     * @return string
+     *    An ASCII representation of the curriculum tree.
+     */
+    public function asciiDump();
 
 }

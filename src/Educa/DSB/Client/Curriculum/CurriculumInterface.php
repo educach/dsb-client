@@ -162,6 +162,8 @@ interface CurriculumInterface
      *
      * @return string
      *    An ASCII representation of the curriculum tree.
+     *
+     * @see \Educa\DSB\Client\Curriculum\Term\TermInterface::asciiDump()
      */
     public function asciiDump();
 
@@ -176,10 +178,16 @@ interface CurriculumInterface
      *    An arbitrary representation of the curriculum data. This can vary
      *    greatly between implementations, and it is up to the calling
      *    application to know what to pass to the method.
+     * @param mixed $context
+     *    (optional) A context to help the class determine how to treat the
+     *    data. Defaults to null.
      *
      * @return \Educa\DSB\Client\Curriculum\CurriculumInterface
      *    A new \Educa\DSB\Client\Curriculum\CurriculumInterface element.
+     *
+     * @throws \Educa\DSB\Client\Curriculum\CurriculumInvalidDataStructureException
+     * @throws \Educa\DSB\Client\Curriculum\CurriculumInvalidContextException
      */
-    public static function createFromData($data);
+    public static function createFromData($data, $context = null);
 
 }

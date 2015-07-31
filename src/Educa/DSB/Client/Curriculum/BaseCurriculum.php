@@ -27,11 +27,9 @@ abstract class BaseCurriculum implements CurriculumInterface
     /**
      * {@inheritdoc}
      *
-     * @throws \RuntimeException
-     *
      * @codeCoverageIgnore
      */
-    public static function createFromData($data)
+    public static function createFromData($data, $context = null)
     {
         throw new \RuntimeException("BaseCurriculum::createFromData() must be overwritten.");
     }
@@ -65,28 +63,8 @@ abstract class BaseCurriculum implements CurriculumInterface
     {
         if (empty($this->root)) {
             return '';
+        } else {
+            return $this->root->asciiDump();
         }
-
-        $recursiveStringify = function($items, $depth = 0) use(&$recursiveStringify) {
-            $string = '';
-            foreach ($items as $item) {
-                // Fetch the term description.
-                $data = $item->describe();
-
-                // Prepare the indentation, using whitespace. We use 4 spaces
-                // for each level of depth.
-                if ($depth) {
-                    $string .= implode('', array_fill(0, $depth * 4, ' '));
-                }
-                $string .= ($depth ? '+' : '-') . "-- {$data->type}:{$data->id}\n";
-
-                if ($item->hasChildren()) {
-                    $string .= $recursiveStringify($item->getChildren(), $depth+1);
-                }
-            }
-            return $string;
-        };
-
-        return trim($recursiveStringify(array($this->root)));
     }
 }
