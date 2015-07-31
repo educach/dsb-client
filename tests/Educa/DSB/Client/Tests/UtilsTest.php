@@ -126,6 +126,17 @@ class UtilsTest extends \PHPUnit_Framework_TestCase
             "Fetching the Vocabulary name in the correct order (en first, falling back to de)."
         );
         $this->assertEquals(
+            'value de',
+            Utils::getVCName([
+                'name' => 'raw name',
+                'ontologyName' => [
+                    'fr' => 'value fr',
+                    'de' => 'value de',
+                ],
+            ]),
+            "Not passing a language fallback array uses the default from Utils::getLSValue() (de first)."
+        );
+        $this->assertEquals(
             'raw name',
             Utils::getVCName([
                 'name' => 'raw name',
