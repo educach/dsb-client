@@ -55,16 +55,16 @@ class BaseTerm implements EditableTermInterface
     protected $type;
 
     /**
-     * The term's name.
+     * The term's identifier.
      *
      * @var string
      */
-    protected $name;
+    protected $id;
 
-    public function __construct($type, $name)
+    public function __construct($type, $id)
     {
         $this->type = $type;
-        $this->name = $name;
+        $this->id = $id;
         $this->children = array();
     }
 
@@ -77,7 +77,7 @@ class BaseTerm implements EditableTermInterface
     {
         return (object) array(
             'type' => $this->type,
-            'name' => $this->name,
+            'id' => $this->id,
         );
     }
 
@@ -97,7 +97,7 @@ class BaseTerm implements EditableTermInterface
         if ($this->hasChildren()) {
             return $this->children;
         } else {
-            throw new TermHasNoChildrenException("Term {$this->type}:{$this->name} has no children.");
+            throw new TermHasNoChildrenException("Term {$this->type}:{$this->id} has no children.");
         }
     }
 
@@ -117,7 +117,7 @@ class BaseTerm implements EditableTermInterface
         if ($this->hasParent()) {
             return $this->parent;
         } else {
-            throw new TermHasNoParentException("Term {$this->type}:{$this->name} has no parent.");
+            throw new TermHasNoParentException("Term {$this->type}:{$this->id} has no parent.");
         }
     }
 
@@ -137,7 +137,7 @@ class BaseTerm implements EditableTermInterface
         if (!$this->isRoot()) {
             return $this->root;
         } else {
-            throw new TermIsRootException("Term {$this->type}:{$this->name} is root.");
+            throw new TermIsRootException("Term {$this->type}:{$this->id} is root.");
         }
     }
 
@@ -157,7 +157,7 @@ class BaseTerm implements EditableTermInterface
         if ($this->hasPrevSibling()) {
             return $this->prevSibling;
         } else {
-            throw new TermHasNoPrevSiblingException("Term {$this->type}:{$this->name} has no previous sibling.");
+            throw new TermHasNoPrevSiblingException("Term {$this->type}:{$this->id} has no previous sibling.");
         }
     }
 
@@ -177,7 +177,7 @@ class BaseTerm implements EditableTermInterface
         if ($this->hasNextSibling()) {
             return $this->nextSibling;
         } else {
-            throw new TermHasNoNextSiblingException("Term {$this->type}:{$this->name} has no next sibling.");
+            throw new TermHasNoNextSiblingException("Term {$this->type}:{$this->id} has no next sibling.");
         }
     }
 

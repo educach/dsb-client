@@ -155,10 +155,10 @@ interface CurriculumInterface
      *          +-- h
      * @endcode
      *
-     * Where each item has the format "type:name", where "type" is the term's
+     * Where each item has the format "type:id", where "type" is the term's
      * type (see
      * \Educa\DSB\Client\Curriculum\CurriculumInterface::describeTermTypes())
-     * and "name" is the item identifier.
+     * and "id" is the item identifier.
      *
      * @return string
      *    An ASCII representation of the curriculum tree.

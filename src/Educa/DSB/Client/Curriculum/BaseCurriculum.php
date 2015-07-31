@@ -71,7 +71,7 @@ abstract class BaseCurriculum implements CurriculumInterface
                 if ($depth) {
                     $string .= implode('', array_fill(0, $depth * 4, ' '));
                 }
-                $string .= ($depth ? '+' : '-') . "-- {$data->type}:{$data->name}\n";
+                $string .= ($depth ? '+' : '-') . "-- {$data->type}:{$data->id}\n";
 
                 if ($item->hasChildren()) {
                     $string .= $recursiveStringify($item->getChildren(), $depth+1);
