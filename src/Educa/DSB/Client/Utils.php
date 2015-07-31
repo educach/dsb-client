@@ -18,7 +18,7 @@ class Utils
      * which it will iterate over, until it finds a match in the LangString. If
      * no match is found, the data is returned raw.
      *
-     * @param array $langString
+     * @param array|object $langString
      *    The LangString hash.
      * @param array $languageFallback
      *    (optional) An array of language codes to look for. The order of the
@@ -28,11 +28,13 @@ class Utils
      * @return string|array
      *    The found value, or simply the raw LangString if none was found.
      */
-    public static function getLSValue(array $langString, array $languageFallback = array('de', 'fr', 'it', 'rm', 'en'))
+    public static function getLSValue($langString, array $languageFallback = array('de', 'fr', 'it', 'rm', 'en'))
     {
-        if (!is_array($langString)) {
+        if (is_scalar($langString)) {
             return $langString;
         } else {
+            $langString = (array) $langString;
+
             foreach ($languageFallback as $language) {
                 if (isset($langString[$language])) {
                     return $langString[$language];
@@ -57,7 +59,7 @@ class Utils
      * until it finds a match in the LangString. If no match is found, the data
      * is returned raw.
      *
-     * @param array $vocabularyEntry
+     * @param array|object $vocabularyEntry
      *    The Vocabulary entry. It should contain an ontologyName key.
      * @param array $languageFallback
      *    (optional) An array of language codes to look for. The order of the
@@ -68,8 +70,9 @@ class Utils
      * @return string
      *    The found Ontology name, or simply the raw key if none was found.
      */
-    public static function getVCName(array $vocabularyEntry, array $languageFallback = null)
+    public static function getVCName($vocabularyEntry, array $languageFallback = null)
     {
+        $vocabularyEntry = (array) $vocabularyEntry;
         if (isset($vocabularyEntry['ontologyName'])) {
             if (isset($languageFallback)) {
                 $name = self::getLSValue($vocabularyEntry['ontologyName'], $languageFallback);

@@ -35,6 +35,19 @@ class UtilsTest extends \PHPUnit_Framework_TestCase
         );
         $this->assertEquals(
             'value de',
+            Utils::getLSValue((object) [
+                'fr' => 'value fr',
+                'de' => 'value de',
+            ], ['de', 'fr']),
+            "Fetching the LangString data from a stdClass works as well."
+        );
+        $this->assertEquals(
+            'value de',
+            Utils::getLSValue('value de', ['de', 'fr']),
+            "Simply passing a string returns the data as-is."
+        );
+        $this->assertEquals(
+            'value de',
             Utils::getLSValue([
                 'fr' => 'value fr',
                 'de' => 'value de',
@@ -89,6 +102,17 @@ class UtilsTest extends \PHPUnit_Framework_TestCase
                 ],
             ], ['de', 'fr']),
             "Fetching the Vocabulary name in the correct order (de first)."
+        );
+        $this->assertEquals(
+            'value de',
+            Utils::getVCName((object) [
+                'name' => 'raw name',
+                'ontologyName' =>  (object) [
+                    'fr' => 'value fr',
+                    'de' => 'value de',
+                ],
+            ], ['de', 'fr']),
+            "Fetching the Vocabulary name from a stdClass works as well."
         );
         $this->assertEquals(
             'value de',
