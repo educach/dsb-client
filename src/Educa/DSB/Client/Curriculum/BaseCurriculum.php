@@ -26,8 +26,13 @@ abstract class BaseCurriculum implements CurriculumInterface
 
     /**
      * {@inheritdoc}
+     *
+     * @throws \RuntimeException
      */
-    abstract public static function createFromData($data);
+    public static function createFromData($data)
+    {
+        throw new \RuntimeException("BaseCurriculum::createFromData() must be overwritten.");
+    }
 
     /**
      * {@inheritdoc}
