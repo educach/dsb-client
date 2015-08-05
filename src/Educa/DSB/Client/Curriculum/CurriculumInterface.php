@@ -138,7 +138,7 @@ interface CurriculumInterface
     public function getTree();
 
     /**
-     * Return a ASCII representation of the tree.
+     * Return an ASCII representation of the tree.
      *
      * Useful for debugging, this method converts the tree to a string
      * representation and returns it as a string.
