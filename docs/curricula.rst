@@ -156,7 +156,7 @@ There is a basic implementation for terms, ``BaseTerm``. It also implements the 
 
 The "standard" (or *educa*) curriculum is a non-official curriculum that aims to provide some basic curriculum that all Swiss cantons can more or less relate to. Its definition can be found `here <http://ontology.biblio.educa.ch/>`_.
 
-The definition file is a JSON file that can be downloaded from the site. The ``EducaCurriculum`` class can parse this information for re-use. The reason this data does not *have* to be passed to ``EducaCurriculum`` every time is that application might want to cache the parsing result, and pass the cached data in future calls. This can save time, as the parsing can be quite time-consuming and memory intensive.
+The definition file is a JSON file that can be downloaded from the site in JSON format (`link <http://ontology.biblio.educa.ch/json/educa_standard_curriculum>`_). The ``EducaCurriculum`` class can parse this information for re-use. The reason this data does not *have* to be passed to ``EducaCurriculum`` every time is that application might want to cache the parsing result, and pass the cached data in future calls. This can save time, as the parsing can be quite time-consuming and memory intensive.
 
 .. code-block:: php
 
