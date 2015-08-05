@@ -222,15 +222,12 @@ class BaseTerm implements EditableTermInterface
         $recursiveStringify = function($items, $depth = 0) use(&$recursiveStringify) {
             $string = '';
             foreach ($items as $item) {
-                // Fetch the term description.
-                $data = $item->describe();
-
                 // Prepare the indentation, using whitespace. We use 4 spaces
                 // for each level of depth.
                 if ($depth) {
                     $string .= implode('', array_fill(0, $depth * 4, ' '));
                 }
-                $string .= ($depth ? '+' : '-') . "-- {$data->type}:{$data->id}\n";
+                $string .= ($depth ? '+' : '-') . "-- {$item}\n";
 
                 if ($item->hasChildren()) {
                     $string .= $recursiveStringify($item->getChildren(), $depth+1);
@@ -321,6 +318,11 @@ class BaseTerm implements EditableTermInterface
 
         // Support method chaining.
         return $this;
+    }
+
+    public function __toString()
+    {
+        return "{$this->type}:{$this->id}";
     }
 
 }
