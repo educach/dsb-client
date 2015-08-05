@@ -4,14 +4,17 @@
             +-- discipline:languages
                 +-- discipline:german school language
             +-- discipline:social and human sciences
-                +-- discipline:citizenship
+            +-- discipline:social and human sciences
                 +-- discipline:history
     +-- context:post compulsory education
         +-- discipline:languages
             +-- discipline:german school language
         +-- discipline:social and human sciences
             +-- discipline:history
+        +-- discipline:social and human sciences
             +-- discipline:psychology
+        +-- discipline:social and human sciences
             +-- discipline:philosophy
+        +-- discipline:social and human sciences
         +-- discipline:general_education
             +-- discipline:identity

@@ -347,7 +347,7 @@ class EducaCurriculum extends BaseCurriculum
             $pathPurpose = $path['purpose']['value'];
 
             if ($pathPurpose == $purpose) {
-                foreach ($path['taxonPath'] as $taxonPath) {
+                foreach ($path['taxonPath'] as $i => $taxonPath) {
                     // Prepare the parent. For the first item, it is always the
                     // root element.
                     $parent = $terms['root'];
@@ -355,24 +355,66 @@ class EducaCurriculum extends BaseCurriculum
                     foreach ($taxonPath['taxon'] as $taxon) {
                         // Cast to an array, just in case.
                         $taxon = (array) $taxon;
+                        $taxonId = $taxon['id'];
 
                         // Do we already have this term prepared?
-                        if (isset($terms["$parentId:{$taxon['id']}"])) {
-                            $term = $terms["$parentId:{$taxon['id']}"];
+                        if (isset($terms["$parentId:{$taxonId}"])) {
+                            $term = $terms["$parentId:{$taxonId}"];
                         } else {
                             // Prepare a new term object. First, look for the
                             // term's type. This is defined in the official
                             // curriculum JSON definition.
-                            $type = $this->getTermType($taxon['id']);
+                            $type = $this->getTermType($taxonId);
 
                             // Get the term's name.
-                            $name = $this->getTermName($taxon['id']);
+                            $name = $this->getTermName($taxonId);
 
                             // Create the new term.
-                            $term = new BaseTerm($type, $taxon['id'], $name);
+                            $term = new BaseTerm($type, $taxonId, $name);
+
+                            // If this is a discipline, we treat it differently.
+                            // Contexts, school levels and even school years can
+                            // be merged, but disciplines follow unique paths.
+                            // Disciplines are always represented as a "branch"
+                            // with no sub-branches. Because of this, we add
+                            // a unique integer to the ID, which will prevent it
+                            // from being re-used for a different discipline
+                            // path, and thus it won't get merged.
+                            // For example, the following 3 paths:
+                            // -- compulsory education
+                            //    +- cycle_1
+                            //       +- languages
+                            // -- compulsory education
+                            //    +- cycle_1
+                            //       +- languages
+                            //          +- french
+                            // -- compulsory education
+                            //    +- cycle_1
+                            //       +- languages
+                            //          +- german
+                            // Should NOT be merged like this:
+                            // -- compulsory education
+                            //    +- cycle_1
+                            //       +- languages
+                            //          +- french
+                            //          +- german
+                            // But like this:
+                            // -- compulsory education
+                            //    +- cycle_1
+                            //       +- languages
+                            //       +- languages
+                            //          +- french
+                            //       +- languages
+                            //          +- german
+                            // The first "language" entry is a discipline on its
+                            // own, and because there's a path ending with it,
+                            // it was meant to be treated on its own as well.
+                            if ($type === 'discipline') {
+                                $taxonId = "{$i}-{$taxonId}";
+                            }
 
                             // Store it.
-                            $terms["$parentId:{$taxon['id']}"] = $term;
+                            $terms["$parentId:{$taxonId}"] = $term;
                         }
 
                         // Did we already add this term to the parent?
@@ -384,7 +426,7 @@ class EducaCurriculum extends BaseCurriculum
                         // Our term is now the parent, in preparation for the
                         // next item.
                         $parent = $term;
-                        $parentId .= ":{$taxon['id']}";
+                        $parentId .= ":{$taxonId}";
                     }
                 }
             }

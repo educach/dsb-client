@@ -129,16 +129,6 @@
                      "it":"Scienze umane e sociali",
                      "rm":"Roh_Social and Human Sciences"
                   }
-               },
-               {
-                  "id":"citizenship",
-                  "entry":{
-                     "de":"Natur, Mensch, Mitwelt",
-                     "en":"Citizenship",
-                     "fr":"Citoyennet\u00e9",
-                     "it":"Educazione civica",
-                     "rm":"Citizenship"
-                  }
                }
             ]
          }
@@ -398,6 +388,41 @@
                      "fr":"Philosophie",
                      "it":"Filosofia",
                      "rm":"Philosophy"
+                  }
+               }
+            ]
+         }
+      ]
+   },
+   {
+      "purpose":{
+         "source":"LOM-CHv1.1",
+         "value":"discipline"
+      },
+      "taxonPath":[
+         {
+            "source":{
+               "en":"educa"
+            },
+            "taxon":[
+               {
+                  "id":"post compulsory education",
+                  "entry":{
+                     "de":"Sekundarstufe II",
+                     "en":"Post-compulsory education",
+                     "fr":"Degr\u00e9 secondaire II",
+                     "it":"Livello secondario II",
+                     "rm":"Stgalim secundar II"
+                  }
+               },
+               {
+                  "id":"social and human sciences",
+                  "entry":{
+                     "de":"Sozial- und Geisteswissenschaften",
+                     "en":"Social and Human Sciences",
+                     "fr":"Sciences humaines et sociales",
+                     "it":"Scienze umane e sociali",
+                     "rm":"Roh_Social and Human Sciences"
                   }
                }
             ]
