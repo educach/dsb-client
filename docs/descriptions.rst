@@ -292,7 +292,7 @@ Loading a description requires knowing its *LOM identifier*. This is a UUID, or 
         // The authentication failed.
     }
 
-This loads the description data as an associative array into ``$descriptionData``. Look at `the API documentation <https://dsb-api.educa.ch/latest/doc/#api-Description-GetDescription>`_ for more information on this data's structure.
+This loads the description data as an associative array into ``$descriptionData``. Look at `the API documentation <https://dsb-api.educa.ch/latest/doc/#api-Description-GetDescription>`_ for more information on this data structure.
 
 Manipulating a description
 --------------------------
@@ -351,3 +351,39 @@ Not all fields have shortcut methods. For fields that the ``LomDescriptionInterf
     // Fields that are multilingual can use a language fallback array as the
     // second parameter.
     echo $lomDescription->getField('general.title', ['de', 'fr']);
+
+
+Validating a description
+========================
+
+It is possible to validate a description to check if no mandatory fields are missing, that they are well formed and respect the LOM-CH standard. Look at `the API documentation <https://dsb-api.educa.ch/latest/doc/#api-Description-PostDescription>`_ for more information on this data structure.
+
+Simple validation script:
+
+.. code-block:: php
+
+    $client = new ClientV2('https://dsb-api.educa.ch/v2', 'user@site.com', '/path/to/privatekey.pem', 'passphrase');
+
+    // Load a json file containing the LOM object
+    $f = 'lom_object.json';
+    try {
+        $json = file_get_contents($f);
+        $client->authenticate()->validateDescription($json);
+        echo "Using file $f\n";
+        if( $response['valid'] ) {
+            echo "\n> Description is valid.";
+        } else {
+            echo "\n> Description is invalid.\n";
+            echo "\nServer response:\n";
+            echo "==============================\n";
+            print_r($response);
+            echo "==============================\n";
+        }
+    } catch(ClientRequestException $e) {
+        // The request failed.
+        print_r("The post request failed. (" . $e->getMessage() . ')');
+    } catch(ClientAuthenticationException $e) {
+        // The authentication failed.
+        print_r("The authentification failed. (" . $e->getMessage() . ')');
+    }
+    echo "\n";

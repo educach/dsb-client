@@ -176,5 +176,29 @@ class ClientV2 extends AbstractClient
             throw new ClientRequestException(sprintf("Request to /partner failed. Status: %s. Error message: %s", $e->getCode(), $e->getMessage()));
         }
     }
+
+    /**
+     * @{inheritdoc}
+     */
+    public function validateDescription($json)
+    {
+        if (empty($this->tokenKey)) {
+            throw new ClientAuthenticationException(sprintf("No token found. Cannot validate a LOM description without a token."));
+        }
+
+        $params = array(
+            'body' => array(
+                'description' => $json
+            ),
+        );
+
+        try {
+            $response = $this->post('/validate', $params);
+            return json_decode($response->getBody(), true);
+        } catch(GuzzleClientException $e) {
+            throw new ClientRequestException(sprintf("Request to /validate failed. Status: %s. Error message: %s", $e->getCode(), $e->getMessage()));
+        }
+    }
+
 }
 
