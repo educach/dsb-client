@@ -242,7 +242,7 @@ class BaseTerm implements EditableTermInterface
     /**
      * {@inheritdoc}
      */
-    public function addChild(TermInterface $term)
+    public function addChild(EditableTermInterface $term)
     {
         // Fetch the root element. If the current term is the root element, use
         // it as the root element.
