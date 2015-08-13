@@ -370,7 +370,7 @@ Simple validation script:
         $json = file_get_contents($f);
         $client->authenticate()->validateDescription($json);
         echo "Using file $f\n";
-        if( $response['valid'] ) {
+        if( isset($response['valid']) && $response['valid'] ) {
             echo "\n> Description is valid.";
         } else {
             echo "\n> Description is invalid.\n";
@@ -387,3 +387,35 @@ Simple validation script:
         print_r("The authentification failed. (" . $e->getMessage() . ')');
     }
     echo "\n";
+
+Response syntax
+---------------
+
+The response will always contain a ``valid`` key, that is a boolean.
+
+If the submitted LOM object is invalid, the ``errors`` key will be populated with a list of issues.
+
+In case of an invalid LOM object, the API will return:
+
+.. code-block:: json
+
+    {"valid":false,"message":"Description is not complete or not compliant.","errors":{"general.identifier":"missing","general.description":"missing","general.language":"missing"}}
+
+The client returns a JSON decoded array:
+
+.. code-block:: php
+
+    Array
+    (
+        [valid] =>
+        [message] => Description is not complete or not compliant.
+        [errors] => Array
+            (
+                [general.identifier] => missing
+                [general.description] => missing
+                [general.language] => missing
+            )
+
+    )
+
+
