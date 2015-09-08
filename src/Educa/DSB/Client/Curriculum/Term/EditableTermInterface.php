@@ -23,7 +23,7 @@ interface EditableTermInterface extends TermInterface
      * @return this
      *    Support method chaining by return the current class.
      */
-    public function addChild(TermInterface $term);
+    public function addChild(EditableTermInterface $term);
 
     /**
      * Add a parent term.

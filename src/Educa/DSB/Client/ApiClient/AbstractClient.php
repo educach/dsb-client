@@ -8,6 +8,7 @@
 namespace Educa\DSB\Client\ApiClient;
 
 use GuzzleHttp\Client as GuzzleClient;
+use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\ClientInterface as GuzzleClientInterface;
 
 abstract class AbstractClient implements ClientInterface
@@ -97,7 +98,13 @@ abstract class AbstractClient implements ClientInterface
         if (!empty($this->tokenKey)) {
             $options['headers']['X-TOKEN-KEY'] = $this->tokenKey;
         }
-        return $this->client->post($this->apiUrl . $path, $options);
+        try {
+            $response = $this->client->post($this->apiUrl . $path, $options);
+        } catch (RequestException $e) {
+            // Catch all 4XX errors
+            $response =  $e->getResponse();
+        }
+        return $response;
     }
 
     /**
@@ -122,7 +129,13 @@ abstract class AbstractClient implements ClientInterface
         if (!empty($this->tokenKey)) {
             $options['headers']['X-TOKEN-KEY'] = $this->tokenKey;
         }
-        return $this->client->get($this->apiUrl . $path, $options);
+        try {
+            $response = $this->client->get($this->apiUrl . $path, $options);
+        } catch (RequestException $e) {
+            // Catch all 4XX errors
+            $response =  $e->getResponse();
+        }
+        return $response;
     }
 
 }
