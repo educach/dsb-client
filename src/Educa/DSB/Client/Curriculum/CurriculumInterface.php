@@ -190,4 +190,35 @@ interface CurriculumInterface
      */
     public static function createFromData($data, $context = null);
 
+    /**
+     * Fetch the term's type.
+     *
+     * The stored curriculum data inside the LOM object contains no information
+     * about what the term is. We compare the term's identifier to the
+     * curriculum standard and determine its type.
+     *
+     * @param string $identifier
+     *    The identifier of the term.
+     *
+     * @return string
+     *    The term's type.
+     */
+    public function getTermType($identifier);
+
+    /**
+     * Fetch the term's name.
+     *
+     * The stored curriculum data inside the LOM object contains information
+     * about the term's name, but this information may not be up to date. We
+     * compare the term's identifier to the curriculum standard and determine
+     * its name.
+     *
+     * @param string $identifier
+     *    The identifier of the term.
+     *
+     * @return string
+     *    The term's name.
+     */
+    public function getTermName($identifier);
+
 }

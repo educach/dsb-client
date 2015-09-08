@@ -309,165 +309,17 @@ class EducaCurriculum extends BaseCurriculum
     }
 
     /**
-     * Create a new curriculum tree based on a taxonomy paths.
-     *
-     * The LOM standard defines the "classification" field (9), which stores
-     * curriculum classification as "taxonomy paths", flat tree structural
-     * representation of curriculum classification. By passing such a structure
-     * to this static method, a new tree will be created representing this
-     * structure, and a new EducaCurriculum class instance will be returned,
-     * with the correct information.
-     *
-     * @param array $paths
-     *    A list of paths, as described in the LOM standard.
-     * @param string $purpose
-     *    (optional) The educa curriculum paths comes in 2 flavors, "discipline"
-     *    and "educational level" paths. Only one can be treated at a time.
-     *    Defaults to "discipline".
-     *
-     * @return this
+     * {@inheritdoc}
      */
-    public function setTreeBasedOnTaxonPath($paths, $purpose = 'discipline')
-    {
-        // Prepare a new root item.
-        $this->root = new BaseTerm('root', 'root');
-
-        // Prepare a "catalog" of entries, based on their identifiers. This
-        // will allow us to easily convert the linear tree representation
-        // (LOM describes branches only, with a single path; if a node has
-        // multiple sub-branches, their will be multiple paths, and we can
-        // link nodes together via their ID).
-        $terms = array(
-            'root' => $this->root,
-        );
-
-        foreach ($paths as $path) {
-            // Cast to an array, just in case.
-            $path = (array) $path;
-            $pathPurpose = $path['purpose']['value'];
-
-            if ($pathPurpose == $purpose) {
-                foreach ($path['taxonPath'] as $i => $taxonPath) {
-                    // Prepare the parent. For the first item, it is always the
-                    // root element.
-                    $parent = $terms['root'];
-                    $parentId = 'root';
-                    foreach ($taxonPath['taxon'] as $taxon) {
-                        // Cast to an array, just in case.
-                        $taxon = (array) $taxon;
-                        $taxonId = $taxon['id'];
-
-                        // Do we already have this term prepared?
-                        if (isset($terms["$parentId:{$taxonId}"])) {
-                            $term = $terms["$parentId:{$taxonId}"];
-                        } else {
-                            // Prepare a new term object. First, look for the
-                            // term's type. This is defined in the official
-                            // curriculum JSON definition.
-                            $type = $this->getTermType($taxonId);
-
-                            // Get the term's name.
-                            $name = $this->getTermName($taxonId);
-
-                            // Create the new term.
-                            $term = new BaseTerm($type, $taxonId, $name);
-
-                            // If this is a discipline, we treat it differently.
-                            // Contexts, school levels and even school years can
-                            // be merged, but disciplines follow unique paths.
-                            // Disciplines are always represented as a "branch"
-                            // with no sub-branches. Because of this, we add
-                            // a unique integer to the ID, which will prevent it
-                            // from being re-used for a different discipline
-                            // path, and thus it won't get merged.
-                            // For example, the following 3 paths:
-                            // -- compulsory education
-                            //    +- cycle_1
-                            //       +- languages
-                            // -- compulsory education
-                            //    +- cycle_1
-                            //       +- languages
-                            //          +- french
-                            // -- compulsory education
-                            //    +- cycle_1
-                            //       +- languages
-                            //          +- german
-                            // Should NOT be merged like this:
-                            // -- compulsory education
-                            //    +- cycle_1
-                            //       +- languages
-                            //          +- french
-                            //          +- german
-                            // But like this:
-                            // -- compulsory education
-                            //    +- cycle_1
-                            //       +- languages
-                            //       +- languages
-                            //          +- french
-                            //       +- languages
-                            //          +- german
-                            // The first "language" entry is a discipline on its
-                            // own, and because there's a path ending with it,
-                            // it was meant to be treated on its own as well.
-                            if ($type === 'discipline') {
-                                $taxonId = "{$i}-{$taxonId}";
-                            }
-
-                            // Store it.
-                            $terms["$parentId:{$taxonId}"] = $term;
-                        }
-
-                        // Did we already add this term to the parent?
-                        if (!$parent->hasChildren() || !in_array($term, $parent->getChildren())) {
-                            // Add our term to the tree.
-                            $parent->addChild($term);
-                        }
-
-                        // Our term is now the parent, in preparation for the
-                        // next item.
-                        $parent = $term;
-                        $parentId .= ":{$taxonId}";
-                    }
-                }
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * Fetch the term's type.
-     *
-     * The stored curriculum data inside the LOM object contains no information
-     * about what the term is. We compare the term's identifier to the
-     * curriculum standard and determine its type.
-     *
-     * @param string $identifier
-     *    The identifier of the term.
-     *
-     * @return string
-     *    The term's type.
-     */
-    protected function getTermType($identifier)
+    public function getTermType($identifier)
     {
         return isset($this->curriculumDictionary[$identifier]) ? $this->curriculumDictionary[$identifier]->type : 'root';
     }
 
     /**
-     * Fetch the term's name.
-     *
-     * The stored curriculum data inside the LOM object contains information
-     * about the term's name, but this information may not be up to date. We
-     * compare the term's identifier to the curriculum standard and determine
-     * its name.
-     *
-     * @param string $identifier
-     *    The identifier of the term.
-     *
-     * @return string
-     *    The term's name.
+     * {@inheritdoc}
      */
-    protected function getTermName($identifier)
+    public function getTermName($identifier)
     {
         return isset($this->curriculumDictionary[$identifier]) ? $this->curriculumDictionary[$identifier]->name : 'n/a';
     }
