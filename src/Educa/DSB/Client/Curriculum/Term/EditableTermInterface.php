@@ -36,16 +36,6 @@ interface EditableTermInterface extends TermInterface
     public function setParent(TermInterface $term);
 
     /**
-     * Add a root term.
-     *
-     * @param \Educa\DSB\Client\Curriculum\Term\TermInterface $term
-     *
-     * @return this
-     *    Support method chaining by return the current class.
-     */
-    public function setRoot(TermInterface $term);
-
-    /**
      * Add a "previous" sibling term.
      *
      * @param \Educa\DSB\Client\Curriculum\Term\TermInterface $term
