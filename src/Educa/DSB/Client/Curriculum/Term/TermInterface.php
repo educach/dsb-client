@@ -44,6 +44,8 @@ interface TermInterface
      * @return array
      *    A list of \Educa\DSB\Client\Curriculum\Term\TermInterface
      *    elements.
+     *
+     * @throws \Educa\DSB\Client\Curriculum\Term\TermHasNoChildrenException
      */
     public function getChildren();
 
@@ -74,8 +76,6 @@ interface TermInterface
      * Return the root element of the tree.
      *
      * @return \Educa\DSB\Client\Curriculum\Term\TermInterface
-     *
-     * @throws \Educa\DSB\Client\Curriculum\Term\TermIsRootException
      */
     public function getRoot();
 
