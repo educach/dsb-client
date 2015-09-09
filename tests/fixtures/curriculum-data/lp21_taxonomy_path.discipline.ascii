@@ -1,0 +1,12 @@
+--- root:root
+    +-- zyklus:3
+        +-- fachbereich:010fby8NKE8fCB79TRL69VS8VT4HnuHmN
+            +-- fach:010ffPWHRKNUdFDK9LRgFbPDLXwTxa4bw
+        +-- fachbereich:010fbNpVqv9R3TePRnCeZECuB4ucv6rEw
+            +-- kompetenzbereich:010kbAnkUn9X9c8kz25FN9zFTFaHdAbPb
+                +-- handlungs_themenaspekt:010hafG6hGk8FZJWduaNDBGE4zhRWnvXK
+        +-- fachbereich:010fbNpVqv9R3TePRnCeZECuB4ucv6rEw
+            +-- kompetenzbereich:010kbAnkUn9X9c8kz25FN9zFTFaHdAbPb
+        +-- fachbereich:010fbNpVqv9R3TePRnCeZECuB4ucv6rEw
+            +-- kompetenzbereich:010kbAnkUn9X9c8kz25FN9zFTFaHdAbPb
+                +-- handlungs_themenaspekt:010ha4HnxH3GG5f5mqe8bddWtJK8bbVmD
