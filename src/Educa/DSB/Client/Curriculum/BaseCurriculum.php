@@ -179,7 +179,7 @@ abstract class BaseCurriculum implements CurriculumInterface
                             // The first "language" entry is a discipline on its
                             // own, and because there's a path ending with it,
                             // it was meant to be treated on its own as well.
-                            if ($this->taxonIsDiscipline($taxon)) {
+                            if ($this->taxonIsDiscipline($taxon) && $pathPurpose == 'discipline') {
                                 $taxonId = "{$i}-{$taxonId}";
                             }
 
