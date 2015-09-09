@@ -13,13 +13,6 @@ class BaseTerm implements EditableTermInterface
 {
 
     /**
-     * The term's root parent, if any.
-     *
-     * @var \Educa\DSB\Client\Curriculum\Term\EditableTermInterface
-     */
-    protected $root;
-
-    /**
      * The term's parent, if any.
      *
      * @var \Educa\DSB\Client\Curriculum\Term\EditableTermInterface
@@ -112,6 +105,7 @@ class BaseTerm implements EditableTermInterface
         $this->type = $type;
         $this->id = $id;
         $this->name = $name;
+        return $this;
     }
 
     /**
@@ -159,7 +153,7 @@ class BaseTerm implements EditableTermInterface
      */
     public function isRoot()
     {
-        return !isset($this->root);
+        return !$this->hasParent();
     }
 
     /**
@@ -168,9 +162,9 @@ class BaseTerm implements EditableTermInterface
     public function getRoot()
     {
         if (!$this->isRoot()) {
-            return $this->root;
+            return $this->getParent()->getRoot();
         } else {
-            throw new TermIsRootException("Term {$this->type}:{$this->id} is root.");
+            return $this;
         }
     }
 
@@ -244,14 +238,6 @@ class BaseTerm implements EditableTermInterface
      */
     public function addChild(EditableTermInterface $term)
     {
-        // Fetch the root element. If the current term is the root element, use
-        // it as the root element.
-        if ($this->isRoot()) {
-            $term->setRoot($this);
-        } else {
-            $term->setRoot($this->getRoot());
-        }
-
         // Add the current term as the child's parent.
         $term->setParent($this);
 
@@ -282,17 +268,6 @@ class BaseTerm implements EditableTermInterface
     public function setParent(TermInterface $term)
     {
         $this->parent = $term;
-
-        // Support method chaining.
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setRoot(TermInterface $term)
-    {
-        $this->root = $term;
 
         // Support method chaining.
         return $this;

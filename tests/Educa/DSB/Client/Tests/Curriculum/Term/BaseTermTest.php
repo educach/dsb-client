@@ -8,7 +8,6 @@
 namespace Educa\DSB\Client\Tests\Curriculum\Term;
 
 use Educa\DSB\Client\Curriculum\Term\BaseTerm;
-use Educa\DSB\Client\Curriculum\Term\TermIsRootException;
 use Educa\DSB\Client\Curriculum\Term\TermHasNoParentException;
 use Educa\DSB\Client\Curriculum\Term\TermHasNoChildrenException;
 use Educa\DSB\Client\Curriculum\Term\TermHasNoPrevSiblingException;
@@ -52,23 +51,6 @@ class BaseTermTest extends \PHPUnit_Framework_TestCase
         $c->addChild($d)->addChild($e);
         $e->addChild($f);
         $f->addChild($g);
-
-        // Trying to fetch the root element of $a (the root itself) should throw
-        // an exception.
-        try {
-            $a->getRoot();
-            $this->fail("Fetching the root of the root element must throw an exception.");
-        } catch (TermIsRootException $exception) {
-            $this->assertTrue(true, "Fetching the root of the root element must throw an exception.");
-        }
-
-        // Trying to fetch the root element of $b should not throw an exception.
-        try {
-            $b->getRoot();
-            $this->assertTrue(true, "Fetching the root of a non-root element does not throw an exception.");
-        } catch (TermIsRootException $exception) {
-            $this->fail("Fetching the root of a non-root element does not throw an exception.");
-        }
 
         // Checking if root is root must return true.
         $this->assertTrue($a->isRoot(), "Checking if root is root returns true.");
