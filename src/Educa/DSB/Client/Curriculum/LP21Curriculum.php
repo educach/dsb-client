@@ -39,9 +39,8 @@ class LP21Curriculum extends BaseCurriculum
     {
         switch ($context) {
             case self::CURRICULUM_XML:
-                $curriculum = new LP21Curriculum();
                 $data = self::parseCurriculumXml($data);
-                $curriculum->setCurriculumDefinition($data->curriculum);
+                $curriculum = new LP21Curriculum($data->curriculum);
                 $curriculum->setCurriculumDictionary($data->dictionary);
                 return $curriculum;
         }
@@ -238,7 +237,6 @@ class LP21Curriculum extends BaseCurriculum
      *    - dictionary: A dictionary of term identifiers, with name and type
      *      information for each one of them.
      *
-     * @see \Educa\DSB\Client\Curriculum\LP21Curriculum::setCurriculumDefinition()
      * @see \Educa\DSB\Client\Curriculum\LP21Curriculum::setCurriculumDictionary()
      */
     public static function parseCurriculumXml($curriculumXml)
@@ -465,21 +463,6 @@ class LP21Curriculum extends BaseCurriculum
             'curriculum' => $root,
             'dictionary' => $dictionary,
         );
-    }
-
-    /**
-     * Set the curriculum definition.
-     *
-     * @param array $definition
-     *
-     * @return this
-     *
-     * @see \Educa\DSB\Client\Curriculum\LP21Curriculum::parseCurriculumXml().
-     */
-    public function setCurriculumDefinition($definition)
-    {
-        $this->curriculumDefinition = $definition;
-        return $this;
     }
 
     /**

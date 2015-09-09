@@ -25,13 +25,6 @@ class EducaCurriculum extends BaseCurriculum
     protected $curriculumDictionary;
 
     /**
-     * The official curriculum definition.
-     *
-     * @var array
-     */
-    protected $curriculumDefinition;
-
-    /**
      * The sources of taxonomy paths that can be treated by this class.
      *
      * @var array
@@ -51,9 +44,8 @@ class EducaCurriculum extends BaseCurriculum
     {
         switch ($context) {
             case self::CURRICULUM_JSON:
-                $curriculum = new EducaCurriculum();
                 $data = self::parseCurriculumJson($data);
-                $curriculum->setCurriculumDefinition($data->curriculum);
+                $curriculum = new EducaCurriculum($data->curriculum);
                 $curriculum->setCurriculumDictionary($data->dictionary);
                 return $curriculum;
         }
@@ -168,8 +160,6 @@ class EducaCurriculum extends BaseCurriculum
      * treat. It mainly needs a "dictionary" of term types. The educa curriculum
      * has the specificity that all disciplines apply to all school levels, as
      * well as some contexts. See
-     * \Educa\DSB\Client\Curriculum\EducaCurriculum::setCurriculumDefinition()
-     * and
      * \Educa\DSB\Client\Curriculum\EducaCurriculum::setCurriculumDictionary().
      *
      * @param string $curriculumJson
@@ -183,7 +173,6 @@ class EducaCurriculum extends BaseCurriculum
      *    - dictionary: A dictionary of term identifiers, with name and type
      *      information for each one of them.
      *
-     * @see \Educa\DSB\Client\Curriculum\EducaCurriculum::setCurriculumDefinition()
      * @see \Educa\DSB\Client\Curriculum\EducaCurriculum::setCurriculumDictionary()
      */
     public static function parseCurriculumJson($curriculumJson)
@@ -283,21 +272,6 @@ class EducaCurriculum extends BaseCurriculum
             'curriculum' => $list['educa_school_levels']['root'],
             'dictionary' => $dictionary,
         );
-    }
-
-    /**
-     * Set the curriculum definition.
-     *
-     * @param array $definition
-     *
-     * @return this
-     *
-     * @see \Educa\DSB\Client\Curriculum\EducaCurriculum::parseCurriculumJson().
-     */
-    public function setCurriculumDefinition($definition)
-    {
-        $this->curriculumDefinition = $definition;
-        return $this;
     }
 
     /**
