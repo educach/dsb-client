@@ -97,6 +97,45 @@
       "taxonPath":[
          {
             "source":{
+               "en":"other"
+            },
+            "taxon":[
+               {
+                  "id":"comp_education",
+                  "entry":{
+                     "en":"Compulsory education"
+                  }
+               },
+               {
+                  "id":"cycle_2",
+                  "entry":{
+                     "en":"2n Cycle"
+                  }
+               },
+               {
+                  "id":"lang",
+                  "entry":{
+                     "en":"Languages"
+                  }
+               },
+               {
+                  "id":"german_school_language",
+                  "entry":{
+                     "en":"German (school language)"
+                  }
+               }
+            ]
+         }
+      ]
+   },
+   {
+      "purpose":{
+         "source":"LOM-CHv1.1",
+         "value":"discipline"
+      },
+      "taxonPath":[
+         {
+            "source":{
                "en":"educa"
             },
             "taxon":[
