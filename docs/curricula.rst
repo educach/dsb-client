@@ -170,8 +170,7 @@ The definition file is a JSON file that can be downloaded from the site in JSON 
     $data = EducaCurriculum::parseCurriculumJson($json);
 
     // Demonstration of re-use of cached data.
-    $curriculum = new EducaCurriculum();
-    $curriculum->setCurriculumDefinition($data->curriculum);
+    $curriculum = new EducaCurriculum($data->curriculum);
     $curriculum->setCurriculumDictionary($data->dictionary);
 
 The curriculum class supports the handling of LOM *classification* field data (field no 9). This is represented as a series of *taxonomy paths*. Please refer to the `REST API documentation <https://dsb-api.educa.ch/latest/doc/>`_ for more information. By default, it only considers *discipline* taxonomy paths. If you wish to parse a taxonomy path with another *purpose* key, pass it as the second parameter to ``setTreeBasedOnTaxonPath()``.
@@ -181,8 +180,7 @@ The curriculum class supports the handling of LOM *classification* field data (f
     use Educa\DSB\Client\Curriculum\EducaCurriculum;
 
     // Re-use cached data for the dictionary and curriculum definition.
-    $curriculum = new EducaCurriculum();
-    $curriculum->setCurriculumDefinition($data->curriculum);
+    $curriculum = new EducaCurriculum($data->curriculum);
     $curriculum->setCurriculumDictionary($data->dictionary);
 
     // $paths is an array of taxonomy paths. See official REST API documentation
@@ -211,7 +209,63 @@ The curriculum class supports the handling of LOM *classification* field data (f
 
 Of course, you can call ``getTree()`` to get the root item of the tree, and navigate it.
 
-PER curriculum
-==============
+Plan d'études Romand (PER) curriculum
+=====================================
 
 todo
+
+
+Lehrplan 21 (lp21) curriculum
+=============================
+
+The *Lehrplan 21* (or *lp21*) curriculum is a official curriculum for the German speaking cantons in Switzerland. More information can be found `here <http://lehrplan.ch/>`_.
+
+The definition file is a XML file that can be downloaded from the site. The ``LP21Curriculum`` class can parse this information for re-use. The reason this data does not *have* to be passed to ``LP21Curriculum`` every time is that application might want to cache the parsing result, and pass the cached data in future calls. This can save time, as the parsing can be very time-consuming and memory intensive (the XML is over 2Mb in size).
+
+.. code-block:: php
+
+    use Educa\DSB\Client\Curriculum\LP21Curriculum;
+
+    // $xml contains the official curriculum data in XML format.
+    $xml = file_get_contents('/path/to/curriculum.xml');
+    $curriculum = LP21Curriculum::createFromData($xml);
+
+    // We can also simply parse it, and cache $data for future use.
+    $data = LP21Curriculum::parseCurriculumXml($xml);
+
+    // Demonstration of re-use of cached data.
+    $curriculum = new LP21Curriculum($data->curriculum);
+    $curriculum->setCurriculumDictionary($data->dictionary);
+
+The curriculum class supports the handling of LOM-CH *curricula* field data (field no 10). **WARNING:** this is not officially implemented yet, and might change! The following is still a suggestion. This is represented as a series of *taxonomy paths*. Please refer to the `REST API documentation <https://dsb-api.educa.ch/latest/doc/>`_ for more information. By default, it only considers *discipline* taxonomy paths. If you wish to parse a taxonomy path with another *purpose* key, pass it as the second parameter to ``setTreeBasedOnTaxonPath()``.
+
+.. code-block:: php
+
+    use Educa\DSB\Client\Curriculum\LP21Curriculum;
+
+    // Re-use cached data for the dictionary and curriculum definition.
+    $curriculum = new LP21Curriculum($data->curriculum);
+    $curriculum->setCurriculumDictionary($data->dictionary);
+
+    // $paths is an array of taxonomy paths. See official REST API documentation
+    // for more info.
+    $curriculum->setTreeBasedOnTaxonPath($paths);
+
+    print $curriculum->asciiDump();
+    // Results in:
+    // --- root:root
+    //     +-- zyklus:3
+    //         +-- fachbereich:010fby8NKE8fCB79TRL69VS8VT4HnuHmN
+    //             +-- fach:010ffPWHRKNUdFDK9LRgFbPDLXwTxa4bw
+    //         +-- fachbereich:010fbNpVqv9R3TePRnCeZECuB4ucv6rEw
+    //             +-- kompetenzbereich:010kbAnkUn9X9c8kz25FN9zFTFaHdAbPb
+    //                 +-- handlungs_themenaspekt:010hafG6hGk8FZJWduaNDBGE4zhRWnvXK
+    //         +-- fachbereich:010fbNpVqv9R3TePRnCeZECuB4ucv6rEw
+    //             +-- kompetenzbereich:010kbAnkUn9X9c8kz25FN9zFTFaHdAbPb
+    //         +-- fachbereich:010fbNpVqv9R3TePRnCeZECuB4ucv6rEw
+    //             +-- kompetenzbereich:010kbAnkUn9X9c8kz25FN9zFTFaHdAbPb
+    //                 +-- handlungs_themenaspekt:010ha4HnxH3GG5f5mqe8bddWtJK8bbVmD
+
+Of course, you can call ``getTree()`` to get the root item of the tree, and navigate it.
+
+A curriculum tree consists of ``TermInterface`` elements, just as for the other curricula implementations. However, ``LP21Curriculum`` uses a custom term implementation, ``LP21Term``. This implements the same interfaces, so can be used in exactly the same ways as the standard terms. The difference is ``LP21Term`` exposes a ``findChildByIdentifier`` method, which allows to search direct descendants for a specific term via its identifier (UUID).
