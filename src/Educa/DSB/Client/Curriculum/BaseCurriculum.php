@@ -9,6 +9,7 @@ namespace Educa\DSB\Client\Curriculum;
 
 use Educa\DSB\Client\Curriculum\Term\TermInterface;
 use Educa\DSB\Client\Curriculum\Term\BaseTerm;
+use Educa\DSB\Client\Utils;
 
 abstract class BaseCurriculum implements CurriculumInterface
 {
@@ -19,6 +20,13 @@ abstract class BaseCurriculum implements CurriculumInterface
      * @var \Educa\DSB\Client\Curriculum\Term\TermInterface
      */
     protected $root;
+
+    /**
+     * The sources of taxonomy paths that can be treated by this class.
+     *
+     * @var array
+     */
+    protected $taxonPathSources = array();
 
     public function __construct(TermInterface $root = null)
     {
@@ -84,29 +92,12 @@ abstract class BaseCurriculum implements CurriculumInterface
     }
 
     /**
-     * Create a new curriculum tree based on a taxonomy path.
-     *
-     * The LOM-CH standard defines the "curricula" field (10), which stores
-     * curriculum classification as "taxonomy paths", flat tree structural
-     * representation of curriculum classification. It uses a very similar
-     * structure to the LOM "classification" field (9). By passing such a
-     * structure to this method, a new tree will be created representing this
-     * structure, and the curriculum class instance will be updated with the
-     * correct information.
-     *
-     * @param array $paths
-     *    A list of paths, as described in the LOM-CH standard.
-     * @param string $purpose
-     *    (optional) The curriculum paths comes in 4 flavors, "discipline"
-     *    "objective", "competency* and "educational level" paths. Only one can
-     *    be treated at a time. Defaults to "discipline".
-     *
-     * @return this
+     * {@inheritdoc}
      */
     public function setTreeBasedOnTaxonPath($paths, $purpose = 'discipline')
     {
         // Prepare a new root item.
-        $this->root = new BaseTerm('root', 'root');
+        $this->root = $this->termFactory('root', 'root');
 
         // Prepare a "catalog" of entries, based on their identifiers. This
         // will allow us to easily convert the linear tree representation
@@ -124,6 +115,12 @@ abstract class BaseCurriculum implements CurriculumInterface
 
             if ($pathPurpose == $purpose) {
                 foreach ($path['taxonPath'] as $i => $taxonPath) {
+                    // Check if we treat this path. It might be a different
+                    // source.
+                    if (!in_array(Utils::getLSValue($taxonPath['source']), $this->taxonPathSources)) {
+                        continue;
+                    }
+
                     // Prepare the parent. For the first item, it is always the
                     // root element.
                     $parent = $terms['root'];
@@ -146,7 +143,7 @@ abstract class BaseCurriculum implements CurriculumInterface
                             $name = $this->getTermName($taxonId);
 
                             // Create the new term.
-                            $term = new BaseTerm($type, $taxonId, $name);
+                            $term = $this->termFactory($type, $taxonId, $name);
 
                             // If this is a discipline, we treat it differently.
                             // Contexts, school levels and even school years can
@@ -210,4 +207,22 @@ abstract class BaseCurriculum implements CurriculumInterface
 
         return $this;
     }
+
+    /**
+     * Helper method for creating new terms.
+     *
+     * This method allows subclasses to change the type of terms used in the
+     * term trees.
+     *
+     * @param string $type
+     * @param string $taxonId
+     * @param array|object $name
+     *
+     * @return \Educa\DSB\Client\Curriculum\Term\TermInterface
+     */
+    protected function termFactory($type, $taxonId, $name = null)
+    {
+        return new BaseTerm($type, $taxonId, $name);
+    }
+
 }

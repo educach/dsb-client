@@ -32,6 +32,13 @@ class EducaCurriculum extends BaseCurriculum
     protected $curriculumDefinition;
 
     /**
+     * The sources of taxonomy paths that can be treated by this class.
+     *
+     * @var array
+     */
+    protected $taxonPathSources = array('educa');
+
+    /**
      * {@inheritdoc}
      *
      * @param string $context

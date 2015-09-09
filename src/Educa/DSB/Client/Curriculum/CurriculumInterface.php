@@ -221,4 +221,25 @@ interface CurriculumInterface
      */
     public function getTermName($identifier);
 
+
+    /**
+     * Create a new curriculum tree based on a taxonomy path.
+     *
+     * The LOM-CH standard defines the "curricula" field (10), which stores
+     * curriculum classification as "taxonomy paths", flat tree structural
+     * representation of curriculum classification. It uses a very similar
+     * structure to the LOM "classification" field (9). By passing such a
+     * structure to this method, a new tree will be created representing this
+     * structure, and the curriculum class instance will be updated with the
+     * correct information.
+     *
+     * @param array $paths
+     *    A list of paths, as described in the LOM-CH standard.
+     * @param string $purpose
+     *    (optional) The curriculum paths comes in 4 flavors, "discipline"
+     *    "objective", "competency* and "educational level" paths. Only one can
+     *    be treated at a time. Defaults to "discipline".
+     */
+    public function setTreeBasedOnTaxonPath($paths, $purpose = 'discipline');
+
 }
