@@ -12,6 +12,10 @@
             "taxon":[
                {
                   "id":"compulsory education",
+                  "purpose":{
+				         "source":"LOM-CHv1.1",
+				         "value":"educational level"
+				      },
                   "entry":{
                      "de":"Obligatorische Schule",
                      "en":"Compulsory education",
@@ -22,6 +26,10 @@
                },
                {
                   "id":"cycle_3",
+                  "purpose":{
+				         "source":"LOM-CHv1.1",
+				         "value":"educational level"
+				      },
                   "entry":{
                      "de":"3. Zyklus (9. bis 11. Schuljahr)",
                      "en":"3rd cycle (9th to 11th school year)",
@@ -102,24 +110,40 @@
             "taxon":[
                {
                   "id":"comp_education",
+                  "purpose":{
+				         "source":"LOM-CHv1.1",
+				         "value":"educational level"
+				      },
                   "entry":{
                      "en":"Compulsory education"
                   }
                },
                {
                   "id":"cycle_2",
+                  "purpose":{
+				         "source":"LOM-CHv1.1",
+				         "value":"educational level"
+				      },
                   "entry":{
                      "en":"2n Cycle"
                   }
                },
                {
                   "id":"lang",
+                  "purpose":{
+				         "source":"LOM-CHv1.1",
+				         "value":"discipline"
+				      },
                   "entry":{
                      "en":"Languages"
                   }
                },
                {
                   "id":"german_school_language",
+                  "purpose":{
+				         "source":"LOM-CHv1.1",
+				         "value":"discipline"
+				      },
                   "entry":{
                      "en":"German (school language)"
                   }
@@ -141,6 +165,10 @@
             "taxon":[
                {
                   "id":"compulsory education",
+                  "purpose":{
+				         "source":"LOM-CHv1.1",
+				         "value":"educational level"
+				      },
                   "entry":{
                      "de":"Obligatorische Schule",
                      "en":"Compulsory education",
@@ -151,6 +179,10 @@
                },
                {
                   "id":"cycle_3",
+                  "purpose":{
+				         "source":"LOM-CHv1.1",
+				         "value":"educational level"
+				      },
                   "entry":{
                      "de":"3. Zyklus (9. bis 11. Schuljahr)",
                      "en":"3rd cycle (9th to 11th school year)",
@@ -186,6 +218,10 @@
             "taxon":[
                {
                   "id":"compulsory education",
+                  "purpose":{
+				         "source":"LOM-CHv1.1",
+				         "value":"educational level"
+				      },
                   "entry":{
                      "de":"Obligatorische Schule",
                      "en":"Compulsory education",
@@ -196,6 +232,10 @@
                },
                {
                   "id":"cycle_3",
+                  "purpose":{
+				         "source":"LOM-CHv1.1",
+				         "value":"educational level"
+				      },
                   "entry":{
                      "de":"3. Zyklus (9. bis 11. Schuljahr)",
                      "en":"3rd cycle (9th to 11th school year)",
@@ -206,6 +246,10 @@
                },
                {
                   "id":"social and human sciences",
+                  "purpose":{
+				         "source":"LOM-CHv1.1",
+				         "value":"discipline"
+				      },
                   "entry":{
                      "de":"Sozial- und Geisteswissenschaften",
                      "en":"Social and Human Sciences",
@@ -216,6 +260,10 @@
                },
                {
                   "id":"history",
+                  "purpose":{
+				         "source":"LOM-CHv1.1",
+				         "value":"discipline"
+				      },
                   "entry":{
                      "de":"Geschichte",
                      "en":"History",
@@ -241,6 +289,10 @@
             "taxon":[
                {
                   "id":"post compulsory education",
+                  "purpose":{
+				         "source":"LOM-CHv1.1",
+				         "value":"educational level"
+				      },
                   "entry":{
                      "de":"Sekundarstufe II",
                      "en":"Post-compulsory education",
@@ -266,6 +318,10 @@
             "taxon":[
                {
                   "id":"post compulsory education",
+                  "purpose":{
+				         "source":"LOM-CHv1.1",
+				         "value":"educational level"
+				      },
                   "entry":{
                      "de":"Sekundarstufe II",
                      "en":"Post-compulsory education",
@@ -276,6 +332,10 @@
                },
                {
                   "id":"languages",
+                  "purpose":{
+				         "source":"LOM-CHv1.1",
+				         "value":"discipline"
+				      },
                   "entry":{
                      "de":"Sprachen",
                      "en":"Languages",
@@ -286,6 +346,10 @@
                },
                {
                   "id":"german school language",
+                  "purpose":{
+				         "source":"LOM-CHv1.1",
+				         "value":"discipline"
+				      },
                   "entry":{
                      "de":"Deutsch (Schulsprache)",
                      "en":"German (school language)",
@@ -311,6 +375,10 @@
             "taxon":[
                {
                   "id":"post compulsory education",
+                  "purpose":{
+				         "source":"LOM-CHv1.1",
+				         "value":"educational level"
+				      },
                   "entry":{
                      "de":"Sekundarstufe II",
                      "en":"Post-compulsory education",
@@ -321,6 +389,10 @@
                },
                {
                   "id":"social and human sciences",
+                  "purpose":{
+				         "source":"LOM-CHv1.1",
+				         "value":"discipline"
+				      },
                   "entry":{
                      "de":"Sozial- und Geisteswissenschaften",
                      "en":"Social and Human Sciences",
@@ -331,6 +403,10 @@
                },
                {
                   "id":"history",
+                  "purpose":{
+				         "source":"LOM-CHv1.1",
+				         "value":"discipline"
+				      },
                   "entry":{
                      "de":"Geschichte",
                      "en":"History",
@@ -356,6 +432,10 @@
             "taxon":[
                {
                   "id":"post compulsory education",
+                  "purpose":{
+				         "source":"LOM-CHv1.1",
+				         "value":"educational level"
+				      },
                   "entry":{
                      "de":"Sekundarstufe II",
                      "en":"Post-compulsory education",
@@ -366,6 +446,10 @@
                },
                {
                   "id":"social and human sciences",
+                  "purpose":{
+				         "source":"LOM-CHv1.1",
+				         "value":"discipline"
+				      },
                   "entry":{
                      "de":"Sozial- und Geisteswissenschaften",
                      "en":"Social and Human Sciences",
@@ -376,6 +460,10 @@
                },
                {
                   "id":"psychology",
+                  "purpose":{
+				         "source":"LOM-CHv1.1",
+				         "value":"discipline"
+				      },
                   "entry":{
                      "de":"Psychologie",
                      "en":"Psychology",
@@ -401,6 +489,10 @@
             "taxon":[
                {
                   "id":"post compulsory education",
+                  "purpose":{
+				         "source":"LOM-CHv1.1",
+				         "value":"educational level"
+				      },
                   "entry":{
                      "de":"Sekundarstufe II",
                      "en":"Post-compulsory education",
@@ -411,6 +503,10 @@
                },
                {
                   "id":"social and human sciences",
+                  "purpose":{
+				         "source":"LOM-CHv1.1",
+				         "value":"discipline"
+				      },
                   "entry":{
                      "de":"Sozial- und Geisteswissenschaften",
                      "en":"Social and Human Sciences",
@@ -421,6 +517,10 @@
                },
                {
                   "id":"philosophy",
+                  "purpose":{
+				         "source":"LOM-CHv1.1",
+				         "value":"discipline"
+				      },
                   "entry":{
                      "de":"Philosophie",
                      "en":"Philosophy",
@@ -446,6 +546,10 @@
             "taxon":[
                {
                   "id":"post compulsory education",
+                  "purpose":{
+				         "source":"LOM-CHv1.1",
+				         "value":"discipline"
+				      },
                   "entry":{
                      "de":"Sekundarstufe II",
                      "en":"Post-compulsory education",
@@ -456,6 +560,10 @@
                },
                {
                   "id":"social and human sciences",
+                  "purpose":{
+				         "source":"LOM-CHv1.1",
+				         "value":"discipline"
+				      },
                   "entry":{
                      "de":"Sozial- und Geisteswissenschaften",
                      "en":"Social and Human Sciences",
@@ -481,6 +589,10 @@
             "taxon":[
                {
                   "id":"post compulsory education",
+                  "purpose":{
+				         "source":"LOM-CHv1.1",
+				         "value":"educational level"
+				      },
                   "entry":{
                      "de":"Sekundarstufe II",
                      "en":"Post-compulsory education",
@@ -491,6 +603,10 @@
                },
                {
                   "id":"general_education",
+                  "purpose":{
+				         "source":"LOM-CHv1.1",
+				         "value":"discipline"
+				      },
                   "entry":{
                      "de":"\u00dcberfachliche Themen",
                      "en":"General education",
@@ -501,6 +617,10 @@
                },
                {
                   "id":"identity",
+                  "purpose":{
+				         "source":"LOM-CHv1.1",
+				         "value":"discipline"
+				      },
                   "entry":{
                      "de":"Identit\u00e4t",
                      "en":"Identity",

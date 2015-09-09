@@ -134,20 +134,17 @@ abstract class BaseCurriculum implements CurriculumInterface
                         if (isset($terms["$parentId:{$taxonId}"])) {
                             $term = $terms["$parentId:{$taxonId}"];
                         } else {
-                            // Prepare a new term object. First, look for the
-                            // term's type. This is defined in the official
-                            // curriculum JSON definition.
-                            $type = $this->getTermType($taxonId);
-
-                            // Get the term's name.
-                            $name = $this->getTermName($taxonId);
-
                             // Create the new term.
-                            $term = $this->termFactory($type, $taxonId, $name);
+                            $term = $this->termFactory(
+                                $this->getTermType($taxonId),
+                                $taxonId,
+                                $this->getTermName($taxonId)
+                            );
 
                             // If this is a discipline, we treat it differently.
-                            // Contexts, school levels and even school years can
-                            // be merged, but disciplines follow unique paths.
+                            // Educational levels, competencies and even
+                            // educational objectives can be merged, but
+                            // disciplines follow unique paths.
                             // Disciplines are always represented as a "branch"
                             // with no sub-branches. Because of this, we add
                             // a unique integer to the ID, which will prevent it
@@ -182,7 +179,7 @@ abstract class BaseCurriculum implements CurriculumInterface
                             // The first "language" entry is a discipline on its
                             // own, and because there's a path ending with it,
                             // it was meant to be treated on its own as well.
-                            if ($type === 'discipline') {
+                            if ($this->taxonIsDiscipline($taxon)) {
                                 $taxonId = "{$i}-{$taxonId}";
                             }
 
@@ -225,4 +222,30 @@ abstract class BaseCurriculum implements CurriculumInterface
         return new BaseTerm($type, $taxonId, $name);
     }
 
+    /**
+     * Helper method for checking if a taxon is a discipline.
+     *
+     * The LOM-CH standard is currently undergoing changes regarding the
+     * storage of curricula. The classification field (9) format is going to
+     * change (more closely resembling the international standard), and the
+     * same, old format, is going to be used for the curricula field (10). But
+     * we don't know, at this point, what taxonomy path we are dealing with.
+     * This method only works on the new, future format, which has a "purpose"
+     * field on each taxon, specifying its role. But specific classes
+     * can enhance this method to also take into account legacy formats.
+     *
+     * @param array $taxon
+     *    A taxon entry in a taxonomy path.
+     *
+     * @return bool
+     *    True if the taxon is a discipline, false otherwise.
+     */
+    protected function taxonIsDiscipline($taxon)
+    {
+        if (isset($taxon['purpose']['value']) && $taxon['purpose']['value'] === 'discipline') {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

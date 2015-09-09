@@ -330,4 +330,18 @@ class EducaCurriculum extends BaseCurriculum
     {
         return isset($this->curriculumDictionary[$identifier]->name) ? $this->curriculumDictionary[$identifier]->name : 'n/a';
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function taxonIsDiscipline($taxon)
+    {
+        // First check the parent implementation. If it is false, use a legacy
+        // method.
+        if (parent::taxonIsDiscipline($taxon)) {
+            return true;
+        } else {
+            return $this->getTermType($taxon['id']) === 'discipline';
+        }
+    }
 }
