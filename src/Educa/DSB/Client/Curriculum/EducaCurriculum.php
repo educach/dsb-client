@@ -321,6 +321,6 @@ class EducaCurriculum extends BaseCurriculum
      */
     public function getTermName($identifier)
     {
-        return isset($this->curriculumDictionary[$identifier]) ? $this->curriculumDictionary[$identifier]->name : 'n/a';
+        return isset($this->curriculumDictionary[$identifier]->name) ? $this->curriculumDictionary[$identifier]->name : 'n/a';
     }
 }
