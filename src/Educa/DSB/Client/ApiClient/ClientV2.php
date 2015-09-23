@@ -127,7 +127,7 @@ class ClientV2 extends AbstractClient
                 throw new ClientRequestException(sprintf("Request to /description/%s failed. Status: %s. Error message: %s", $lomId, $response->getStatusCode(), $response->getBody()));
             }
         } catch(GuzzleClientException $e) {
-            throw new ClientRequestException(sprintf("Request to /search failed. Status: %s. Error message: %s", $e->getCode(), $e->getMessage()));
+            throw new ClientRequestException(sprintf("Request to /description/%s failed. Status: %s. Error message: %s", $lomId, $e->getCode(), $e->getMessage()));
         }
     }
 
