@@ -190,6 +190,15 @@ class TestClient extends AbstractClient
      * @{inheritdoc}
      * @todo
      */
+    public function validateDescription($json)
+    {
+        return null;
+    }
+
+    /**
+     * @{inheritdoc}
+     * @todo
+     */
     public function loadOntologyData($type = 'list', array $vocabularyIds = null)
     {
         return null;

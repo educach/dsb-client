@@ -69,6 +69,20 @@ interface ClientInterface
     public function loadDescription($lomId);
 
     /**
+     * Validate a description.
+     *
+     * Validate a description JSON representation. Check the official REST API
+     * documentation for the response format.
+     *
+     * @param string $json
+     *    The JSON representation of the description to validate.
+     *
+     * @return array
+     *    The validation result, as returned by the REST API.
+     */
+    public function validateDescription($json);
+
+    /**
      * Load Ontology data.
      *
      * @param string $type
