@@ -320,6 +320,62 @@ class ClientV2Test extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test fetching suggestions.
+     */
+    public function testGetSuggestions()
+    {
+        // Prepare a new client.
+        $guzzle = $this->getGuzzleTestClient([
+            new Response(200, [], Stream::factory('{"token":"asjhasd987asdhasd87"}')),
+            new Response(200, [], Stream::factory('[{"suggestion":"Suggestion A","context":"The context of Suggestion A is this."},{"suggestion":"Suggestion B","context":"The context of Suggestion B is this."}]')),
+            new Response(400),
+            new Response(304),
+        ]);
+
+        // Prepare a client.
+        $client = new ClientV2(
+            'http://localhost',
+            'user@site.com',
+            FIXTURES_DIR . '/user/privatekey_nopassphrase.pem'
+        );
+        $client->setClient($guzzle);
+
+        // Fetching suggestions without being authenticated throws an error.
+        try {
+            $client->getSuggestions('keyword');
+            $this->fail("Fetching suggestions without being authenticated should throw an exception.");
+        } catch(ClientAuthenticationException $e) {
+            $this->assertTrue(true, "Fetching suggestions without being authenticated throws an exception.");
+        }
+
+        // Fetching suggestions while authenticated doesn't throw an error.
+        try {
+            $client->authenticate();
+            $client->getSuggestions('keyword');
+            $this->assertTrue(true, "Fetching suggestions while being authenticated does not throw an exception.");
+        } catch(ClientAuthenticationException $e) {
+            $this->fail("Fetching suggestions while being authenticated should not throw an exception.");
+        }
+
+        // Failing to fetch suggestions throws an exception.
+        try {
+            $client->getSuggestions('keyword');
+            $this->fail("Failing to fetch suggestions should throw an exception.");
+        } catch(ClientRequestException $e) {
+            $this->assertTrue(true, "Failing to fetch suggestions throws an exception.");
+        }
+
+        // A status different from 200 while fetching suggestions throws an
+        // exception.
+        try {
+            $client->getSuggestions('keyword');
+            $this->fail("A status different from 200 while fetching suggestions should throw an exception.");
+        } catch(ClientRequestException $e) {
+            $this->assertTrue(true, "A status different from 200 while fetching suggestions throws an exception.");
+        }
+    }
+
+    /**
      * Test loading Ontology data.
      */
     public function testGetOntology()

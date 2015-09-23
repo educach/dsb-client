@@ -61,6 +61,29 @@ interface ClientInterface
     );
 
     /**
+     * Get suggestions.
+     *
+     * Fetch a list of suggestions for a given keyword.
+     *
+     * @throws \Educa\DSB\Client\ApiClient\ClientAuthenticationException
+     *    If not authenticated, will throw an exception. If not authorized, will
+     *    also throw an exception.
+     * @throws \Educa\DSB\Client\ApiClient\ClientRequestException
+     *    If the request fails, will throw an exception
+     *
+     * @param string $query = ''
+     * @param string $filters = array()
+     *
+     * @return array
+     *    A list of suggestions. Each suggestion is an object with the following
+     *    properties:
+     *    - suggestion: The actual suggestion
+     *    - context: The context from which the suggestion is taken, usually a
+     *      whole sentence, or even paragraph.
+     */
+    public function getSuggestions($query = '', array $filters = array());
+
+    /**
      * Load a description.
      *
      * @throws \Educa\DSB\Client\ApiClient\ClientAuthenticationException

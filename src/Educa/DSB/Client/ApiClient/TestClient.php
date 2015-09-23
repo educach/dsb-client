@@ -199,6 +199,15 @@ class TestClient extends AbstractClient
      * @{inheritdoc}
      * @todo
      */
+    public function getSuggestions($query = '', array $filters = array())
+    {
+        return null;
+    }
+
+    /**
+     * @{inheritdoc}
+     * @todo
+     */
     public function loadOntologyData($type = 'list', array $vocabularyIds = null)
     {
         return null;

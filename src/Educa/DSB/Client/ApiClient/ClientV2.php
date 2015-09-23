@@ -113,6 +113,34 @@ class ClientV2 extends AbstractClient
     /**
      * @{inheritdoc}
      */
+    public function getSuggestions($query = '', array $filters = array())
+    {
+        if (empty($this->tokenKey)) {
+            throw new ClientAuthenticationException(sprintf("No token found. Cannot fetch suggestions without a token."));
+        }
+
+        $options = array(
+            'query' => array(
+                'query' => $query,
+                'filters' => empty($filters) ? '{}' : json_encode($filters),
+            ),
+        );
+
+        try {
+            $response = $this->get('/suggest', $options);
+            if ($response->getStatusCode() == 200) {
+                return json_decode($response->getBody(), true);
+            } else {
+                throw new ClientRequestException(sprintf("Request to /suggest failed. Status: %s. Error message: %s", $response->getStatusCode(), $response->getBody()));
+            }
+        } catch(GuzzleClientException $e) {
+            throw new ClientRequestException(sprintf("Request to /suggest failed. Status: %s. Error message: %s", $e->getCode(), $e->getMessage()));
+        }
+    }
+
+    /**
+     * @{inheritdoc}
+     */
     public function loadDescription($lomId)
     {
         if (empty($this->tokenKey)) {
