@@ -432,6 +432,30 @@ class ClientV2Test extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test unavailable endpoint.
+     */
+    public function testUnavailableEndpoint()
+    {
+        // Prepare a new client.
+        $guzzle = $this->getGuzzleTestClient([]);
+
+        // Prepare a client.
+        $client = new ClientV2(
+            'http://localhost',
+            'user@site.com',
+            FIXTURES_DIR . '/user/privatekey_nopassphrase.pem'
+        );
+        $client->setClient($guzzle);
+
+        try {
+            $client->authenticate();
+            $this->fail("If there's no response, we create a 503 response and throw an exception.");
+        } catch(ClientAuthenticationException $e) {
+            $this->assertTrue(true, "If there's no response, we create a 503 response and throw an exception.");
+        }
+    }
+
+    /**
      * Get a test client.
      *
      * This returns a GuzzleHttp\Client instance, with a mocked HTTP responses.

@@ -10,6 +10,7 @@ namespace Educa\DSB\Client\ApiClient;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\ClientInterface as GuzzleClientInterface;
+use GuzzleHttp\Message\Response;
 
 abstract class AbstractClient implements ClientInterface
 {
@@ -104,6 +105,13 @@ abstract class AbstractClient implements ClientInterface
             // Catch all 4XX errors
             $response =  $e->getResponse();
         }
+
+        // If the response is null, the service is unavailable. Create a new
+        // response object, which will mimick a 503 response.
+        if (!$response) {
+            $response = new Response(503);
+        }
+
         return $response;
     }
 
@@ -135,6 +143,13 @@ abstract class AbstractClient implements ClientInterface
             // Catch all 4XX errors
             $response =  $e->getResponse();
         }
+
+        // If the response is null, the service is unavailable. Create a new
+        // response object, which will mimick a 503 response.
+        if (!$response) {
+            $response = new Response(503);
+        }
+
         return $response;
     }
 
