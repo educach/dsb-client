@@ -32,6 +32,8 @@ interface ClientInterface
      * @throws \Educa\DSB\Client\ApiClient\ClientAuthenticationException
      *    If not authenticated, will throw an exception. If not authorized, will
      *    also throw an exception.
+     * @throws \Educa\DSB\Client\ApiClient\ClientRequestException
+     *    If the request fails, will throw an exception
      *
      * @param string $query = ''
      * @param string $useFacets = array()
@@ -61,6 +63,12 @@ interface ClientInterface
     /**
      * Load a description.
      *
+     * @throws \Educa\DSB\Client\ApiClient\ClientAuthenticationException
+     *    If not authenticated, will throw an exception. If not authorized, will
+     *    also throw an exception.
+     * @throws \Educa\DSB\Client\ApiClient\ClientRequestException
+     *    If the request fails, will throw an exception
+     *
      * @param string $lomId
      *
      * @return object
@@ -74,6 +82,12 @@ interface ClientInterface
      * Validate a description JSON representation. Check the official REST API
      * documentation for the response format.
      *
+     * @throws \Educa\DSB\Client\ApiClient\ClientAuthenticationException
+     *    If not authenticated, will throw an exception. If not authorized, will
+     *    also throw an exception.
+     * @throws \Educa\DSB\Client\ApiClient\ClientRequestException
+     *    If the request fails, will throw an exception
+     *
      * @param string $json
      *    The JSON representation of the description to validate.
      *
@@ -84,6 +98,12 @@ interface ClientInterface
 
     /**
      * Load Ontology data.
+     *
+     * @throws \Educa\DSB\Client\ApiClient\ClientAuthenticationException
+     *    If not authenticated, will throw an exception. If not authorized, will
+     *    also throw an exception.
+     * @throws \Educa\DSB\Client\ApiClient\ClientRequestException
+     *    If the request fails, will throw an exception
      *
      * @param string $type
      *    (optional) The format the data must be returned in. Check the official
@@ -99,6 +119,12 @@ interface ClientInterface
 
     /**
      * Load content partner data.
+     *
+     * @throws \Educa\DSB\Client\ApiClient\ClientAuthenticationException
+     *    If not authenticated, will throw an exception. If not authorized, will
+     *    also throw an exception.
+     * @throws \Educa\DSB\Client\ApiClient\ClientRequestException
+     *    If the request fails, will throw an exception
      *
      * @return array
      *    The list of content partners.
