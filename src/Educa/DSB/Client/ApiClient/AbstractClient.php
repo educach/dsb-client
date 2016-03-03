@@ -116,6 +116,43 @@ abstract class AbstractClient implements ClientInterface
     }
 
     /**
+     * Make an HTTP PUT request.
+     *
+     * This method simply proxies to the GuzzleHttp\Client::put() method, but
+     * simplifies the call a little bit. If we have an identification token, we
+     * will pass it automatically using a X-TOKEN-KEY header; there's no need to
+     * pass it using $options.
+     *
+     * @param string $path
+     *    The path to make the request to. This should not include the API URL.
+     * @param array $options
+     *    (optional) An array of options. See GuzzleHttp\Client::put() for more
+     *    information.
+     *
+     * @return GuzzleHttp\Message\Response
+     *    The response object.
+     */
+    public function put($path, array $options = array())
+    {
+        if (!empty($this->tokenKey)) {
+            $options['headers']['X-TOKEN-KEY'] = $this->tokenKey;
+        }
+        try {
+            $response = $this->client->put($this->apiUrl . $path, $options);
+        } catch (RequestException $e) {
+            // Catch all 4XX errors
+            $response =  $e->getResponse();
+        }
+
+        // If the response is null, the service is unavailable. Create a new
+        // response object, which will mimick a 503 response.
+        if (!$response) {
+            $response = new Response(503);
+        }
+
+        return $response;
+    }
+    /**
      * Make an HTTP GET request.
      *
      * This method simply proxies to the GuzzleHttp\Client::get() method, but
