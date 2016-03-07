@@ -273,7 +273,7 @@ class ClientV2 extends AbstractClient
         }
 
         try {
-            $response = $this->put("/description/$id", $params);
+            $response = $this->put("/description/" . urlencode($id), $params);
             return json_decode($response->getBody(), true);
         } catch(GuzzleClientException $e) {
             throw new ClientRequestException(sprintf("Put request to /description/$id failed. Status: %s. Error message: %s", $e->getCode(), $e->getMessage()));
