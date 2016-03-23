@@ -120,6 +120,46 @@ interface ClientInterface
     public function validateDescription($json);
 
     /**
+     * Post a description.
+     *
+     * Create a new description. Check the official REST API
+     * documentation for the response format.
+     *
+     * @throws \Educa\DSB\Client\ApiClient\ClientAuthenticationException
+     *    If not authenticated, will throw an exception. If not authorized, will
+     *    also throw an exception.
+     * @throws \Educa\DSB\Client\ApiClient\ClientRequestException
+     *    If the request fails, will throw an exception
+     *
+     * @param string $json
+     *    The JSON representation of the description to create.
+     *
+     * @return array
+     *    The creation result, as returned by the REST API.
+     */
+    public function postDescription($json, $previewImage = false);
+
+    /**
+     * Put a description.
+     *
+     * Update a description. Check the official REST API
+     * documentation for the response format.
+     *
+     * @throws \Educa\DSB\Client\ApiClient\ClientAuthenticationException
+     *    If not authenticated, will throw an exception. If not authorized, will
+     *    also throw an exception.
+     * @throws \Educa\DSB\Client\ApiClient\ClientRequestException
+     *    If the request fails, will throw an exception
+     *
+     * @param string $json
+     *    The JSON representation of the description to create.
+     *
+     * @return array
+     *    The update result, as returned by the REST API.
+     */
+    public function putDescription($id, $json, $previewImage = false);
+
+    /**
      * Load Ontology data.
      *
      * @throws \Educa\DSB\Client\ApiClient\ClientAuthenticationException

@@ -228,5 +228,57 @@ class ClientV2 extends AbstractClient
         }
     }
 
+    /**
+     * @{inheritdoc}
+     */
+    public function postDescription($json, $previewImage = false)
+    {
+        if (empty($this->tokenKey)) {
+            throw new ClientAuthenticationException(sprintf("No token found. Cannot create a LOM description without a token."));
+        }
+
+        $params = array(
+            'body' => array(
+                'description' => $json
+            ),
+        );
+        if ($previewImage) {
+            $params['body']['previewImage'] = $previewImage;
+        }
+
+        try {
+            $response = $this->post('/description', $params);
+            return json_decode($response->getBody(), true);
+        } catch(GuzzleClientException $e) {
+            throw new ClientRequestException(sprintf("Post request to /description failed. Status: %s. Error message: %s", $e->getCode(), $e->getMessage()));
+        }
+    }
+
+    /**
+     * @{inheritdoc}
+     */
+    public function putDescription($id, $json, $previewImage = false)
+    {
+        if (empty($this->tokenKey)) {
+            throw new ClientAuthenticationException(sprintf("No token found. Cannot update a LOM description without a token."));
+        }
+
+        $params = array(
+            'body' => array(
+                'description' => $json
+            ),
+        );
+        if ($previewImage) {
+            $params['body']['previewImage'] = $previewImage;
+        }
+
+        try {
+            $response = $this->put("/description/" . urlencode($id), $params);
+            return json_decode($response->getBody(), true);
+        } catch(GuzzleClientException $e) {
+            throw new ClientRequestException(sprintf("Put request to /description/$id failed. Status: %s. Error message: %s", $e->getCode(), $e->getMessage()));
+        }
+    }
+
 }
 
