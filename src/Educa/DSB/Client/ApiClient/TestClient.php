@@ -13,6 +13,7 @@ namespace Educa\DSB\Client\ApiClient;
 
 use Educa\DSB\Client\ApiClient\AbstractClient;
 use Educa\DSB\Client\ApiClient\ClientAuthenticationException;
+use Educa\DSB\Client\Utils;
 
 /**
  * @codeCoverageIgnore
@@ -195,7 +196,7 @@ class TestClient extends AbstractClient
 
         // If the object title has the "VALID" keyword, we treat it as valid.
         // Else, we return some random mumbo jumbo.
-        if (isset($object->general->title) && preg_match('/VALID/', $object->general->title)) {
+        if (isset($object->general->title) && preg_match('/VALID/', Utils::getLSValue($object->general->title))) {
             return array(
                 'valid' => true,
             );
