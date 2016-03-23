@@ -188,11 +188,30 @@ class TestClient extends AbstractClient
 
     /**
      * @{inheritdoc}
-     * @todo
      */
     public function validateDescription($json)
     {
-        return null;
+        $object = json_decode($json);
+
+        // If the object title has the "VALID" keyword, we treat it as valid.
+        // Else, we return some random mumbo jumbo.
+        if (isset($object->general->title) && preg_match('/VALID/', $object->general->title)) {
+            return array(
+                'valid' => true,
+            );
+        } else {
+            return array(
+                'valid' => false,
+                'message' => "Description is not complete or not compliant.",
+                'errors' => array(
+                    'general.title' => 'missing',
+                    'general.description' => 'wrong type',
+                    'general.identifier.entry' => 'malformed',
+                    'education.typicalLearningTime' => 'malformed',
+                    'education.description' => 'missing',
+                ),
+            );
+        }
     }
 
     /**
@@ -218,6 +237,24 @@ class TestClient extends AbstractClient
      * @todo
      */
     public function loadPartners()
+    {
+        return null;
+    }
+
+    /**
+     * @{inheritdoc}
+     * @todo
+     */
+    public function postDescription($json, $previewImage = false)
+    {
+        return null;
+    }
+
+    /**
+     * @{inheritdoc}
+     * @todo
+     */
+    public function putDescription($id, $json, $previewImage = false)
     {
         return null;
     }
