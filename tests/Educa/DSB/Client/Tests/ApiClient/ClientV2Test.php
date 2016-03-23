@@ -520,7 +520,7 @@ class ClientV2Test extends \PHPUnit_Framework_TestCase
      *    A list of GuzzleHttp\Message response objects, to be used by the
      *    mocked test client. Responses will be returned in the order specified
      *
-     * @return Educa\DSB\Client\ApiClient\ClientV2
+     * @return GuzzleHttp\Client
      */
     protected function getGuzzleTestClient(array $responses)
     {
