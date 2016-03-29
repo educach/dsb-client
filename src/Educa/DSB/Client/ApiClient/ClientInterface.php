@@ -151,6 +151,8 @@ interface ClientInterface
      * @throws \Educa\DSB\Client\ApiClient\ClientRequestException
      *    If the request fails, will throw an exception
      *
+     * @param string $id
+     *    The ID of the description.
      * @param string $json
      *    The JSON representation of the description to create.
      *
@@ -158,6 +160,26 @@ interface ClientInterface
      *    The update result, as returned by the REST API.
      */
     public function putDescription($id, $json, $previewImage = false);
+
+    /**
+     * Delete a description.
+     *
+     * Remove a description. Check the official REST API documentation
+     * for the response format.
+     *
+     * @throws \Educa\DSB\Client\ApiClient\ClientAuthenticationException
+     *    If not authenticated, will throw an exception. If not authorized, will
+     *    also throw an exception.
+     * @throws \Educa\DSB\Client\ApiClient\ClientRequestException
+     *    If the request fails, will throw an exception
+     *
+     * @param string $id
+     *    The ID of the description.
+     *
+     * @return array
+     *    The deletion result, as returned by the REST API.
+     */
+    public function deleteDescription($id);
 
     /**
      * Load Ontology data.

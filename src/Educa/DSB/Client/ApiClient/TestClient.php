@@ -259,4 +259,13 @@ class TestClient extends AbstractClient
     {
         return null;
     }
+
+    /**
+     * @{inheritdoc}
+     * @todo
+     */
+    public function deleteDescription($id)
+    {
+        return null;
+    }
 }

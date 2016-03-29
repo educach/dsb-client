@@ -280,5 +280,22 @@ class ClientV2 extends AbstractClient
         }
     }
 
+    /**
+     * @{inheritdoc}
+     */
+    public function deleteDescription($id)
+    {
+        if (empty($this->tokenKey)) {
+            throw new ClientAuthenticationException(sprintf("No token found. Cannot delete a LOM description without a token."));
+        }
+
+        try {
+            $response = $this->delete("/description/" . urlencode($id));
+            return json_decode($response->getBody(), true);
+        } catch(GuzzleClientException $e) {
+            throw new ClientRequestException(sprintf("Delete request to /description/$id failed. Status: %s. Error message: %s", $e->getCode(), $e->getMessage()));
+        }
+    }
+
 }
 
