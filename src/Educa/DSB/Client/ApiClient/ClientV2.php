@@ -61,8 +61,10 @@ class ClientV2 extends AbstractClient
             } else {
                 throw new ClientAuthenticationException(sprintf("Authentication failed. Status: %s. Error message: %s", $response->getStatusCode(), $response->getBody()));
             }
+            // @codeCoverageIgnoreStart
         } catch (GuzzleRequestException $e) {
             throw new ClientAuthenticationException(sprintf("Authentication failed. Status: %s. Error message: %s", $e->getCode(), $e->getMessage()));
+            // @codeCoverageIgnoreEnd
         }
 
         // Support chaining.
@@ -105,8 +107,10 @@ class ClientV2 extends AbstractClient
             } else {
                 throw new ClientRequestException(sprintf("Request to /search failed. Status: %s. Error message: %s", $response->getStatusCode(), $response->getBody()));
             }
+            // @codeCoverageIgnoreStart
         } catch(GuzzleRequestException $e) {
             throw new ClientRequestException(sprintf("Request to /search failed. Status: %s. Error message: %s", $e->getCode(), $e->getMessage()));
+            // @codeCoverageIgnoreEnd
         }
     }
 
@@ -133,8 +137,10 @@ class ClientV2 extends AbstractClient
             } else {
                 throw new ClientRequestException(sprintf("Request to /suggest failed. Status: %s. Error message: %s", $response->getStatusCode(), $response->getBody()));
             }
+            // @codeCoverageIgnoreStart
         } catch(GuzzleRequestException $e) {
             throw new ClientRequestException(sprintf("Request to /suggest failed. Status: %s. Error message: %s", $e->getCode(), $e->getMessage()));
+            // @codeCoverageIgnoreEnd
         }
     }
 
@@ -154,8 +160,10 @@ class ClientV2 extends AbstractClient
             } else {
                 throw new ClientRequestException(sprintf("Request to /description/%s failed. Status: %s. Error message: %s", $lomId, $response->getStatusCode(), $response->getBody()));
             }
+            // @codeCoverageIgnoreStart
         } catch(GuzzleRequestException $e) {
             throw new ClientRequestException(sprintf("Request to /description/%s failed. Status: %s. Error message: %s", $lomId, $e->getCode(), $e->getMessage()));
+            // @codeCoverageIgnoreEnd
         }
     }
 
@@ -178,8 +186,10 @@ class ClientV2 extends AbstractClient
             } else {
                 throw new ClientRequestException(sprintf("Request to /ontology/%s/%s failed. Status: %s. Error message: %s", $type, implode(',', $vocabularyIds), $response->getStatusCode(), $response->getBody()));
             }
+            // @codeCoverageIgnoreStart
         } catch(GuzzleRequestException $e) {
             throw new ClientRequestException(sprintf("Request to /ontology/%s/%s failed. Status: %s. Error message: %s", $type, implode(',', $vocabularyIds), $e->getCode(), $e->getMessage()));
+            // @codeCoverageIgnoreEnd
         }
     }
 
@@ -200,8 +210,10 @@ class ClientV2 extends AbstractClient
             } else {
                 throw new ClientRequestException(sprintf("Request to /partner failed. Status: %s. Error message: %s", $response->getStatusCode(), $response->getBody()));
             }
+            // @codeCoverageIgnoreStart
         } catch(GuzzleRequestException $e) {
             throw new ClientRequestException(sprintf("Request to /partner failed. Status: %s. Error message: %s", $e->getCode(), $e->getMessage()));
+            // @codeCoverageIgnoreEnd
         }
     }
 
@@ -223,8 +235,10 @@ class ClientV2 extends AbstractClient
         try {
             $response = $this->post('/validate', $params);
             return json_decode($response->getBody(), true);
+            // @codeCoverageIgnoreStart
         } catch(GuzzleRequestException $e) {
             throw new ClientRequestException(sprintf("Request to /validate failed. Status: %s. Error message: %s", $e->getCode(), $e->getMessage()));
+            // @codeCoverageIgnoreEnd
         }
     }
 
@@ -261,8 +275,10 @@ class ClientV2 extends AbstractClient
         try {
             $response = $this->post('/description', $params);
             return json_decode($response->getBody(), true);
+            // @codeCoverageIgnoreStart
         } catch(GuzzleRequestException $e) {
             throw new ClientRequestException(sprintf("Post request to /description failed. Status: %s. Error message: %s", $e->getCode(), $e->getMessage()));
+            // @codeCoverageIgnoreEnd
         }
     }
 
@@ -299,8 +315,10 @@ class ClientV2 extends AbstractClient
         try {
             $response = $this->put("/description/" . urlencode($id), $params);
             return json_decode($response->getBody(), true);
+            // @codeCoverageIgnoreStart
         } catch(GuzzleRequestException $e) {
             throw new ClientRequestException(sprintf("Put request to /description/$id failed. Status: %s. Error message: %s", $e->getCode(), $e->getMessage()));
+            // @codeCoverageIgnoreEnd
         }
     }
 
@@ -316,8 +334,10 @@ class ClientV2 extends AbstractClient
         try {
             $response = $this->delete("/description/" . urlencode($id));
             return json_decode($response->getBody(), true);
+            // @codeCoverageIgnoreStart
         } catch(GuzzleRequestException $e) {
             throw new ClientRequestException(sprintf("Delete request to /description/$id failed. Status: %s. Error message: %s", $e->getCode(), $e->getMessage()));
+            // @codeCoverageIgnoreEnd
         }
     }
 

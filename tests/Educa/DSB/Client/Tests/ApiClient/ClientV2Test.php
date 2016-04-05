@@ -438,6 +438,151 @@ class ClientV2Test extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test creating a new description.
+     */
+    public function testPostDescription()
+    {
+        // Prepare a new client.
+        $guzzle = $this->getGuzzleTestClient([
+            new Response(200, [], Psr7\stream_for('{"token":"asjhasd987asdhasd87"}')),
+            new Response(200),
+            new Response(200),
+        ]);
+
+        // Prepare a client.
+        $client = new ClientV2(
+            'http://localhost',
+            'user@site.com',
+            FIXTURES_DIR . '/user/privatekey_nopassphrase.pem'
+        );
+        $client->setClient($guzzle);
+
+        // Creating a description without being authenticated throws an error.
+        try {
+            $client->postDescription('{"json":"data"}');
+            $this->fail("Creating a description without being authenticated should throw an exception.");
+        } catch(ClientAuthenticationException $e) {
+            $this->assertTrue(true, "Creating a description without being authenticated throws an exception.");
+        }
+
+        // Creating a description while authenticated doesn't throw an error.
+        try {
+            $client->authenticate();
+            $client->postDescription('{"json":"data"}');
+            $this->assertTrue(true, "Creating a description while being authenticated does not throw an exception.");
+        } catch(ClientAuthenticationException $e) {
+            $this->fail("Creating a description while being authenticated should not throw an exception.");
+        }
+
+        // Trying to upload a file that doesn't exist throws an error.
+        try {
+            $client->postDescription('{"json":"data"}', '/where/is/this/file.jpg');
+            $this->fail("Trying to upload a file that doesn't exist should throw an error.");
+        } catch(\RuntimeException $e) {
+            $this->assertTrue(true, "Trying to upload a file that doesn't exist throws an error.");
+        }
+
+        // Trying to upload a file that does exist does not throw an error.
+        try {
+            $client->postDescription('{"json":"data"}', FIXTURES_DIR . '/lom-data/image.png');
+            $this->assertTrue(true, "Trying to upload a file that does exist does not throw an error.");
+        } catch(\Exception $e) {
+            $this->fail("Trying to upload a file that does exist should not throw an error.");
+        }
+    }
+
+    /**
+     * Test updating a description.
+     */
+    public function testPutDescription()
+    {
+        // Prepare a new client.
+        $guzzle = $this->getGuzzleTestClient([
+            new Response(200, [], Psr7\stream_for('{"token":"asjhasd987asdhasd87"}')),
+            new Response(200),
+            new Response(200),
+        ]);
+
+        // Prepare a client.
+        $client = new ClientV2(
+            'http://localhost',
+            'user@site.com',
+            FIXTURES_DIR . '/user/privatekey_nopassphrase.pem'
+        );
+        $client->setClient($guzzle);
+
+        // Updating a description without being authenticated throws an error.
+        try {
+            $client->putDescription('some-id', '{"json":"data"}');
+            $this->fail("Updating a description without being authenticated should throw an exception.");
+        } catch(ClientAuthenticationException $e) {
+            $this->assertTrue(true, "Updating a description without being authenticated throws an exception.");
+        }
+
+        // Updating a description while authenticated doesn't throw an error.
+        try {
+            $client->authenticate();
+            $client->putDescription('some-id', '{"json":"data"}');
+            $this->assertTrue(true, "Updating a description while being authenticated does not throw an exception.");
+        } catch(ClientAuthenticationException $e) {
+            $this->fail("Updating a description while being authenticated should not throw an exception.");
+        }
+
+        // Trying to upload a file that doesn't exist throws an error.
+        try {
+            $client->putDescription('some-id', '{"json":"data"}', '/where/is/this/file.jpg');
+            $this->fail("Trying to upload a file that doesn't exist should throw an error.");
+        } catch(\RuntimeException $e) {
+            $this->assertTrue(true, "Trying to upload a file that doesn't exist throws an error.");
+        }
+
+        // Trying to upload a file that does exist does not throw an error.
+        try {
+            $client->putDescription('some-id', '{"json":"data"}', FIXTURES_DIR . '/lom-data/image.png');
+            $this->assertTrue(true, "Trying to upload a file that does exist does not throw an error.");
+        } catch(\Exception $e) {
+            $this->fail("Trying to upload a file that does exist should not throw an error.");
+        }
+    }
+
+    /**
+     * Test deleting a description.
+     */
+    public function testDeleteDescription()
+    {
+        // Prepare a new client.
+        $guzzle = $this->getGuzzleTestClient([
+            new Response(200, [], Psr7\stream_for('{"token":"asjhasd987asdhasd87"}')),
+            new Response(200),
+        ]);
+
+        // Prepare a client.
+        $client = new ClientV2(
+            'http://localhost',
+            'user@site.com',
+            FIXTURES_DIR . '/user/privatekey_nopassphrase.pem'
+        );
+        $client->setClient($guzzle);
+
+        // Deleting a description without being authenticated throws an error.
+        try {
+            $client->deleteDescription('some-id');
+            $this->fail("Deleting a description without being authenticated should throw an exception.");
+        } catch(ClientAuthenticationException $e) {
+            $this->assertTrue(true, "Deleting a description without being authenticated throws an exception.");
+        }
+
+        // Deleting a description while authenticated doesn't throw an error.
+        try {
+            $client->authenticate();
+            $client->deleteDescription('some-id');
+            $this->assertTrue(true, "Deleting a description while being authenticated does not throw an exception.");
+        } catch(ClientAuthenticationException $e) {
+            $this->fail("Deleting a description while being authenticated should not throw an exception.");
+        }
+    }
+
+    /**
      * Test loading content partner data.
      */
     public function testGetPartners()
