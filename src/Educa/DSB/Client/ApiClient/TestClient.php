@@ -248,7 +248,7 @@ class TestClient extends AbstractClient
      */
     public function postDescription($json, $previewImage = false)
     {
-        return null;
+        return array('lomId' => uniqid());
     }
 
     /**
@@ -257,7 +257,7 @@ class TestClient extends AbstractClient
      */
     public function putDescription($id, $json, $previewImage = false)
     {
-        return null;
+        return array('lomId' => $id);
     }
 
     /**
@@ -266,6 +266,6 @@ class TestClient extends AbstractClient
      */
     public function deleteDescription($id)
     {
-        return null;
+        return array('lomId' => $id);
     }
 }
