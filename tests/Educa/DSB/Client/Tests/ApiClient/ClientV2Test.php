@@ -8,10 +8,13 @@
 namespace Educa\DSB\Client\Tests\ApiClient;
 
 use GuzzleHttp\Client as GuzzleClient;
-use GuzzleHttp\Subscriber\Mock;
-use GuzzleHttp\Subscriber\History;
-use GuzzleHttp\Message\Response;
-use GuzzleHttp\Stream\Stream;
+use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Middleware;
+use GuzzleHttp\Psr7\Response;
+use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Psr7;
+use GuzzleHttp\Exception\RequestException;
 use Educa\DSB\Client\ApiClient\ClientV2;
 use Educa\DSB\Client\ApiClient\ClientAuthenticationException;
 use Educa\DSB\Client\ApiClient\ClientRequestException;
@@ -50,10 +53,10 @@ class ClientV2Test extends \PHPUnit_Framework_TestCase
 
         // Prepare some mocked responses.
         $guzzle = $this->getGuzzleTestClient([
-            new Response(200, [], Stream::factory('{"not":"what you expect"}')),
+            new Response(200, [], Psr7\stream_for('{"not":"what you expect"}')),
             new Response(400),
             new Response(204),
-            new Response(200, [], Stream::factory('{"token":"asjhasd987asdhasd87"}')),
+            new Response(200, [], Psr7\stream_for('{"token":"asjhasd987asdhasd87"}')),
         ]);
 
         // Prepare a client with a correct passphrase.
@@ -100,12 +103,11 @@ class ClientV2Test extends \PHPUnit_Framework_TestCase
 
         // Check that the authentication request sent the correct data. Prepare
         // a new client, but with a history subscriber.
+        $transactions = array();
         $guzzle = $this->getGuzzleTestClient([
-            new Response(200, [], Stream::factory('{"token":"asjhasd987asdhasd87"}')),
-            new Response(200, [], Stream::factory('{"token":"asjhasd987asdhasd87"}')),
-        ]);
-        $history = new History();
-        $guzzle->getEmitter()->attach($history);
+            new Response(200, [], Psr7\stream_for('{"token":"asjhasd987asdhasd87"}')),
+            new Response(200, [], Psr7\stream_for('{"token":"asjhasd987asdhasd87"}')),
+        ], $transactions);
 
         // Prepare a client with the correct passphrase.
         $client = new ClientV2(
@@ -121,7 +123,8 @@ class ClientV2Test extends \PHPUnit_Framework_TestCase
 
         // Get the request.
         $requestData = array();
-        parse_str($history->getLastRequest()->getBody(), $requestData);
+        $transaction = end($transactions);
+        parse_str((string) $transaction['request']->getBody(), $requestData);
 
         // Check the data was correctly encrypted.
         $signature = base64_decode($requestData['signature']);
@@ -146,7 +149,8 @@ class ClientV2Test extends \PHPUnit_Framework_TestCase
 
         // Get the request.
         $requestData = array();
-        parse_str($history->getLastRequest()->getBody(), $requestData);
+        $transaction = end($transactions);
+        parse_str((string) $transaction['request']->getBody(), $requestData);
 
         // Check the data was correctly encrypted.
         $signature = base64_decode($requestData['signature']);
@@ -165,14 +169,13 @@ class ClientV2Test extends \PHPUnit_Framework_TestCase
     public function testSearch()
     {
         // Prepare a new client, with a history subscriber.
+        $transactions = array();
         $guzzle = $this->getGuzzleTestClient([
-            new Response(200, [], Stream::factory('{"token":"asjhasd987asdhasd87"}')),
+            new Response(200, [], Psr7\stream_for('{"token":"asjhasd987asdhasd87"}')),
             new Response(200),
             new Response(400),
             new Response(204),
-        ]);
-        $history = new History();
-        $guzzle->getEmitter()->attach($history);
+        ], $transactions);
 
         // Prepare a client.
         $client = new ClientV2(
@@ -208,7 +211,10 @@ class ClientV2Test extends \PHPUnit_Framework_TestCase
         }
 
         // Check the sent parameters.
-        $requestData = $history->getLastRequest()->getQuery();
+        $transaction = end($transactions);
+        $requestData = array();
+        parse_str($transaction['request']->getUri()->getQuery(), $requestData);
+
         $this->assertEquals(
             'query',
             $requestData['query'],
@@ -270,7 +276,7 @@ class ClientV2Test extends \PHPUnit_Framework_TestCase
     {
         // Prepare a new client.
         $guzzle = $this->getGuzzleTestClient([
-            new Response(200, [], Stream::factory('{"token":"asjhasd987asdhasd87"}')),
+            new Response(200, [], Psr7\stream_for('{"token":"asjhasd987asdhasd87"}')),
             new Response(200),
             new Response(400),
             new Response(304),
@@ -326,8 +332,8 @@ class ClientV2Test extends \PHPUnit_Framework_TestCase
     {
         // Prepare a new client.
         $guzzle = $this->getGuzzleTestClient([
-            new Response(200, [], Stream::factory('{"token":"asjhasd987asdhasd87"}')),
-            new Response(200, [], Stream::factory('[{"suggestion":"Suggestion A","context":"The context of Suggestion A is this."},{"suggestion":"Suggestion B","context":"The context of Suggestion B is this."}]')),
+            new Response(200, [], Psr7\stream_for('{"token":"asjhasd987asdhasd87"}')),
+            new Response(200, [], Psr7\stream_for('[{"suggestion":"Suggestion A","context":"The context of Suggestion A is this."},{"suggestion":"Suggestion B","context":"The context of Suggestion B is this."}]')),
             new Response(400),
             new Response(304),
         ]);
@@ -382,7 +388,7 @@ class ClientV2Test extends \PHPUnit_Framework_TestCase
     {
         // Prepare a new client.
         $guzzle = $this->getGuzzleTestClient([
-            new Response(200, [], Stream::factory('{"token":"asjhasd987asdhasd87"}')),
+            new Response(200, [], Psr7\stream_for('{"token":"asjhasd987asdhasd87"}')),
             new Response(200),
             new Response(400),
             new Response(304),
@@ -438,7 +444,7 @@ class ClientV2Test extends \PHPUnit_Framework_TestCase
     {
         // Prepare a new client.
         $guzzle = $this->getGuzzleTestClient([
-            new Response(200, [], Stream::factory('{"token":"asjhasd987asdhasd87"}')),
+            new Response(200, [], Psr7\stream_for('{"token":"asjhasd987asdhasd87"}')),
             new Response(200),
             new Response(400),
             new Response(304),
@@ -493,7 +499,9 @@ class ClientV2Test extends \PHPUnit_Framework_TestCase
     public function testUnavailableEndpoint()
     {
         // Prepare a new client.
-        $guzzle = $this->getGuzzleTestClient([]);
+        $guzzle = $this->getGuzzleTestClient([
+            new RequestException("Error Communicating with Server", new Request('GET', 'test')),
+        ]);
 
         // Prepare a client.
         $client = new ClientV2(
@@ -518,15 +526,25 @@ class ClientV2Test extends \PHPUnit_Framework_TestCase
      *
      * @param array $responses
      *    A list of GuzzleHttp\Message response objects, to be used by the
-     *    mocked test client. Responses will be returned in the order specified
+     *    mocked test client. Responses will be returned in the order specified.
+     * @param array &$transactions
+     *    (optional) If passed, this array will be populated with the different
+     *    transactions, resulting from the requests made.
      *
      * @return GuzzleHttp\Client
      */
-    protected function getGuzzleTestClient(array $responses)
+    protected function getGuzzleTestClient(array $responses, &$transactions = NULL)
     {
-        $mock = new Mock($responses);
-        $guzzle = new GuzzleClient();
-        $guzzle->getEmitter()->attach($mock);
+        $mock = new MockHandler($responses);
+        $handler = HandlerStack::create($mock);
+
+        if (isset($transactions)) {
+            $history = Middleware::history($transactions);
+            // Add the history middleware to the handler stack.
+            $handler->push($history);
+        }
+
+        $guzzle = new GuzzleClient(['handler' => $handler]);
 
         return $guzzle;
     }

@@ -10,12 +10,11 @@ namespace Educa\DSB\Client\ApiClient;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\ClientInterface as GuzzleClientInterface;
-use GuzzleHttp\Message\Response;
+use GuzzleHttp\Psr7\Response;
 
 abstract class AbstractClient implements ClientInterface
 {
 
-    protected $apiUrl;
     protected $username;
     protected $privateKeyPath;
     protected $privateKeyPassphrase;
@@ -36,19 +35,12 @@ abstract class AbstractClient implements ClientInterface
      */
     public function __construct($apiUrl, $username, $privateKeyPath, $privateKeyPassphrase = null)
     {
-        // For clarity, code uses URLs with a prefixing slash. If the URL has a
-        // trailing slash, remove it.
-        // @codeCoverageIgnoreStart
-        if (preg_match('/\/$/', $apiUrl)) {
-            $apiUrl = substr($apiUrl, 0, strlen($apiUrl)-1);
-        }
-        // @codeCoverageIgnoreEnd
-
-        $this->apiUrl = $apiUrl;
         $this->username = $username;
         $this->privateKeyPath = $privateKeyPath;
         $this->privateKeyPassphrase = $privateKeyPassphrase;
-        $this->client = new GuzzleClient();
+        $this->client = new GuzzleClient([
+            'base_uri' => $apiUrl,
+        ]);
     }
 
     /**
@@ -100,7 +92,7 @@ abstract class AbstractClient implements ClientInterface
             $options['headers']['X-TOKEN-KEY'] = $this->tokenKey;
         }
         try {
-            $response = $this->client->post($this->apiUrl . $path, $options);
+            $response = $this->client->post($path, $options);
         } catch (RequestException $e) {
             // Catch all 4XX errors
             $response =  $e->getResponse();
@@ -138,7 +130,7 @@ abstract class AbstractClient implements ClientInterface
             $options['headers']['X-TOKEN-KEY'] = $this->tokenKey;
         }
         try {
-            $response = $this->client->put($this->apiUrl . $path, $options);
+            $response = $this->client->put($path, $options);
         } catch (RequestException $e) {
             // Catch all 4XX errors
             $response =  $e->getResponse();
@@ -175,7 +167,7 @@ abstract class AbstractClient implements ClientInterface
             $options['headers']['X-TOKEN-KEY'] = $this->tokenKey;
         }
         try {
-            $response = $this->client->get($this->apiUrl . $path, $options);
+            $response = $this->client->get($path, $options);
         } catch (RequestException $e) {
             // Catch all 4XX errors
             $response =  $e->getResponse();
@@ -213,7 +205,7 @@ abstract class AbstractClient implements ClientInterface
             $options['headers']['X-TOKEN-KEY'] = $this->tokenKey;
         }
         try {
-            $response = $this->client->delete($this->apiUrl . $path, $options);
+            $response = $this->client->delete($path, $options);
         } catch (RequestException $e) {
             // Catch all 4XX errors
             $response =  $e->getResponse();

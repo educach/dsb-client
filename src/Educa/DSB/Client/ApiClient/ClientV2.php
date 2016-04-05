@@ -40,13 +40,13 @@ class ClientV2 extends AbstractClient
         $vector = md5($this->username . time());
         openssl_sign($vector, $signature, $privateKey);
 
-        $options = array(
-            'body' => array(
+        $options = [
+            'form_params' => [
                 'user' => $this->username,
                 'signature' => base64_encode($signature),
                 'vector' => $vector,
-            ),
-        );
+            ],
+        ];
 
         try {
             $response = $this->post('/auth', $options);
@@ -74,9 +74,9 @@ class ClientV2 extends AbstractClient
      */
     public function search(
         $query = '',
-        array $useFacets = array(),
-        array $filters = array(),
-        array $additionalFields = array(),
+        array $useFacets = [],
+        array $filters = [],
+        array $additionalFields = [],
         $offset = 0,
         $limit = 50,
         $sortBy = 'random'
@@ -86,8 +86,8 @@ class ClientV2 extends AbstractClient
             throw new ClientAuthenticationException("No token found. Cannot make a search request without a token.");
         }
 
-        $options = array(
-            'query' => array(
+        $options = [
+            'query' => [
               'query' => $query,
               'facets' => empty($useFacets) ? '[]' : json_encode($useFacets),
               'filters' => empty($filters) ? '{}' : json_encode($filters),
@@ -95,8 +95,8 @@ class ClientV2 extends AbstractClient
               'offset' => $offset,
               'limit' => $limit,
               'sortBy' => $sortBy,
-            ),
-        );
+            ],
+        ];
 
         try {
             $response = $this->get('/search', $options);
@@ -113,18 +113,18 @@ class ClientV2 extends AbstractClient
     /**
      * @{inheritdoc}
      */
-    public function getSuggestions($query = '', array $filters = array())
+    public function getSuggestions($query = '', array $filters = [])
     {
         if (empty($this->tokenKey)) {
             throw new ClientAuthenticationException("No token found. Cannot fetch suggestions without a token.");
         }
 
-        $options = array(
-            'query' => array(
+        $options = [
+            'query' => [
                 'query' => $query,
                 'filters' => empty($filters) ? '{}' : json_encode($filters),
-            ),
-        );
+            ],
+        ];
 
         try {
             $response = $this->get('/suggest', $options);
@@ -214,11 +214,11 @@ class ClientV2 extends AbstractClient
             throw new ClientAuthenticationException("No token found. Cannot validate a LOM description without a token.");
         }
 
-        $params = array(
-            'body' => array(
+        $params = [
+            'body' => [
                 'description' => $json
-            ),
-        );
+            ],
+        ];
 
         try {
             $response = $this->post('/validate', $params);
@@ -237,11 +237,11 @@ class ClientV2 extends AbstractClient
             throw new ClientAuthenticationException("No token found. Cannot create a LOM description without a token.");
         }
 
-        $params = array(
-            'body' => array(
+        $params = [
+            'body' => [
                 'description' => $json
-            ),
-        );
+            ],
+        ];
 
         if ($previewImage) {
             $params['body']['previewImage'] = $previewImage;
@@ -264,11 +264,11 @@ class ClientV2 extends AbstractClient
             throw new ClientAuthenticationException("No token found. Cannot update a LOM description without a token.");
         }
 
-        $params = array(
-            'body' => array(
+        $params = [
+            'body' => [
                 'description' => $json
-            ),
-        );
+            ],
+        ];
         if ($previewImage) {
             $params['body']['previewImage'] = $previewImage;
         }
