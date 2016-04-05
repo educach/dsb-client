@@ -83,7 +83,7 @@ class ClientV2 extends AbstractClient
     )
     {
         if (empty($this->tokenKey)) {
-            throw new ClientAuthenticationException(sprintf("No token found. Cannot make a search request without a token."));
+            throw new ClientAuthenticationException("No token found. Cannot make a search request without a token.");
         }
 
         $options = array(
@@ -116,7 +116,7 @@ class ClientV2 extends AbstractClient
     public function getSuggestions($query = '', array $filters = array())
     {
         if (empty($this->tokenKey)) {
-            throw new ClientAuthenticationException(sprintf("No token found. Cannot fetch suggestions without a token."));
+            throw new ClientAuthenticationException("No token found. Cannot fetch suggestions without a token.");
         }
 
         $options = array(
@@ -144,7 +144,7 @@ class ClientV2 extends AbstractClient
     public function loadDescription($lomId)
     {
         if (empty($this->tokenKey)) {
-            throw new ClientAuthenticationException(sprintf("No token found. Cannot load a LOM description without a token."));
+            throw new ClientAuthenticationException("No token found. Cannot load a LOM description without a token.");
         }
 
         try {
@@ -165,7 +165,7 @@ class ClientV2 extends AbstractClient
     public function loadOntologyData($type = 'list', array $vocabularyIds = null)
     {
         if (empty($this->tokenKey)) {
-            throw new ClientAuthenticationException(sprintf("No token found. Cannot load a LOM description without a token."));
+            throw new ClientAuthenticationException("No token found. Cannot load Ontology data without a token.");
         }
 
         try {
@@ -189,7 +189,7 @@ class ClientV2 extends AbstractClient
     public function loadPartners()
     {
         if (empty($this->tokenKey)) {
-            throw new ClientAuthenticationException(sprintf("No token found. Cannot load a LOM description without a token."));
+            throw new ClientAuthenticationException("No token found. Cannot load a partner without a token.");
         }
 
         try {
@@ -211,7 +211,7 @@ class ClientV2 extends AbstractClient
     public function validateDescription($json)
     {
         if (empty($this->tokenKey)) {
-            throw new ClientAuthenticationException(sprintf("No token found. Cannot validate a LOM description without a token."));
+            throw new ClientAuthenticationException("No token found. Cannot validate a LOM description without a token.");
         }
 
         $params = array(
@@ -234,7 +234,7 @@ class ClientV2 extends AbstractClient
     public function postDescription($json, $previewImage = false)
     {
         if (empty($this->tokenKey)) {
-            throw new ClientAuthenticationException(sprintf("No token found. Cannot create a LOM description without a token."));
+            throw new ClientAuthenticationException("No token found. Cannot create a LOM description without a token.");
         }
 
         $params = array(
@@ -242,6 +242,7 @@ class ClientV2 extends AbstractClient
                 'description' => $json
             ),
         );
+
         if ($previewImage) {
             $params['body']['previewImage'] = $previewImage;
         }
@@ -260,7 +261,7 @@ class ClientV2 extends AbstractClient
     public function putDescription($id, $json, $previewImage = false)
     {
         if (empty($this->tokenKey)) {
-            throw new ClientAuthenticationException(sprintf("No token found. Cannot update a LOM description without a token."));
+            throw new ClientAuthenticationException("No token found. Cannot update a LOM description without a token.");
         }
 
         $params = array(
@@ -286,7 +287,7 @@ class ClientV2 extends AbstractClient
     public function deleteDescription($id)
     {
         if (empty($this->tokenKey)) {
-            throw new ClientAuthenticationException(sprintf("No token found. Cannot delete a LOM description without a token."));
+            throw new ClientAuthenticationException("No token found. Cannot delete a LOM description without a token.");
         }
 
         try {
