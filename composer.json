@@ -21,10 +21,10 @@
     ],
     "require-dev": {
         "phpunit/phpunit": "^4.7",
-        "satooshi/php-coveralls": "~0.7.0"
+        "satooshi/php-coveralls": "~1.0"
     },
     "require": {
-        "guzzlehttp/guzzle": "~5.0",
+        "guzzlehttp/guzzle": "~6.2",
         "sabre/xml": "~1.0"
     },
     "autoload": {
