@@ -35,6 +35,14 @@ abstract class AbstractClient implements ClientInterface
      */
     public function __construct($apiUrl, $username, $privateKeyPath, $privateKeyPassphrase = null)
     {
+        // The URL requires a slash at the end, otherwise Guzzle will slice off
+        // the last part. Because the API endpoint has URLs dependent on the
+        // API version (e.g.: https://dsb-api.educa.ch/v2/ => v2), we have to
+        // make sure this version number is kept by Guzzle.
+        if (!preg_match('/\/$/', $apiUrl)) {
+            $apiUrl .= '/';
+        }
+
         $this->username = $username;
         $this->privateKeyPath = $privateKeyPath;
         $this->privateKeyPassphrase = $privateKeyPassphrase;
