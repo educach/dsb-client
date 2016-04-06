@@ -15,6 +15,7 @@ use GuzzleHttp\Psr7\Response;
 abstract class AbstractClient implements ClientInterface
 {
 
+    protected $apiUrl;
     protected $username;
     protected $privateKeyPath;
     protected $privateKeyPassphrase;
@@ -35,20 +36,11 @@ abstract class AbstractClient implements ClientInterface
      */
     public function __construct($apiUrl, $username, $privateKeyPath, $privateKeyPassphrase = null)
     {
-        // The URL requires a slash at the end, otherwise Guzzle will slice off
-        // the last part. Because the API endpoint has URLs dependent on the
-        // API version (e.g.: https://dsb-api.educa.ch/v2/ => v2), we have to
-        // make sure this version number is kept by Guzzle.
-        if (!preg_match('/\/$/', $apiUrl)) {
-            $apiUrl .= '/';
-        }
-
+        $this->apiUrl = rtrim($apiUrl, '/');
         $this->username = $username;
         $this->privateKeyPath = $privateKeyPath;
         $this->privateKeyPassphrase = $privateKeyPassphrase;
-        $this->client = new GuzzleClient([
-            'base_uri' => $apiUrl,
-        ]);
+        $this->client = new GuzzleClient();
     }
 
     /**
@@ -86,7 +78,8 @@ abstract class AbstractClient implements ClientInterface
      * pass it using $options.
      *
      * @param string $path
-     *    The path to make the request to. This should not include the API URL.
+     *    The path to make the request to. This should not include the API URL,
+     *    and should start with a slash.
      * @param array $options
      *    (optional) An array of options. See GuzzleHttp\Client::post() for more
      *    information.
@@ -100,7 +93,7 @@ abstract class AbstractClient implements ClientInterface
             $options['headers']['X-TOKEN-KEY'] = $this->tokenKey;
         }
         try {
-            $response = $this->client->post($path, $options);
+            $response = $this->client->post($this->apiUrl . $path, $options);
         } catch (RequestException $e) {
             // Catch all 4XX errors
             $response =  $e->getResponse();
@@ -124,7 +117,8 @@ abstract class AbstractClient implements ClientInterface
      * pass it using $options.
      *
      * @param string $path
-     *    The path to make the request to. This should not include the API URL.
+     *    The path to make the request to. This should not include the API URL,
+     *    and should start with a slash.
      * @param array $options
      *    (optional) An array of options. See GuzzleHttp\Client::put() for more
      *    information.
@@ -138,7 +132,7 @@ abstract class AbstractClient implements ClientInterface
             $options['headers']['X-TOKEN-KEY'] = $this->tokenKey;
         }
         try {
-            $response = $this->client->put($path, $options);
+            $response = $this->client->put($this->apiUrl . $path, $options);
         } catch (RequestException $e) {
             // Catch all 4XX errors
             $response =  $e->getResponse();
@@ -161,7 +155,8 @@ abstract class AbstractClient implements ClientInterface
      * pass it using $options.
      *
      * @param string $path
-     *    The path to make the request to. This should not include the API URL.
+     *    The path to make the request to. This should not include the API URL,
+     *    and should start with a slash.
      * @param array $options
      *    (optional) An array of options. See GuzzleHttp\Client::get() for more
      *    information.
@@ -175,7 +170,7 @@ abstract class AbstractClient implements ClientInterface
             $options['headers']['X-TOKEN-KEY'] = $this->tokenKey;
         }
         try {
-            $response = $this->client->get($path, $options);
+            $response = $this->client->get($this->apiUrl . $path, $options);
         } catch (RequestException $e) {
             // Catch all 4XX errors
             $response =  $e->getResponse();
@@ -199,7 +194,8 @@ abstract class AbstractClient implements ClientInterface
      * pass it using $options.
      *
      * @param string $path
-     *    The path to make the request to. This should not include the API URL.
+     *    The path to make the request to. This should not include the API URL,
+     *    and should start with a slash.
      * @param array $options
      *    (optional) An array of options. See GuzzleHttp\Client::delete() for
      *    more information.
@@ -213,7 +209,7 @@ abstract class AbstractClient implements ClientInterface
             $options['headers']['X-TOKEN-KEY'] = $this->tokenKey;
         }
         try {
-            $response = $this->client->delete($path, $options);
+            $response = $this->client->delete($this->apiUrl . $path, $options);
         } catch (RequestException $e) {
             // Catch all 4XX errors
             $response =  $e->getResponse();
