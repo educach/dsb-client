@@ -354,7 +354,7 @@ class ClientV2 extends AbstractClient
             throw new \InvalidArgumentException("The aggregation method can only by one of the following: 'day', 'month' or 'year'. Provided: '$aggregationMethod'.");
         }
 
-        if (strtotime($from) <= strtotime($to)) {
+        if (strtotime($from) >= strtotime($to)) {
             throw new \InvalidArgumentException("The 'to' date must be greater than the 'from' date.");
         }
 
