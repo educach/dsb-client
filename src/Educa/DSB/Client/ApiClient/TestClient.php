@@ -277,7 +277,7 @@ class TestClient extends AbstractClient
         $fromTime = strtotime($from);
         $toTime = strtotime($to);
 
-        if ($fromTime <= $toTime) {
+        if ($fromTime >= $toTime) {
             throw new \InvalidArgumentException("The 'to' date must be greater than the 'from' date.");
         }
 
