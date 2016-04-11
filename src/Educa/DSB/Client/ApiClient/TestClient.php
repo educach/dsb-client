@@ -284,7 +284,7 @@ class TestClient extends AbstractClient
         $fromYear = date('Y', $fromTime);
         $toYear = date('Y', $toTime);
 
-        return array_map(function() use($fromYear, $toYear) {
+        return array_map(function() use($fromYear, $toYear, $aggregationMethod) {
             $result = [
                 'lomId' => uniqid(),
                 'views' => rand(1, 300),
