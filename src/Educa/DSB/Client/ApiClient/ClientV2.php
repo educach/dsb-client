@@ -341,5 +341,38 @@ class ClientV2 extends AbstractClient
         }
     }
 
+    /**
+     * @{inheritdoc}
+     */
+    public function loadPartnerStatistics($partnerId, $from, $to, $aggregationMethod = 'day')
+    {
+        if (empty($this->tokenKey)) {
+            throw new ClientAuthenticationException("No token found. Cannot load partner statistics without a token.");
+        }
+
+        if (!in_array($aggregationMethod, ['day', 'month', 'year'])) {
+            throw new \InvalidArgumentException("The aggregation method can only by one of the following: 'day', 'month' or 'year'. Provided: '$aggregationMethod'.");
+        }
+
+        if (strtotime($from) <= strtotime($to)) {
+            throw new \InvalidArgumentException("The 'to' date must be greater than the 'from' date.");
+        }
+
+        try {
+            // Prepare the URL arguments.
+            $partnerId = urlencode($partnerId);
+            $from = urlencode($from);
+            $to = urlencode($to);
+            $aggregationMethod = urlencode($aggregationMethod);
+
+            $response = $this->get("/stats/$partnerId/$from/$to/$aggregationMethod");
+            return json_decode($response->getBody(), true);
+            // @codeCoverageIgnoreStart
+        } catch(GuzzleRequestException $e) {
+            throw new ClientRequestException(sprintf("Request to /stats/$partnerId/$from/$to/$aggregationMethod failed. Status: %s. Error message: %s", $e->getCode(), $e->getMessage()));
+            // @codeCoverageIgnoreEnd
+        }
+    }
+
 }
 

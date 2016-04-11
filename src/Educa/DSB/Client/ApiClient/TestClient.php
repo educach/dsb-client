@@ -268,4 +268,47 @@ class TestClient extends AbstractClient
     {
         return array('lomId' => $id);
     }
+
+    /**
+     * @{inheritdoc}
+     */
+    public function loadPartnerStatistics($partnerId, $from, $to, $aggregationMethod = 'day')
+    {
+        $fromTime = strtotime($from);
+        $toTime = strtotime($to);
+
+        if ($fromTime <= $toTime) {
+            throw new \InvalidArgumentException("The 'to' date must be greater than the 'from' date.");
+        }
+
+        $fromYear = date('Y', $fromTime);
+        $toYear = date('Y', $toTime);
+
+        return array_map(function() use($fromYear, $toYear) {
+            $result = [
+                'lomId' => uniqid(),
+                'views' => rand(1, 300),
+                // At least put some realistic values for the years.
+                'year' => $fromYear == $toYear ? $fromYear : rand($fromYear, $toYear),
+            ];
+
+            if (in_array($aggregationMethod, ['day', 'month'])) {
+                $result['month'] = rand(1, 12);
+
+                if ($result['month'] < 10) {
+                    $result['month'] = '0' . $result['month'];
+                }
+
+                if ($aggregationMethod == 'day') {
+                    $result['day'] = rand(1, 31);
+
+                    if ($result['day'] < 10) {
+                        $result['day'] = '0' . $result['day'];
+                    }
+                }
+            }
+
+            return $result;
+        }, array_fill(1, rand(2, 20), null));
+    }
 }

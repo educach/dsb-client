@@ -216,4 +216,28 @@ interface ClientInterface
      */
     public function loadPartners();
 
+    /**
+     * Load partner statistics.
+     *
+     * @throws \Educa\DSB\Client\ApiClient\ClientAuthenticationException
+     *    If not authenticated, will throw an exception. If not authorized, will
+     *    also throw an exception.
+     * @throws \Educa\DSB\Client\ApiClient\ClientRequestException
+     *    If the request fails, will throw an exception.
+     *
+     * @param string $partnerId
+     *    The partner identifier, usually an email address.
+     * @param string $from
+     *    The start date for the statistics. Must use the "Y-m-d" format.
+     * @param string $to
+     *    The end date for the statistics. Must use the "Y-m-d" format.
+     * @param string $aggregationMethod
+     *    (optional) The aggregation method for the views. Can be either "day",
+     *    "month" or "year". Defaults to "day".
+     *
+     * @return array
+     *    The list of content partners.
+     */
+    public function loadPartnerStatistics($partnerId, $from, $to, $aggregationMethod = 'day');
+
 }
