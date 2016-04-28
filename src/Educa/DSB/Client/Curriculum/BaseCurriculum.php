@@ -131,8 +131,8 @@ abstract class BaseCurriculum implements CurriculumInterface
                         $taxonId = $taxon['id'];
 
                         // Do we already have this term prepared?
-                        if (isset($terms["$parentId:{$taxonId}"])) {
-                            $term = $terms["$parentId:{$taxonId}"];
+                        if (isset($terms["{$parentId}:{$taxonId}"])) {
+                            $term = $terms["{$parentId}:{$taxonId}"];
                         } else {
                             // Create the new term.
                             $term = $this->termFactory(
@@ -184,7 +184,7 @@ abstract class BaseCurriculum implements CurriculumInterface
                             }
 
                             // Store it.
-                            $terms["$parentId:{$taxonId}"] = $term;
+                            $terms["{$parentId}:{$taxonId}"] = $term;
                         }
 
                         // Did we already add this term to the parent?
