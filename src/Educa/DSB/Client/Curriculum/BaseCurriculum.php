@@ -225,15 +225,6 @@ abstract class BaseCurriculum implements CurriculumInterface
     /**
      * Helper method for checking if a taxon is a discipline.
      *
-     * The LOM-CH standard is currently undergoing changes regarding the
-     * storage of curricula. The classification field (9) format is going to
-     * change (more closely resembling the international standard), and the
-     * same, old format, is going to be used for the curricula field (10). But
-     * we don't know, at this point, what taxonomy path we are dealing with.
-     * This method only works on the new, future format, which has a "purpose"
-     * field on each taxon, specifying its role. But specific classes
-     * can enhance this method to also take into account legacy formats.
-     *
      * @param array $taxon
      *    A taxon entry in a taxonomy path.
      *
@@ -242,10 +233,6 @@ abstract class BaseCurriculum implements CurriculumInterface
      */
     protected function taxonIsDiscipline($taxon)
     {
-        if (isset($taxon['purpose']['value']) && $taxon['purpose']['value'] === 'discipline') {
-            return true;
-        } else {
-            return false;
-        }
+        return $this->getTermType($taxon['id']) == 'discipline';
     }
 }
