@@ -1,6 +1,15 @@
 /vendor/
 /build/
 /coverage-report/
+
+# IGNORE THESE!! We are no longer allowed to ship with the LP21 data. This makes
+# our unit test unusable, as checkouts won't get the fixture data. Ignore them,
+# but keep them in our local repos, so we can at least continue to test our
+# business logic.
+tests/fixtures/curriculum-data/lp21_curriculum.ascii
+tests/fixtures/curriculum-data/lp21_curriculum.xml
+tests/Educa/DSB/Client/Tests/Curriculum/LP21CurriculumTest.php
+
 *.sublime-*
 composer.lock
 phpunit.xml

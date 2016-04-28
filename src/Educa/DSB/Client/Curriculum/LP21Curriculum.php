@@ -14,6 +14,9 @@ use Educa\DSB\Client\Curriculum\CurriculumInvalidContextException;
 use Sabre\Xml\Reader;
 use Sabre\Xml\Element\KeyValue;
 
+/**
+ * @codeCoverageIgnore
+ */
 class LP21Curriculum extends BaseCurriculum
 {
 
