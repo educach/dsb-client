@@ -530,15 +530,7 @@
                   }
                }
             ]
-         }
-      ]
-   },
-   {
-      "purpose":{
-         "source":"LOM-CHv1.1",
-         "value":"discipline"
-      },
-      "taxonPath":[
+         },
          {
             "source":{
                "en":"educa"
@@ -573,15 +565,7 @@
                   }
                }
             ]
-         }
-      ]
-   },
-   {
-      "purpose":{
-         "source":"LOM-CHv1.1",
-         "value":"discipline"
-      },
-      "taxonPath":[
+         },
          {
             "source":{
                "en":"educa"
