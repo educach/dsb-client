@@ -133,20 +133,16 @@ interface ClientInterface
      *
      * @param string $json
      *    The JSON representation of the description to create.
+     * @param array $catalogs
+     *    (optional) A list of catalogs to publish to.
      * @param string|false $previewImage
      *    (optional) A path to the preview image to upload in the same payload.
      *    Defaults to false.
      *
-     * @param string $catalogs
-     *    A comma-separated list of catalogs to publish to.
-     *
-     * @param string $previewImage
-     *    The contents of the previewImage file.
-     *
      * @return array
      *    The creation result, as returned by the REST API.
      */
-    public function postDescription($json, $catalogs = null, $previewImage = false);
+    public function postDescription($json, $catalogs = array(), $previewImage = false);
 
     /**
      * Put a description.
@@ -164,11 +160,13 @@ interface ClientInterface
      *    The ID of the description.
      * @param string $json
      *    The JSON representation of the description to create.
+     * @param array $catalogs
+     *    (optional) A list of catalogs to publish to.
      *
      * @return array
      *    The update result, as returned by the REST API.
      */
-    public function putDescription($id, $json);
+    public function putDescription($id, $json, $catalogs = array());
 
     /**
      * Delete a description.

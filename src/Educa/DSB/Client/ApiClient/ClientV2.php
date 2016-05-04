@@ -307,7 +307,12 @@ class ClientV2 extends AbstractClient
             ],
         ];
 
+        if (!is_array($catalogs)) {
+            throw new \RuntimeException("It seems that the 'catalogs' parameter is not correctly formatted. Skipping");
+        }
+
         try {
+            $catalogs = implode(',', $catalogs);
             $response = $this->put("/description/" . urlencode($id) . "/". urlencode($catalogs), $params);
             if ($response->getStatusCode() == 200) {
                 return json_decode($response->getBody(), true);

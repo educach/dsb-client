@@ -246,7 +246,7 @@ class TestClient extends AbstractClient
      * @{inheritdoc}
      * @todo
      */
-    public function postDescription($json, $previewImage = false)
+    public function postDescription($json, $catalogs = array(), $previewImage = false)
     {
         return array('lomId' => uniqid());
     }
@@ -255,7 +255,7 @@ class TestClient extends AbstractClient
      * @{inheritdoc}
      * @todo
      */
-    public function putDescription($id, $json, $previewImage = false)
+    public function putDescription($id, $json, $catalogs = array())
     {
         return array('lomId' => $id);
     }
