@@ -266,6 +266,7 @@ class ClientV2 extends AbstractClient
                 $params['multipart'][] = [
                     'name'     => 'previewImage',
                     'contents' => fopen($previewImage, 'r'),
+                    'filename' => @end(explode('/', $previewImage)),
                 ];
             } else {
                 throw new \RuntimeException(sprintf("File %s does not exist, or is not readable.", $previewImage));
@@ -310,6 +311,7 @@ class ClientV2 extends AbstractClient
                 $params['multipart'][] = [
                     'name'     => 'previewImage',
                     'contents' => fopen($previewImage, 'r'),
+                    'filename' => @end(explode('/', $previewImage)),
                 ];
             } else {
                 throw new \RuntimeException(sprintf("File %s does not exist, or is not readable.", $previewImage));
