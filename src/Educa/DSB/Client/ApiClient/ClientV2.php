@@ -290,33 +290,17 @@ class ClientV2 extends AbstractClient
     /**
      * @{inheritdoc}
      */
-    public function putDescription($id, $json, $previewImage = false)
+    public function putDescription($id, $json)
     {
         if (empty($this->tokenKey)) {
             throw new ClientAuthenticationException("No token found. Cannot update a LOM description without a token.");
         }
 
-        // @todo DRYer, merge with postDescription() logic.
         $params = [
-            'multipart' => [
-                [
-                    'name'     => 'description',
-                    'contents' => $json,
-                ],
+            'form_params' => [
+                'description' => $json,
             ],
         ];
-
-        if ($previewImage) {
-            if (file_exists($previewImage) && is_readable($previewImage)) {
-                $params['multipart'][] = [
-                    'name'     => 'previewImage',
-                    'contents' => fopen($previewImage, 'r'),
-                    'filename' => @end(explode('/', $previewImage)),
-                ];
-            } else {
-                throw new \RuntimeException(sprintf("File %s does not exist, or is not readable.", $previewImage));
-            }
-        }
 
         try {
             $response = $this->put("/description/" . urlencode($id), $params);

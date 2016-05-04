@@ -133,6 +133,9 @@ interface ClientInterface
      *
      * @param string $json
      *    The JSON representation of the description to create.
+     * @param string|false $previewImage
+     *    (optional) A path to the preview image to upload in the same payload.
+     *    Defaults to false.
      *
      * @return array
      *    The creation result, as returned by the REST API.
@@ -159,7 +162,7 @@ interface ClientInterface
      * @return array
      *    The update result, as returned by the REST API.
      */
-    public function putDescription($id, $json, $previewImage = false);
+    public function putDescription($id, $json);
 
     /**
      * Delete a description.
