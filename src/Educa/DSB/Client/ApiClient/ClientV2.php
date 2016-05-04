@@ -274,7 +274,11 @@ class ClientV2 extends AbstractClient
 
         try {
             $response = $this->post('/description', $params);
-            return json_decode($response->getBody(), true);
+            if ($response->getStatusCode() == 200) {
+                return json_decode($response->getBody(), true);
+            } else {
+                throw new ClientRequestException(sprintf("POST request to /description failed. Status: %s. Error message: %s", $response->getStatusCode(), $response->getBody()));
+            }
             // @codeCoverageIgnoreStart
         } catch(GuzzleRequestException $e) {
             throw new ClientRequestException(sprintf("Post request to /description failed. Status: %s. Error message: %s", $e->getCode(), $e->getMessage()));
@@ -314,6 +318,11 @@ class ClientV2 extends AbstractClient
 
         try {
             $response = $this->put("/description/" . urlencode($id), $params);
+            if ($response->getStatusCode() == 200) {
+                return json_decode($response->getBody(), true);
+            } else {
+                throw new ClientRequestException(sprintf("Put request to /description/%s failed. Status: %s. Error message: %s", urlencode($id), $response->getStatusCode(), $response->getBody()));
+            }
             return json_decode($response->getBody(), true);
             // @codeCoverageIgnoreStart
         } catch(GuzzleRequestException $e) {
