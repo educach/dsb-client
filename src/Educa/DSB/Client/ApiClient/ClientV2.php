@@ -245,7 +245,7 @@ class ClientV2 extends AbstractClient
     /**
      * @{inheritdoc}
      */
-    public function postDescription($json, $previewImage = false)
+    public function postDescription($json, $catalogs = array(), $previewImage = false)
     {
         if (empty($this->tokenKey)) {
             throw new ClientAuthenticationException("No token found. Cannot create a LOM description without a token.");
@@ -273,13 +273,23 @@ class ClientV2 extends AbstractClient
             }
         }
 
+        if (!is_array($catalogs)) {
+            throw new \RuntimeException("It seems that the 'catalogs' parameter is not correctly formatted. Skipping");
+        }
+
         try {
+<<<<<<< HEAD
             $response = $this->post('/description', $params);
             if ($response->getStatusCode() == 200) {
                 return json_decode($response->getBody(), true);
             } else {
                 throw new ClientRequestException(sprintf("POST request to /description failed. Status: %s. Error message: %s", $response->getStatusCode(), $response->getBody()));
             }
+=======
+            $catalogs = implode(',', $catalogs);
+            $response = $this->post("/description/" . urlencode($catalogs), $params);
+            return json_decode($response->getBody(), true);
+>>>>>>> ebc12bd... Added catalogs parameters in post and put functions
             // @codeCoverageIgnoreStart
         } catch(GuzzleRequestException $e) {
             throw new ClientRequestException(sprintf("Post request to /description failed. Status: %s. Error message: %s", $e->getCode(), $e->getMessage()));
@@ -290,7 +300,11 @@ class ClientV2 extends AbstractClient
     /**
      * @{inheritdoc}
      */
+<<<<<<< HEAD
     public function putDescription($id, $json)
+=======
+    public function putDescription($id, $json, $previewImage = false, $catalogs = array())
+>>>>>>> ebc12bd... Added catalogs parameters in post and put functions
     {
         if (empty($this->tokenKey)) {
             throw new ClientAuthenticationException("No token found. Cannot update a LOM description without a token.");
@@ -303,16 +317,21 @@ class ClientV2 extends AbstractClient
         ];
 
         try {
+<<<<<<< HEAD
             $response = $this->put("/description/" . urlencode($id), $params);
             if ($response->getStatusCode() == 200) {
                 return json_decode($response->getBody(), true);
             } else {
                 throw new ClientRequestException(sprintf("Put request to /description/%s failed. Status: %s. Error message: %s", urlencode($id), $response->getStatusCode(), $response->getBody()));
             }
+=======
+            print_r( $params );
+            $response = $this->put("/description/" . urlencode($id) . "/". urlencode($catalogs), $params);
+>>>>>>> ebc12bd... Added catalogs parameters in post and put functions
             return json_decode($response->getBody(), true);
             // @codeCoverageIgnoreStart
         } catch(GuzzleRequestException $e) {
-            throw new ClientRequestException(sprintf("Put request to /description/$id failed. Status: %s. Error message: %s", $e->getCode(), $e->getMessage()));
+            throw new ClientRequestException(sprintf("Put request to /description/$id/$catalogs failed. Status: %s. Error message: %s", $e->getCode(), $e->getMessage()));
             // @codeCoverageIgnoreEnd
         }
     }

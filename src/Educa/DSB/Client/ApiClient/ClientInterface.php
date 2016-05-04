@@ -137,10 +137,16 @@ interface ClientInterface
      *    (optional) A path to the preview image to upload in the same payload.
      *    Defaults to false.
      *
+     * @param string $catalogs
+     *    A comma-separated list of catalogs to publish to.
+     *
+     * @param string $previewImage
+     *    The contents of the previewImage file.
+     *
      * @return array
      *    The creation result, as returned by the REST API.
      */
-    public function postDescription($json, $previewImage = false);
+    public function postDescription($json, $catalogs = null, $previewImage = false);
 
     /**
      * Put a description.
