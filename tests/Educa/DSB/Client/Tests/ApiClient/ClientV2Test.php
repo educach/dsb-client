@@ -527,22 +527,6 @@ class ClientV2Test extends \PHPUnit_Framework_TestCase
         } catch(ClientAuthenticationException $e) {
             $this->fail("Updating a description while being authenticated should not throw an exception.");
         }
-
-        // Trying to upload a file that doesn't exist throws an error.
-        try {
-            $client->putDescription('some-id', '{"json":"data"}', '/where/is/this/file.jpg');
-            $this->fail("Trying to upload a file that doesn't exist should throw an error.");
-        } catch(\RuntimeException $e) {
-            $this->assertTrue(true, "Trying to upload a file that doesn't exist throws an error.");
-        }
-
-        // Trying to upload a file that does exist does not throw an error.
-        try {
-            $client->putDescription('some-id', '{"json":"data"}', FIXTURES_DIR . '/lom-data/image.png');
-            $this->assertTrue(true, "Trying to upload a file that does exist does not throw an error.");
-        } catch(\Exception $e) {
-            $this->fail("Trying to upload a file that does exist should not throw an error.");
-        }
     }
 
     /**
