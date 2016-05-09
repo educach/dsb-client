@@ -19,6 +19,7 @@ User Guide
     quickstart
     authentication
     descriptions
+    files
     ontology
     curricula
     testing
