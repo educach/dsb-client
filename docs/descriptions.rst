@@ -269,7 +269,7 @@ Ontology data provides human-readable strings for *vocabulary* entries. For exam
 Multilingual descriptions
 -------------------------
 
-Because this is communicating with the *Swiss* national catalog (which has 4 official languages), many descriptions are multilingual. When loading a description, many fields, like *title*, *keyword*, etc, can have different values per language.
+Because this is communicating with the *Swiss* national catalog (which has 4 official languages), many descriptions are multilingual. When loading a description, many fields, like *title*, *keyword*, etc, can have different values, one per language.
 
 Loading a description
 ---------------------
@@ -391,7 +391,7 @@ Simple validation script:
 Response syntax
 ---------------
 
-The response will always contain a ``valid`` key, that is a boolean.
+The response will always contain a ``valid`` key, which is a boolean.
 
 If the submitted LOM object is invalid, the ``errors`` key will be populated with a list of issues.
 
