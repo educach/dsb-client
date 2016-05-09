@@ -649,6 +649,62 @@ class ClientV2Test extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test uploading a file.
+     */
+    public function testUploadFile()
+    {
+        $filePath = FIXTURES_DIR . '/image-data/image.gif';
+
+        // Prepare a new client.
+        $guzzle = $this->getGuzzleTestClient([
+            new Response(200, [], Psr7\stream_for('{"token":"asjhasd987asdhasd87"}')),
+            new Response(200),
+            new Response(200),
+        ]);
+
+        // Prepare a client.
+        $client = new ClientV2(
+            'http://localhost',
+            'user@site.com',
+            FIXTURES_DIR . '/user/privatekey_nopassphrase.pem'
+        );
+        $client->setClient($guzzle);
+
+        // Uploading a file without being authenticated throws an error.
+        try {
+            $client->uploadFile($filePath);
+            $this->fail("Uploading a file without being authenticated should throw an exception.");
+        } catch(ClientAuthenticationException $e) {
+            $this->assertTrue(true, "Uploading a file without being authenticated throws an exception.");
+        }
+
+        // Uploading a file while authenticated doesn't throw an error.
+        try {
+            $client->authenticate();
+            $client->uploadFile($filePath);
+            $this->assertTrue(true, "Uploading a file while being authenticated does not throw an exception.");
+        } catch(ClientAuthenticationException $e) {
+            $this->fail("Uploading a file while being authenticated should not throw an exception.");
+        }
+
+        // Trying to upload a file that doesn't exist throws an error.
+        try {
+            $client->uploadFile('/does/not/exist.png');
+            $this->fail("Trying to upload a file that doesn't exist should throw an error.");
+        } catch(\RuntimeException $e) {
+            $this->assertTrue(true, "Trying to upload a file that doesn't exist throws an error.");
+        }
+
+        // Trying to upload a file that does exist does not throw an error.
+        try {
+            $client->uploadFile($filePath);
+            $this->assertTrue(true, "Trying to upload a file that does exist does not throw an error.");
+        } catch(\Exception $e) {
+            $this->fail("Trying to upload a file that does exist should not throw an error.");
+        }
+    }
+
+    /**
      * Get a test client.
      *
      * This returns a GuzzleHttp\Client instance, with a mocked HTTP responses.

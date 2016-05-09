@@ -247,4 +247,26 @@ interface ClientInterface
      */
     public function loadPartnerStatistics($partnerId, $from, $to, $aggregationMethod = 'day');
 
+    /**
+     * Upload a file.
+     *
+     * Upload a file. Check the official REST API
+     * documentation for the response format.
+     *
+     * @throws \Educa\DSB\Client\ApiClient\ClientAuthenticationException
+     *    If not authenticated, will throw an exception. If not authorized, will
+     *    also throw an exception.
+     * @throws \Educa\DSB\Client\ApiClient\ClientRequestException
+     *    If the request fails, will throw an exception.
+     * @throws \RuntimeException
+     *    If file is not readable, or doesn't exist, will throw an exception.
+     *
+     * @param string $filePath
+     *    The path of the file to upload.
+     *
+     * @return array
+     *    The creation result, as returned by the REST API.
+     */
+    public function uploadFile($filePath);
+
 }

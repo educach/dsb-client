@@ -379,5 +379,39 @@ class ClientV2 extends AbstractClient
         }
     }
 
+    /**
+     * @{inheritdoc}
+     */
+    public function uploadFile($filePath)
+    {
+        if (empty($this->tokenKey)) {
+            throw new ClientAuthenticationException("No token found. Cannot upload a file without a token.");
+        }
+
+        if (!file_exists($filePath)) {
+            throw new \RuntimeException(sprintf("File %s does not exist.", $filePath));
+        } elseif (!is_readable($filePath)) {
+            throw new \RuntimeException(sprintf("File %s is not readable.", $filePath));
+        }
+
+        $params = [
+            'multipart' => [
+                [
+                    'name' => 'file',
+                    'contents' => fopen($filePath, 'r'),
+                ],
+            ],
+        ];
+
+        try {
+            $response = $this->post('/file', $params);
+            return json_decode($response->getBody(), true);
+            // @codeCoverageIgnoreStart
+        } catch(GuzzleRequestException $e) {
+            throw new ClientRequestException(sprintf("Request to /file failed. Status: %s. Error message: %s", $e->getCode(), $e->getMessage()));
+            // @codeCoverageIgnoreEnd
+        }
+    }
+
 }
 

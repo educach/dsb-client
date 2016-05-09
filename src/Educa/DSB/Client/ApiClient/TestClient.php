@@ -311,4 +311,15 @@ class TestClient extends AbstractClient
             return $result;
         }, array_fill(1, rand(2, 20), null));
     }
+
+    /**
+     * @{inheritdoc}
+     */
+    public function uploadFile($filePath)
+    {
+        $extension = @end(explode('.', $filePath));
+        return array(
+            'fileUrl' => 'http://dev-dsb-api.educa.ch/v2/file/default/' . md5($filePath) . ".$extension",
+        );
+    }
 }
