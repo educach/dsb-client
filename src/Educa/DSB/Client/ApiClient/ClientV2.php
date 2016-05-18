@@ -275,11 +275,12 @@ class ClientV2 extends AbstractClient
 
         if (!is_array($catalogs)) {
             throw new \RuntimeException("It seems that the 'catalogs' parameter is not correctly formatted. Skipping");
+        } else if (!empty($catalogs)) {
+            $params['headers']['X-DSB-CATALOGS'] = implode(',', $catalogs);
         }
 
         try {
-            $catalogs = implode(',', $catalogs);
-            $response = $this->post("/description/" . urlencode($catalogs), $params);
+            $response = $this->post('/description', $params);
             if ($response->getStatusCode() == 200) {
                 return json_decode($response->getBody(), true);
             } else {
@@ -309,11 +310,12 @@ class ClientV2 extends AbstractClient
 
         if (!is_array($catalogs)) {
             throw new \RuntimeException("It seems that the 'catalogs' parameter is not correctly formatted. Skipping");
+        } else if (!empty($catalogs)) {
+            $params['headers']['X-DSB-CATALOGS'] = implode(',', $catalogs);
         }
 
         try {
-            $catalogs = implode(',', $catalogs);
-            $response = $this->put("/description/" . urlencode($id) . "/". urlencode($catalogs), $params);
+            $response = $this->put('/description/' . urlencode($id), $params);
             if ($response->getStatusCode() == 200) {
                 return json_decode($response->getBody(), true);
             } else {
