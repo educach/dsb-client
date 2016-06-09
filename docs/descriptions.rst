@@ -164,7 +164,7 @@ Read the `API documentation <https://dsb-api.educa.ch/latest/doc/#api-Search-Get
 Pagination and limiting the number of results
 ---------------------------------------------
 
-It is possible to limit the number of results by passing a number as the 5th parameter. The following will only show 20 results (instead of 50, the default):
+It is possible to offset the results, effectively giving applications a way to support *pagination*. The offset is the 5th parameter, and represents by how many items the results should be offset (usually a multiple of the 6th parameter, *limit*; more below). The following will show results 21 to 70 (50 being the default *limit*):
 
 .. code-block:: php
 
@@ -182,7 +182,7 @@ It is possible to limit the number of results by passing a number as the 5th par
         // The authentication failed.
     }
 
-It is also possible to offset the result, effectively giving applications a way to support *pagination*. The offset is the 6th parameter, and represents by how many items the results should be offset (usually a multiple of the *limit*):
+It is also possible to limit the number of results. The following will only show 20 results (instead of 50, the default):
 
 .. code-block:: php
 
@@ -193,7 +193,7 @@ It is also possible to offset the result, effectively giving applications a way 
     $client = new ClientV2('https://dsb-api.educa.ch/v2', 'user@site.com', '/path/to/privatekey.pem', 'passphrase');
 
     try {
-        $searchResult = $client->authenticate()->search('Cookies', [], [], [], 20, 40);
+        $searchResult = $client->authenticate()->search('Cookies', [], [], [], 0, 20);
     } catch(ClientRequestException $e) {
         // The request failed.
     } catch(ClientAuthenticationException $e) {
