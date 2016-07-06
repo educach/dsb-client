@@ -209,4 +209,48 @@ class PerTerm extends BaseTerm
         }
     }
 
+    /**
+     * Find a child term based on its code.
+     *
+     * @param string $code
+     *    The code to search a child for.
+     *
+     * @return \Educa\DSB\Client\Curriculum\Term\TermInterface|null
+     *    The child, or null if not found.
+     *
+     * @throws \Educa\DSB\Client\Curriculum\Term\TermHasNoChildrenException
+     */
+    public function findChildByCode($code)
+    {
+        foreach ($this->getChildren() as $child) {
+            if ($child->getCode() == $code) {
+                return $child;
+            }
+        }
+    }
+
+    /**
+     * Find a child term based on its code, recursively.
+     *
+     * @param string $code
+     *    The code to search a child for.
+     *
+     * @return \Educa\DSB\Client\Curriculum\Term\TermInterface|null
+     *    The child, or null if not found.
+     *
+     * @throws \Educa\DSB\Client\Curriculum\Term\TermHasNoChildrenException
+     */
+    public function findChildByCodeRecursive($code)
+    {
+        foreach ($this->getChildren() as $child) {
+            if ($child->getCode() == $code) {
+                return $child;
+            } elseif ($child->hasChildren()) {
+                if ($found = $child->findChildByCodeRecursive($code)) {
+                    return $found;
+                }
+            }
+        }
+    }
+
 }

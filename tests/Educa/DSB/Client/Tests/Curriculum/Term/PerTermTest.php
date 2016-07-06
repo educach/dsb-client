@@ -45,7 +45,7 @@ class PerTermTest extends \PHPUnit_Framework_TestCase
             $terms["uuid{$i}"] = $term;
 
             for ($j = 5; $j > 0; $j--) {
-                $childTerm = new PerTerm('type', "uuid{$i}.{$j}", "Child {$i}.{$j}");
+                $childTerm = new PerTerm('type', "uuid{$i}.{$j}", "Child {$i}.{$j}", "{$i}.{$j}");
                 $term->addChild($childTerm);
                 $terms["uuid{$i}.{$j}"] = $childTerm;
             }
@@ -79,6 +79,16 @@ class PerTermTest extends \PHPUnit_Framework_TestCase
             $terms['uuid4.2'],
             $root->findChildByIdentifierRecursive('uuid4.2'),
             "Recursively searching by ID works."
+        );
+        $this->assertEquals(
+            null,
+            $root->findChildByCode('4.2'),
+            "Searching by code one level for a child that's located deeper returns null."
+        );
+        $this->assertEquals(
+            $terms['uuid4.2'],
+            $root->findChildByCodeRecursive('4.2'),
+            "Recursively searching by code works."
         );
     }
 
