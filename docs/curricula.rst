@@ -213,13 +213,79 @@ Of course, you can call ``getTree()`` to get the root item of the tree, and navi
 Plan d'études Romand (PER) curriculum
 =====================================
 
-todo
+The *Plan d'études romand* (or *per*) curriculum is an official curriculum for the French speaking cantons in Switzerland. More information can be found `here <https://www.plandetudes.ch/>`_.
 
+The definition data can be fetched via an API, which is openly accessible `here <http://bdper.plandetudes.ch/api/v1/>`_. The ``PerCurriculum`` class can fetch and parse this information for re-use. The reason this data does not *have* to be loaded by ``PerCurriculum`` every time is that applications might want to cache the parsing result, and pass the cached data in future calls. This can save time, as the parsing can be very time-consuming and memory intensive (it requires hundreds of ``GET`` requests to the REST API).
+
+.. code-block:: php
+
+    use Educa\DSB\Client\Curriculum\PerCurriculum;
+
+    // $url contains the path to the REST API the class must use.
+    $url = 'http://bdper.plandetudes.ch/api/v1/';
+    $curriculum = PerCurriculum::createFromData($url);
+
+    // We can also simply parse it, and cache $data for future use.
+    $data = PerCurriculum::fetchCurriculumData($url);
+
+    // Demonstration of re-use of cached data.
+    $curriculum = new PerCurriculum($data->curriculum);
+    $curriculum->setCurriculumDictionary($data->dictionary);
+
+The curriculum class supports the handling of LOM-CH *classification* field data (field no 9) as well as LOM-CH *curriculum* field data (field no 10). This is represented as a series of *taxonomy paths* and *taxonomy trees*, respectively. Please refer to the `REST API documentation <https://dsb-api.educa.ch/latest/doc/>`_, for more information on the structure. By default, for the *classification* field, it only considers *discipline* taxonomy paths. If you wish to parse a taxonomy path with another *purpose* key, pass it as the second parameter to ``setTreeBasedOnTaxonPath()``.
+
+.. code-block:: php
+
+    use Educa\DSB\Client\Curriculum\PerCurriculum;
+
+    // Re-use cached data for the dictionary and curriculum definition.
+    // See previous example for more info.
+    $curriculum = new PerCurriculum($data->curriculum);
+    $curriculum->setCurriculumDictionary($data->dictionary);
+
+    // $paths is an array of taxonomy paths. See official REST API documentation
+    // for more info.
+    $curriculum->setTreeBasedOnTaxonPath($paths);
+
+    print $curriculum->asciiDump();
+    // Results in:
+    // --- root:root
+    //     +-- cycle:cycles-1
+    //         +-- domaine:cycles-1-domaines-4
+    //             +-- discipline:cycles-1-disciplines-13
+    //             +-- discipline:cycles-1-disciplines-11
+
+
+    // $trees is an array of taxonomy trees. See official REST API documentation
+    // for more info.
+    $curriculum->setTreeBasedOnTaxonTree($trees);
+
+    print $curriculum->asciiDump();
+    // Results in:
+    // --- root:root
+    //     +-- cycle:cycles-1
+    //         +-- domaine:cycles-1-domaines-4
+    //             +-- discipline:cycles-1-disciplines-13
+    //                 +-- objectif:cycles-1-objectives-76
+    //         +-- domaine:cycles-1-domaines-4
+    //             +-- discipline:cycles-1-disciplines-11
+    //                 +-- objectif:cycles-1-objectives-77
+
+Of course, you can call ``getTree()`` to get the root item of the tree, and navigate it.
+
+A curriculum tree consists of ``TermInterface`` elements, just as for the other curricula implementations. However, ``PerCurriculum`` uses a custom term implementation, ``PerTerm``. This implements the same interfaces, so can be used in exactly the same ways as the standard terms. The difference is ``PerTerm`` exposes a few more methods:
+
+* ``findChildByIdentifier()``: Allows to search direct descendants for a specific term via its identifier (UUID)
+* ``findChildByIdentifierRecursive()``: Same as above, but recursively descends onto child terms as well
+* ``findChildByName()``: Allows to search direct descendants for a specific term via its name
+* ``findChildByNameRecursive()``: Same as above, but recursively descends onto child terms as well
+* ``getUrl()`` and ``setUrl()``: Get/set the URL property of an item (mostly applies to *Objectifs*)
+* ``getCode()`` and ``setCode()``: Get/set the code property of an item (mostly applies to *Objectifs*)
 
 Lehrplan 21 (lp21) curriculum
 =============================
 
-The *Lehrplan 21* (or *lp21*) curriculum is a official curriculum for the German speaking cantons in Switzerland. More information can be found `here <http://lehrplan.ch/>`_.
+The *Lehrplan 21* (or *lp21*) curriculum is an official curriculum for the German speaking cantons in Switzerland. More information can be found `here <http://lehrplan.ch/>`_.
 
 The definition file is a XML file that can be downloaded from the site. The ``LP21Curriculum`` class can parse this information for re-use. The reason this data does not *have* to be passed to ``LP21Curriculum`` every time is that applications might want to cache the parsing result, and pass the cached data in future calls. This can save time, as the parsing can be very time-consuming and memory intensive (the XML is over 2Mb in size).
 
