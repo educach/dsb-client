@@ -1,0 +1,83 @@
+[
+	{
+		"source": {
+			"name": "per"
+		},
+		"taxonTree": [
+			{
+				"id": "cycles-1",
+				"type": "cycle",
+				"purpose": {
+					"source": "LOM-CHv1.2",
+					"value": "educational level"
+				},
+				"entry": {
+					"fr": "Cycle 1"
+				},
+				"childTaxons": [
+					{
+						"id": "cycles-1-domaines-4",
+						"type": "domaine",
+						"purpose": {
+							"source": "LOM-CHv1.2",
+							"value": "discipline"
+						},
+						"entry": {
+							"fr": "Arts"
+						},
+						"childTaxons": [
+							{
+								"id": "cycles-1-disciplines-11",
+								"type": "discipline",
+								"purpose": {
+									"source": "LOM-CHv1.2",
+									"value": "discipline"
+								},
+								"entry": {
+									"fr": "Arts visuels"
+								},
+								"childTaxons": [
+									{
+										"id": "cycles-1-objectives-77",
+										"type": "objective",
+										"purpose": {
+											"source": "LOM-CHv1.2",
+											"value": "objective"
+										},
+										"entry": {
+											"fr": "Repr\u00e9senter et exprimer une id\u00e9e, un imaginaire, une \u00e9motion par la pratique des diff\u00e9rents langages artistiques"
+										}
+									}
+								]
+							},
+							{
+								"id": "cycles-1-disciplines-13",
+								"type": "discipline",
+								"purpose": {
+									"source": "LOM-CHv1.2",
+									"value": "discipline"
+								},
+								"entry": {
+									"fr": "Activit\u00e9s cr\u00e9atrices et manuelles"
+								},
+								"childTaxons": [
+									{
+										"id": "cycles-1-objectives-76",
+										"type": "objective",
+										"purpose": {
+											"source": "LOM-CHv1.2",
+											"value": "objective"
+										},
+										"entry": {
+											"fr": "Repr\u00e9senter et exprimer une id\u00e9e, un imaginaire, une \u00e9motion par la pratique des diff\u00e9rents langages artistiques"
+										}
+									}
+								]
+							}
+						]
+					}
+				]
+			}
+		]
+	}
+]

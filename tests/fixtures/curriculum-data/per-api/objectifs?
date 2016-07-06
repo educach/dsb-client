@@ -1,0 +1,92 @@
+[
+    {
+        "nom": "Repr\u00e9senter et exprimer une id\u00e9e, un imaginaire, une \u00e9motion par la pratique des diff\u00e9rents langages artistiques",
+        "code": "A 11 AC&M",
+        "composantes": [
+            {
+                "titre": "en inventant et produisant des objets, des volumes, librement ou \u00e0 partir de consignes",
+                "id": 767
+            },
+            {
+                "titre": "en d\u00e9couvrant et en choisissant les mati\u00e8res",
+                "id": 768
+            },
+            {
+                "titre": "en choisissant et en utilisant les possibilit\u00e9s des diff\u00e9rents outils, mat\u00e9riaux, supports en plans et en volumes ",
+                "id": 769
+            },
+            {
+                "titre": "en appr\u00e9hendant l\u2019espace en plans et en volumes ",
+                "id": 770
+            }
+        ],
+        "disciplines": [
+            {
+                "nom": "Activit\u00e9s cr\u00e9atrices et manuelles",
+                "href": "http://bdper.plandetudes.ch/api/v1/disciplines/13",
+                "id": 13
+            }
+        ],
+        "domaine": {
+            "nom": "Arts",
+            "href": "http://bdper.plandetudes.ch/api/v1/domaines/4",
+            "id": 4
+        },
+        "cantons": "",
+        "thematiques": [
+            {
+                "nom": "Expression et repr\u00e9sentation",
+                "href": "http://bdper.plandetudes.ch/api/v1/thematiques/27",
+                "id": 27
+            }
+        ],
+        "cycle": 1,
+        "id": 76,
+        "objectifs_lies": []
+    },
+    {
+        "nom": "Repr\u00e9senter et exprimer une id\u00e9e, un imaginaire, une \u00e9motion par la pratique des diff\u00e9rents langages artistiques",
+        "code": "A 11 AV",
+        "composantes": [
+            {
+                "titre": "en inventant et produisant  des images, librement ou \u00e0 partir de consignes",
+                "id": 451
+            },
+            {
+                "titre": "en d\u00e9couvrant et en choisissant les mati\u00e8res, les couleurs, les lignes et les surfaces",
+                "id": 452
+            },
+            {
+                "titre": "en choisissant et en utilisant les possibilit\u00e9s des diff\u00e9rents outils, mat\u00e9riaux, supports",
+                "id": 453
+            },
+            {
+                "titre": "en appr\u00e9hendant l\u2019espace par le mouvement, le geste et le trac\u00e9",
+                "id": 456
+            }
+        ],
+        "disciplines": [
+            {
+                "nom": "Arts visuels",
+                "href": "http://bdper.plandetudes.ch/api/v1/disciplines/11",
+                "id": 11
+            }
+        ],
+        "domaine": {
+            "nom": "Arts",
+            "href": "http://bdper.plandetudes.ch/api/v1/domaines/4",
+            "id": 4
+        },
+        "cantons": "",
+        "thematiques": [
+            {
+                "nom": "Expression et repr\u00e9sentation",
+                "href": "http://bdper.plandetudes.ch/api/v1/thematiques/27",
+                "id": 27
+            }
+        ],
+        "cycle": 1,
+        "id": 77,
+        "objectifs_lies": []
+    }
+]

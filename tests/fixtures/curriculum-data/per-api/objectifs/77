@@ -1,0 +1,198 @@
+{
+    "nom": "Repr\u00e9senter et exprimer une id\u00e9e, un imaginaire, une \u00e9motion par la pratique des diff\u00e9rents langages artistiques",
+    "indications": [
+        {
+            "lignes": [
+                0,
+                1
+            ],
+            "contenus": [
+                {
+                    "href": "http://bdper.plandetudes.ch/api/v1/indications/3095",
+                    "id": 3095,
+                    "texte": "<em class=\"link\">En lien avec</em> <a href=\"bdper.plandetudes.ch/api/v1/objectifs/80\" class=\"linkA\">A 12 AV \u2013 Perception</a>; <a href=\"bdper.plandetudes.ch/api/v1/objectifs/83\" class=\"linkA\">A 13 AV \u2013 Acquisition de techniques</a>; <a href=\"bdper.plandetudes.ch/api/v1/objectifs/86\" class=\"linkA\">A 14 AV \u2013 Culture</a>"
+                },
+                {
+                    "href": "http://bdper.plandetudes.ch/api/v1/indications/8675",
+                    "id": 8675,
+                    "texte": "D\u00e9velopper la capacit\u00e9 de choisir par la perception sensorielle, par l\u2019exp\u00e9rimentation technique et par l\u2019ouverture \u00e0 la <span class=\"lex_term\" title=\"ensemble des connaissances et des valeurs abstraites qui, par acquisitions, \u00e9claire l\u2019homme sur lui-m\u00eame et sur le monde, enrichit son esprit et lui permet de progresser.\">culture</span>"
+                },
+                {
+                    "href": "http://bdper.plandetudes.ch/api/v1/indications/8676",
+                    "id": 8676,
+                    "texte": "Varier les situations (une ou plusieurs consignes, de mani\u00e8re libre ou cadr\u00e9e, individuellement ou en groupe, \u00e0 partir de l\u2019environnement, d\u2019une mati\u00e8re,\u2026)"
+                },
+                {
+                    "href": "http://bdper.plandetudes.ch/api/v1/indications/8677",
+                    "id": 8677,
+                    "texte": "D\u00e9velopper la pens\u00e9e divergente qui permet l\u2019originalit\u00e9 et l\u2019innovation"
+                },
+                {
+                    "href": "http://bdper.plandetudes.ch/api/v1/indications/8678",
+                    "id": 8678,
+                    "texte": "Reconna\u00eetre la part sensible de l'\u00e9l\u00e8ve en favorisant l\u2019identification et l\u2019<span class=\"lex_term\" title=\"t\u00e2che complexe qui consiste \u00e0 manifester son expression en r\u00e9investissant ses connaissances, en effectuant des choix, en gagnant en autonomie et en prenant des risques. Elle met en forme ses impressions et communique une certaine vision de soi-m\u00eame et du monde.\">expression</span> de ses \u00e9motions"
+                },
+                {
+                    "href": "http://bdper.plandetudes.ch/api/v1/indications/8680",
+                    "id": 8680,
+                    "texte": "Accompagner l'\u00e9l\u00e8ve dans son projet en assurant la mise \u00e0 disposition des outils, mat\u00e9riaux et en le stimulant dans la recherche de r\u00e9ponses"
+                },
+                {
+                    "href": "http://bdper.plandetudes.ch/api/v1/indications/8681",
+                    "id": 8681,
+                    "texte": "<em class='link'>Liens</em> <a href=\"bdper.plandetudes.ch/api/v1/objectifs/131\" class=\"linkFG\">FG 13 \u2013 Choix et projets personnels</a>; CT \u2013 Pens\u00e9e cr\u00e9atrice"
+                }
+            ],
+            "ressources": [
+                {
+                    "titre": "",
+                    "href": "http://bdper.plandetudes.ch/api/v1/ressources/90",
+                    "id": 90
+                },
+                {
+                    "titre": "",
+                    "href": "http://bdper.plandetudes.ch/api/v1/ressources/419",
+                    "id": 419
+                }
+            ]
+        }
+    ],
+    "code": "A 11 AV",
+    "attentes": [
+        {
+            "lignes": [
+                0
+            ],
+            "contenus": [
+                {
+                    "href": "http://bdper.plandetudes.ch/api/v1/attentes/3093",
+                    "id": 3093,
+                    "texte": "r\u00e9alise des travaux d'imagination ou de m\u00e9moire \u00e0 partir de <span class=\"lex_term\" title=\"point de d\u00e9part d\u2019un projet qui peut prendre diff\u00e9rentes formes\u00a0: perceptions sensorielles, hasard, association de mots, souvenirs, \u00e9motion, id\u00e9e, mots ou texte, mat\u00e9riel disponible, objet, exposition,\u2026 Elle donne du sens \u00e0 la demande que l\u2019on peut faire aux \u00e9l\u00e8ves.\">sollicitations</span> vari\u00e9es"
+                }
+            ]
+        },
+        {
+            "lignes": [
+                1
+            ],
+            "contenus": [
+                {
+                    "href": "http://bdper.plandetudes.ch/api/v1/attentes/10065",
+                    "id": 10065,
+                    "texte": "exprime une id\u00e9e librement ou \u00e0 partir de consignes en choisissant quelques moyens plastiques"
+                }
+            ]
+        }
+    ],
+    "composantes": [
+        {
+            "titre": "en inventant et produisant  des images, librement ou \u00e0 partir de consignes",
+            "id": 451
+        },
+        {
+            "titre": "en d\u00e9couvrant et en choisissant les mati\u00e8res, les couleurs, les lignes et les surfaces",
+            "id": 452
+        },
+        {
+            "titre": "en choisissant et en utilisant les possibilit\u00e9s des diff\u00e9rents outils, mat\u00e9riaux, supports",
+            "id": 453
+        },
+        {
+            "titre": "en appr\u00e9hendant l\u2019espace par le mouvement, le geste et le trac\u00e9",
+            "id": 456
+        }
+    ],
+    "disciplines": [
+        {
+            "nom": "Arts visuels",
+            "href": "http://bdper.plandetudes.ch/api/v1/disciplines/11",
+            "id": 11
+        }
+    ],
+    "titres": [],
+    "domaine": {
+        "nom": "Arts",
+        "href": "http://bdper.plandetudes.ch/api/v1/domaines/4",
+        "id": 4
+    },
+    "cantons": "",
+    "thematiques": [
+        {
+            "nom": "Expression et repr\u00e9sentation",
+            "href": "http://bdper.plandetudes.ch/api/v1/thematiques/27",
+            "id": 27
+        }
+    ],
+    "liens": [],
+    "progressions": [
+        {
+            "annees": [
+                1,
+                2
+            ],
+            "sous-cycle": "1<sup>re</sup> \u2013 2<sup>e</sup> ann\u00e9es",
+            "items": [
+                {
+                    "lignes": [
+                        0
+                    ],
+                    "contenus": [
+                        {
+                            "href": "http://bdper.plandetudes.ch/api/v1/progressions/3092",
+                            "id": 3092,
+                            "texte": "Recherche d\u2019une r\u00e9ponse personnelle sous forme d\u2019images \u00e0 partir d\u2019une <span class=\"lex_term\" title=\"point de d\u00e9part d\u2019un projet qui peut prendre diff\u00e9rentes formes\u00a0: perceptions sensorielles, hasard, association de mots, souvenirs, \u00e9motion, id\u00e9e, mots ou texte, mat\u00e9riel disponible, objet, exposition,\u2026 Elle donne du sens \u00e0 la demande que l\u2019on peut faire aux \u00e9l\u00e8ves.\">sollicitation</span> <em>(<span class=\"lex_term\" title=\"repr\u00e9sentation d\u2019objets ext\u00e9rieurs et prise de connaissance du r\u00e9el par son esprit, en organisant les donn\u00e9es sensorielles. Perceptions, sensations engendrent imm\u00e9diatement une r\u00e9action affective, une \u00e9motion, qui varient selon la nature de ce qui les provoque, mais aussi selon la nature de celui qui les re\u00e7oit.\">perceptions</span> sensorielles, hasard, association de mots, souvenirs, \u00e9motion, id\u00e9e, mots ou texte, mat\u00e9riel disponible,\u2026)</em>"
+                        }
+                    ]
+                },
+                {
+                    "lignes": [
+                        1
+                    ],
+                    "contenus": [
+                        {
+                            "href": "http://bdper.plandetudes.ch/api/v1/progressions/10064",
+                            "id": 10064,
+                            "texte": "<p><span class=\"lex_term\" title=\"t\u00e2che complexe qui consiste \u00e0 manifester son expression en r\u00e9investissant ses connaissances, en effectuant des choix, en gagnant en autonomie et en prenant des risques. Elle met en forme ses impressions et communique une certaine vision de soi-m\u00eame et du monde.\">Expression</span> d\u2019une id\u00e9e, d\u2019un imaginaire, d\u2019une \u00e9motion, notamment par :</p>\r\n<ul>\r\n<li>le choix de quelques moyens plastiques (outils, <span class=\"lex_term\" title=\"toute substance ou \u00e9l\u00e9ment utilis\u00e9 pour r\u00e9aliser une \u0153uvre, un objet. Le mat\u00e9riau est la mati\u00e8re \u00e0 l\u2019\u00e9tat brut. Ex. : le marbre de la carri\u00e8re (mat\u00e9riau) devient la mati\u00e8re de la statue\">mat\u00e9riaux</span>, supports, <span class=\"lex_term\" title=\"Dimension, taille.\">formats</span>)</li>\r\n<li>le d\u00e9veloppement de l\u2019originalit\u00e9 et l\u2019innovation</li>\r\n<li>l\u2019exploration du domaine du r\u00eave et de l\u2019imaginaire</li>\r\n<li>l\u2019identification de ses \u00e9motions</li>\r\n</ul>"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "annees": [
+                3,
+                4
+            ],
+            "sous-cycle": "3<sup>e</sup> \u2013 4<sup>e</sup> ann\u00e9es",
+            "items": [
+                {
+                    "lignes": [
+                        0
+                    ],
+                    "contenus": [
+                        {
+                            "href": "http://bdper.plandetudes.ch/api/v1/progressions/3092",
+                            "id": 3092,
+                            "texte": "Recherche d\u2019une r\u00e9ponse personnelle sous forme d\u2019images \u00e0 partir d\u2019une <span class=\"lex_term\" title=\"point de d\u00e9part d\u2019un projet qui peut prendre diff\u00e9rentes formes\u00a0: perceptions sensorielles, hasard, association de mots, souvenirs, \u00e9motion, id\u00e9e, mots ou texte, mat\u00e9riel disponible, objet, exposition,\u2026 Elle donne du sens \u00e0 la demande que l\u2019on peut faire aux \u00e9l\u00e8ves.\">sollicitation</span> <em>(<span class=\"lex_term\" title=\"repr\u00e9sentation d\u2019objets ext\u00e9rieurs et prise de connaissance du r\u00e9el par son esprit, en organisant les donn\u00e9es sensorielles. Perceptions, sensations engendrent imm\u00e9diatement une r\u00e9action affective, une \u00e9motion, qui varient selon la nature de ce qui les provoque, mais aussi selon la nature de celui qui les re\u00e7oit.\">perceptions</span> sensorielles, hasard, association de mots, souvenirs, \u00e9motion, id\u00e9e, mots ou texte, mat\u00e9riel disponible,\u2026)</em>"
+                        }
+                    ]
+                },
+                {
+                    "lignes": [
+                        1
+                    ],
+                    "contenus": [
+                        {
+                            "href": "http://bdper.plandetudes.ch/api/v1/progressions/10064",
+                            "id": 10064,
+                            "texte": "<p><span class=\"lex_term\" title=\"t\u00e2che complexe qui consiste \u00e0 manifester son expression en r\u00e9investissant ses connaissances, en effectuant des choix, en gagnant en autonomie et en prenant des risques. Elle met en forme ses impressions et communique une certaine vision de soi-m\u00eame et du monde.\">Expression</span> d\u2019une id\u00e9e, d\u2019un imaginaire, d\u2019une \u00e9motion, notamment par :</p>\r\n<ul>\r\n<li>le choix de quelques moyens plastiques (outils, <span class=\"lex_term\" title=\"toute substance ou \u00e9l\u00e9ment utilis\u00e9 pour r\u00e9aliser une \u0153uvre, un objet. Le mat\u00e9riau est la mati\u00e8re \u00e0 l\u2019\u00e9tat brut. Ex. : le marbre de la carri\u00e8re (mat\u00e9riau) devient la mati\u00e8re de la statue\">mat\u00e9riaux</span>, supports, <span class=\"lex_term\" title=\"Dimension, taille.\">formats</span>)</li>\r\n<li>le d\u00e9veloppement de l\u2019originalit\u00e9 et l\u2019innovation</li>\r\n<li>l\u2019exploration du domaine du r\u00eave et de l\u2019imaginaire</li>\r\n<li>l\u2019identification de ses \u00e9motions</li>\r\n</ul>"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "cycle": 1,
+    "id": 77,
+    "objectifs_lies": []
+}

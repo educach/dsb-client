@@ -1,0 +1,7 @@
+--- root:root
+    +-- cycle:cycles-1
+        +-- domaine:cycles-1-domaines-4
+            +-- discipline:cycles-1-disciplines-11
+                +-- objectif:cycles-1-objectives-77
+            +-- discipline:cycles-1-disciplines-13
+                +-- objectif:cycles-1-objectives-76
