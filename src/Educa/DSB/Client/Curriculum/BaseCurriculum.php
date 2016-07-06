@@ -94,6 +94,49 @@ abstract class BaseCurriculum implements CurriculumInterface
     /**
      * {@inheritdoc}
      */
+    public function setTreeBasedOnTaxonTree($trees)
+    {
+        // Prepare a new root item.
+        $this->root = $this->termFactory('root', 'root');
+
+        // Prepare a callback for recursively adding elements to the tree.
+        $recursiveAdd = function($children, $parent) use (&$recursiveAdd) {
+            foreach ($children as $child) {
+                $taxonId = $child['id'];
+                $term = $this->termFactory(
+                    // Always fetch the type and name from the local data. The
+                    // data in the trees may be stale, as it usually comes from
+                    // the API. Normally, local data is refreshed on regular
+                    // bases, so should be more up-to-date.
+                    $this->getTermType($taxonId),
+                    $taxonId,
+                    $this->getTermName($taxonId)
+                );
+                $parent->addChild($term);
+
+                if (!empty($child['childTaxons'])) {
+                    $recursiveAdd($child['childTaxons'], $term);
+                }
+            }
+        };
+
+        foreach ($trees as $tree) {
+            // Cast to an array, just in case.
+            $tree = (array) $tree;
+
+            // Check if we treat this path. It might be a different
+            // source.
+            if (!in_array($tree['source']['name'], $this->taxonPathSources)) {
+                continue;
+            }
+
+            $recursiveAdd($tree['taxonTree'], $this->root);
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function setTreeBasedOnTaxonPath($paths, $purpose = 'discipline')
     {
         // Prepare a new root item.
@@ -136,6 +179,11 @@ abstract class BaseCurriculum implements CurriculumInterface
                         } else {
                             // Create the new term.
                             $term = $this->termFactory(
+                                // Always fetch the type and name from the local
+                                // data. The data in the trees may be stale, as
+                                // it usually comes from the API. Normally,
+                                // local data is refreshed on regular bases, so
+                                // should be more up-to-date.
                                 $this->getTermType($taxonId),
                                 $taxonId,
                                 $this->getTermName($taxonId)

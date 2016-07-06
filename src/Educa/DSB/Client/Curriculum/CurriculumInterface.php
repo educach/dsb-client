@@ -240,4 +240,18 @@ interface CurriculumInterface
      */
     public function setTreeBasedOnTaxonPath($paths, $purpose = 'discipline');
 
+    /**
+     * Create a new classification tree based on a taxonomy tree.
+     *
+     * The LOM-CH standard defines the "curriculum" field (10), which stores
+     * curriculum classification as "taxonomy trees". By passing such a
+     * structure to this method, a new tree will be created representing this
+     * structure, and the curriculum class instance will be updated with the
+     * correct information.
+     *
+     * @param array $trees
+     *    A list of trees, as described in the LOM-CH standard.
+     */
+    public function setTreeBasedOnTaxonTree($trees);
+
 }
