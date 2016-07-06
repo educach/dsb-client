@@ -104,7 +104,7 @@ class BaseTerm implements EditableTermInterface
     {
         $this->type = $type;
         $this->id = $id;
-        $this->name = $name;
+        $this->name = is_array($name) ? (object) $name : $name;
         return $this;
     }
 
