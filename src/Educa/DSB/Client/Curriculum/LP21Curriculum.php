@@ -38,7 +38,7 @@ class LP21Curriculum extends BaseCurriculum
      *      structure, in XML. This information can be found on the official
      *      lehrplan.ch website.
      */
-    public static function createFromData($data, $context = null)
+    public static function createFromData($data, $context = self::CURRICULUM_XML)
     {
         switch ($context) {
             case self::CURRICULUM_XML:

@@ -38,7 +38,7 @@ class PerCurriculum extends BaseCurriculum
      *    - PerCurriculum::CURRICULUM_API: This means the $data param will be
      *      treated as a URL to the official BDPER API endpoint.
      */
-    public static function createFromData($data, $context = null)
+    public static function createFromData($data, $context = self::CURRICULUM_API)
     {
         switch ($context) {
             case self::CURRICULUM_API:

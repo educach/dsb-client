@@ -40,7 +40,7 @@ class EducaCurriculum extends BaseCurriculum
      *      structure, in JSON. This information can be found on the bsn
      *      Ontology server.
      */
-    public static function createFromData($data, $context = null)
+    public static function createFromData($data, $context = self::CURRICULUM_JSON)
     {
         switch ($context) {
             case self::CURRICULUM_JSON:
