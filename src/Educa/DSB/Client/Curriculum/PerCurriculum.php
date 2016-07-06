@@ -385,6 +385,8 @@ class PerCurriculum extends BaseCurriculum
                     }, array_unique($objectiveSchoolYears))));
 
                     $objective->setSchoolYears($objectiveSchoolYears);
+                    $objective->setCode($objectiveData['code']);
+
                     $description = $objective->describe();
                     $description->code = $objectiveData['code'];
                     $description->schoolYears = $objectiveSchoolYears;
