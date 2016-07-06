@@ -169,44 +169,50 @@ class PerTerm extends BaseTerm
      * Find a child term based on its name.
      *
      * @param string $name
-     *    The name to search a child for.
+     *    The name to search for.
      *
-     * @return \Educa\DSB\Client\Curriculum\Term\TermInterface|null
-     *    The child, or null if not found.
+     * @return array|null
+     *    The children, or null if not found. The children are represented by
+     *    a list of \Educa\DSB\Client\Curriculum\Term\TermInterface instances.
      *
      * @throws \Educa\DSB\Client\Curriculum\Term\TermHasNoChildrenException
      */
-    public function findChildByName($name)
+    public function findChildrenByName($name)
     {
+        $result = array();
         foreach ($this->getChildren() as $child) {
             if ($child->describe()->name == $name) {
-                return $child;
+                $result[] = $child;
             }
         }
+        return !empty($result) ? $result : null;
     }
 
     /**
      * Find a child term based on its name, recursively.
      *
      * @param string $name
-     *    The name to search a child for.
+     *    The name to search for.
      *
-     * @return \Educa\DSB\Client\Curriculum\Term\TermInterface|null
-     *    The child, or null if not found.
+     * @return array|null
+     *    The children, or null if not found. The children are represented by
+     *    a list of \Educa\DSB\Client\Curriculum\Term\TermInterface instances.
      *
      * @throws \Educa\DSB\Client\Curriculum\Term\TermHasNoChildrenException
      */
-    public function findChildByNameRecursive($name)
+    public function findChildrenByNameRecursive($name)
     {
+        $result = array();
         foreach ($this->getChildren() as $child) {
             if ($child->describe()->name == $name) {
-                return $child;
+                $result[] = $child;
             } elseif ($child->hasChildren()) {
-                if ($found = $child->findChildByNameRecursive($name)) {
-                    return $found;
+                if ($found = $child->findChildrenByNameRecursive($name)) {
+                    $result = array_merge($result, $found);
                 }
             }
         }
+        return !empty($result) ? $result : null;
     }
 
     /**

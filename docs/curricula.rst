@@ -277,8 +277,10 @@ A curriculum tree consists of ``TermInterface`` elements, just as for the other 
 
 * ``findChildByIdentifier()``: Allows to search direct descendants for a specific term via its identifier (UUID)
 * ``findChildByIdentifierRecursive()``: Same as above, but recursively descends onto child terms as well
-* ``findChildByName()``: Allows to search direct descendants for a specific term via its name
-* ``findChildByNameRecursive()``: Same as above, but recursively descends onto child terms as well
+* ``findChildByCode()``: Allows to search direct descendants for a specific term via its code (mostly applies to *Objectifs*)
+* ``findChildByCodeRecursive()``: Same as above, but recursively descends onto child terms as well
+* ``findChildrenByName()``: Allows to search direct descendants for a specific term via its name
+* ``findChildrenByNameRecursive()``: Same as above, but recursively descends onto child terms as well
 * ``getUrl()`` and ``setUrl()``: Get/set the URL property of an item (mostly applies to *Objectifs*)
 * ``getCode()`` and ``setCode()``: Get/set the code property of an item (mostly applies to *Objectifs*)
 
