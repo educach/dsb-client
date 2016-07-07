@@ -367,8 +367,8 @@ class PerCurriculum extends BaseCurriculum
                 // Contrary to objectives and progressions, domains are shared.
                 // Check if we already created this domain. If we did, re-use
                 // the old one.
-                if (isset($domains[$domainId])) {
-                    $domain = $domains[$domainId];
+                if (isset($domains[$cycleNum][$domainId])) {
+                    $domain = $domains[$cycleNum][$domainId];
                 } else {
                     $domain = new PerTerm('domaines', $domainId, array(
                         'fr' => $objectiveData['domaine']['nom'],
@@ -376,7 +376,7 @@ class PerCurriculum extends BaseCurriculum
                     $cycle->addChild($domain);
 
                     // Store it.
-                    $domains[$domainId] = $domain;
+                    $domains[$cycleNum][$domainId] = $domain;
 
                     // Store the description in the dictionary.
                     $description = $domain->describe();
@@ -398,8 +398,8 @@ class PerCurriculum extends BaseCurriculum
                     // Contrary to objectives and progressions, disciplines are
                     // shared. Check if we already created this discipline. If
                     // we did, re-use the old one.
-                    if (isset($disciplines[$disciplineId])) {
-                        $discipline = $disciplines[$disciplineId];
+                    if (isset($disciplines[$domainId][$disciplineId])) {
+                        $discipline = $disciplines[$domainId][$disciplineId];
                     } else {
                         $discipline = new PerTerm('disciplines', $disciplineId, array(
                             'fr' => $disciplineData['nom'],
@@ -407,7 +407,7 @@ class PerCurriculum extends BaseCurriculum
                         $domain->addChild($discipline);
 
                         // Store it.
-                        $disciplines[$disciplineId] = $discipline;
+                        $disciplines[$domainId][$disciplineId] = $discipline;
 
                         // Store the description in the dictionary.
                         $description = $discipline->describe();
