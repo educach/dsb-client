@@ -283,6 +283,7 @@ A curriculum tree consists of ``TermInterface`` elements, just as for the other 
 * ``findChildrenByNameRecursive()``: Same as above, but recursively descends onto child terms as well
 * ``getUrl()`` and ``setUrl()``: Get/set the URL property of an item (mostly applies to *Objectifs*)
 * ``getCode()`` and ``setCode()``: Get/set the code property of an item (mostly applies to *Objectifs*)
+* ``getSchoolYears()`` and ``setSchoolYears()``: Get/set the school years property of an item (mostly applies to *Objectifs* and *Progressions d'apprentissage*)
 
 Lehrplan 21 (lp21) curriculum
 =============================
