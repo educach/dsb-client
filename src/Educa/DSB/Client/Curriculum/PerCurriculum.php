@@ -311,6 +311,8 @@ class PerCurriculum extends BaseCurriculum
         // The reason we put that stupid "?" there is to simplify unit tests.
         $objectives = json_decode(@file_get_contents("$url/objectifs?"), true);
         $themes = array();
+        $domains = array();
+        $disciplines = array();
 
         // Prepare a little function for reducing school year lists.
         $reduceSchoolYears = function($schoolYears) {
@@ -362,13 +364,25 @@ class PerCurriculum extends BaseCurriculum
                 // What is the domain ID?
                 $domainId = $objectiveData['domaine']['id'];
 
-                $domain = new PerTerm('domaines', $domainId, array(
-                    'fr' => $objectiveData['domaine']['nom'],
-                ));
-                $cycle->addChild($domain);
-                $description = $domain->describe();
-                unset($description->id);
-                $dictionary["domaines:{$domainId}"] = $description;
+                // Contrary to objectives and progressions, domains are shared.
+                // Check if we already created this domain. If we did, re-use
+                // the old one.
+                if (isset($domains[$domainId])) {
+                    $domain = $domains[$domainId];
+                } else {
+                    $domain = new PerTerm('domaines', $domainId, array(
+                        'fr' => $objectiveData['domaine']['nom'],
+                    ));
+                    $cycle->addChild($domain);
+
+                    // Store it.
+                    $domains[$domainId] = $domain;
+
+                    // Store the description in the dictionary.
+                    $description = $domain->describe();
+                    unset($description->id);
+                    $dictionary["domaines:{$domainId}"] = $description;
+                }
 
                 // Prepare all theme names.
                 foreach ($objectiveData['thematiques'] as $themeData) {
@@ -381,14 +395,25 @@ class PerCurriculum extends BaseCurriculum
                 foreach ($objectiveData['disciplines'] as $disciplineData) {
                     $disciplineId = $disciplineData['id'];
 
-                    $discipline = new PerTerm('disciplines', $disciplineId, array(
-                        'fr' => $disciplineData['nom'],
-                    ));
-                    $domain->addChild($discipline);
-                    $description = $discipline->describe();
-                    unset($description->id);
-                    $dictionary["disciplines:{$disciplineId}"] = $description;
+                    // Contrary to objectives and progressions, disciplines are
+                    // shared. Check if we already created this discipline. If
+                    // we did, re-use the old one.
+                    if (isset($disciplines[$disciplineId])) {
+                        $discipline = $disciplines[$disciplineId];
+                    } else {
+                        $discipline = new PerTerm('disciplines', $disciplineId, array(
+                            'fr' => $disciplineData['nom'],
+                        ));
+                        $domain->addChild($discipline);
 
+                        // Store it.
+                        $disciplines[$disciplineId] = $discipline;
+
+                        // Store the description in the dictionary.
+                        $description = $discipline->describe();
+                        unset($description->id);
+                        $dictionary["disciplines:{$disciplineId}"] = $description;
+                    }
 
                     // We can now set the objectives. Prepare the names. They
                     // are based on the Thématiques, as they make more sense.
@@ -397,6 +422,8 @@ class PerCurriculum extends BaseCurriculum
                         $names[] = sprintf('%s (%s)', $themes[$themeData['id']], $objectiveData['code']);
                     }
 
+                    // Objectives are not unique. They can be "shared" by
+                    // disciplines, meaning we actually have to duplicate them.
                     $objective = new PerTerm('objectifs', $objectiveId, array(
                         'fr' => implode("\n", $names),
                     ));
