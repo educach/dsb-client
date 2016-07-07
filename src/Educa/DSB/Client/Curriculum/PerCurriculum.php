@@ -282,6 +282,28 @@ class PerCurriculum extends BaseCurriculum
         $objectives = json_decode(@file_get_contents("$url/objectifs?"), true);
         $themes = array();
 
+        // Prepare a little function for reducing school year lists.
+        $reduceSchoolYears = function($schoolYears) {
+            return array_values(array_filter(
+                array_map(function($item) {
+                switch ($item) {
+                    case 1:
+                        return '1-2';
+                    case 3:
+                        return '3-4';
+                    case 5:
+                        return '5-6';
+                    case 7:
+                        return '7-8';
+                    case 9:
+                    case 10:
+                    case 11:
+                        return (string) $item;
+                }
+                return null;
+            }, array_unique($schoolYears))));
+        };
+
         if (!empty($objectives)) {
             foreach ($objectives as $objectiveData) {
                 $objectiveId = $objectiveData['id'];
@@ -362,34 +384,32 @@ class PerCurriculum extends BaseCurriculum
                             $objectiveSchoolYears,
                             $progressionGroup['annees']
                         );
+
+                        // Fetch the "progressions".
+                        foreach ($progressionGroup['items'] as $item) {
+                            if (!empty($item['contenus'])) {
+                                foreach ($item['contenus'] as $content) {
+                                    $progression = new PerTerm('progressions', "cycles-{$cycleNum}-objectives-{$objectiveId}-progressions-{$content['id']}", (object) array(
+                                        'fr' => $content['texte'],
+                                    ));
+                                    $progression->setSchoolYears($reduceSchoolYears($progressionGroup['annees']));
+                                    $objective->addChild($progression);
+                                    $description = $progression->describe();
+                                    $description->schoolYears = $progression->getSchoolYears();
+                                    $id = $description->id;
+                                    unset($description->id);
+                                    $dictionary[$id] = $description;
+                                }
+                            }
+                        }
                     }
 
-                    // Reduce.
-                    $objectiveSchoolYears = array_values(array_filter(
-                        array_map(function($item) {
-                        switch ($item) {
-                            case 1:
-                                return '1-2';
-                            case 3:
-                                return '3-4';
-                            case 5:
-                                return '5-6';
-                            case 7:
-                                return '7-8';
-                            case 9:
-                            case 10:
-                            case 11:
-                                return (string) $item;
-                        }
-                        return null;
-                    }, array_unique($objectiveSchoolYears))));
-
-                    $objective->setSchoolYears($objectiveSchoolYears);
+                    $objective->setSchoolYears($reduceSchoolYears($objectiveSchoolYears));
                     $objective->setCode($objectiveData['code']);
 
                     $description = $objective->describe();
                     $description->code = $objectiveData['code'];
-                    $description->schoolYears = $objectiveSchoolYears;
+                    $description->schoolYears = $objective->getSchoolYears();
                     $id = $description->id;
                     unset($description->id);
                     $dictionary[$id] = $description;
