@@ -5,8 +5,8 @@
 		},
 		"taxonTree": [
 			{
-				"id": "cycles-1",
-				"type": "cycle",
+				"id": "1",
+				"type": "cycles",
 				"purpose": {
 					"source": "LOM-CHv1.2",
 					"value": "educational level"
@@ -16,8 +16,8 @@
 				},
 				"childTaxons": [
 					{
-						"id": "cycles-1-domaines-4",
-						"type": "domaine",
+						"id": "4",
+						"type": "domaines",
 						"purpose": {
 							"source": "LOM-CHv1.2",
 							"value": "discipline"
@@ -27,8 +27,8 @@
 						},
 						"childTaxons": [
 							{
-								"id": "cycles-1-disciplines-11",
-								"type": "discipline",
+								"id": "11",
+								"type": "disciplines",
 								"purpose": {
 									"source": "LOM-CHv1.2",
 									"value": "discipline"
@@ -38,8 +38,8 @@
 								},
 								"childTaxons": [
 									{
-										"id": "cycles-1-objectives-77",
-										"type": "objective",
+										"id": "77",
+										"type": "objectifs",
 										"purpose": {
 											"source": "LOM-CHv1.2",
 											"value": "objective"
@@ -51,8 +51,8 @@
 								]
 							},
 							{
-								"id": "cycles-1-disciplines-13",
-								"type": "discipline",
+								"id": "13",
+								"type": "disciplines",
 								"purpose": {
 									"source": "LOM-CHv1.2",
 									"value": "discipline"
@@ -62,8 +62,8 @@
 								},
 								"childTaxons": [
 									{
-										"id": "cycles-1-objectives-76",
-										"type": "objective",
+										"id": "76",
+										"type": "objectifs",
 										"purpose": {
 											"source": "LOM-CHv1.2",
 											"value": "objective"

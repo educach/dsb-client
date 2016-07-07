@@ -102,15 +102,10 @@ abstract class BaseCurriculum implements CurriculumInterface
         // Prepare a callback for recursively adding elements to the tree.
         $recursiveAdd = function($children, $parent) use (&$recursiveAdd) {
             foreach ($children as $child) {
-                $taxonId = $child['id'];
                 $term = $this->termFactory(
-                    // Always fetch the type and name from the local data. The
-                    // data in the trees may be stale, as it usually comes from
-                    // the API. Normally, local data is refreshed on regular
-                    // bases, so should be more up-to-date.
-                    $this->getTermType($taxonId),
-                    $taxonId,
-                    $this->getTermName($taxonId)
+                    $child['type'],
+                    $child['id'],
+                    $child['entry']
                 );
                 $parent->addChild($term);
 

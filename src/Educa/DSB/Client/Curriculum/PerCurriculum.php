@@ -215,6 +215,18 @@ class PerCurriculum extends BaseCurriculum
 
     /**
      * {@inheritdoc}
+     *
+     * Because PER doesn't use unique IDs for each term, the identifier must
+     * be prefixed with the term type. For example, simply passing "25" for an
+     * objective is not enough, as there is also a domain with the "25" ID. To
+     * circumvent this problem, the internal dictionary prefixes each item with
+     * the type (usually plural; determined by the URI used by the official PER
+     * API; for example, it uses /objectifs/25 and /domaines/25, which
+     * translates to the following identifiers: "objectifs:25" and
+     * "domaines:25", respectively).
+     *
+     * This means that this method, in the context of PER, is not really
+     * useful...
      */
     public function getTermType($identifier)
     {
@@ -223,6 +235,15 @@ class PerCurriculum extends BaseCurriculum
 
     /**
      * {@inheritdoc}
+     *
+     * Because PER doesn't use unique IDs for each term, the identifier must
+     * be prefixed with the term type. For example, simply passing "25" for an
+     * objective is not enough, as there is also a domain with the "25" ID. To
+     * circumvent this problem, the internal dictionary prefixes each item with
+     * the type (usually plural; determined by the URI used by the official PER
+     * API; for example, it uses /objectifs/25 and /domaines/25, which
+     * translates to the following identifiers: "objectifs:25" and
+     * "domaines:25", respectively).
      */
     public function getTermName($identifier)
     {
@@ -260,14 +281,16 @@ class PerCurriculum extends BaseCurriculum
         // First, we want to prepare our 3 cycle base terms. In the Per logic,
         // the cycles are at the root of the tree. That is why we
         // prepare them here, and we will add relevant trees underneath when
-        // needed.
-        $cycle1 = new PerTerm('cycle', 'cycles-1', (object) array(
+        // needed. There are, technically, no cycle elements provided by the
+        // PER API. But, to remain consistent, we create them anyway, and make
+        // their type plural, as with all the other elements.
+        $cycle1 = new PerTerm('cycles', 1, array(
             'fr' => "Cycle 1",
         ));
-        $cycle2 = new PerTerm('cycle', 'cycles-2', (object) array(
+        $cycle2 = new PerTerm('cycles', 2, array(
             'fr' => "Cycle 2",
         ));
-        $cycle3 = new PerTerm('cycle', 'cycles-3', (object) array(
+        $cycle3 = new PerTerm('cycles', 3, array(
             'fr' => "Cycle 3",
         ));
 
@@ -282,7 +305,7 @@ class PerCurriculum extends BaseCurriculum
             $description = $child->describe();
             $id = $description->id;
             unset($description->id);
-            $dictionary[$id] = $description;
+            $dictionary["cycles:{$id}"] = $description;
         }
 
         // The reason we put that stupid "?" there is to simplify unit tests.
@@ -339,14 +362,13 @@ class PerCurriculum extends BaseCurriculum
                 // What is the domain ID?
                 $domainId = $objectiveData['domaine']['id'];
 
-                $domain = new PerTerm('domaine', "cycles-{$cycleNum}-domaines-{$domainId}", (object) array(
+                $domain = new PerTerm('domaines', $domainId, array(
                     'fr' => $objectiveData['domaine']['nom'],
                 ));
                 $cycle->addChild($domain);
                 $description = $domain->describe();
-                $id = $description->id;
                 unset($description->id);
-                $dictionary[$id] = $description;
+                $dictionary["domaines:{$domainId}"] = $description;
 
                 // Prepare all theme names.
                 foreach ($objectiveData['thematiques'] as $themeData) {
@@ -359,14 +381,13 @@ class PerCurriculum extends BaseCurriculum
                 foreach ($objectiveData['disciplines'] as $disciplineData) {
                     $disciplineId = $disciplineData['id'];
 
-                    $discipline = new PerTerm('discipline', "cycles-{$cycleNum}-disciplines-{$disciplineId}", (object) array(
+                    $discipline = new PerTerm('disciplines', $disciplineId, array(
                         'fr' => $disciplineData['nom'],
                     ));
                     $domain->addChild($discipline);
                     $description = $discipline->describe();
-                    $id = $description->id;
                     unset($description->id);
-                    $dictionary[$id] = $description;
+                    $dictionary["disciplines:{$disciplineId}"] = $description;
 
 
                     // We can now set the objectives. Prepare the names. They
@@ -376,7 +397,7 @@ class PerCurriculum extends BaseCurriculum
                         $names[] = sprintf('%s (%s)', $themes[$themeData['id']], $objectiveData['code']);
                     }
 
-                    $objective = new PerTerm('objectif', "cycles-{$cycleNum}-objectives-{$objectiveId}", (object) array(
+                    $objective = new PerTerm('objectifs', $objectiveId, array(
                         'fr' => implode("\n", $names),
                     ));
                     $discipline->addChild($objective);
@@ -396,16 +417,15 @@ class PerCurriculum extends BaseCurriculum
                         foreach ($progressionGroup['items'] as $item) {
                             if (!empty($item['contenus'])) {
                                 foreach ($item['contenus'] as $content) {
-                                    $progression = new PerTerm('progressions', "cycles-{$cycleNum}-objectives-{$objectiveId}-progressions-{$content['id']}", (object) array(
+                                    $progression = new PerTerm('progressions', $content['id'], array(
                                         'fr' => $content['texte'],
                                     ));
                                     $progression->setSchoolYears($reduceSchoolYears($progressionGroup['annees']));
                                     $objective->addChild($progression);
                                     $description = $progression->describe();
                                     $description->schoolYears = $progression->getSchoolYears();
-                                    $id = $description->id;
                                     unset($description->id);
-                                    $dictionary[$id] = $description;
+                                    $dictionary["progressions:{$content['id']}"] = $description;
                                 }
                             }
                         }
@@ -417,9 +437,8 @@ class PerCurriculum extends BaseCurriculum
                     $description = $objective->describe();
                     $description->code = $objectiveData['code'];
                     $description->schoolYears = $objective->getSchoolYears();
-                    $id = $description->id;
                     unset($description->id);
-                    $dictionary[$id] = $description;
+                    $dictionary["objectifs:{$objectiveId}"] = $description;
                 }
             }
         }
@@ -452,8 +471,8 @@ class PerCurriculum extends BaseCurriculum
     protected function termFactory($type, $taxonId, $name = null)
     {
         $code = $url = $schoolYears = null;
-        if (isset($this->curriculumDictionary[$taxonId])) {
-            $definition = $this->curriculumDictionary[$taxonId];
+        if (isset($this->curriculumDictionary["{$type}:{$taxonId}"])) {
+            $definition = $this->curriculumDictionary["{$type}:{$taxonId}"];
 
             if (isset($definition->url)) {
                 $url = $definition->url;
@@ -467,7 +486,10 @@ class PerCurriculum extends BaseCurriculum
                 $schoolYears = $definition->schoolYears;
             }
 
-            if (isset($definition->name) && !isset($name)) {
+            // Always fetch the name from the local data. The data passed may be
+            // stale, as it usually comes from the dsb API. Normally, local data
+            // is refreshed on regular bases, so should be more up-to-date.
+            if (isset($definition->name)) {
                 $name = $definition->name;
             }
         }

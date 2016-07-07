@@ -29,65 +29,36 @@ class PerCurriculumTest extends \PHPUnit_Framework_TestCase
         // our entries.
         $this->assertEquals(
             (object) array(
-                'type' => 'cycle',
+                'type' => 'cycles',
                 'name' => (object) array(
                     'fr' => "Cycle 1",
                 ),
             ),
-            $data->dictionary['cycles-1'],
-            "Found the correct data in the dictionary for item 'cycles-1' (Cycle 1)."
+            $data->dictionary['cycles:1'],
+            "Found the correct data in the dictionary for item 'cycles:1' (Cycle 1)."
         );
         $this->assertEquals(
             (object) array(
-                'type' => 'domaine',
+                'type' => 'domaines',
                 'name' => (object) array(
                     'fr' => "Arts",
                 ),
             ),
-            $data->dictionary['cycles-1-domaines-4'],
-            "Found the correct data in the dictionary for item 'cycles-1-domaines-4' (Arts)."
+            $data->dictionary['domaines:4'],
+            "Found the correct data in the dictionary for item 'domaines:4' (Arts)."
         );
         $this->assertEquals(
             (object) array(
-                'type' => 'objectif',
+                'type' => 'objectifs',
                 'name' => (object) array(
                     'fr' => "Expression et représentation (A 11 AV)",
                 ),
                 'code' => 'A 11 AV',
                 'schoolYears' => ['1-2', '3-4']
             ),
-            $data->dictionary['cycles-1-objectives-77'],
-            "Found the correct data in the dictionary for item 'cycles-1-objectives-77' (A 11 AV)."
+            $data->dictionary['objectifs:77'],
+            "Found the correct data in the dictionary for item 'objectifs:77' (A 11 AV)."
         );
-    }
-
-    /**
-     * Test treating a taxonomy path.
-     */
-    public function testTaxonomyPathHandling()
-    {
-        $paths = json_decode(
-            file_get_contents(FIXTURES_DIR . '/curriculum-data/per_taxonomy_path.json'),
-            true
-        );
-
-        // Create a new curriculum element.
-        $curriculum = PerCurriculum::createFromData(
-            FIXTURES_DIR . '/curriculum-data/per-api',
-            PerCurriculum::CURRICULUM_API
-        );
-
-        $curriculum->setTreeBasedOnTaxonPath($paths);
-
-        // Load the expected discipline ASCII tree.
-        $expectedAsciiTree = file_get_contents(FIXTURES_DIR . '/curriculum-data/per_taxonomy_path.discipline.ascii');
-        $this->assertEquals(trim($expectedAsciiTree), $curriculum->asciiDump(), "The ASCII representation of the discipline curriculum tree, based on the taxonomy path, is as expected.");
-
-        $curriculum->setTreeBasedOnTaxonPath($paths, 'competency');
-
-        // Load the expected competency ASCII tree.
-        $expectedAsciiTree = file_get_contents(FIXTURES_DIR . '/curriculum-data/per_taxonomy_path.competency.ascii');
-        $this->assertEquals(trim($expectedAsciiTree), $curriculum->asciiDump(), "The ASCII representation of the competency curriculum tree, based on the taxonomy path, is as expected.");
     }
 
     /**
