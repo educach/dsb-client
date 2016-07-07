@@ -311,7 +311,6 @@ class PerCurriculum extends BaseCurriculum
         // The reason we put that stupid "?" there is to simplify unit tests.
         $objectives = json_decode(@file_get_contents("$url/objectifs?"), true);
         $themes = array();
-        $domains = array();
         $disciplines = array();
 
         // Prepare a little function for reducing school year lists.
@@ -364,25 +363,15 @@ class PerCurriculum extends BaseCurriculum
                 // What is the domain ID?
                 $domainId = $objectiveData['domaine']['id'];
 
-                // Contrary to objectives and progressions, domains are shared.
-                // Check if we already created this domain. If we did, re-use
-                // the old one.
-                if (isset($domains[$cycleNum][$domainId])) {
-                    $domain = $domains[$cycleNum][$domainId];
-                } else {
-                    $domain = new PerTerm('domaines', $domainId, array(
-                        'fr' => $objectiveData['domaine']['nom'],
-                    ));
-                    $cycle->addChild($domain);
+                $domain = new PerTerm('domaines', $domainId, array(
+                    'fr' => $objectiveData['domaine']['nom'],
+                ));
+                $cycle->addChild($domain);
 
-                    // Store it.
-                    $domains[$cycleNum][$domainId] = $domain;
-
-                    // Store the description in the dictionary.
-                    $description = $domain->describe();
-                    unset($description->id);
-                    $dictionary["domaines:{$domainId}"] = $description;
-                }
+                // Store the description in the dictionary.
+                $description = $domain->describe();
+                unset($description->id);
+                $dictionary["domaines:{$domainId}"] = $description;
 
                 // Prepare all theme names.
                 foreach ($objectiveData['thematiques'] as $themeData) {
