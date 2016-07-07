@@ -398,8 +398,8 @@ class PerCurriculum extends BaseCurriculum
                     // Contrary to objectives and progressions, disciplines are
                     // shared. Check if we already created this discipline. If
                     // we did, re-use the old one.
-                    if (isset($disciplines[$domainId][$disciplineId])) {
-                        $discipline = $disciplines[$domainId][$disciplineId];
+                    if (isset($disciplines[$cycleNum][$domainId][$disciplineId])) {
+                        $discipline = $disciplines[$cycleNum][$domainId][$disciplineId];
                     } else {
                         $discipline = new PerTerm('disciplines', $disciplineId, array(
                             'fr' => $disciplineData['nom'],
@@ -407,7 +407,7 @@ class PerCurriculum extends BaseCurriculum
                         $domain->addChild($discipline);
 
                         // Store it.
-                        $disciplines[$domainId][$disciplineId] = $discipline;
+                        $disciplines[$cycleNum][$domainId][$disciplineId] = $discipline;
 
                         // Store the description in the dictionary.
                         $description = $discipline->describe();
