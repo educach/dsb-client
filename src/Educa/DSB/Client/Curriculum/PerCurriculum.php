@@ -503,7 +503,7 @@ class PerCurriculum extends BaseCurriculum
     protected function taxonIsDiscipline($taxon)
     {
         return in_array($this->getTermType($taxon['id']), array(
-            'discipline',
+            'disciplines',
         ));
     }
 
