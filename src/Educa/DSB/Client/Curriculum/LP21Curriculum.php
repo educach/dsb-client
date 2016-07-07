@@ -23,6 +23,13 @@ class LP21Curriculum extends BaseCurriculum
     const CURRICULUM_XML = 'curriculum xml';
 
     /**
+     * The list of all terms, with their associated term type.
+     *
+     * @var array
+     */
+    protected $curriculumDictionary;
+
+    /**
      * The sources of taxonomy paths that can be treated by this class.
      *
      * @var array
