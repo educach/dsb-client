@@ -405,7 +405,9 @@ class PerCurriculum extends BaseCurriculum
                     // Prepare a list for the objective's school years.
                     $objectiveSchoolYears = array();
 
-                    // Load the raw objective data.
+                    // Load the raw objective data, we need it for the school
+                    // years information, which is not provided in the global
+                    // call.
                     $rawData = json_decode(@file_get_contents("$url/objectifs/" . $objectiveId), true);
                     foreach ($rawData['progressions'] as $progressionGroup) {
                         $objectiveSchoolYears = array_merge(
