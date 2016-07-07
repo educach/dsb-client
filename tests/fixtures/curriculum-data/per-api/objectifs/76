@@ -102,6 +102,11 @@
             "nom": "Activit\u00e9s cr\u00e9atrices et manuelles",
             "href": "http://bdper.plandetudes.ch/api/v1/disciplines/13",
             "id": 13
+        },
+        {
+            "nom": "Activit\u00e9s cr\u00e9atrices et manuelles",
+            "href": "http://bdper.plandetudes.ch/api/v1/disciplines/14",
+            "id": 14
         }
     ],
     "titres": [],
