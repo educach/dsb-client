@@ -323,7 +323,8 @@ Of course, you can call ``getTree()`` to get the root item of the tree, and navi
 
 A curriculum tree consists of ``TermInterface`` elements, just as for the other curricula implementations. However, ``LP21Curriculum`` uses a custom term implementation, ``LP21Term``. This implements the same interfaces, so can be used in exactly the same ways as the standard terms. The difference is ``LP21Term`` exposes a few more methods:
 
-* ``findChildByIdentifier()``: Allows to search direct descendants for a specific term via its identifier (UUID)
-* ``getUrl()``: Get the URL property of an item (mostly applies to *Kompetenzstufe*)
-* ``getCode()``: Get the code property of an item
-* ``getVersion()``: Get the version of the Lehrplan this item is meant for (mostly applies to *Kompetenzstufe*)
+* ``findChildByCode()``: Allows to search direct descendants for a specific term via its code
+* ``findChildByCodeRecursive()``: Same as above, but recursively descends onto child terms as well
+* ``getUrl()`` and ``setUrl()``: Get/set the URL property of an item (mostly applies to *Kompetenzstufe*)
+* ``getCode()`` and ``setCode()``: Get/set the code property of an item
+* ``getVersion()`` and ``setVersion()``: Get the version of the Lehrplan this item is meant for (mostly applies to *Kompetenzstufe*)
