@@ -281,24 +281,25 @@ class LP21Curriculum extends BaseCurriculum
                     // be parsed as child types of their own, others should be
                     // treated as being part of the current node.
                     if (in_array($child['name'], array(
-                        '{}Fach',
-                        '{}Kompetenzbereich',
-                        '{}Handlungs-Themenaspekt',
-                        '{}Kompetenz',
-                        '{}Kompetenzstufe',
+                        '{}fach',
+                        '{}kompetenzbereich',
+                        '{}handlungs-themenaspekt',
+                        '{}kompetenz',
+                        '{}kompetenzstufe',
                     ))) {
                         $node->children[] = $child;
-                    } elseif ($child['name'] == '{}Bezeichnung') {
+                    } elseif ($child['name'] == '{}bezeichnung') {
                         $node->description = (object) array(
-                            'de' => trim($child['value'])
+                            // @todo Is there really always only 1 value??
+                            'de' => trim($child['value'][0]['value'])
                         );
-                    } elseif ($child['name'] == '{}Zyklus') {
+                    } elseif ($child['name'] == '{}zyklus') {
                         $node->cycle = trim($child['value']);
-                    } elseif ($child['name'] == '{}URL') {
+                    } elseif ($child['name'] == '{}url') {
                         $node->url = trim($child['value']);
-                    } elseif ($child['name'] == '{}Code') {
+                    } elseif ($child['name'] == '{}code') {
                         $node->code = trim($child['value']);
-                    } elseif ($child['name'] == '{}Lehrplanversion') {
+                    } elseif ($child['name'] == '{}lehrplanversion') {
                         $node->version = trim($child['value']);
                     }
                 }
@@ -311,66 +312,40 @@ class LP21Curriculum extends BaseCurriculum
         // treated with the default one provided by Sabre\Xml, but we don't
         // really care.
         $reader->elementMap = [
-            '{}Fachbereich' => $baseHandler,
-            '{}Fach' => $baseHandler,
-            '{}Kompetenzbereich' => $baseHandler,
-            '{}Handlungs-Themenaspekt' => $baseHandler,
-            '{}Kompetenz' => $baseHandler,
-            '{}Kompetenzstufe' => $baseHandler,
+            '{}fachbereich' => $baseHandler,
+            '{}fach' => $baseHandler,
+            '{}kompetenzbereich' => $baseHandler,
+            '{}handlungs-themenaspekt' => $baseHandler,
+            '{}kompetenz' => $baseHandler,
+            '{}kompetenzstufe' => $baseHandler,
         ];
 
         // Parse the data.
         $reader->xml($curriculumXml);
         $data = $reader->parse();
 
-        // Prepare the dictionary and list of taxonomy paths.
+        // Prepare the dictionary.
         $dictionary = array();
-        $list = array();
-
-        // We now have our tree, but we want a tree of LP21Terms. First, we want
-        // to prepare our 3 cycle base terms. In the LP21 XML, the cycles are at
-        // the leaves of the tree, not the root. This makes sense in the LP21
-        // document, but we want to start with the cycles. That is why we
-        // prepare them here, and we will add relevant trees underneath when
-        // needed.
-        $cycle1 = new LP21Term('zyklus', 1, (object) array(
-            'de' => "1. Zyklus",
-        ));
-        $cycle2 = new LP21Term('zyklus', 2, (object) array(
-            'de' => "2. Zyklus",
-        ));
-        $cycle3 = new LP21Term('zyklus', 3, (object) array(
-            'de' => "3. Zyklus",
-        ));
 
         // Prepare our root element, and add our cycles to it.
         $root = new LP21Term('root', 'root');
-        $root
-            ->addChild($cycle1)
-            ->addChild($cycle2)
-            ->addChild($cycle3);
 
-        // Store the term definitions in the dictionary while we are at it.
-        foreach (array(1, 2, 3) as $value) {
-            $dictionary[$value] = (object) array(
-                'name' => (object) array(
-                    'de' => "{$value}. Zyklus",
-                ),
-                'type' => 'zyklus'
-            );
-        }
-
-        // Now, recursively parse the tree. The way we proceed is to find the
-        // "taxonomy" paths, from the root element up to the cycle
-        // information. This will allow us to reconstruct the tree with cycle
-        // information at the root.
-        $recurse = function($tree, $parentPath = '') use (&$recurse, &$list, &$dictionary) {
+        // Now, recursively parse the tree, transforming it into a tree of
+        // LP21Term instances.
+        $recurse = function($tree, $parent) use (&$recurse, &$dictionary) {
             foreach ($tree as $item) {
                 // Fetch our node.
                 $node = $item['value'];
 
                 // Double check the format. Is this one of our nodes?
                 if (isset($node->uuid) && isset($node->type) && isset($node->description)) {
+                    $term = new LP21Term(
+                        $node->type,
+                        $node->uuid,
+                        $node->description
+                    );
+                    $parent->addChild($term);
+
                     // Add it to our dictionary.
                     $dictionary[$node->uuid] = (object) array(
                         'name' => $node->description,
@@ -392,81 +367,13 @@ class LP21Curriculum extends BaseCurriculum
                         $dictionary[$node->uuid]->url = $node->url;
                     }
 
-                    // Do we have cycle information? If so, we are at the end
-                    // of our path.
-                    if (!empty($node->cycle)) {
-                        // Cycle information is stored as a list of numbers,
-                        // with no separations. Split to get the cycles, and
-                        // iterate over them to add our tree to the relevant
-                        // cycle terms.
-                        foreach (str_split($node->cycle) as $cycle) {
-                            $list[] = preg_replace('/^:/', '', "$parentPath:{$node->uuid}:$cycle");
-                        }
-                    } elseif (!empty($node->children)) {
-                        $recurse($node->children, "$parentPath:{$node->uuid}");
+                    if (!empty($node->children)) {
+                        $recurse($node->children, $term);
                     }
                 }
             }
         };
-        $recurse($data['value']);
-
-        // Now we have our list of paths. We can construct our tree of
-        // LP21Terms.
-        foreach ($list as $path) {
-            $parts = explode(':', $path);
-            $cycle = (int) array_pop($parts);
-
-            switch ($cycle) {
-                case 1:
-                    $parentTerm = $cycle1;
-                    break;
-
-                case 2:
-                    $parentTerm = $cycle2;
-                    break;
-
-                case 3:
-                    $parentTerm = $cycle3;
-                    break;
-            }
-
-            // We now have our first parent term. Iterate over the parts, and
-            // construct the tree.
-            while ($uuid = array_shift($parts)) {
-                // Do we already have this term?
-                if ($parentTerm->hasChildren()) {
-                    $term = $parentTerm->findChildByIdentifier($uuid);
-                } else {
-                    $term = null;
-                }
-
-                // If not, create it now and add it to the tree.
-                if (!isset($term)) {
-                    $definition = $dictionary[$uuid];
-                    $term = new LP21Term(
-                        $definition->type,
-                        $uuid,
-                        $definition->name
-                    );
-
-                    if (isset($definition->url)) {
-                        $term->setUrl($definition->url);
-                    }
-
-                    if (isset($definition->code)) {
-                        $term->setCode($definition->code);
-                    }
-
-                    if (isset($definition->version)) {
-                        $term->setCurriculumVersion($definition->version);
-                    }
-                    $parentTerm->addChild($term);
-                }
-
-                // This term becomes the new parent term.
-                $parentTerm = $term;
-            }
-        }
+        $recurse($data['value'], $root);
 
         // Return the parsed data.
         return (object) array(
