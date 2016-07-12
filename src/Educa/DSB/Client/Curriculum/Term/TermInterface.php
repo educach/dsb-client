@@ -112,6 +112,60 @@ interface TermInterface
     public function getNextSibling();
 
     /**
+     * Find a child term based on its identifier.
+     *
+     * @param string $id
+     *    The identifier to search a child for.
+     *
+     * @return \Educa\DSB\Client\Curriculum\Term\TermInterface|null
+     *    The child, or null if not found.
+     *
+     * @throws \Educa\DSB\Client\Curriculum\Term\TermHasNoChildrenException
+     */
+    public function findChildByIdentifier($id);
+
+    /**
+     * Find a child term based on its identifier, recursively.
+     *
+     * @param string $id
+     *    The identifier to search a child for.
+     *
+     * @return \Educa\DSB\Client\Curriculum\Term\TermInterface|null
+     *    The child, or null if not found.
+     *
+     * @throws \Educa\DSB\Client\Curriculum\Term\TermHasNoChildrenException
+     */
+    public function findChildByIdentifierRecursive($id);
+
+    /**
+     * Find a child term based on its name.
+     *
+     * @param string $name
+     *    The name to search for.
+     *
+     * @return array|null
+     *    The children, or null if not found. The children are represented by
+     *    a list of \Educa\DSB\Client\Curriculum\Term\TermInterface instances.
+     *
+     * @throws \Educa\DSB\Client\Curriculum\Term\TermHasNoChildrenException
+     */
+    public function findChildrenByName($name);
+
+    /**
+     * Find a child term based on its name, recursively.
+     *
+     * @param string $name
+     *    The name to search for.
+     *
+     * @return array|null
+     *    The children, or null if not found. The children are represented by
+     *    a list of \Educa\DSB\Client\Curriculum\Term\TermInterface instances.
+     *
+     * @throws \Educa\DSB\Client\Curriculum\Term\TermHasNoChildrenException
+     */
+    public function findChildrenByNameRecursive($name);
+
+    /**
      * Return a ASCII representation of the tree.
      *
      * Useful for debugging, this method converts the term's children tree to a

@@ -295,6 +295,66 @@ class BaseTerm implements EditableTermInterface
         return $this;
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function findChildByIdentifier($id)
+    {
+        foreach ($this->getChildren() as $child) {
+            if ($child->describe()->id == $id) {
+                return $child;
+            }
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function findChildByIdentifierRecursive($id)
+    {
+        foreach ($this->getChildren() as $child) {
+            if ($child->describe()->id == $id) {
+                return $child;
+            } elseif ($child->hasChildren()) {
+                if ($found = $child->findChildByIdentifierRecursive($id)) {
+                    return $found;
+                }
+            }
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function findChildrenByName($name)
+    {
+        $result = array();
+        foreach ($this->getChildren() as $child) {
+            if ($child->describe()->name == $name) {
+                $result[] = $child;
+            }
+        }
+        return !empty($result) ? $result : null;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function findChildrenByNameRecursive($name)
+    {
+        $result = array();
+        foreach ($this->getChildren() as $child) {
+            if ($child->describe()->name == $name) {
+                $result[] = $child;
+            } elseif ($child->hasChildren()) {
+                if ($found = $child->findChildrenByNameRecursive($name)) {
+                    $result = array_merge($result, $found);
+                }
+            }
+        }
+        return !empty($result) ? $result : null;
+    }
+
     public function __toString()
     {
         return "{$this->type}:{$this->id}";

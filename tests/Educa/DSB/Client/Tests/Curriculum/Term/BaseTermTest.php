@@ -171,4 +171,54 @@ class BaseTermTest extends \PHPUnit_Framework_TestCase
         // Fetching the next sibling of $d returns $e.
         $this->assertEquals($e, $d->getNextSibling(), "Fetching the next sibling of d returns e.");
     }
+
+    /**
+     * Test searching for a child term.
+     */
+    public function testSearchChildTerm()
+    {
+        $terms = array();
+        $root = new BaseTerm('type', 'uuid0');
+        for ($i = 5; $i > 0; $i--) {
+            $term = new BaseTerm('type', "uuid{$i}", "Child {$i}");
+            $root->addChild($term);
+            $terms["uuid{$i}"] = $term;
+
+            for ($j = 5; $j > 0; $j--) {
+                $childTerm = new BaseTerm('type', "uuid{$i}.{$j}", "Child {$i}.{$j}", "{$i}.{$j}");
+                $term->addChild($childTerm);
+                $terms["uuid{$i}.{$j}"] = $childTerm;
+            }
+        }
+        $this->assertEquals(
+            [$terms['uuid3']],
+            $root->findChildrenByName("Child 3"),
+            "Searching by name works one level."
+        );
+        $this->assertEquals(
+            null,
+            $root->findChildrenByName("Child 4.2"),
+            "Searching by name one level for a child that's located deeper returns null."
+        );
+        $this->assertEquals(
+            [$terms['uuid4.2']],
+            $root->findChildrenByNameRecursive("Child 4.2"),
+            "Recursively searching by name works."
+        );
+        $this->assertEquals(
+            $terms['uuid3'],
+            $root->findChildByIdentifier('uuid3'),
+            "Searching by ID works one level."
+        );
+        $this->assertEquals(
+            null,
+            $root->findChildByIdentifier('uuid4.2'),
+            "Searching by ID one level for a child that's located deeper returns null."
+        );
+        $this->assertEquals(
+            $terms['uuid4.2'],
+            $root->findChildByIdentifierRecursive('uuid4.2'),
+            "Recursively searching by ID works."
+        );
+    }
 }

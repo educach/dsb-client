@@ -275,12 +275,8 @@ Of course, you can call ``getTree()`` to get the root item of the tree, and navi
 
 A curriculum tree consists of ``TermInterface`` elements, just as for the other curricula implementations. However, ``PerCurriculum`` uses a custom term implementation, ``PerTerm``. This implements the same interfaces, so can be used in exactly the same ways as the standard terms. The difference is ``PerTerm`` exposes a few more methods:
 
-* ``findChildByIdentifier()``: Allows to search direct descendants for a specific term via its identifier (UUID)
-* ``findChildByIdentifierRecursive()``: Same as above, but recursively descends onto child terms as well
 * ``findChildByCode()``: Allows to search direct descendants for a specific term via its code (mostly applies to *Objectifs*)
 * ``findChildByCodeRecursive()``: Same as above, but recursively descends onto child terms as well
-* ``findChildrenByName()``: Allows to search direct descendants for a specific term via its name
-* ``findChildrenByNameRecursive()``: Same as above, but recursively descends onto child terms as well
 * ``getUrl()`` and ``setUrl()``: Get/set the URL property of an item (mostly applies to *Objectifs*)
 * ``getCode()`` and ``setCode()``: Get/set the code property of an item (mostly applies to *Objectifs*)
 * ``getSchoolYears()`` and ``setSchoolYears()``: Get/set the school years property of an item (mostly applies to *Objectifs* and *Progressions d'apprentissage*)

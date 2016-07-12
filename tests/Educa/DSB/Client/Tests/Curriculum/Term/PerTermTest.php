@@ -51,36 +51,6 @@ class PerTermTest extends \PHPUnit_Framework_TestCase
             }
         }
         $this->assertEquals(
-            [$terms['uuid3']],
-            $root->findChildrenByName("Child 3"),
-            "Searching by name works one level."
-        );
-        $this->assertEquals(
-            null,
-            $root->findChildrenByName("Child 4.2"),
-            "Searching by name one level for a child that's located deeper returns null."
-        );
-        $this->assertEquals(
-            [$terms['uuid4.2']],
-            $root->findChildrenByNameRecursive("Child 4.2"),
-            "Recursively searching by name works."
-        );
-        $this->assertEquals(
-            $terms['uuid3'],
-            $root->findChildByIdentifier('uuid3'),
-            "Searching by ID works one level."
-        );
-        $this->assertEquals(
-            null,
-            $root->findChildByIdentifier('uuid4.2'),
-            "Searching by ID one level for a child that's located deeper returns null."
-        );
-        $this->assertEquals(
-            $terms['uuid4.2'],
-            $root->findChildByIdentifierRecursive('uuid4.2'),
-            "Recursively searching by ID works."
-        );
-        $this->assertEquals(
             null,
             $root->findChildByCode('4.2'),
             "Searching by code one level for a child that's located deeper returns null."
