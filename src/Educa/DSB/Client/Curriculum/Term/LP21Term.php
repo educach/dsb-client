@@ -8,16 +8,11 @@
 namespace Educa\DSB\Client\Curriculum\Term;
 
 use Educa\DSB\Client\Curriculum\Term\BaseTerm;
+use Educa\DSB\Client\Curriculum\Term\Traits\HasCode;
 
 class LP21Term extends BaseTerm
 {
-
-    /**
-     * The term's code, if any.
-     *
-     * @var string
-     */
-    protected $code;
+    use HasCode;
 
     /**
      * The term's curriculum version, if any.
@@ -41,31 +36,6 @@ class LP21Term extends BaseTerm
             ->setCurriculumVersion($curriculumVersion)
             ->setUrl($url);
         $this->children = array();
-    }
-
-    /**
-     * Set the objective code for this term.
-     *
-     * @param string $code
-     *    The objective code, like 'D.1.A.1.a'.
-     *
-     * @return this
-     */
-    public function setCode($code)
-    {
-        $this->code = $code;
-        return $this;
-    }
-
-    /**
-     * Get the objective code for this term.
-     *
-     * @return string|null
-     *    The objective code, or null if none is set.
-     */
-    public function getCode()
-    {
-        return $this->code;
     }
 
     /**
@@ -116,26 +86,6 @@ class LP21Term extends BaseTerm
     public function getUrl()
     {
         return $this->url;
-    }
-
-    /**
-     * Find a child term based on its identifier.
-     *
-     * @param string $identifier
-     *    The identifier to search a child for.
-     *
-     * @return \Educa\DSB\Client\Curriculum\Term\TermInterface|null
-     *    The child, or null if not found.
-     *
-     * @throws \Educa\DSB\Client\Curriculum\Term\TermHasNoChildrenException
-     */
-    public function findChildByIdentifier($identifier)
-    {
-        foreach ($this->getChildren() as $child) {
-            if ($child->describe()->id == $identifier) {
-                return $child;
-            }
-        }
     }
 
 }
