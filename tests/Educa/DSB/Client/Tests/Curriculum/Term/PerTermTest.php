@@ -56,6 +56,11 @@ class PerTermTest extends \PHPUnit_Framework_TestCase
             "Searching by code one level for a child that's located deeper returns null."
         );
         $this->assertEquals(
+            $terms['uuid4.1'],
+            $terms['uuid4']->findChildByCode('4.1'),
+            "Searching by code one level for a child that exists works."
+        );
+        $this->assertEquals(
             $terms['uuid4.2'],
             $root->findChildByCodeRecursive('4.2'),
             "Recursively searching by code works."
