@@ -12,8 +12,6 @@ use Educa\DSB\Client\Curriculum\Term\TermInterface;
 use Educa\DSB\Client\Curriculum\Term\PerTerm;
 use Educa\DSB\Client\Curriculum\CurriculumInvalidContextException;
 use Educa\DSB\Client\Curriculum\CurriculumInvalidDataStructureException;
-use Sabre\Xml\Reader;
-use Sabre\Xml\Element\KeyValue;
 
 /**
  * @codeCoverageIgnore
