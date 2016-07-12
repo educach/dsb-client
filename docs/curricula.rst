@@ -232,7 +232,7 @@ The definition data can be fetched via an API, which is openly accessible `here 
     $curriculum = new PerCurriculum($data->curriculum);
     $curriculum->setCurriculumDictionary($data->dictionary);
 
-The curriculum class supports the handling of LOM-CH *classification* field data (field no 9) as well as LOM-CH *curriculum* field data (field no 10). This is represented as a series of *taxonomy paths* and *taxonomy trees*, respectively. Please refer to the `REST API documentation <https://dsb-api.educa.ch/latest/doc/>`_, for more information on the structure. By default, for the *classification* field, it only considers *discipline* taxonomy paths. If you wish to parse a taxonomy path with another *purpose* key, pass it as the second parameter to ``setTreeBasedOnTaxonPath()``.
+The curriculum class supports the handling of LOM-CH *curriculum* field data (field no 10). This is represented as a series of *taxonomy trees*. Please refer to the `REST API documentation <https://dsb-api.educa.ch/latest/doc/>`_, for more information on the structure.
 
 .. code-block:: php
 
@@ -243,19 +243,6 @@ The curriculum class supports the handling of LOM-CH *classification* field data
     $curriculum = new PerCurriculum($data->curriculum);
     $curriculum->setCurriculumDictionary($data->dictionary);
 
-    // $paths is an array of taxonomy paths. See official REST API documentation
-    // for more info.
-    $curriculum->setTreeBasedOnTaxonPath($paths);
-
-    print $curriculum->asciiDump();
-    // Results in:
-    // --- root:root
-    //     +-- cycle:cycles-1
-    //         +-- domaine:cycles-1-domaines-4
-    //             +-- discipline:cycles-1-disciplines-13
-    //             +-- discipline:cycles-1-disciplines-11
-
-
     // $trees is an array of taxonomy trees. See official REST API documentation
     // for more info.
     $curriculum->setTreeBasedOnTaxonTree($trees);
@@ -263,13 +250,12 @@ The curriculum class supports the handling of LOM-CH *classification* field data
     print $curriculum->asciiDump();
     // Results in:
     // --- root:root
-    //     +-- cycle:cycles-1
-    //         +-- domaine:cycles-1-domaines-4
-    //             +-- discipline:cycles-1-disciplines-13
-    //                 +-- objectif:cycles-1-objectives-76
-    //         +-- domaine:cycles-1-domaines-4
-    //             +-- discipline:cycles-1-disciplines-11
-    //                 +-- objectif:cycles-1-objectives-77
+    //     +-- cycle:1
+    //         +-- domaine:4
+    //             +-- discipline:13
+    //                 +-- objectif:76
+    //             +-- discipline:11
+    //                 +-- objectif:77
 
 Of course, you can call ``getTree()`` to get the root item of the tree, and navigate it.
 
@@ -286,7 +272,7 @@ Lehrplan 21 (lp21) curriculum
 
 The *Lehrplan 21* (or *lp21*) curriculum is an official curriculum for the German speaking cantons in Switzerland. More information can be found `here <http://lehrplan.ch/>`_.
 
-The definition file is a XML file that can be downloaded from the site. The ``LP21Curriculum`` class can parse this information for re-use. The reason this data does not *have* to be passed to ``LP21Curriculum`` every time is that applications might want to cache the parsing result, and pass the cached data in future calls. This can save time, as the parsing can be very time-consuming and memory intensive (the XML is over 2Mb in size).
+The definition file is a XML file that can be downloaded from the site. The ``LP21Curriculum`` class can parse this information for re-use. The reason this data does not *have* to be passed to ``LP21Curriculum`` every time is that applications might want to cache the parsing result, and pass the cached data in future calls. This can save time, as the parsing can be very time-consuming and memory intensive (the XML is over 20Mb in size).
 
 .. code-block:: php
 
@@ -303,7 +289,7 @@ The definition file is a XML file that can be downloaded from the site. The ``LP
     $curriculum = new LP21Curriculum($data->curriculum);
     $curriculum->setCurriculumDictionary($data->dictionary);
 
-The curriculum class supports the handling of LOM-CH *curricula* field data (field no 10). **WARNING:** *this is not officially implemented yet, and might change! The following is still a suggestion.* This is represented as a series of *taxonomy paths*. Please refer to the `REST API documentation <https://dsb-api.educa.ch/latest/doc/>`_, specifically the format of the Lom-CH *classification* field (field no 9) for more information on the structure. By default, it only considers *discipline* taxonomy paths. If you wish to parse a taxonomy path with another *purpose* key, pass it as the second parameter to ``setTreeBasedOnTaxonPath()``.
+The curriculum class supports the handling of LOM-CH *curriculum* field data (field no 10). This is represented as a series of *taxonomy trees*. Please refer to the `REST API documentation <https://dsb-api.educa.ch/latest/doc/>`_, for more information on the structure.
 
 .. code-block:: php
 
@@ -314,9 +300,9 @@ The curriculum class supports the handling of LOM-CH *curricula* field data (fie
     $curriculum = new LP21Curriculum($data->curriculum);
     $curriculum->setCurriculumDictionary($data->dictionary);
 
-    // $paths is an array of taxonomy paths. See official REST API documentation
+    // $trees is an array of taxonomy trees. See official REST API documentation
     // for more info.
-    $curriculum->setTreeBasedOnTaxonPath($paths);
+    $curriculum->setTreeBasedOnTaxonTree($trees);
 
     print $curriculum->asciiDump();
     // Results in:
