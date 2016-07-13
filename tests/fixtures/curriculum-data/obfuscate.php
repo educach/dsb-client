@@ -13,6 +13,7 @@ $in  = fopen($inFile, 'r');
 
 // Read line by line, and obfuscate all "sensitive" data.
 $uuids = array();
+$texts = array();
 while (($line = fgets($in)) !== false) {
     // Ignore lines.
     if (preg_match('/^<(code|mindestanspruch|orientierungspunkt|spaeter_im_zyklus|orientierungspunkt_vorher|linie_oben|linie_unten|anzahl_in_zyklus|anzahl_in_kompetenz|folge_in_aufbaute)>/', trim($line))) {
@@ -45,9 +46,12 @@ while (($line = fgets($in)) !== false) {
     // If this is a text line, replace all the text.
     $match;
     if (preg_match('/^<de>(.+?)<\/de>/', trim($line), $match)) {
-        $wordCount = count(explode(' ', $match[1]));
-        $text = devel_create_greeking($wordCount, $wordCount < 3);
-        $line = preg_replace('/<de>.+?<\/de>/', "<de>{$text}</de>", $line);
+        if (!isset($texts[$match[1]])) {
+            $wordCount = count(explode(' ', $match[1]));
+            $text = devel_create_greeking($wordCount, $wordCount < 3);
+            $texts[$match[1]] = $text;
+        }
+        $line = preg_replace('/<de>.+?<\/de>/', "<de>{$texts[$match[1]]}</de>", $line);
     }
 
     fwrite($out, $line);
@@ -84,9 +88,44 @@ while (($line = fgets($in)) !== false) {
     fwrite($out, $line);
 }
 
-// Close the XML files.
+// Close the ASCII files.
 fclose($in);
 fclose($out);
+
+echo "Done with the ASCII dumps. Moving on to the JSON example files...\n";
+
+// Replace all UUIDs in the ascii files.
+$outFile = __DIR__ . '/lp21_taxonomy_tree_obfuscated.json';
+$inFile  = __DIR__ . '/lp21_taxonomy_tree.json';
+
+// Reset the file contents.
+file_put_contents($outFile, '');
+
+// Open both files.
+$out = fopen($outFile, 'a');
+$in  = fopen($inFile, 'r');
+
+// Read all lines, replacing UUIDs and text as we go.
+while (($line = fgets($in)) !== false) {
+    // Replace UUIDs.
+    $match;
+    if (preg_match('/"id":\s?"(\w+)"/', $line, $match)) {
+        $withoutVersionPrefix = substr($match[1], 3);
+        if (isset($uuids[$withoutVersionPrefix])) {
+            $line = str_replace($match[1], $uuids[$withoutVersionPrefix], $line);
+        }
+    }
+
+    // Replace texts.
+    $match;
+    if (preg_match('/"de":\s?"(.+?)"/', $line, $match)) {
+        if (isset($texts[$match[1]])) {
+            $line = str_replace($match[1], $texts[$match[1]], $line);
+        }
+    }
+
+    fwrite($out, $line);
+}
 
 // Finish.
 echo "Finished.\n";

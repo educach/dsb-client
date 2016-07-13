@@ -1,0 +1,135 @@
+[
+	{
+		"source": {
+			"name": "lp21"
+		},
+		"taxonTree": [
+			{
+				"id": "OBF-5066c68c0dea3797b686fdb6a1725e306f08534b",
+				"type": "fachbereich",
+				"purpose": {
+					"source": "LOM-CHv1.2",
+					"value": "discipline"
+				},
+				"entry": {
+					"de": "Consequat"
+				},
+				"childTaxons": [
+					{
+						"id": "OBF-db40c30772f08f917542b4accdf1c5696572e356",
+						"type": "fach",
+						"purpose": {
+							"source": "LOM-CHv1.2",
+							"value": "discipline"
+						},
+						"entry": {
+							"de": "Ludus"
+						},
+						"childTaxons": [
+							{
+								"id": "OBF-64b70127e012b346f3a358e25bab2160e771b38c",
+								"type": "kompetenzbereich",
+								"purpose": {
+									"source": "LOM-CHv1.2",
+									"value": "discipline"
+								},
+								"entry": {
+									"de": "Similis"
+								},
+								"childTaxons": [
+									{
+										"id": "OBF-8c4f3c56cdc40db3c0396212719a2e64e56f1e89",
+										"type": "handlungs_themenaspekt",
+										"purpose": {
+											"source": "LOM-CHv1.2",
+											"value": "objective"
+										},
+										"entry": {
+											"de": "Causa"
+										},
+										"childTaxons": [
+											{
+												"id": "OBF-90cd0ecacc05320f3819fc3fa862ee718426d9a7",
+												"type": "kompetenz",
+												"purpose": {
+													"source": "LOM-CHv1.2",
+													"value": "objective"
+												},
+												"entry": {
+													"de": "Abbas at augue consectetuer esca iusto mos premo secundum torqueo. Brevitas cogo duis imputo interdico neo proprius zelus. Accumsan commoveo dolor ex interdico persto torqueo ymo. Abbas distineo ea facilisis nunc plaga premo utinam utrum."
+												},
+												"childTaxons": [
+													{
+														"id": "OBF-49ab48fce14468c6c7016819bfc3e05b2bc31c2c",
+														"type": "kompetenzstufe",
+														"purpose": {
+															"source": "LOM-CHv1.2",
+															"value": "component"
+														},
+														"entry": {
+															"de": "Inhibeo letalis metuo quidne suscipere. Laoreet oppeto premo. Defui ea importunus incassum jus ludus nisl tamen venio."
+														},
+													}
+												]
+											}
+										]
+									}
+								]
+							}
+						]
+					},
+					{
+						"id": "OBF-655f15ab46cc4b71f9557ece058e58392a3d9559",
+						"type": "fach",
+						"purpose": {
+							"source": "LOM-CHv1.2",
+							"value": "discipline"
+						},
+						"entry": {
+							"de": "Humo Premo"
+						},
+						"childTaxons": [
+							{
+								"id": "OBF-652eac80e8067cd3fa1dfdd273bae88ab7d21df8",
+								"type": "kompetenzbereich",
+								"purpose": {
+									"source": "LOM-CHv1.2",
+									"value": "discipline"
+								},
+								"entry": {
+									"de": "Metuo"
+								},
+								"childTaxons": [
+									{
+										"id": "OBF-0d1664cd7aed9402e4622f2101b0eb5191da6ebb",
+										"type": "handlungs_themenaspekt",
+										"purpose": {
+											"source": "LOM-CHv1.2",
+											"value": "objective"
+										},
+										"entry": {
+											"de": "Abico plaga premo utinam voco."
+										},
+										"childTaxons": [
+											{
+												"id": "OBF-adb525f9ecdc6a0b52c653d76d57b06deaf7b588",
+												"type": "kompetenz",
+												"purpose": {
+													"source": "LOM-CHv1.2",
+													"value": "objective"
+												},
+												"entry": {
+													"de": "Gravis haero jugis magna melior modo volutpat. Acsi fere macto. In modo nibh premo secundum voco. Augue consequat euismod haero ibidem olim pertineo. Dolore genitus minim modo valetudo vereor vulputate."
+												}
+											}
+										]
+									}
+								]
+							}
+						]
+					}
+				]
+			}
+		]
+	}
+]

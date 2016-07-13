@@ -6,6 +6,7 @@
 # with obfuscated data instead.
 tests/fixtures/curriculum-data/lp21_curriculum.ascii
 tests/fixtures/curriculum-data/lp21_curriculum.xml
+tests/fixtures/curriculum-data/lp21_taxonomy_tree.json
 
 *.sublime-*
 composer.lock
