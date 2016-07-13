@@ -64,33 +64,35 @@ fclose($out);
 echo "Done with the XML files. Moving on to the ASCII dumps...\n";
 
 // Replace all UUIDs in the ascii files.
-$outFile = __DIR__ . '/lp21_curriculum_obfuscated.ascii';
-$inFile  = __DIR__ . '/lp21_curriculum.ascii';
+foreach ([
+    __DIR__ . '/lp21_curriculum_obfuscated.ascii' => __DIR__ . '/lp21_curriculum.ascii',
+    __DIR__ . '/lp21_taxonomy_tree_obfuscated.ascii' => __DIR__ . '/lp21_taxonomy_tree.ascii',
+] as $outFile => $inFile) {
+    // Reset the file contents.
+    file_put_contents($outFile, '');
 
-// Reset the file contents.
-file_put_contents($outFile, '');
+    // Open both files.
+    $out = fopen($outFile, 'a');
+    $in  = fopen($inFile, 'r');
 
-// Open both files.
-$out = fopen($outFile, 'a');
-$in  = fopen($inFile, 'r');
-
-// Read all lines, replacing UUIDs as we go.
-while (($line = fgets($in)) !== false) {
-    // Replace UUIDs.
-    $match;
-    if (preg_match('/:(\w+)/', $line, $match)) {
-        $withoutVersionPrefix = substr($match[1], 3);
-        if (isset($uuids[$withoutVersionPrefix])) {
-            $line = str_replace($match[1], $uuids[$withoutVersionPrefix], $line);
+    // Read all lines, replacing UUIDs as we go.
+    while (($line = fgets($in)) !== false) {
+        // Replace UUIDs.
+        $match;
+        if (preg_match('/:(\w+)/', $line, $match)) {
+            $withoutVersionPrefix = substr($match[1], 3);
+            if (isset($uuids[$withoutVersionPrefix])) {
+                $line = str_replace($match[1], $uuids[$withoutVersionPrefix], $line);
+            }
         }
+
+        fwrite($out, $line);
     }
 
-    fwrite($out, $line);
+    // Close the ASCII files.
+    fclose($in);
+    fclose($out);
 }
-
-// Close the ASCII files.
-fclose($in);
-fclose($out);
 
 echo "Done with the ASCII dumps. Moving on to the JSON example files...\n";
 
