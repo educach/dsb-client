@@ -1,11 +1,11 @@
 --- root:root
-    +-- fachbereich:OBF-0101a683b350c317006e9859be576bddc88f3ac1
-        +-- fach:OBF-3d9b0620ad7c0227b6c31b6a5f465bb1b257feec
-            +-- kompetenzbereich:OBF-6589da528aa323231ff87e0278d325c7f3cad861
-                +-- handlungs_themenaspekt:OBF-22534eaf2c737df343e8e781d78fb84be3e90fd5
-                    +-- kompetenz:OBF-f9a2d3487c68b30384a85746e0257775b8583302
-                        +-- kompetenzstufe:OBF-c9916174a9edff4c2ab680e7662dab94c03d95de
-        +-- fach:OBF-12914e54961c03b316211955e2f665a7fbfcf11e
-            +-- kompetenzbereich:OBF-3b87d22455b5242eebcb7b0290ad033ee52695b2
-                +-- handlungs_themenaspekt:OBF-d20438ad0cbc92780cb5246bf0c4c7f780b4e913
-                    +-- kompetenz:OBF-ff6adb07905525d35185fba6db77716f5f7e2f70
+    +-- fachbereich:OBF-9e57ba11d67b26179ee558e1c858d50b3fc152df
+        +-- fach:OBF-9e4ae8b0523325fc8be746512a752461a044661f
+            +-- kompetenzbereich:OBF-040e8209b4077ad430187dc52167354437cb0192
+                +-- handlungs-themenaspekt:OBF-155823ba5b8ae46974e370b52c92ff76ec1cfe94
+                    +-- kompetenz:OBF-9a1d0ec9536fd8423b57aaa0a4c390c71143d475
+                        +-- kompetenzstufe:OBF-bf16327fc3ce1f2b242f6e2a20a5eca03c5a23aa.a0
+        +-- fach:OBF-caf14848c5563be96c755ee152a9161b3fd2c6ba
+            +-- kompetenzbereich:OBF-8f2869ae58a876758da09d4be8e6de787249830b
+                +-- handlungs-themenaspekt:OBF-d423f3cbf983fc5284b1e886731536e073dd62a1
+                    +-- kompetenz:OBF-c65ba0c5cfafb97fb4d158190746cb64a1948a79
