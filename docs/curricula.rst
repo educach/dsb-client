@@ -328,3 +328,5 @@ A curriculum tree consists of ``TermInterface`` elements, just as for the other 
 * ``getUrl()`` and ``setUrl()``: Get/set the URL property of an item (mostly applies to *Kompetenzstufe*)
 * ``getCode()`` and ``setCode()``: Get/set the code property of an item
 * ``getVersion()`` and ``setVersion()``: Get the version of the Lehrplan this item is meant for (mostly applies to *Kompetenzstufe*)
+* ``getCantons()`` and ``setCantons()``: Get the *Cantons* this item is meant for (mostly applies to *Fachbereiche*)
+* ``getCycles()`` and ``setCycles()``: Get the *cycles* this item applies to (mostly applies to *Kompetenzstufe*)
