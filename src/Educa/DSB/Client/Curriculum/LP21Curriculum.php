@@ -238,6 +238,8 @@ class LP21Curriculum extends BaseCurriculum
      *
      * @param string $curriculumXml
      *    The curriculum definition file, in XML.
+     * @param string $variant
+     *    (optional) The variant of the curriculum to parse. Defaults to 'V_EF'.
      *
      * @return array
      *    An object with 2 properties:
@@ -249,7 +251,7 @@ class LP21Curriculum extends BaseCurriculum
      *
      * @see \Educa\DSB\Client\Curriculum\LP21Curriculum::setCurriculumDictionary()
      */
-    public static function parseCurriculumXml($curriculumXml)
+    public static function parseCurriculumXml($curriculumXml, $variant = 'V_EF')
     {
         $reader = new Reader();
 
@@ -300,6 +302,8 @@ class LP21Curriculum extends BaseCurriculum
                             },
                             array()
                         );
+                    } elseif ($child['name'] == '{}kantone') {
+                        $node->cantons = array_map('trim', explode(',', $child['value']));
                     }
                 }
             }
@@ -307,7 +311,7 @@ class LP21Curriculum extends BaseCurriculum
             return $node;
         };
 
-        $kompetenzstufeHandler = function($reader) {
+        $kompetenzstufeHandler = function($reader) use ($variant) {
             $nodes = array();
             $cycle = $url = $version = $code = null;
 
@@ -319,12 +323,19 @@ class LP21Curriculum extends BaseCurriculum
                         $nodes = $child['value'];
                     } elseif ($child['name'] == '{}zyklus') {
                         $cycle = trim($child['value']);
-                    } elseif ($child['name'] == '{}url') {
-                        $url = trim($child['value']);
                     } elseif ($child['name'] == '{}lehrplanversion') {
                         $version = trim($child['value']);
-                    } elseif ($child['name'] == '{}code') {
-                        $code = trim($child['value']);
+                    } elseif (
+                        $child['name'] == '{}kanton' &&
+                        $child['attributes']['id'] == $variant
+                    ) {
+                        foreach ($child['value'] as $grandChild) {
+                            if ($grandChild['name'] == '{}code') {
+                                $code = trim($grandChild['value']);
+                            } elseif ($grandChild['name'] == '{}url') {
+                                $url = trim($grandChild['value']);
+                            }
+                        }
                     }
                 }
             }
@@ -433,26 +444,35 @@ class LP21Curriculum extends BaseCurriculum
                             'type' => $node->type
                         );
 
-                        // @todo Set props !!!!!
-
                         // Do we have an objective code?
                         if (!empty($node->code)) {
+                            $term->setCode($node->code);
                             $dictionary[$node->uuid]->code = $node->code;
+                        }
+
+                        // Do we have any cantons information?
+                        if (!empty($node->cantons)) {
+                            $term->setCantons($node->cantons);
+                            $dictionary[$node->uuid]->cantons = $node->cantons;
                         }
 
                         // Do we have curriculum version information?
                         if (!empty($node->version)) {
+                            $term->setVersion($node->version);
                             $dictionary[$node->uuid]->version = $node->version;
                         }
 
                         // Do we have URL information?
                         if (!empty($node->url)) {
+                            $term->setUrl($node->url);
                             $dictionary[$node->uuid]->url = $node->url;
                         }
 
                         // Do we have cycle information?
                         if (!empty($node->cycle)) {
-                            $dictionary[$node->uuid]->cycle = $node->cycle;
+                            $cycles = str_split($node->cycle);
+                            $term->setCycles($cycles);
+                            $dictionary[$node->uuid]->cycles = $cycles;
                         }
 
                         if (!empty($node->children)) {
@@ -491,7 +511,7 @@ class LP21Curriculum extends BaseCurriculum
      */
     protected function termFactory($type, $taxonId, $name = null)
     {
-        $code = $version = $url = null;
+        $code = $version = $url = $cycles = $cantons = null;
         if (isset($this->curriculumDictionary[$taxonId])) {
             $definition = $this->curriculumDictionary[$taxonId];
 
@@ -506,9 +526,24 @@ class LP21Curriculum extends BaseCurriculum
             if (isset($definition->code)) {
                 $code = $definition->code;
             }
+
+            if (isset($definition->cycles)) {
+                $cycles = $definition->cycles;
+            }
+
+            if (isset($definition->cantons)) {
+                $cantons = $definition->cantons;
+            }
+
+            // Always fetch the name from the local data. The data passed may be
+            // stale, as it usually comes from the dsb API. Normally, local data
+            // is refreshed on regular bases, so should be more up-to-date.
+            if (isset($definition->name)) {
+                $name = $definition->name;
+            }
         }
 
-        return new LP21Term($type, $taxonId, $name, $code, $version, $url);
+        return new LP21Term($type, $taxonId, $name, $code, $version, $url, $cycles, $cantons);
     }
 
     /**
