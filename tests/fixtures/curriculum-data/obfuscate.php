@@ -14,15 +14,16 @@ $in  = fopen($inFile, 'r');
 // Read line by line, and obfuscate all "sensitive" data.
 $uuids = array();
 $texts = array();
+$codes = array();
 while (($line = fgets($in)) !== false) {
     // Ignore lines.
-    if (preg_match('/^<(code|mindestanspruch|orientierungspunkt|spaeter_im_zyklus|orientierungspunkt_vorher|linie_oben|linie_unten|anzahl_in_zyklus|anzahl_in_kompetenz|folge_in_aufbaute)>/', trim($line))) {
+    if (preg_match('/^<(mindestanspruch|orientierungspunkt|spaeter_im_zyklus|orientierungspunkt_vorher|linie_oben|linie_unten|anzahl_in_zyklus|anzahl_in_kompetenz|folge_in_aufbaute)>/', trim($line))) {
         continue;
     }
 
     // Replace UUIDs.
     $match;
-    if (preg_match('/uuid="(\w+)"/', $line, $match)) {
+    if (preg_match('/uuid="(\w+)/', $line, $match)) {
         $withoutVersionPrefix = substr($match[1], 3);
         if (!isset($uuids[$withoutVersionPrefix])) {
             $uuids[$withoutVersionPrefix] = 'OBF-' . sha1(uniqid());
@@ -38,6 +39,15 @@ while (($line = fgets($in)) !== false) {
             $uuids[$withoutVersionPrefix] = 'OBF-' . sha1(uniqid());
         }
         $line = str_replace($match[0], '<url>http://' . $match[1] . '.example.com/' . $uuids[$withoutVersionPrefix] . '</url>', $line);
+    }
+
+    // Replace codes.
+    $match;
+    if (preg_match('/<code>(.+?)<\/code>/', $line, $match)) {
+        if (!isset($uuids[$match[1]])) {
+            $uuids[$match[1]] = 'OBF-' . uniqid();
+        }
+        $line = str_replace($match[1], $uuids[$match[1]], $line);
     }
 
     // Remove IDs that start with a number.
@@ -96,7 +106,7 @@ foreach ([
 
 echo "Done with the ASCII dumps. Moving on to the JSON example files...\n";
 
-// Replace all UUIDs in the ascii files.
+// Replace all UUIDs in the JSON files.
 $outFile = __DIR__ . '/lp21_taxonomy_tree_obfuscated.json';
 $inFile  = __DIR__ . '/lp21_taxonomy_tree.json';
 
@@ -111,7 +121,7 @@ $in  = fopen($inFile, 'r');
 while (($line = fgets($in)) !== false) {
     // Replace UUIDs.
     $match;
-    if (preg_match('/"id":\s?"(\w+)"/', $line, $match)) {
+    if (preg_match('/"id":\s?"(\w+)/', $line, $match)) {
         $withoutVersionPrefix = substr($match[1], 3);
         if (isset($uuids[$withoutVersionPrefix])) {
             $line = str_replace($match[1], $uuids[$withoutVersionPrefix], $line);
