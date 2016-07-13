@@ -18,10 +18,10 @@ trait HasCode
     protected $code;
 
     /**
-     * Set the objective code for this term.
+     * Set the term code for this term.
      *
      * @param string $code
-     *    The objective code, like 'FG 31'.
+     *    The term code, like 'FG 31'.
      *
      * @return this
      */
@@ -32,10 +32,10 @@ trait HasCode
     }
 
     /**
-     * Get the objective code for this term.
+     * Get the term code for this term.
      *
      * @return string|null
-     *    The objective code, or null if none is set.
+     *    The term code, or null if none is set.
      */
     public function getCode()
     {

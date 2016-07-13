@@ -25,11 +25,15 @@ class LP21TermTest extends \PHPUnit_Framework_TestCase
         $term
             ->setUrl('url')
             ->setCode('code')
-            ->setCurriculumVersion('version');
+            ->setCantons(['BE'])
+            ->setVersion('version')
+            ->setCycles([1]);
 
         $this->assertEquals('url', $term->getUrl(), "The getter/setter works for URLs.");
         $this->assertEquals('code', $term->getCode(), "The getter/setter works for codes.");
-        $this->assertEquals('version', $term->getCurriculumVersion(), "The getter/setter works for versions.");
+        $this->assertEquals(['BE'], $term->getCantons(), "The getter/setter works for cantons.");
+        $this->assertEquals('version', $term->getVersion(), "The getter/setter works for versions.");
+        $this->assertEquals([1], $term->getCycles(), "The getter/setter works for cycles.");
     }
 
 }
