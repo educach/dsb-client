@@ -253,7 +253,7 @@ class LP21Curriculum extends BaseCurriculum
     {
         $reader = new Reader();
 
-        // Prepare a custom handler for reading an XML node. See the Sabre\Xml
+        // Prepare custom handlers for reading an XML node. See the Sabre\Xml
         // documentation for more information.
         $baseHandler = function($reader) {
             $node = new \stdClass();
@@ -264,7 +264,7 @@ class LP21Curriculum extends BaseCurriculum
 
             // We derive the type from the node name.
             $node->type = strtolower(
-                str_replace(array('{}', '-'), array('', '_'), trim($reader->getClark()))
+                str_replace('{}', '', trim($reader->getClark()))
             );
 
             // Give a default description.
@@ -289,23 +289,95 @@ class LP21Curriculum extends BaseCurriculum
                     ))) {
                         $node->children[] = $child;
                     } elseif ($child['name'] == '{}bezeichnung') {
-                        $node->description = (object) array(
-                            // @todo Is there really always only 1 value??
-                            'de' => trim($child['value'][0]['value'])
+                        $node->description = (object) array_reduce(
+                            $child['value'],
+                            function($carry, $item) {
+                                $langcode = strtolower(
+                                    str_replace('{}', '', $item['name'])
+                                );
+                                $carry[$langcode] = $item['value'];
+                                return $carry;
+                            },
+                            array()
                         );
-                    } elseif ($child['name'] == '{}zyklus') {
-                        $node->cycle = trim($child['value']);
-                    } elseif ($child['name'] == '{}url') {
-                        $node->url = trim($child['value']);
-                    } elseif ($child['name'] == '{}code') {
-                        $node->code = trim($child['value']);
-                    } elseif ($child['name'] == '{}lehrplanversion') {
-                        $node->version = trim($child['value']);
                     }
                 }
             }
 
             return $node;
+        };
+
+        $kompetenzstufeHandler = function($reader) {
+            $nodes = array();
+            $cycle = $url = $version = $code = null;
+
+            // Fetch the descendants.
+            $children = $reader->parseInnerTree();
+            if (!empty($children)) {
+                foreach($children as $child) {
+                    if ($child['name'] == '{}absaetze') {
+                        $nodes = $child['value'];
+                    } elseif ($child['name'] == '{}zyklus') {
+                        $cycle = trim($child['value']);
+                    } elseif ($child['name'] == '{}url') {
+                        $url = trim($child['value']);
+                    } elseif ($child['name'] == '{}lehrplanversion') {
+                        $version = trim($child['value']);
+                    } elseif ($child['name'] == '{}code') {
+                        $code = trim($child['value']);
+                    }
+                }
+            }
+
+            // Map all the Kompetenzstufe properties to the child Absaetzen.
+            return array_map(function($node) use ($cycle, $url, $version, $code) {
+                if (isset($cycle)) {
+                    $node->cycle = $cycle;
+                }
+                if (isset($url)) {
+                    $node->url = $url;
+                }
+                if (isset($version)) {
+                    $node->version = $version;
+                }
+                if (isset($code)) {
+                    $node->code = $code;
+                }
+                return $node;
+            }, $nodes);
+        };
+
+        $absaetzeHandler = function($reader) {
+            $nodes = array();
+
+            // Fetch the descendants.
+            $children = $reader->parseInnerTree();
+            if (!empty($children)) {
+                foreach($children as $child) {
+                    if ($child['name'] == '{}bezeichnung') {
+                        $node = new \stdClass();
+                        // We treat it as a "Kompetenzstufe".
+                        $node->type = 'kompetenzstufe';
+                        $node->description = (object) array_reduce(
+                            $child['value'],
+                            function($carry, $item) {
+                                $langcode = strtolower(
+                                    str_replace('{}', '', $item['name'])
+                                );
+                                $carry[$langcode] = $item['value'];
+                                return $carry;
+                            },
+                            array()
+                        );
+                        // The UUID is on the child Bezeichnung element, not our
+                        // own node.
+                        $node->uuid = $child['attributes']['uuid'];
+                        $nodes[] = $node;
+                    }
+                }
+            }
+
+            return $nodes;
         };
 
         // Register our handler for the following node types. All others will be
@@ -317,7 +389,8 @@ class LP21Curriculum extends BaseCurriculum
             '{}kompetenzbereich' => $baseHandler,
             '{}handlungs-themenaspekt' => $baseHandler,
             '{}kompetenz' => $baseHandler,
-            '{}kompetenzstufe' => $baseHandler,
+            '{}kompetenzstufe' => $kompetenzstufeHandler,
+            '{}absaetze' => $absaetzeHandler,
         ];
 
         // Parse the data.
@@ -327,48 +400,64 @@ class LP21Curriculum extends BaseCurriculum
         // Prepare the dictionary.
         $dictionary = array();
 
-        // Prepare our root element, and add our cycles to it.
+        // Prepare our root element.
         $root = new LP21Term('root', 'root');
 
         // Now, recursively parse the tree, transforming it into a tree of
         // LP21Term instances.
         $recurse = function($tree, $parent) use (&$recurse, &$dictionary) {
             foreach ($tree as $item) {
-                // Fetch our node.
-                $node = $item['value'];
+                // Fetch our nodes.
+                $nodes = $item['value'];
+                if (!is_array($nodes)) {
+                    $nodes = [$nodes];
+                }
 
                 // Double check the format. Is this one of our nodes?
-                if (isset($node->uuid) && isset($node->type) && isset($node->description)) {
-                    $term = new LP21Term(
-                        $node->type,
-                        $node->uuid,
-                        $node->description
-                    );
-                    $parent->addChild($term);
+                foreach ($nodes as $node) {
+                    if (
+                        isset($node->uuid) &&
+                        isset($node->type) &&
+                        isset($node->description)
+                    ) {
+                        $term = new LP21Term(
+                            $node->type,
+                            $node->uuid,
+                            $node->description
+                        );
+                        $parent->addChild($term);
 
-                    // Add it to our dictionary.
-                    $dictionary[$node->uuid] = (object) array(
-                        'name' => $node->description,
-                        'type' => $node->type
-                    );
+                        // Add it to our dictionary.
+                        $dictionary[$node->uuid] = (object) array(
+                            'name' => $node->description,
+                            'type' => $node->type
+                        );
 
-                    // Do we have an objective code?
-                    if (!empty($node->code)) {
-                        $dictionary[$node->uuid]->code = $node->code;
-                    }
+                        // @todo Set props !!!!!
 
-                    // Do we have curriculum version information?
-                    if (!empty($node->version)) {
-                        $dictionary[$node->uuid]->version = $node->version;
-                    }
+                        // Do we have an objective code?
+                        if (!empty($node->code)) {
+                            $dictionary[$node->uuid]->code = $node->code;
+                        }
 
-                    // Do we have URL information?
-                    if (!empty($node->url)) {
-                        $dictionary[$node->uuid]->url = $node->url;
-                    }
+                        // Do we have curriculum version information?
+                        if (!empty($node->version)) {
+                            $dictionary[$node->uuid]->version = $node->version;
+                        }
 
-                    if (!empty($node->children)) {
-                        $recurse($node->children, $term);
+                        // Do we have URL information?
+                        if (!empty($node->url)) {
+                            $dictionary[$node->uuid]->url = $node->url;
+                        }
+
+                        // Do we have cycle information?
+                        if (!empty($node->cycle)) {
+                            $dictionary[$node->uuid]->cycle = $node->cycle;
+                        }
+
+                        if (!empty($node->children)) {
+                            $recurse($node->children, $term);
+                        }
                     }
                 }
             }
