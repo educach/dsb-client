@@ -69,4 +69,14 @@ class LomDescriptionSearchResult extends LomDescription
         return $this->getField('ownerDisplayName');
     }
 
+    /**
+     * @{inheritdoc}
+     */
+    public function getOwnerUsername()
+    {
+        // We override the method, because this field *is* available and valid
+        // for search results.
+        return $this->getField('ownerUsername');
+    }
+
 }

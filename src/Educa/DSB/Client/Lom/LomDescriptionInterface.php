@@ -87,6 +87,8 @@ interface LomDescriptionInterface
      *
      * Alias for LomDescriptionInterface::getField('ownerUsername').
      *
+     * @deprecated This will be removed in a future release.
+     *
      * @return string|false
      *    The description owner username, or false if not available.
      */

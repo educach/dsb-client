@@ -87,6 +87,7 @@ class LomDescription implements LomDescriptionInterface
      */
     public function getOwnerUsername()
     {
+        trigger_error("getOwnerUsername() is deprecated and will be removed in a future version. The new LOM-CH standard doesn't have a ownerUsername field anymore.", E_USER_NOTICE);
         return $this->getField('ownerUsername');
     }
 

@@ -189,11 +189,6 @@ class LomDescriptionTest extends \PHPUnit_Framework_TestCase
             "The getPreviewImage() method works."
         );
         $this->assertEquals(
-            false,
-            $lomDescription->getOwnerUsername(),
-            "The getOwnerUsername() method works."
-        );
-        $this->assertEquals(
             [
                 "archibald_file/24/logo.gif",
                 "archibald_file/24/logo.gif",
