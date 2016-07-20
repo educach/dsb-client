@@ -53,6 +53,9 @@ class LomDescription implements LomDescriptionInterface
      */
     public function getLomId()
     {
+        if (!$this->isLegacyLOMCHFormat()) {
+            trigger_error("getLomId() is deprecated and will be removed in a future version. The new LOM-CH standard doesn't have a lomId field anymore.", E_USER_NOTICE);
+        }
         return $this->getField('lomId');
     }
 
@@ -69,7 +72,8 @@ class LomDescription implements LomDescriptionInterface
      */
     public function getDescription($languageFallback = array('de', 'fr', 'it', 'rm', 'en'))
     {
-        return $this->getField('general.description', $languageFallback);
+        $path = $this->isLegacyLOMCHFormat() ? 'general.description' : 'general.description.0';
+        return $this->getField($path, $languageFallback);
     }
 
     /**
@@ -113,6 +117,38 @@ class LomDescription implements LomDescriptionInterface
         }
 
         return $logos;
+    }
+
+    /**
+     * Check whether we are dealing with a legacy LOM-CH format.
+     *
+     * @return bool
+     *    True if this is an older format, false otherwise.
+     */
+    public function isLegacyLOMCHFormat()
+    {
+        $metaDataSchema = $this->getField('metaMetadata.metadataSchema');
+        if (!empty($metaDataSchema)) {
+            // Is the data an array? If not, we are dealing with a legacy
+            // format. If it is, we are dealing with a format that at least
+            // respects the LOM standard.
+            if (is_array($metaDataSchema)) {
+                foreach ($metaDataSchema as $schema) {
+                    // Make sure we are comparing a LOM-CHv* schema, and that
+                    // the version is higher than 1.2.
+                    if (
+                        preg_match('/^LOM-CHv\d/i', $schema) &&
+                        version_compare($schema, 'LOM-CHv1.2') !== -1
+                    ) {
+                        // Found a match. Don't treat this as a legacy format.
+                        return false;
+                    }
+                }
+            }
+        }
+
+        // By default, treat it as a legacy format.
+        return true;
     }
 
 }

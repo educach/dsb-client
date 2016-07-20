@@ -33,6 +33,8 @@ interface LomDescriptionInterface
      *
      * Alias for LomDescriptionInterface::getField('lomId').
      *
+     * @deprecated This will be removed in a future release.
+     *
      * @return string|false
      *    The LOM ID, or false if not available.
      */
