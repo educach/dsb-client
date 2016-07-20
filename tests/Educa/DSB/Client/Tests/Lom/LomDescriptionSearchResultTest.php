@@ -78,9 +78,19 @@ class LomDescriptionSearchResultTest extends \PHPUnit_Framework_TestCase
             "The getPreviewImage() method works."
         );
         $this->assertEquals(
+            "Example : title, with special characters, like ’ and é",
+            $lomDescription->getTitle(),
+            "The getTitle() method works."
+        );
+        $this->assertEquals(
             'email@site.com',
             $lomDescription->getOwnerUsername(),
             "The getOwnerUsername() method works."
+        );
+        $this->assertEquals(
+            '5ad12b78b09e52cb6bcef2134bb4ab9e',
+            $lomDescription->getLomId(),
+            "The getLomId() method works."
         );
         $this->assertEquals(
             [

@@ -17,6 +17,13 @@ class LomDescription implements LomDescriptionInterface
 
     public function __construct($data)
     {
+        // Is the data an object? If so, convert to an associative array.
+        if (!is_array($data)) {
+            // The easiest way to fully convert an object to an associative
+            // array (recursively), is to encode/decode to JSON.
+            $data = json_decode(json_encode($data), true);
+        }
+
         $this->rawData = $data;
     }
 

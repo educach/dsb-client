@@ -109,9 +109,10 @@ class LomDescriptionTest extends \PHPUnit_Framework_TestCase
      */
     public function testLomDataParsing()
     {
+        // Fetch it as an object instead of an associative array, to check
+        // if it correctly converts it.
         $data = json_decode(
-            file_get_contents(FIXTURES_DIR . '/lom-data/full_valid.json'),
-            true
+            file_get_contents(FIXTURES_DIR . '/lom-data/full_valid.json')
         );
         $lomDescription = new LomDescription($data);
 
