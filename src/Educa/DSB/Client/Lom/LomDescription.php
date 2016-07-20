@@ -53,9 +53,7 @@ class LomDescription implements LomDescriptionInterface
      */
     public function getLomId()
     {
-        if (!$this->isLegacyLOMCHFormat()) {
-            trigger_error("getLomId() is deprecated and will be removed in a future version. The new LOM-CH standard doesn't have a lomId field anymore.", E_USER_NOTICE);
-        }
+        trigger_error("getLomId() is deprecated and will be removed in a future version. The new LOM-CH standard doesn't have a lomId field anymore.", E_USER_NOTICE);
         return $this->getField('lomId');
     }
 

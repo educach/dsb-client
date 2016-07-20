@@ -63,11 +63,6 @@ class LomDescriptionSearchResultTest extends \PHPUnit_Framework_TestCase
         $lomDescription = new LomDescriptionSearchResult($data);
 
         $this->assertEquals(
-            '5ad12b78b09e52cb6bcef2134bb4ab9e',
-            $lomDescription->getLomId(),
-            "The lomId() method works."
-        );
-        $this->assertEquals(
             "Example : title, with special characters, like ’ and é",
             $lomDescription->getTitle(),
             "The getTitle() method works."
