@@ -277,7 +277,7 @@ class ClientV2Test extends \PHPUnit_Framework_TestCase
         // Prepare a new client.
         $guzzle = $this->getGuzzleTestClient([
             new Response(200, [], Psr7\stream_for('{"token":"asjhasd987asdhasd87"}')),
-            new Response(200),
+            new Response(200, ['X-DSB-LOMID' => 'asdjkl89qwe798asdkj']),
             new Response(400),
             new Response(304),
         ]);
@@ -303,6 +303,11 @@ class ClientV2Test extends \PHPUnit_Framework_TestCase
             $client->authenticate();
             $client->loadDescription('id');
             $this->assertTrue(true, "Loading a description while being authenticated does not throw an exception.");
+            $this->assertEquals(
+                ['X-DSB-LOMID' => ['asdjkl89qwe798asdkj']],
+                $client->getLastResponseHeaders(),
+                "The client contains the headers from the last response"
+            );
         } catch(ClientAuthenticationException $e) {
             $this->fail("Loading a description while being authenticated should not throw an exception.");
         }

@@ -21,6 +21,7 @@ abstract class AbstractClient implements ClientInterface
     protected $privateKeyPassphrase;
     protected $tokenKey;
     protected $client;
+    protected $lastResponseHeaders = array();
 
     /**
      * Constructor.
@@ -70,6 +71,27 @@ abstract class AbstractClient implements ClientInterface
     }
 
     /**
+     * Set the headers received with the last response.
+     *
+     * @param GuzzleHttp\Message\Response $response
+     */
+    public function setLastResponseHeaders($response)
+    {
+        $this->lastResponseHeaders = $response->getHeaders();
+        return $this;
+    }
+
+    /**
+     * Get the headers received with the last response.
+     *
+     * @return array
+     */
+    public function getLastResponseHeaders()
+    {
+        return $this->lastResponseHeaders;
+    }
+
+    /**
      * Make an HTTP POST request.
      *
      * This method simply proxies to the GuzzleHttp\Client::post() method, but
@@ -89,9 +111,7 @@ abstract class AbstractClient implements ClientInterface
      */
     public function post($path, array $options = array())
     {
-        if (!empty($this->tokenKey)) {
-            $options['headers']['X-TOKEN-KEY'] = $this->tokenKey;
-        }
+        $options = $this->preProcessHeaders($options);
         try {
             $response = $this->client->post($this->apiUrl . $path, $options);
         } catch (RequestException $e) {
@@ -105,6 +125,7 @@ abstract class AbstractClient implements ClientInterface
             $response = new Response(503);
         }
 
+        $this->setLastResponseHeaders($response);
         return $response;
     }
 
@@ -128,9 +149,7 @@ abstract class AbstractClient implements ClientInterface
      */
     public function put($path, array $options = array())
     {
-        if (!empty($this->tokenKey)) {
-            $options['headers']['X-TOKEN-KEY'] = $this->tokenKey;
-        }
+        $options = $this->preProcessHeaders($options);
         try {
             $response = $this->client->put($this->apiUrl . $path, $options);
         } catch (RequestException $e) {
@@ -144,6 +163,7 @@ abstract class AbstractClient implements ClientInterface
             $response = new Response(503);
         }
 
+        $this->setLastResponseHeaders($response);
         return $response;
     }
     /**
@@ -166,9 +186,7 @@ abstract class AbstractClient implements ClientInterface
      */
     public function get($path, array $options = array())
     {
-        if (!empty($this->tokenKey)) {
-            $options['headers']['X-TOKEN-KEY'] = $this->tokenKey;
-        }
+        $options = $this->preProcessHeaders($options);
         try {
             $response = $this->client->get($this->apiUrl . $path, $options);
         } catch (RequestException $e) {
@@ -182,6 +200,7 @@ abstract class AbstractClient implements ClientInterface
             $response = new Response(503);
         }
 
+        $this->setLastResponseHeaders($response);
         return $response;
     }
 
@@ -205,9 +224,7 @@ abstract class AbstractClient implements ClientInterface
      */
     public function delete($path, array $options = array())
     {
-        if (!empty($this->tokenKey)) {
-            $options['headers']['X-TOKEN-KEY'] = $this->tokenKey;
-        }
+        $options = $this->preProcessHeaders($options);
         try {
             $response = $this->client->delete($this->apiUrl . $path, $options);
         } catch (RequestException $e) {
@@ -221,7 +238,25 @@ abstract class AbstractClient implements ClientInterface
             $response = new Response(503);
         }
 
+        $this->setLastResponseHeaders($response);
         return $response;
+    }
+
+    /**
+     * Pre-process the request headers.
+     *
+     * This allows the class to add information like the access token header.
+     *
+     * @param array $options
+     *
+     * @return array
+     */
+    protected function preProcessHeaders($options)
+    {
+        if (!empty($this->tokenKey)) {
+            $options['headers']['X-TOKEN-KEY'] = $this->tokenKey;
+        }
+        return $options;
     }
 
 }
