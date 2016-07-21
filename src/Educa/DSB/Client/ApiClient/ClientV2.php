@@ -309,7 +309,7 @@ class ClientV2 extends AbstractClient
         if (!is_array($catalogs)) {
             throw new \RuntimeException("The 'catalogs' parameter is not correctly formatted. It must be an array.");
         } else if (!empty($catalogs)) {
-            $params['headers']['X-DSB-CATALOGS'] = array_map('trim', implode(',', $catalogs));
+            $params['headers']['X-DSB-CATALOGS'] = implode(',', array_map('trim', $catalogs));
         }
 
         try {
