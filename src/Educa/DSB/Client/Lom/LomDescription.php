@@ -14,8 +14,10 @@ class LomDescription implements LomDescriptionInterface
 {
 
     protected $rawData;
+    protected $lomId;
+    protected $ownerUsername;
 
-    public function __construct($data)
+    public function __construct($data, $lomId = false, $ownerUsername = false)
     {
         // Is the data an object? If so, convert to an associative array.
         if (!is_array($data)) {
@@ -25,6 +27,8 @@ class LomDescription implements LomDescriptionInterface
         }
 
         $this->rawData = $data;
+        $this->lomId = $lomId;
+        $this->ownerUsername = $ownerUsername;
     }
 
     /**
@@ -60,8 +64,7 @@ class LomDescription implements LomDescriptionInterface
      */
     public function getLomId()
     {
-        trigger_error("getLomId() is deprecated and will be removed in a future version. The new LOM-CH standard doesn't have a lomId field anymore.", E_USER_NOTICE);
-        return $this->getField('lomId');
+        return $this->lomId;
     }
 
     /**
@@ -94,8 +97,7 @@ class LomDescription implements LomDescriptionInterface
      */
     public function getOwnerUsername()
     {
-        trigger_error("getOwnerUsername() is deprecated and will be removed in a future version. The new LOM-CH standard doesn't have a ownerUsername field anymore.", E_USER_NOTICE);
-        return $this->getField('ownerUsername');
+        return $this->ownerUsername;
     }
 
     /**

@@ -15,6 +15,20 @@ use Educa\DSB\Client\Lom\LomDescription;
 class LomDescriptionSearchResult extends LomDescription
 {
 
+    public function __construct($data)
+    {
+        // Is the data an object? If so, convert to an associative array.
+        if (!is_array($data)) {
+            // The easiest way to fully convert an object to an associative
+            // array (recursively), is to encode/decode to JSON.
+            $data = json_decode(json_encode($data), true);
+        }
+
+        $this->rawData = $data;
+        $this->lomId = $this->getField('lomId');
+        $this->ownerUsername = $this->getField('ownerUsername');
+    }
+
     /**
      * @{inheritdoc}
      *
@@ -68,27 +82,4 @@ class LomDescriptionSearchResult extends LomDescription
     {
         return $this->getField('ownerDisplayName');
     }
-
-    /**
-     * @{inheritdoc}
-     *
-     * We override the method, because this field *is* available and valid
-     * for search results.
-     */
-    public function getOwnerUsername()
-    {
-        return $this->getField('ownerUsername');
-    }
-
-    /**
-     * @{inheritdoc}
-     *
-     * We override the method, because this field *is* available and valid
-     * for search results.
-     */
-    public function getLomId()
-    {
-        return $this->getField('lomId');
-    }
-
 }
