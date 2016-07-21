@@ -303,15 +303,13 @@ class ClientV2 extends AbstractClient
         }
 
         $params = [
-            'form_params' => [
-                'description' => $json,
-            ],
+            'body' => $json,
         ];
 
         if (!is_array($catalogs)) {
-            throw new \RuntimeException("It seems that the 'catalogs' parameter is not correctly formatted. Skipping");
+            throw new \RuntimeException("The 'catalogs' parameter is not correctly formatted. It must be an array.");
         } else if (!empty($catalogs)) {
-            $params['headers']['X-DSB-CATALOGS'] = implode(',', $catalogs);
+            $params['headers']['X-DSB-CATALOGS'] = array_map('trim', implode(',', $catalogs));
         }
 
         try {
