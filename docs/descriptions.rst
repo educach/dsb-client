@@ -353,6 +353,18 @@ Not all fields have shortcut methods. For fields that the ``LomDescriptionInterf
     echo $lomDescription->getField('general.title', ['de', 'fr']);
 
 
+Creating a new description
+==========================
+
+todo
+
+
+Updating a description
+======================
+
+todo
+
+
 Validating a description
 ========================
 
