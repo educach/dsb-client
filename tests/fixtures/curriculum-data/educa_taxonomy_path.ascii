@@ -4,8 +4,9 @@
             +-- discipline:languages
                 +-- discipline:german school language
             +-- discipline:social and human sciences
-            +-- discipline:social and human sciences
                 +-- discipline:history
+    +-- n/a:pre-school
+        +-- discipline:social and human sciences
     +-- context:post compulsory education
         +-- discipline:languages
             +-- discipline:german school language

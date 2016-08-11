@@ -198,6 +198,10 @@ class EducaCurriculum extends BaseCurriculum
         // information as well to each school level leaf.
         foreach ($data->vocabularies as $vocabulary) {
             foreach ($vocabulary->terms as $term) {
+                if (!empty($term->deprecated)) {
+                    continue;
+                }
+
                 if ($vocabulary->identifier == 'educa_school_levels') {
                     $type = !empty($term->parents) ? 'school level' : 'context';
                 } else {
@@ -294,7 +298,7 @@ class EducaCurriculum extends BaseCurriculum
      */
     public function getTermType($identifier)
     {
-        return isset($this->curriculumDictionary[$identifier]) ? $this->curriculumDictionary[$identifier]->type : 'root';
+        return isset($this->curriculumDictionary[$identifier]) ? $this->curriculumDictionary[$identifier]->type : 'n/a';
     }
 
     /**

@@ -29,33 +29,23 @@ class EducaCurriculumTest extends \PHPUnit_Framework_TestCase
 
         // Pick a few arbitrary entries in the dictionary, to make sure we have
         // our entries.
+        $this->assertTrue(
+            empty($data->dictionary['early_childhood_education']),
+            "The item 'early_childhood_education' was deprecated, and should not be part of the tree."
+        );
         $this->assertEquals(
             (object) array(
                 'type' => 'discipline',
                 'name' => (object) array(
-                    'de' => "Frühkindliche Bildung und Erziehung",
-                    'fr' => "Education de la petite enfance",
-                    'it' => "Formazione della prima infanzia",
-                    'rm' => "",
-                    'en' => "Early childhood education"
+                    'de' => "Finanz- und Rechnungswesen",
+                    'fr' => "Finances et comptabilité",
+                    'it' => "Contabilità",
+                    'rm' => "Accounting",
+                    'en' => "Accounting and Finance"
                 ),
             ),
-            $data->dictionary['early_childhood_education'],
-            "Found the correct data in the dictionary for item 'early_childhood_education'."
-        );
-        $this->assertEquals(
-            (object) array(
-                'type' => 'context',
-                'name' => (object) array(
-                    'de' => "Vorschule",
-                    'fr' => "Préobligatoire",
-                    'it' => "Livello prescolare",
-                    'rm' => "Prescola",
-                    'en' => "Pre-compulsory"
-                ),
-            ),
-            $data->dictionary['pre-school'],
-            "Found the correct data in the dictionary for item 'pre-school'."
+            $data->dictionary['accounting_finance'],
+            "Found the correct data in the dictionary for item 'accounting_finance'."
         );
         $this->assertEquals(
             (object) array(

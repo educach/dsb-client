@@ -164,31 +164,17 @@
             },
             "taxon":[
                {
-                  "id":"compulsory education",
+                  "id":"pre-school",
                   "purpose":{
-				         "source":"LOM-CHv1.1",
-				         "value":"educational level"
-				      },
+                     "source":"LOM-CHv1.1",
+                     "value":"educational level"
+                  },
                   "entry":{
-                     "de":"Obligatorische Schule",
-                     "en":"Compulsory education",
-                     "fr":"Scolarit\u00e9 obligatoire",
-                     "it":"Scuola dell'obbligo",
-                     "rm":"Scola obligatorica"
-                  }
-               },
-               {
-                  "id":"cycle_3",
-                  "purpose":{
-				         "source":"LOM-CHv1.1",
-				         "value":"educational level"
-				      },
-                  "entry":{
-                     "de":"3. Zyklus (9. bis 11. Schuljahr)",
-                     "en":"3rd cycle (9th to 11th school year)",
-                     "fr":"Cycle 3 (9\u00e8me \u00e0 11\u00e8me ann\u00e9e scolaire)",
-                     "it":"3\u00b0 ciclo",
-                     "rm":"Terz ciclus"
+                     "en":"Pre-compulsory",
+                     "rm":"Prescola",
+                     "it":"Livello prescolare",
+                     "fr":"Pr\u00e9obligatoire",
+                     "de":"Vorschule"
                   }
                },
                {
