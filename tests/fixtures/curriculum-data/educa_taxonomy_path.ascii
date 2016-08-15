@@ -1,21 +1,12 @@
 --- root:root
     +-- context:compulsory education
         +-- school level:cycle_3
-            +-- discipline:languages
-                +-- discipline:german school language
-            +-- discipline:social and human sciences
-                +-- discipline:history
-    +-- n/a:pre-school
-        +-- discipline:social and human sciences
+    +-- discipline:languages
+        +-- discipline:german school language
+    +-- discipline:social and human sciences
+        +-- discipline:history
+        +-- discipline:psychology
+        +-- discipline:philosophy
     +-- context:post compulsory education
-        +-- discipline:languages
-            +-- discipline:german school language
-        +-- discipline:social and human sciences
-            +-- discipline:history
-        +-- discipline:social and human sciences
-            +-- discipline:psychology
-        +-- discipline:social and human sciences
-            +-- discipline:philosophy
-        +-- discipline:social and human sciences
-        +-- discipline:general_education
-            +-- discipline:identity
+    +-- discipline:general_education
+        +-- discipline:identity

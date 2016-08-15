@@ -137,6 +137,10 @@ abstract class BaseCurriculum implements CurriculumInterface
         // Prepare a new root item.
         $this->root = $this->termFactory('root', 'root');
 
+        if (!is_array($purpose)) {
+            $purpose = array($purpose);
+        }
+
         // Prepare a "catalog" of entries, based on their identifiers. This
         // will allow us to easily convert the linear tree representation
         // (LOM describes branches only, with a single path; if a node has
@@ -151,7 +155,7 @@ abstract class BaseCurriculum implements CurriculumInterface
             $path = (array) $path;
             $pathPurpose = $path['purpose']['value'];
 
-            if ($pathPurpose == $purpose) {
+            if (in_array($pathPurpose, $purpose)) {
                 foreach ($path['taxonPath'] as $i => $taxonPath) {
                     // Check if we treat this path. It might be a different
                     // source.
@@ -177,54 +181,12 @@ abstract class BaseCurriculum implements CurriculumInterface
                                 // Always fetch the type and name from the local
                                 // data. The data in the trees may be stale, as
                                 // it usually comes from the API. Normally,
-                                // local data is refreshed on regular bases, so
-                                // should be more up-to-date.
+                                // local data is refreshed on a regular basis,
+                                // so it should be more up-to-date.
                                 $this->getTermType($taxonId),
                                 $taxonId,
                                 $this->getTermName($taxonId)
                             );
-
-                            // If this is a discipline, we treat it differently.
-                            // Educational levels, competencies and even
-                            // educational objectives can be merged, but
-                            // disciplines follow unique paths.
-                            // Disciplines are always represented as a "branch"
-                            // with no sub-branches. Because of this, we add
-                            // a unique integer to the ID, which will prevent it
-                            // from being re-used for a different discipline
-                            // path, and thus it won't get merged.
-                            // For example, the following 3 paths:
-                            // -- compulsory education
-                            //    +- cycle_1
-                            //       +- languages
-                            // -- compulsory education
-                            //    +- cycle_1
-                            //       +- languages
-                            //          +- french
-                            // -- compulsory education
-                            //    +- cycle_1
-                            //       +- languages
-                            //          +- german
-                            // Should NOT be merged like this:
-                            // -- compulsory education
-                            //    +- cycle_1
-                            //       +- languages
-                            //          +- french
-                            //          +- german
-                            // But like this:
-                            // -- compulsory education
-                            //    +- cycle_1
-                            //       +- languages
-                            //       +- languages
-                            //          +- french
-                            //       +- languages
-                            //          +- german
-                            // The first "language" entry is a discipline on its
-                            // own, and because there's a path ending with it,
-                            // it was meant to be treated on its own as well.
-                            if ($this->taxonIsDiscipline($taxon) && $pathPurpose == 'discipline') {
-                                $taxonId = "{$i}-{$taxonId}";
-                            }
 
                             // Store it.
                             $terms["{$parentId}:{$taxonId}"] = $term;

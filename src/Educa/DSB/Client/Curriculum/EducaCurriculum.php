@@ -157,9 +157,7 @@ class EducaCurriculum extends BaseCurriculum
      *
      * By passing the official curriculum definition file (JSON), this method
      * will parse it and return a curriculum definition it can understand and
-     * treat. It mainly needs a "dictionary" of term types. The educa curriculum
-     * has the specificity that all disciplines apply to all school levels, as
-     * well as some contexts. See
+     * treat. It mainly needs a "dictionary" of term types. See
      * \Educa\DSB\Client\Curriculum\EducaCurriculum::setCurriculumDictionary().
      *
      * @param string $curriculumJson
@@ -184,19 +182,24 @@ class EducaCurriculum extends BaseCurriculum
 
         // Prepare a list of items. This will make the creation of our
         // curriculum tree easier to manage.
-        $list = array(
-            'educa_school_levels' => array(
-                'root' => new BaseTerm('root', 'root'),
-            ),
-            'educa_school_subjects' => array(
-                'root' => new BaseTerm('root', 'root'),
-            ),
-        );
+        $list = array();
 
-        // We are interested in the vocabularies. First, we need to treat the
-        // school levels. Once they are treated, we can add the discipline
-        // information as well to each school level leaf.
+        $root = new BaseTerm('root', 'root');
+
         foreach ($data->vocabularies as $vocabulary) {
+            $dictionary[$vocabulary->identifier] = (object) array(
+                'name' => $vocabulary->name,
+                'type' => $vocabulary->identifier,
+            );
+
+            $list[$vocabulary->identifier]['root'] = new BaseTerm(
+                $vocabulary->identifier,
+                $vocabulary->identifier,
+                $vocabulary->name
+            );
+
+            $root->addChild($list[$vocabulary->identifier]['root']);
+
             foreach ($vocabulary->terms as $term) {
                 if (!empty($term->deprecated)) {
                     continue;
@@ -257,7 +260,7 @@ class EducaCurriculum extends BaseCurriculum
 
         // Now, treat all items of the school levels, and add the discipline
         // tree to it.
-        foreach ($list['educa_school_levels'] as $key => $item) {
+        /*foreach ($list['educa_school_levels'] as $key => $item) {
             // If the item has no children, it is a leaf and can contain
             // discipline information.
             if (!$item->hasChildren()) {
@@ -270,10 +273,10 @@ class EducaCurriculum extends BaseCurriculum
                     $item->addChild(clone $discipline);
                 }
             }
-        }
+        }*/
 
         return (object) array(
-            'curriculum' => $list['educa_school_levels']['root'],
+            'curriculum' => $root,
             'dictionary' => $dictionary,
         );
     }

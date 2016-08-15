@@ -233,10 +233,10 @@ interface CurriculumInterface
      *
      * @param array $paths
      *    A list of paths, as described in the LOM-CH standard.
-     * @param string $purpose
+     * @param string|array $purpose
      *    (optional) The curriculum paths comes in 4 flavors, "discipline"
-     *    "objective", "competency* and "educational level" paths. Only one can
-     *    be treated at a time. Defaults to "discipline".
+     *    "objective", "competency* and "educational level" paths. Can either
+     *    be a string or an array of strings. Defaults to "discipline".
      */
     public function setTreeBasedOnTaxonPath($paths, $purpose = 'discipline');
 

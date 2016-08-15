@@ -78,7 +78,7 @@ class EducaCurriculumTest extends \PHPUnit_Framework_TestCase
         // Create a new curriculum element.
         $curriculum = EducaCurriculum::createFromData($json, EducaCurriculum::CURRICULUM_JSON);
 
-        $curriculum->setTreeBasedOnTaxonPath($paths);
+        $curriculum->setTreeBasedOnTaxonPath($paths, ['discipline', 'educational level']);
 
         // Load the expected ASCII tree.
         $expectedAsciiTree = file_get_contents(FIXTURES_DIR . '/curriculum-data/educa_taxonomy_path.ascii');
