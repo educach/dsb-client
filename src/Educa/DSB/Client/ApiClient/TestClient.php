@@ -246,6 +246,24 @@ class TestClient extends AbstractClient
      * @{inheritdoc}
      * @todo
      */
+    public function loadPartner($partner)
+    {
+        return null;
+    }
+
+    /**
+     * @{inheritdoc}
+     * @todo
+     */
+    public function putPartner($partner, $json)
+    {
+        return null;
+    }
+
+    /**
+     * @{inheritdoc}
+     * @todo
+     */
     public function postDescription($json, $catalogs = array(), $previewImage = false)
     {
         return array('lomId' => uniqid());

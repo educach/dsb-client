@@ -216,12 +216,49 @@ interface ClientInterface
      *    If not authenticated, will throw an exception. If not authorized, will
      *    also throw an exception.
      * @throws \Educa\DSB\Client\ApiClient\ClientRequestException
-     *    If the request fails, will throw an exception
+     *    If the request fails, will throw an exception.
      *
      * @return array
      *    The list of content partners.
      */
     public function loadPartners();
+
+    /**
+     * Load a single content partner data.
+     *
+     * @throws \Educa\DSB\Client\ApiClient\ClientAuthenticationException
+     *    If not authenticated, will throw an exception. If not authorized, will
+     *    also throw an exception.
+     * @throws \Educa\DSB\Client\ApiClient\ClientRequestException
+     *    If the request fails, will throw an exception.
+     *
+     * @param string $partner
+     *    The username of the partner, usually an email address.
+     *
+     * @return array
+     *    The data of the content partner.
+     */
+    public function loadPartner($partner);
+
+    /**
+     * Update a single content partner data.
+     *
+     * @throws \Educa\DSB\Client\ApiClient\ClientAuthenticationException
+     *    If not authenticated, will throw an exception. If not authorized, will
+     *    also throw an exception.
+     * @throws \Educa\DSB\Client\ApiClient\ClientRequestException
+     *    If the request fails, will throw an exception.
+     *
+     * @param string $partner
+     *    The username of the partner, usually an email address.$
+     * @param string $json
+     *    The data to store, in JSON format. Refer to the official documentation
+     *    for more information on how to format this array.
+     *
+     * @return array
+     *    The updated data of the content partner.
+     */
+    public function putPartner($partner, $json);
 
     /**
      * Load partner statistics.

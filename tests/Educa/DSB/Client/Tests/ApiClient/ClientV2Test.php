@@ -609,21 +609,135 @@ class ClientV2Test extends \PHPUnit_Framework_TestCase
             $this->fail("Loading content partners while being authenticated should not throw an exception.");
         }
 
-        // Failing to load Ontology data throws an exception.
+        // Failing to load content partner data throws an exception.
         try {
             $client->loadPartners();
-            $this->fail("Failing to load Ontology data should throw an exception.");
+            $this->fail("Failing to load content partner data should throw an exception.");
         } catch(ClientRequestException $e) {
-            $this->assertTrue(true, "Failing to load Ontology data throws an exception.");
+            $this->assertTrue(true, "Failing to load content partner data throws an exception.");
         }
 
-        // A status different from 200 while loading Ontology data throws an
-        // exception.
+        // A status different from 200 while loading content partner data throws
+        // an exception.
         try {
             $client->loadPartners();
-            $this->fail("A status different from 200 while loading Ontology data should throw an exception.");
+            $this->fail("A status different from 200 while loading content partner data should throw an exception.");
         } catch(ClientRequestException $e) {
-            $this->assertTrue(true, "A status different from 200 while loading Ontology data throws an exception.");
+            $this->assertTrue(true, "A status different from 200 while loading content partner data throws an exception.");
+        }
+    }
+
+    /**
+     * Test loading a single content partner data.
+     */
+    public function testGetPartner()
+    {
+        // Prepare a new client.
+        $guzzle = $this->getGuzzleTestClient([
+            new Response(200, [], Psr7\stream_for('{"token":"asjhasd987asdhasd87"}')),
+            new Response(200),
+            new Response(400),
+            new Response(304),
+        ]);
+
+        // Prepare a client.
+        $client = new ClientV2(
+            'http://localhost',
+            'user@site.com',
+            FIXTURES_DIR . '/user/privatekey_nopassphrase.pem'
+        );
+        $client->setClient($guzzle);
+
+        // Loading content partners without being authenticated throws an error.
+        try {
+            $client->loadPartner('user@site.com');
+            $this->fail("Loading a content partner without being authenticated should throw an exception.");
+        } catch(ClientAuthenticationException $e) {
+            $this->assertTrue(true, "Loading a content partner without being authenticated throws an exception.");
+        }
+
+        // Loading a content partner while authenticated doesn't throw an error.
+        try {
+            $client->authenticate();
+            $client->loadPartner('user@site.com');
+            $this->assertTrue(true, "Loading a content partner while being authenticated does not throw an exception.");
+        } catch(ClientAuthenticationException $e) {
+            $this->fail("Loading a content partner while being authenticated should not throw an exception.");
+        }
+
+        // Failing to load a content partner data throws an exception.
+        try {
+            $client->loadPartner('user@site.com');
+            $this->fail("Failing to load a content partner data should throw an exception.");
+        } catch(ClientRequestException $e) {
+            $this->assertTrue(true, "Failing to load a content partner data throws an exception.");
+        }
+
+        // A status different from 200 while loading a content partner data
+        // throws an exception.
+        try {
+            $client->loadPartner('user@site.com');
+            $this->fail("A status different from 200 while loading a content partner data should throw an exception.");
+        } catch(ClientRequestException $e) {
+            $this->assertTrue(true, "A status different from 200 while loading a content partner data throws an exception.");
+        }
+    }
+
+    /**
+     * Test updating a single content partner data.
+     */
+    public function testPutPartner()
+    {
+        // Prepare a new client.
+        $guzzle = $this->getGuzzleTestClient([
+            new Response(200, [], Psr7\stream_for('{"token":"asjhasd987asdhasd87"}')),
+            new Response(200),
+            new Response(400),
+            new Response(304),
+        ]);
+
+        // Prepare a client.
+        $client = new ClientV2(
+            'http://localhost',
+            'user@site.com',
+            FIXTURES_DIR . '/user/privatekey_nopassphrase.pem'
+        );
+        $client->setClient($guzzle);
+
+        // Updating content partners without being authenticated throws an
+        // error.
+        try {
+            $client->putPartner('user@site.com', '{"company": "hello"}');
+            $this->fail("Updating a content partner without being authenticated should throw an exception.");
+        } catch(ClientAuthenticationException $e) {
+            $this->assertTrue(true, "Updating a content partner without being authenticated throws an exception.");
+        }
+
+        // Updating a content partner while authenticated doesn't throw an
+        // error.
+        try {
+            $client->authenticate();
+            $client->putPartner('user@site.com', '{"company": "hello"}');
+            $this->assertTrue(true, "Updating a content partner while being authenticated does not throw an exception.");
+        } catch(ClientAuthenticationException $e) {
+            $this->fail("Updating a content partner while being authenticated should not throw an exception.");
+        }
+
+        // Failing to update a content partner data throws an exception.
+        try {
+            $client->putPartner('user@site.com', '{"company": "hello"}');
+            $this->fail("Failing to update a content partner data should throw an exception.");
+        } catch(ClientRequestException $e) {
+            $this->assertTrue(true, "Failing to update a content partner data throws an exception.");
+        }
+
+        // A status different from 200 while updating a content partner data
+        // throws an exception.
+        try {
+            $client->putPartner('user@site.com', '{"company": "hello"}');
+            $this->fail("A status different from 200 while updating a content partner data should throw an exception.");
+        } catch(ClientRequestException $e) {
+            $this->assertTrue(true, "A status different from 200 while updating a content partner data throws an exception.");
         }
     }
 

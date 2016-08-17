@@ -220,6 +220,58 @@ class ClientV2 extends AbstractClient
     /**
      * @{inheritdoc}
      */
+    public function loadPartner($partner)
+    {
+        if (empty($this->tokenKey)) {
+            throw new ClientAuthenticationException("No token found. Cannot load a partner without a token.");
+        }
+
+        try {
+            $response = $this->get('/partner/' . urlencode($partner));
+
+            if ($response->getStatusCode() == 200) {
+                return json_decode($response->getBody(), true);
+            } else {
+                throw new ClientRequestException(sprintf("Request to /partner/%s failed. Status: %s. Error message: %s", $partner, $response->getStatusCode(), $response->getBody()));
+            }
+            // @codeCoverageIgnoreStart
+        } catch(GuzzleRequestException $e) {
+            throw new ClientRequestException(sprintf("Request to /partner/%s failed. Status: %s. Error message: %s", $partner, $e->getCode(), $e->getMessage()));
+            // @codeCoverageIgnoreEnd
+        }
+    }
+
+    /**
+     * @{inheritdoc}
+     */
+    public function putPartner($partner, $json)
+    {
+        if (empty($this->tokenKey)) {
+            throw new ClientAuthenticationException("No token found. Cannot load a partner without a token.");
+        }
+
+        $params = [
+            'body' => $json,
+        ];
+
+        try {
+            $response = $this->put('/partner/' . urlencode($partner), $params);
+
+            if ($response->getStatusCode() == 200) {
+                return json_decode($response->getBody(), true);
+            } else {
+                throw new ClientRequestException(sprintf("Request to /partner/%s failed. Status: %s. Error message: %s", $partner, $response->getStatusCode(), $response->getBody()));
+            }
+            // @codeCoverageIgnoreStart
+        } catch(GuzzleRequestException $e) {
+            throw new ClientRequestException(sprintf("Request to /partner/%s failed. Status: %s. Error message: %s", $partner, $e->getCode(), $e->getMessage()));
+            // @codeCoverageIgnoreEnd
+        }
+    }
+
+    /**
+     * @{inheritdoc}
+     */
     public function validateDescription($json)
     {
         if (empty($this->tokenKey)) {
