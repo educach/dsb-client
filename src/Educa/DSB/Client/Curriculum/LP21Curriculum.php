@@ -69,79 +69,46 @@ class LP21Curriculum extends BaseCurriculum
     {
         return array(
             (object) array(
-                'type' => 'root',
-                'child_types' => array(
-                    (object) array(
-                        'type' => 'zyklus',
-                        'required' => true,
-                    ),
-                ),
-            ),
-            (object) array(
-                'type' => 'zyklus',
-                'child_types' => array(
-                    (object) array(
-                        'type' => 'fachbereich',
-                        'required' => true,
-                    ),
-                ),
-            ),
-            (object) array(
                 'type' => 'fachbereich',
-                'child_types' => array(
-                    (object) array(
-                        'type' => 'fach',
-                        'required' => false,
-                    ),
-                    (object) array(
-                        'type' => 'kompetenzbereich',
-                        'required' => false,
-                    ),
+                'childTypes' => array('fach'),
+                'entry' => (object) array(
+                    'de' => "Fachbereich",
                 ),
             ),
             (object) array(
                 'type' => 'fach',
-                'child_types' => array(
-                    (object) array(
-                        'type' => 'kompetenzbereich',
-                        'required' => true,
-                    ),
+                'childTypes' => array('kompetenzbereich'),
+                'entry' => (object) array(
+                    'de' => "Fach",
                 ),
             ),
             (object) array(
                 'type' => 'kompetenzbereich',
-                'child_types' => array(
-                    (object) array(
-                        'type' => 'handlungs_themenaspekt',
-                        'required' => false,
-                    ),
-                    (object) array(
-                        'type' => 'kompetenz',
-                        'required' => false,
-                    ),
+                'childTypes' => array('handlungs_themenaspekt'),
+                'entry' => (object) array(
+                    'de' => "Kompetenzbereich",
                 ),
             ),
             (object) array(
                 'type' => 'handlungs_themenaspekt',
-                'child_types' => array(
-                    (object) array(
-                        'type' => 'kompetenz',
-                        'required' => true,
-                    ),
+                'childTypes' => array('kompetenz'),
+                'entry' => (object) array(
+                    'de' => "Handlungs/Themenaspekt",
                 ),
             ),
             (object) array(
                 'type' => 'kompetenz',
-                'child_types' => array(
-                    (object) array(
-                        'type' => 'kompetenzstufe',
-                        'required' => true,
-                    ),
+                'childTypes' => array('kompetenzstufe'),
+                'entry' => (object) array(
+                    'de' => "Kompetenz",
                 ),
             ),
             (object) array(
                 'type' => 'kompetenzstufe',
-                'child_types' => array(),
+                'childTypes' => array(),
+                'entry' => (object) array(
+                    'de' => "Kompetenzstufe",
+                ),
             ),
         );
     }
@@ -155,59 +122,39 @@ class LP21Curriculum extends BaseCurriculum
     {
         return array(
             (object) array(
-                'type' => 'root',
-                'name' => (object) array(
-                    'en' => "Root",
-                    'de' => "Stamm",
-                ),
-            ),
-            (object) array(
-                'type' => 'zyklus',
-                'name' => (object) array(
-                    'en' => "Cycle",
-                    'de' => "Zyklus",
-                ),
-            ),
-            (object) array(
                 'type' => 'fachbereich',
-                'name' => (object) array(
-                    'en' => "Field",
-                    'de' => "Fachbereich",
+                'purpose' => array(
+                    'LOM-CHv1.2' => 'discipline',
                 ),
             ),
             (object) array(
                 'type' => 'fach',
-                'name' => (object) array(
-                    'en' => "Subject",
-                    'de' => "Fach",
+                'purpose' => array(
+                    'LOM-CHv1.2' => 'discipline',
                 ),
             ),
             (object) array(
                 'type' => 'kompetenzbereich',
-                'name' => (object) array(
-                    'en' => "Area of competence",
-                    'de' => "Kompetenzbereich",
+                'purpose' => array(
+                    'LOM-CHv1.2' => 'objective',
                 ),
             ),
             (object) array(
-                'type' => 'handlungs_themenaspekt',
-                'name' => (object) array(
-                    'en' => "Action-/Topic aspect",
-                    'de' => "Handlungs-/Themenaspekt",
+                'type' => 'handlungs-themenaspekt',
+                'purpose' => array(
+                    'LOM-CHv1.2' => 'objective',
                 ),
             ),
             (object) array(
                 'type' => 'kompetenz',
-                'name' => (object) array(
-                    'en' => "Competency",
-                    'de' => "Kompetenz",
+                'purpose' => array(
+                    'LOM-CHv1.2' => 'objective',
                 ),
             ),
             (object) array(
-                'type' => 'kompetenzstufe',
-                'name' => (object) array(
-                    'en' => "Competency level",
-                    'de' => "Kompetenzstufe",
+                'type' => 'kompetenzbstufe',
+                'purpose' => array(
+                    'LOM-CHv1.2' => 'objective',
                 ),
             ),
         );

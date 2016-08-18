@@ -67,79 +67,39 @@ class PerCurriculum extends BaseCurriculum
     {
         return array(
             (object) array(
-                'type' => 'root',
-                'child_types' => array(
-                    (object) array(
-                        'type' => 'zyklus',
-                        'required' => true,
-                    ),
+                'type' => 'cycles',
+                'childTypes' => array('domaines'),
+                'entry' => (object) array(
+                    'fr' => "Cycle",
                 ),
             ),
             (object) array(
-                'type' => 'zyklus',
-                'child_types' => array(
-                    (object) array(
-                        'type' => 'fachbereich',
-                        'required' => true,
-                    ),
+                'type' => 'domaines',
+                'childTypes' => array('disciplines'),
+                'entry' => (object) array(
+                    'fr' => "Domaine",
                 ),
             ),
             (object) array(
-                'type' => 'fachbereich',
-                'child_types' => array(
-                    (object) array(
-                        'type' => 'fach',
-                        'required' => false,
-                    ),
-                    (object) array(
-                        'type' => 'kompetenzbereich',
-                        'required' => false,
-                    ),
+                'type' => 'disciplines',
+                'childTypes' => array('objectifs'),
+                'entry' => (object) array(
+                    'fr' => "Discipline",
                 ),
             ),
             (object) array(
-                'type' => 'fach',
-                'child_types' => array(
-                    (object) array(
-                        'type' => 'kompetenzbereich',
-                        'required' => true,
-                    ),
+                'type' => 'objectifs',
+                'childTypes' => array('progressions'),
+                'entry' => (object) array(
+                    'fr' => "Objectif",
                 ),
             ),
             (object) array(
-                'type' => 'kompetenzbereich',
-                'child_types' => array(
-                    (object) array(
-                        'type' => 'handlungs_themenaspekt',
-                        'required' => false,
-                    ),
-                    (object) array(
-                        'type' => 'kompetenz',
-                        'required' => false,
-                    ),
+                'type' => 'progressions',
+                'childTypes' => array(),
+                'entry' => (object) array(
+                    'fr' => "Progressions d'apprentissage",
                 ),
-            ),
-            (object) array(
-                'type' => 'handlungs_themenaspekt',
-                'child_types' => array(
-                    (object) array(
-                        'type' => 'kompetenz',
-                        'required' => true,
-                    ),
-                ),
-            ),
-            (object) array(
-                'type' => 'kompetenz',
-                'child_types' => array(
-                    (object) array(
-                        'type' => 'kompetenzstufe',
-                        'required' => true,
-                    ),
-                ),
-            ),
-            (object) array(
-                'type' => 'kompetenzstufe',
-                'child_types' => array(),
             ),
         );
     }
@@ -153,59 +113,33 @@ class PerCurriculum extends BaseCurriculum
     {
         return array(
             (object) array(
-                'type' => 'root',
-                'name' => (object) array(
-                    'en' => "Root",
-                    'de' => "Stamm",
+                'type' => 'cycles',
+                'purpose' => array(
+                    'LOM-CHv1.2' => 'educational level',
                 ),
             ),
             (object) array(
-                'type' => 'zyklus',
-                'name' => (object) array(
-                    'en' => "Cycle",
-                    'de' => "Zyklus",
+                'type' => 'domaines',
+                'purpose' => array(
+                    'LOM-CHv1.2' => 'discipline',
                 ),
             ),
             (object) array(
-                'type' => 'fachbereich',
-                'name' => (object) array(
-                    'en' => "Field",
-                    'de' => "Fachbereich",
+                'type' => 'disciplines',
+                'purpose' => array(
+                    'LOM-CHv1.2' => 'discipline',
                 ),
             ),
             (object) array(
-                'type' => 'fach',
-                'name' => (object) array(
-                    'en' => "Subject",
-                    'de' => "Fach",
+                'type' => 'objectifs',
+                'purpose' => array(
+                    'LOM-CHv1.2' => 'objective',
                 ),
             ),
             (object) array(
-                'type' => 'kompetenzbereich',
-                'name' => (object) array(
-                    'en' => "Area of competence",
-                    'de' => "Kompetenzbereich",
-                ),
-            ),
-            (object) array(
-                'type' => 'handlungs_themenaspekt',
-                'name' => (object) array(
-                    'en' => "Action-/Topic aspect",
-                    'de' => "Handlungs-/Themenaspekt",
-                ),
-            ),
-            (object) array(
-                'type' => 'kompetenz',
-                'name' => (object) array(
-                    'en' => "Competency",
-                    'de' => "Kompetenz",
-                ),
-            ),
-            (object) array(
-                'type' => 'kompetenzstufe',
-                'name' => (object) array(
-                    'en' => "Competency level",
-                    'de' => "Kompetenzstufe",
+                'type' => 'progressions',
+                'purpose' => array(
+                    'LOM-CHv1.2' => 'objective',
                 ),
             ),
         );

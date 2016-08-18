@@ -64,44 +64,24 @@ class EducaCurriculum extends BaseCurriculum
     {
         return array(
             (object) array(
-                'type' => 'root',
-                'child_types' => array(
-                    (object) array(
-                        'type' => 'context',
-                        'required' => true,
-                    ),
-                ),
+                'type' => 'educa_school_levels',
+                'childTypes' => array('context'),
             ),
             (object) array(
                 'type' => 'context',
-                'child_types' => array(
-                    (object) array(
-                        'type' => 'school_level',
-                        'required' => false,
-                    ),
-                    (object) array(
-                        'type' => 'discipline',
-                        'required' => false,
-                    ),
-                ),
+                'childTypes' => array('school_level'),
             ),
             (object) array(
                 'type' => 'school_level',
-                'child_types' => array(
-                    (object) array(
-                        'type' => 'discipline',
-                        'required' => true,
-                    ),
-                ),
+                'childTypes' => array('school_level'),
+            ),
+            (object) array(
+                'type' => 'educa_school_subjects',
+                'childTypes' => array('discipline'),
             ),
             (object) array(
                 'type' => 'discipline',
-                'child_types' => array(
-                    (object) array(
-                        'type' => 'discipline',
-                        'required' => false,
-                    ),
-                ),
+                'childTypes' => array('discipline'),
             ),
         );
     }
@@ -115,38 +95,21 @@ class EducaCurriculum extends BaseCurriculum
     {
         return array(
             (object) array(
-                'type' => 'root',
-                'name' => (object) array(
-                    'en' => "Root",
-                    'fr' => "Racine",
-                    'it' => "Radice",
-                ),
-                'description' => (object) array(
-                    'en' => "Not technically part of the curriculum. The educa curriculum can have multiple contexts, which are, according to the standard, the root elements. As the we must return a single element, this root type defines the top most parent of the curriculum tree.",
-                ),
-            ),
-            (object) array(
                 'type' => 'context',
-                'name' => (object) array(
-                    'en' => "Context",
-                    'fr' => "Contexte",
-                    'it' => "Contesto",
+                'purpose' => array(
+                    'LOM-CHv1.2' => 'educational level',
                 ),
             ),
             (object) array(
                 'type' => 'school level',
-                'name' => (object) array(
-                    'en' => "School level",
-                    'fr' => "Niveau scolaire",
-                    'it' => "Livelli scolastici",
+                'purpose' => array(
+                    'LOM-CHv1.2' => 'educational level',
                 ),
             ),
             (object) array(
                 'type' => 'discipline',
-                'name' => (object) array(
-                    'en' => "Discipline",
-                    'fr' => "Discipline",
-                    'it' => "Disciplina",
+                'purpose' => array(
+                    'LOM-CHv1.2' => 'discipline',
                 ),
             ),
         );

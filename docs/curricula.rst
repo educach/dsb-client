@@ -25,48 +25,48 @@ For example, the ``describeDataStructure()`` method returns a standard format of
 
     var_export($curriculum->describeDataStructure());
     // Results in:
-    // array(
-    //     stdClass::__set_state(array(
-    //         'type' => 'root',
-    //         'child_types' => array(
-    //             stdClass::__set_state(array(
-    //                 'type' => 'context',
-    //                 'required' => true,
-    //             )),
-    //         ),
-    //     )),
-    //     stdClass::__set_state(array(
-    //         'type' => 'context',
-    //         'child_types' => array(
-    //             stdClass::__set_state(array(
-    //                 'type' => 'school_level',
-    //                 'required' => false,
-    //             )),
-    //             stdClass::__set_state(array(
-    //                 'type' => 'discipline',
-    //                 'required' => false,
-    //             )),
-    //         ),
-    //     )),
-    //     stdClass::__set_state(array(
-    //         'type' => 'school_level',
-    //         'child_types' => array(
-    //             stdClass::__set_state(array(
-    //                 'type' => 'discipline',
-    //                 'required' => true,
-    //             )),
-    //         ),
-    //     )),
-    //     stdClass::__set_state(array(
-    //         'type' => 'discipline',
-    //         'child_types' => array(
-    //             stdClass::__set_state(array(
-    //                 'type' => 'discipline',
-    //                 'required' => false,
-    //             )),
-    //         ),
-    //     )),
-    // );
+    // array (
+    //   0 =>
+    //   stdClass::__set_state(array(
+    //      'type' => 'educa_school_levels',
+    //      'childTypes' =>
+    //     array (
+    //       0 => 'context',
+    //     ),
+    //   )),
+    //   1 =>
+    //   stdClass::__set_state(array(
+    //      'type' => 'context',
+    //      'childTypes' =>
+    //     array (
+    //       0 => 'school_level',
+    //     ),
+    //   )),
+    //   2 =>
+    //   stdClass::__set_state(array(
+    //      'type' => 'school_level',
+    //      'childTypes' =>
+    //     array (
+    //       0 => 'school_level',
+    //     ),
+    //   )),
+    //   3 =>
+    //   stdClass::__set_state(array(
+    //      'type' => 'educa_school_subjects',
+    //      'childTypes' =>
+    //     array (
+    //       0 => 'discipline',
+    //     ),
+    //   )),
+    //   4 =>
+    //   stdClass::__set_state(array(
+    //      'type' => 'discipline',
+    //      'childTypes' =>
+    //     array (
+    //       0 => 'discipline',
+    //     ),
+    //   )),
+    // )
 
 ``describeTermTypes()`` provides even more information on what the term *types* actually stand for.
 
@@ -78,34 +78,31 @@ For example, the ``describeDataStructure()`` method returns a standard format of
 
     var_export($curriculum->describeTermTypes());
     // Results in:
-    // array(
-    //     stdClass::__set_state(array(
-    //         'type' => 'root',
-    //         'name' => stdClass::__set_state(array(
-    //             'en' => "Root",
-    //         )),
-    //         'description' => stdClass::__set_state(array(
-    //             'en' => "Not technically part of the curriculum. The educa curriculum can have multiple contexts, which are, according to the standard, the root elements. As the we must return a single element, this root type defines the top most parent of the curriculum tree.",
-    //         )),
-    //     )),
-    //     stdClass::__set_state(array(
-    //         'type' => 'context',
-    //         'name' => stdClass::__set_state(array(
-    //             'en' => "Context",
-    //         )),
-    //     )),
-    //     stdClass::__set_state(array(
-    //         'type' => 'school level',
-    //         'name' => stdClass::__set_state(array(
-    //             'en' => "School level",
-    //         )),
-    //     )),
-    //     stdClass::__set_state(array(
-    //         'type' => 'discipline',
-    //         'name' => stdClass::__set_state(array(
-    //             'en' => "Discipline",
-    //         )),
-    //     )),
+    // array (
+    //   0 =>
+    //   stdClass::__set_state(array(
+    //      'type' => 'context',
+    //      'purpose' =>
+    //     array (
+    //       'LOM-CHv1.2' => 'educational level',
+    //     ),
+    //   )),
+    //   1 =>
+    //   stdClass::__set_state(array(
+    //      'type' => 'school level',
+    //      'purpose' =>
+    //     array (
+    //       'LOM-CHv1.2' => 'educational level',
+    //     ),
+    //   )),
+    //   2 =>
+    //   stdClass::__set_state(array(
+    //      'type' => 'discipline',
+    //      'purpose' =>
+    //     array (
+    //       'LOM-CHv1.2' => 'discipline',
+    //     ),
+    //   )),
     // );
 
 ``asciiDump()`` provides a way to dump a tree representation to a ASCII string, helping in debugging.
