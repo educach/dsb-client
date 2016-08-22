@@ -21,6 +21,7 @@ abstract class AbstractClient implements ClientInterface
     protected $privateKeyPassphrase;
     protected $tokenKey;
     protected $client;
+    protected $requestHeaders = array();
     protected $lastResponseHeaders = array();
 
     /**
@@ -68,6 +69,41 @@ abstract class AbstractClient implements ClientInterface
     public function getClient()
     {
         return $this->client;
+    }
+
+    /**
+     * Add a request header.
+     *
+     * @param string $name
+     * @param string $value
+     */
+    public function addRequestHeader($name, $value)
+    {
+        $this->requestHeaders[$name] = $value;
+        return $this;
+    }
+
+    /**
+     * Set the headers to send with the request.
+     *
+     * @param array $headers
+     *    An array of header values, keyed by header name. For example:
+     *    - X-DSB-TRACK-ID: 2387dsfjhsdf87234
+     */
+    public function setRequestHeaders($headers)
+    {
+        $this->requestHeaders = $headers;
+        return $this;
+    }
+
+    /**
+     * Get the headers to send with the request.
+     *
+     * @return array
+     */
+    public function getRequestHeaders()
+    {
+        return $this->requestHeaders;
     }
 
     /**
@@ -255,6 +291,11 @@ abstract class AbstractClient implements ClientInterface
     {
         if (!empty($this->tokenKey)) {
             $options['headers']['X-TOKEN-KEY'] = $this->tokenKey;
+        }
+        if (!empty($this->requestHeaders)) {
+            foreach ($this->requestHeaders as $key => $value) {
+                $options['headers'][$key] = $value;
+            }
         }
         return $options;
     }

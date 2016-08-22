@@ -120,3 +120,36 @@ Not all fields have shortcut methods. For fields that the ``Educa\DSB\Client\Lom
     // Fields that are multilingual can use a language fallback array as the
     // second parameter.
     echo $lomDescription->getField('general.title', ['de', 'fr']);
+
+Sending anonymous usage data
+============================
+
+It is possible for partners to participate in the effort to provide a better service by sending anonymous user data. This is fully optional, and no data is tracked by default. Applications can send 1 or more of these headers, as they see fit. Applications can send the following HTTP headers:
+
+- ``X-DSB-TRACK-ID``: A tracker ID, managed by the client application, to track the user across searches and page loads. This can be a completely arbitrary value, like a random hash. No personal details should be stored in this header.
+- ``X-DSB-REFERER``: The HTTP *referrer* value.
+- ``X-DSB-TRACK-IP``: An IP to track the user. **IPs are anonymized by the dsb API**, meaning no personal data is stored. For example, ``192.168.1.28`` will be stored as ``192.168.1.xxx``.
+
+Not all headers are required. Applications can send only 1, 2, or all 3 of them, in any possible combination.
+
+.. code-block:: php
+
+    use Educa\DSB\Client\ApiClient\ClientV2;
+
+    $client = new ClientV2('https://dsb-api.educa.ch/v2', 'user@site.com', '/path/to/privatekey.pem', 'passphrase');
+
+    // When using a salt to generate a tracker ID, in order for this ID to
+    // remain consistent across page loads, the salt should be computed only
+    // once, either per session, per user, or even once for the entire
+    // application.
+    $salt = uniqid();
+    $client->addRequestHeader('X-DSB-TRACK-ID', md5($salt . session_id()));
+    $client->addRequestHeader('X-DSB-REFERER', $_SERVER['HTTP_REFERER']);
+    $client->addRequestHeader('X-DSB-TRACK-IP', $_SERVER['REMOTE_ADDR']());
+
+    try {
+        $client->authenticate();
+        // Start making requests, which will send the above usage data.
+    } catch(\Exception $e) {
+        // The request failed.
+    }
