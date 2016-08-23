@@ -166,6 +166,34 @@ interface TermInterface
     public function findChildrenByNameRecursive($name);
 
     /**
+     * Find a child term based on its type.
+     *
+     * @param string $type
+     *    The type to search for.
+     *
+     * @return array|null
+     *    The children, or null if not found. The children are represented by
+     *    a list of \Educa\DSB\Client\Curriculum\Term\TermInterface instances.
+     *
+     * @throws \Educa\DSB\Client\Curriculum\Term\TermHasNoChildrenException
+     */
+    public function findChildrenByType($type);
+
+    /**
+     * Find a child term based on its type, recursively.
+     *
+     * @param string $type
+     *    The type to search for.
+     *
+     * @return array|null
+     *    The children, or null if not found. The children are represented by
+     *    a list of \Educa\DSB\Client\Curriculum\Term\TermInterface instances.
+     *
+     * @throws \Educa\DSB\Client\Curriculum\Term\TermHasNoChildrenException
+     */
+    public function findChildrenByTypeRecursive($type);
+
+    /**
      * Return a ASCII representation of the tree.
      *
      * Useful for debugging, this method converts the term's children tree to a

@@ -355,6 +355,38 @@ class BaseTerm implements EditableTermInterface
         return !empty($result) ? $result : null;
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function findChildrenByType($type)
+    {
+        $result = array();
+        foreach ($this->getChildren() as $child) {
+            if ($child->describe()->type == $type) {
+                $result[] = $child;
+            }
+        }
+        return !empty($result) ? $result : null;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function findChildrenByTypeRecursive($type)
+    {
+        $result = array();
+        foreach ($this->getChildren() as $child) {
+            if ($child->describe()->type == $type) {
+                $result[] = $child;
+            } elseif ($child->hasChildren()) {
+                if ($found = $child->findChildrenByTypeRecursive($type)) {
+                    $result = array_merge($result, $found);
+                }
+            }
+        }
+        return !empty($result) ? $result : null;
+    }
+
     public function __toString()
     {
         return "{$this->type}:{$this->id}";

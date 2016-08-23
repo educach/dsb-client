@@ -141,6 +141,12 @@ A curriculum tree consists of ``TermInterface`` elements. Each element has the f
 - ``getPrevSibling()``: Get the sibling term "in front" of it.
 - ``hasNextSibling()``: Whether the term has a sibling term "after" it.
 - ``getNextSibling()``: Get the sibling term "after" it.
+* ``findChildByIdentifier()``: Allows to search direct descendants for a specific term via its identifier.
+* ``findChildByIdentifierRecursive()``: Same as above, but recursively descends onto child terms as well
+* ``findChildrenByName()``: Allows to search direct descendants for a specific term via its name.
+* ``findChildrenByNameRecursive()``: Same as above, but recursively descends onto child terms as well.
+* ``findChildrenByType()``: Allows to search direct descendants for a specific term via its type.
+* ``findChildrenByTypeRecursive()``: Same as above, but recursively descends onto child terms as well.
 
 Furthermore, it has one more method, ``describe()``, which allows applications to understand what kind of term they're dealing with.
 
