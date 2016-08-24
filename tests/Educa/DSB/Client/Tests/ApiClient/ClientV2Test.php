@@ -443,6 +443,62 @@ class ClientV2Test extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test loading stats data.
+     */
+    public function testGetStats()
+    {
+        // Prepare a new client.
+        $guzzle = $this->getGuzzleTestClient([
+            new Response(200, [], Psr7\stream_for('{"token":"asjhasd987asdhasd87"}')),
+            new Response(200),
+            new Response(400),
+            new Response(304),
+        ]);
+
+        // Prepare a client.
+        $client = new ClientV2(
+            'http://localhost',
+            'user@site.com',
+            FIXTURES_DIR . '/user/privatekey_nopassphrase.pem'
+        );
+        $client->setClient($guzzle);
+
+        // Loading stats data without being authenticated throws an error.
+        try {
+            $client->loadPartnerStatistics('user@site.com', '2015', '2016');
+            $this->fail("Loading stats data without being authenticated should throw an exception.");
+        } catch(ClientAuthenticationException $e) {
+            $this->assertTrue(true, "Loading stats data without being authenticated throws an exception.");
+        }
+
+        // Loading stats data while authenticated doesn't throw an error.
+        try {
+            $client->authenticate();
+            $client->loadPartnerStatistics('user@site.com', '2015', '2016');
+            $this->assertTrue(true, "Loading stats data while being authenticated does not throw an exception.");
+        } catch(ClientAuthenticationException $e) {
+            $this->fail("Loading stats data while being authenticated should not throw an exception.");
+        }
+
+        // Passing an incorrect aggregation method throws an exception.
+        try {
+            $client->loadPartnerStatistics('john@doe.com', '2015', '2016', 'dummy');
+            $this->fail("Passing an incorrect aggregation method should throw an exception.");
+        } catch(\InvalidArgumentException $e) {
+            $this->assertTrue(true, "Passing an incorrect aggregation method throws an exception.");
+        }
+
+        // Passing an to date that is smaller than the from date throws an
+        // exception.
+        try {
+            $client->loadPartnerStatistics('john@doe.com', '2016', '2015', 'dummy');
+            $this->fail("Passing an to date that is smaller than the from date should throw an exception.");
+        } catch(\InvalidArgumentException $e) {
+            $this->assertTrue(true, "Passing an to date that is smaller than the from date throws an exception.");
+        }
+    }
+
+    /**
      * Test creating a new description.
      */
     public function testPostDescription()
@@ -450,6 +506,9 @@ class ClientV2Test extends \PHPUnit_Framework_TestCase
         // Prepare a new client.
         $guzzle = $this->getGuzzleTestClient([
             new Response(200, [], Psr7\stream_for('{"token":"asjhasd987asdhasd87"}')),
+            new Response(200),
+            new Response(200),
+            new Response(200),
             new Response(200),
             new Response(200),
         ]);
@@ -478,6 +537,28 @@ class ClientV2Test extends \PHPUnit_Framework_TestCase
         } catch(ClientAuthenticationException $e) {
             $this->fail("Creating a description while being authenticated should not throw an exception.");
         }
+
+        // Setting invalid catalogs throws an error.
+        try {
+            $client->postDescription('{"json":"data"}', 'catalog');
+            $this->fail("Setting invalid catalogs should throw an error.");
+        } catch(\RuntimeException $e) {
+            $this->assertTrue(true, "Setting invalid catalogs throws an error.");
+        }
+
+        // Setting correct catalogs doesn't throw an error, and updates the
+        // headers.
+        try {
+            $client->postDescription('{"json":"data"}', ['catalog1', 'catalog2']);
+            $this->assertTrue(true, "Setting correct catalogs doesn't throw an error.");
+        } catch(\RuntimeException $e) {
+            $this->fail("Setting correct catalogs shouldn't throw an error.");
+        }
+        $this->assertEquals(
+            ['X-DSB-CATALOGS' => 'catalog1,catalog2'],
+            $client->getRequestHeaders(),
+            "Setting catalogs updates the request headers."
+        );
 
         // Trying to upload a file that doesn't exist throws an error.
         try {
@@ -532,6 +613,28 @@ class ClientV2Test extends \PHPUnit_Framework_TestCase
         } catch(ClientAuthenticationException $e) {
             $this->fail("Updating a description while being authenticated should not throw an exception.");
         }
+
+        // Setting invalid catalogs throws an error.
+        try {
+            $client->putDescription('some-id', '{"json":"data"}', 'catalog');
+            $this->fail("Setting invalid catalogs should throw an error.");
+        } catch(\RuntimeException $e) {
+            $this->assertTrue(true, "Setting invalid catalogs throws an error.");
+        }
+
+        // Setting correct catalogs doesn't throw an error, and updates the
+        // headers.
+        try {
+            $client->putDescription('some-id', '{"json":"data"}', ['catalog1', 'catalog2']);
+            $this->assertTrue(true, "Setting correct catalogs doesn't throw an error.");
+        } catch(\RuntimeException $e) {
+            $this->fail("Setting correct catalogs shouldn't throw an error.");
+        }
+        $this->assertEquals(
+            ['X-DSB-CATALOGS' => 'catalog1,catalog2'],
+            $client->getRequestHeaders(),
+            "Setting catalogs updates the request headers."
+        );
     }
 
     /**
@@ -821,6 +924,43 @@ class ClientV2Test extends \PHPUnit_Framework_TestCase
         } catch(\Exception $e) {
             $this->fail("Trying to upload a file that does exist should not throw an error.");
         }
+    }
+
+    /**
+     * Test headers.
+     */
+    public function testHeaders()
+    {
+        $client = new ClientV2(
+            'http://localhost',
+            'user@site.com',
+            FIXTURES_DIR . '/user/privatekey_nopassphrase.pem'
+        );
+        $client->addRequestHeader('toto', 'value');
+        $client->addRequestHeader('toto2', 'value2');
+        $this->assertEquals(
+            [
+                'toto' => 'value',
+                'toto2' => 'value2',
+            ],
+            $client->getRequestHeaders(),
+            "Add a single header works."
+        );
+        $client->setRequestHeaders(['hi' => 'there']);
+        $this->assertEquals(
+            ['hi' => 'there'],
+            $client->getRequestHeaders(),
+            "Replace all headers works."
+        );
+
+        $class = new \ReflectionClass('Educa\DSB\Client\ApiClient\ClientV2');
+        $method = $class->getMethod('preProcessHeaders');
+        $method->setAccessible(true);
+        $this->assertEquals(
+            ['headers' => ['hi' => 'there']],
+            $method->invokeArgs($client, [[]]),
+            "Preprocessing headers works."
+        );
     }
 
     /**

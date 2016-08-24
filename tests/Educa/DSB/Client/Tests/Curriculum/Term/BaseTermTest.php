@@ -178,14 +178,14 @@ class BaseTermTest extends \PHPUnit_Framework_TestCase
     public function testSearchChildTerm()
     {
         $terms = array();
-        $root = new BaseTerm('type', 'uuid0');
+        $root = new BaseTerm('root type', 'uuid0');
         for ($i = 5; $i > 0; $i--) {
-            $term = new BaseTerm('type', "uuid{$i}", "Child {$i}");
+            $term = new BaseTerm('parent type', "uuid{$i}", "Child {$i}");
             $root->addChild($term);
             $terms["uuid{$i}"] = $term;
 
             for ($j = 5; $j > 0; $j--) {
-                $childTerm = new BaseTerm('type', "uuid{$i}.{$j}", "Child {$i}.{$j}", "{$i}.{$j}");
+                $childTerm = new BaseTerm('child type', "uuid{$i}.{$j}", "Child {$i}.{$j}", "{$i}.{$j}");
                 $term->addChild($childTerm);
                 $terms["uuid{$i}.{$j}"] = $childTerm;
             }
@@ -219,6 +219,16 @@ class BaseTermTest extends \PHPUnit_Framework_TestCase
             $terms['uuid4.2'],
             $root->findChildByIdentifierRecursive('uuid4.2'),
             "Recursively searching by ID works."
+        );
+        $this->assertEquals(
+            [$terms['uuid5'],$terms['uuid4'],$terms['uuid3'],$terms['uuid2'],$terms['uuid1']],
+            $root->findChildrenByType("parent type"),
+            "Searching by type works."
+        );
+        $this->assertEquals(
+            25,
+            count($root->findChildrenByTypeRecursive("child type")),
+            "Recursively searching by type works."
         );
     }
 }

@@ -160,6 +160,33 @@ class LomDescriptionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test if a description is in a legacy format or not.
+     */
+    public function testIsLegacyFormat()
+    {
+        $data = json_decode(
+            file_get_contents(FIXTURES_DIR . '/lom-data/full_valid.json')
+        );
+        $lomDescription = new LomDescription($data);
+        $this->assertTrue(
+            $lomDescription->isLegacyLOMCHFormat(),
+            "Correctly detect a legacy format."
+        );
+        $data->metaMetadata->metadataSchema = ['LOM-CHv1.1'];
+        $lomDescription = new LomDescription($data);
+        $this->assertTrue(
+            $lomDescription->isLegacyLOMCHFormat(),
+            "Correctly detect a legacy format."
+        );
+        $data->metaMetadata->metadataSchema = ['LOM-CHv1.2'];
+        $lomDescription = new LomDescription($data);
+        $this->assertFalse(
+            $lomDescription->isLegacyLOMCHFormat(),
+            "Correctly detect a new format."
+        );
+    }
+
+    /**
      * Test the shortcut methods.
      *
      * In addition to the LomDescription::getField() method, there are several
@@ -172,8 +199,18 @@ class LomDescriptionTest extends \PHPUnit_Framework_TestCase
             file_get_contents(FIXTURES_DIR . '/lom-data/full_valid.json'),
             true
         );
-        $lomDescription = new LomDescription($data);
+        $lomDescription = new LomDescription($data, 'id', 'user');
 
+        $this->assertEquals(
+            "id",
+            $lomDescription->getLomId(),
+            "The getLomId() method works."
+        );
+        $this->assertEquals(
+            "user",
+            $lomDescription->getOwnerUsername(),
+            "The getOwnerUsername() method works."
+        );
         $this->assertEquals(
             "Example : title, with special characters, like ’ and é",
             $lomDescription->getTitle(),
