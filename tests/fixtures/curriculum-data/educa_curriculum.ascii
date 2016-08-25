@@ -70,7 +70,7 @@
             +-- discipline:geography
             +-- discipline:history
             +-- discipline:economy
-                +-- discipline:national_political_economy
+                +-- discipline:economics
                 +-- discipline:accounting_finance
             +-- discipline:law
             +-- discipline:pedagogy
@@ -81,18 +81,18 @@
         +-- discipline:computer_science
         +-- discipline:arts
             +-- discipline:visual arts
-            +-- discipline:creative activities
+            +-- discipline:art_craft_design
             +-- discipline:music
-        +-- discipline:motion_health
+        +-- discipline:physical_activity_health
             +-- discipline:nutrition
             +-- discipline:motion and sport
-        +-- discipline:general_education
+        +-- discipline:interdisciplinary_topics_skills
             +-- discipline:communication
             +-- discipline:professional_orientation
             +-- discipline:learning_strategies_working_methods
             +-- discipline:media and ict
             +-- discipline:development
             +-- discipline:identity
-            +-- discipline:collective_projects
+            +-- discipline:projects
             +-- discipline:life_of_the_class_and_of_the_school
         +-- discipline:domestic science

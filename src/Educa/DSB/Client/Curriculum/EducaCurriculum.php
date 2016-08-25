@@ -264,6 +264,8 @@ class EducaCurriculum extends BaseCurriculum
      */
     public function getTermType($identifier)
     {
+        $map = $this->getDeprecationMap();
+        $identifier = isset($map[$identifier]) ? $map[$identifier] : $identifier;
         return isset($this->curriculumDictionary[$identifier]) ? $this->curriculumDictionary[$identifier]->type : 'n/a';
     }
 
@@ -272,6 +274,8 @@ class EducaCurriculum extends BaseCurriculum
      */
     public function getTermName($identifier)
     {
+        $map = $this->getDeprecationMap();
+        $identifier = isset($map[$identifier]) ? $map[$identifier] : $identifier;
         return isset($this->curriculumDictionary[$identifier]->name) ? $this->curriculumDictionary[$identifier]->name : 'n/a';
     }
 
@@ -280,6 +284,9 @@ class EducaCurriculum extends BaseCurriculum
      */
     protected function taxonIsDiscipline($taxon)
     {
+        $map = $this->getDeprecationMap();
+        $taxon['id'] = isset($map[$taxon['id']]) ? $map[$taxon['id']] : $taxon['id'];
+
         // First check the parent implementation. If it is false, use a legacy
         // method.
         if (parent::taxonIsDiscipline($taxon)) {
@@ -287,5 +294,49 @@ class EducaCurriculum extends BaseCurriculum
         } else {
             return $this->getTermType($taxon['id']) === 'discipline';
         }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function termFactory($type, $taxonId, $name = null)
+    {
+        $map = $this->getDeprecationMap();
+        return new BaseTerm(
+            $type,
+            isset($map[$taxonId]) ? $map[$taxonId] : $taxonId,
+            $name
+        );
+    }
+
+    /**
+     * Get a taxon ID deprecation and replacement map.
+     *
+     * @return array
+     */
+    protected function getDeprecationMap()
+    {
+        // Some IDs have been replaced on the Ontology server. However,
+        // it doesn't provide a way of fetching a list of replacements. We
+        // hard-code it for now.
+        return [
+            // Keys that got renamed.
+            'computer_science_programming' => 'computer_science',
+            'ethics and religions' => 'ethics_religions_communities',
+            'accounting' => 'accounting_finance',
+            'creative activities' => 'art_craft_design',
+            'sport' => 'motion_health',
+            'general_education' => 'interdisciplinary_topics_skills',
+            'collective_projects' => 'projects',
+            // Keys that got deprecated in favor of other ones.
+            'applied mathematics' => 'mathematics',
+            'geometry' => 'mathematics',
+            'home economics' => 'domestic science',
+            'commercial accounting' => 'accounting',
+            'office_and_typing' => 'media and ict',
+            'prevention_and_health' => 'motion_health',
+            'environment_and_dependencies' => 'development',
+            'personal_projects' => 'projects',
+        ];
     }
 }

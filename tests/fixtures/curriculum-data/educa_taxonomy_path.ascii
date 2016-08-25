@@ -8,5 +8,7 @@
         +-- discipline:psychology
         +-- discipline:philosophy
     +-- context:post compulsory education
-    +-- discipline:general_education
+    +-- discipline:mathematics
+        +-- discipline:mathematics
+    +-- discipline:interdisciplinary_topics_skills
         +-- discipline:identity

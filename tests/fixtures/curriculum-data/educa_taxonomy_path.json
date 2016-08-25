@@ -274,31 +274,23 @@
 				},
 				"taxon":[
 					{
-						"id":"social and human sciences",
+						"id":"applied mathematics",
 						"purpose":{
 							"source":"LOM-CHv1.1",
 							"value":"discipline"
 						},
 						"entry":{
-							"de":"Sozial- und Geisteswissenschaften",
-							"en":"Social and Human Sciences",
-							"fr":"Sciences humaines et sociales",
-							"it":"Scienze umane e sociali",
-							"rm":"Roh_Social and Human Sciences"
+							"de":"Mathematik"
 						}
 					},
 					{
-						"id":"history",
+						"id":"geometry",
 						"purpose":{
 							"source":"LOM-CHv1.1",
 							"value":"discipline"
 						},
 						"entry":{
-							"de":"Geschichte",
-							"en":"History",
-							"fr":"Histoire",
-							"it":"Storia",
-							"rm":"History"
+							"de":"Geometry"
 						}
 					}
 				]
