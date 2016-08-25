@@ -329,6 +329,7 @@ class EducaCurriculum extends BaseCurriculum
             'general_education' => 'interdisciplinary_topics_skills',
             'collective_projects' => 'projects',
             // Keys that got deprecated in favor of other ones.
+            'pre-school' => 'compulsory education',
             'applied mathematics' => 'mathematics',
             'geometry' => 'mathematics',
             'home economics' => 'domestic science',
