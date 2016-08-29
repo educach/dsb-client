@@ -240,8 +240,11 @@ class PerCurriculum extends BaseCurriculum
             $dictionary["cycles:{$id}"] = $description;
         }
 
-        // The reason we put that stupid "?" there is to simplify unit tests.
-        $objectives = json_decode(@file_get_contents("$url/objectifs?"), true);
+        $objectives = json_decode(@file_get_contents(
+            defined('RUNNING_PHPUNIT') && RUNNING_PHPUNIT ?
+                "$url/objectifs_all" :
+                "$url/objectifs"
+        ), true);
         $themes = array();
         $domains = array();
         $disciplines = array();

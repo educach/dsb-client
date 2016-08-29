@@ -11,3 +11,5 @@ $loader->add('Educa\DSB\Client\Tests', __DIR__);
 
 // Define the fixtures directory path.
 define('FIXTURES_DIR', __DIR__ . '/fixtures');
+
+define('RUNNING_PHPUNIT', true);
