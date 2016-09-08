@@ -204,7 +204,7 @@ class LP21Curriculum extends BaseCurriculum
 
         // Prepare custom handlers for reading an XML node. See the Sabre\Xml
         // documentation for more information.
-        $baseHandler = function($reader) {
+        $baseHandler = function($reader) use ($variant) {
             $node = new \stdClass();
 
             // Fetch the attributes. We want the UUID attribute.
@@ -253,6 +253,13 @@ class LP21Curriculum extends BaseCurriculum
                         $node->cantons = array_map('trim', explode(',', $child['value']));
                     }
                 }
+            }
+
+            if (
+                !empty($node->cantons) &&
+                !in_array($variant, $node->cantons)
+            ) {
+                return null;
             }
 
             return $node;
