@@ -37,11 +37,11 @@ class EducaCurriculumTest extends \PHPUnit_Framework_TestCase
             (object) array(
                 'type' => 'discipline',
                 'name' => (object) array(
-                'de' => "Kaufmännisches Rechnen",
-                'fr' => "Calcul commercial",
-                'it' => "Calco commerciali",
-                'rm' => "Roh_Commercial accounting",
-                'en' => "Commercial accounting"
+                    'de' => "Kaufmännisches Rechnen",
+                    'fr' => "Calcul commercial",
+                    'it' => "Calco commerciali",
+                    'rm' => "Roh_Commercial accounting",
+                    'en' => "Commercial accounting"
                 ),
             ),
             $data->dictionary['commercial accounting'],

@@ -168,7 +168,7 @@ class EducaCurriculum extends BaseCurriculum
                     continue;
                 }
 
-                $type = self::parseCurriculumJsonGetType($vocabulary, $term);
+                $type = static::parseCurriculumJsonGetType($vocabulary, $term);
 
                 // Store the term definition in the dictionary.
                 $dictionary[$term->identifier] = (object) array(
