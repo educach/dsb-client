@@ -101,7 +101,7 @@ class EducaCurriculum extends BaseCurriculum
                 ),
             ),
             (object) array(
-                'type' => 'school level',
+                'type' => 'school_level',
                 'purpose' => array(
                     'LOM-CHv1.2' => 'educational level',
                 ),
@@ -168,11 +168,7 @@ class EducaCurriculum extends BaseCurriculum
                     continue;
                 }
 
-                if ($vocabulary->identifier == 'educa_school_levels') {
-                    $type = !empty($term->parents) ? 'school level' : 'context';
-                } else {
-                    $type = 'discipline';
-                }
+                $type = self::parseCurriculumJsonGetType($vocabulary, $term);
 
                 // Store the term definition in the dictionary.
                 $dictionary[$term->identifier] = (object) array(
@@ -221,27 +217,26 @@ class EducaCurriculum extends BaseCurriculum
             }
         }
 
-        // Now, treat all items of the school levels, and add the discipline
-        // tree to it.
-        /*foreach ($list['educa_school_levels'] as $key => $item) {
-            // If the item has no children, it is a leaf and can contain
-            // discipline information.
-            if (!$item->hasChildren()) {
-                // We use a trick here. We cannot actually add the same item
-                // hierarchy to multiple parents. But, if we clone the top item,
-                // it will keep its references to the child items. We can thus
-                // simulate multiple trees, where in fact they are all the same
-                // tree.
-                foreach ($list['educa_school_subjects']['root']->getChildren() as $discipline) {
-                    $item->addChild(clone $discipline);
-                }
-            }
-        }*/
-
         return (object) array(
             'curriculum' => $root,
             'dictionary' => $dictionary,
         );
+    }
+
+    /**
+     * Determine the type of a term when parsing.
+     *
+     * @param object $vocabulary
+     * @param object $term
+     *
+     * @return string
+     */
+    protected static function parseCurriculumJsonGetType($vocabulary, $term) {
+        if ($vocabulary->identifier == 'educa_school_levels') {
+            return !empty($term->parents) ? 'school_level' : 'context';
+        } else {
+            return 'discipline';
+        }
     }
 
     /**
@@ -264,8 +259,6 @@ class EducaCurriculum extends BaseCurriculum
      */
     public function getTermType($identifier)
     {
-        $map = $this->getDeprecationMap();
-        $identifier = isset($map[$identifier]) ? $map[$identifier] : $identifier;
         return isset($this->curriculumDictionary[$identifier]) ? $this->curriculumDictionary[$identifier]->type : 'n/a';
     }
 
@@ -274,8 +267,6 @@ class EducaCurriculum extends BaseCurriculum
      */
     public function getTermName($identifier)
     {
-        $map = $this->getDeprecationMap();
-        $identifier = isset($map[$identifier]) ? $map[$identifier] : $identifier;
         return isset($this->curriculumDictionary[$identifier]->name) ? $this->curriculumDictionary[$identifier]->name : 'n/a';
     }
 
@@ -284,9 +275,6 @@ class EducaCurriculum extends BaseCurriculum
      */
     protected function taxonIsDiscipline($taxon)
     {
-        $map = $this->getDeprecationMap();
-        $taxon['id'] = isset($map[$taxon['id']]) ? $map[$taxon['id']] : $taxon['id'];
-
         // First check the parent implementation. If it is false, use a legacy
         // method.
         if (parent::taxonIsDiscipline($taxon)) {
@@ -301,43 +289,10 @@ class EducaCurriculum extends BaseCurriculum
      */
     protected function termFactory($type, $taxonId, $name = null)
     {
-        $map = $this->getDeprecationMap();
         return new BaseTerm(
             $type,
-            isset($map[$taxonId]) ? $map[$taxonId] : $taxonId,
+            $taxonId,
             $name
         );
-    }
-
-    /**
-     * Get a taxon ID deprecation and replacement map.
-     *
-     * @return array
-     */
-    protected function getDeprecationMap()
-    {
-        // Some IDs have been replaced on the Ontology server. However,
-        // it doesn't provide a way of fetching a list of replacements. We
-        // hard-code it for now.
-        return [
-            // Keys that got renamed.
-            'computer_science_programming' => 'computer_science',
-            'ethics and religions' => 'ethics_religions_communities',
-            'accounting' => 'accounting_finance',
-            'creative activities' => 'art_craft_design',
-            'sport' => 'motion_health',
-            'general_education' => 'interdisciplinary_topics_skills',
-            'collective_projects' => 'projects',
-            // Keys that got deprecated in favor of other ones.
-            'pre-school' => 'compulsory education',
-            'applied mathematics' => 'mathematics',
-            'geometry' => 'mathematics',
-            'home economics' => 'domestic science',
-            'commercial accounting' => 'accounting',
-            'office_and_typing' => 'media and ict',
-            'prevention_and_health' => 'motion_health',
-            'environment_and_dependencies' => 'development',
-            'personal_projects' => 'projects',
-        ];
     }
 }

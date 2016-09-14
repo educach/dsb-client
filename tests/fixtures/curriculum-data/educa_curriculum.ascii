@@ -1,49 +1,49 @@
 --- root:root
     +-- educa_school_levels:educa_school_levels
+        +-- context:pre-school
         +-- context:compulsory education
-            +-- school level:cycle_1
-                +-- school level:1st_and_2nd_year
-                +-- school level:3rd_and_4th_year
-            +-- school level:cycle_2
-                +-- school level:5th_and_6th_year
-                +-- school level:7th_and_8th_year
-            +-- school level:cycle_3
-                +-- school level:9th_year
-                +-- school level:10th_year
-                +-- school level:11th_year
+            +-- school_level:cycle_1
+                +-- school_level:1st_and_2nd_year
+                +-- school_level:3rd_and_4th_year
+            +-- school_level:cycle_2
+                +-- school_level:5th_and_6th_year
+                +-- school_level:7th_and_8th_year
+            +-- school_level:cycle_3
+                +-- school_level:9th_year
+                +-- school_level:10th_year
+                +-- school_level:11th_year
         +-- context:post compulsory education
-            +-- school level:matura_schools
-                +-- school level:specialised_middle_school
-                +-- school level:vocational_baccalaureate_school
-                +-- school level:gymnasium
-            +-- school level:middle_schools
-                +-- school level:middle_school
-                +-- school level:bridging_courses
-            +-- school level:vocational schools
-                +-- school level:technical_college
-                +-- school level:business_college
-                +-- school level:design_college
-                +-- school level:social_school
-                +-- school level:nursing_school
-                +-- school level:agricultural_school
-            +-- school level:post_compulsory_education_others
+            +-- school_level:matura_schools
+                +-- school_level:specialised_middle_school
+                +-- school_level:vocational_baccalaureate_school
+                +-- school_level:gymnasium
+            +-- school_level:middle_schools
+                +-- school_level:middle_school
+                +-- school_level:bridging_courses
+            +-- school_level:vocational schools
+                +-- school_level:technical_college
+                +-- school_level:business_college
+                +-- school_level:design_college
+                +-- school_level:social_school
+                +-- school_level:nursing_school
+                +-- school_level:agricultural_school
+            +-- school_level:post_compulsory_education_others
         +-- context:special_needs_education
-            +-- school level:school_for_handicapped_children
-            +-- school level:training_center
+            +-- school_level:school_for_handicapped_children
+            +-- school_level:training_center
         +-- context:indipendent_of_levels
-            +-- school level:music_school
-            +-- school level:indipendent_of_levels_others
+            +-- school_level:music_school
+            +-- school_level:indipendent_of_levels_others
         +-- context:tertiary_level
-            +-- school level:colleges_of_higher_vocational_education
-            +-- school level:universities_of_applied_sciences
-            +-- school level:teacher_training_colleges
-            +-- school level:universities
-            +-- school level:tertiary_level_others
+            +-- school_level:colleges_of_higher_vocational_education
+            +-- school_level:universities_of_applied_sciences
+            +-- school_level:teacher_training_colleges
+            +-- school_level:universities
+            +-- school_level:tertiary_level_others
         +-- context:distance_learning
         +-- context:main_others
     +-- educa_school_subjects:educa_school_subjects
         +-- discipline:languages
-            +-- discipline:rhaeto-romanic_foreign_language
             +-- discipline:german school language
             +-- discipline:german foreign language
             +-- discipline:french school language
@@ -59,40 +59,47 @@
             +-- discipline:spanish_foreign_language
             +-- discipline:chinese_foreign_language
             +-- discipline:russian_foreign_language
-        +-- discipline:mathematics
-        +-- discipline:natural sciences
-            +-- discipline:biology
-            +-- discipline:chemistry
-            +-- discipline:physics
+        +-- discipline:mathematics and natural science
+            +-- discipline:mathematics
+                +-- discipline:applied mathematics
+                +-- discipline:geometry
+            +-- discipline:natural sciences
+                +-- discipline:biology
+                +-- discipline:chemistry
+                +-- discipline:physics
+            +-- discipline:computer_science_programming
         +-- discipline:social and human sciences
-            +-- discipline:politics
-            +-- discipline:sociology
+            +-- discipline:citizenship
             +-- discipline:geography
             +-- discipline:history
             +-- discipline:economy
-                +-- discipline:economics
-                +-- discipline:accounting_finance
+                +-- discipline:commercial accounting
+                +-- discipline:accounting
+                +-- discipline:computer science management
+                +-- discipline:office_and_typing
+                +-- discipline:home economics
             +-- discipline:law
             +-- discipline:pedagogy
             +-- discipline:psychology
             +-- discipline:philosophy
-            +-- discipline:ethics_religions_communities
+            +-- discipline:ethics and religions
             +-- discipline:religious instruction
-        +-- discipline:computer_science
         +-- discipline:arts
             +-- discipline:visual arts
-            +-- discipline:art_craft_design
+            +-- discipline:creative activities
+            +-- discipline:technical design
             +-- discipline:music
-        +-- discipline:physical_activity_health
-            +-- discipline:nutrition
+        +-- discipline:sport
+            +-- discipline:domestic science
             +-- discipline:motion and sport
-        +-- discipline:interdisciplinary_topics_skills
-            +-- discipline:communication
-            +-- discipline:professional_orientation
-            +-- discipline:learning_strategies_working_methods
+        +-- discipline:general_education
+            +-- discipline:early_childhood_education
             +-- discipline:media and ict
             +-- discipline:development
+            +-- discipline:environment_and_dependencies
+            +-- discipline:prevention_and_health
             +-- discipline:identity
-            +-- discipline:projects
+            +-- discipline:personal_and_professional_orientation
+            +-- discipline:personal_projects
+            +-- discipline:collective_projects
             +-- discipline:life_of_the_class_and_of_the_school
-        +-- discipline:domestic science

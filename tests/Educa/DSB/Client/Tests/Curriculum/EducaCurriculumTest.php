@@ -30,26 +30,26 @@ class EducaCurriculumTest extends \PHPUnit_Framework_TestCase
         // Pick a few arbitrary entries in the dictionary, to make sure we have
         // our entries.
         $this->assertTrue(
-            empty($data->dictionary['early_childhood_education']),
-            "The item 'early_childhood_education' was deprecated, and should not be part of the tree."
+            empty($data->dictionary['complexity_and_dependencies']),
+            "The item 'complexity_and_dependencies' was deprecated, and should not be part of the tree."
         );
         $this->assertEquals(
             (object) array(
                 'type' => 'discipline',
                 'name' => (object) array(
-                    'de' => "Finanz- und Rechnungswesen",
-                    'fr' => "Finances et comptabilité",
-                    'it' => "Contabilità",
-                    'rm' => "Accounting",
-                    'en' => "Accounting and Finance"
+                'de' => "Kaufmännisches Rechnen",
+                'fr' => "Calcul commercial",
+                'it' => "Calco commerciali",
+                'rm' => "Roh_Commercial accounting",
+                'en' => "Commercial accounting"
                 ),
             ),
-            $data->dictionary['accounting_finance'],
-            "Found the correct data in the dictionary for item 'accounting_finance'."
+            $data->dictionary['commercial accounting'],
+            "Found the correct data in the dictionary for item 'commercial accounting'."
         );
         $this->assertEquals(
             (object) array(
-                'type' => 'school level',
+                'type' => 'school_level',
                 'name' => (object) array(
                     'de' => "1. Zyklus (bis 4. Schuljahr)",
                     'fr' => "Cycle 1 (1ère à 4ème année scolaire) ",

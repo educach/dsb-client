@@ -1,6 +1,6 @@
 --- root:root
     +-- context:compulsory education
-        +-- school level:cycle_3
+        +-- school_level:cycle_3
     +-- discipline:languages
         +-- discipline:german school language
     +-- discipline:social and human sciences
@@ -8,7 +8,7 @@
         +-- discipline:psychology
         +-- discipline:philosophy
     +-- context:post compulsory education
-    +-- discipline:mathematics
-        +-- discipline:mathematics
-    +-- discipline:interdisciplinary_topics_skills
+    +-- discipline:applied mathematics
+        +-- discipline:geometry
+    +-- discipline:general_education
         +-- discipline:identity
