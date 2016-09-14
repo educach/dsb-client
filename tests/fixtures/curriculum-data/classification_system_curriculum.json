@@ -1,0 +1,2289 @@
+{
+	"identifier":"classification_system",
+	"name":{
+		"de":"Klassifikationssystem",
+		"fr":"Syst\u00e8me de classification",
+		"it":"",
+		"rm":"",
+		"en":"Classification system"
+	},
+	"description":{
+		"de":"",
+		"fr":"",
+		"it":"",
+		"rm":"",
+		"en":""
+	},
+	"vocabularies":{
+		"school context":{
+			"identifier":"school context",
+			"name":{
+				"de":"Schulischer Kontext",
+				"fr":"Contexte d'enseignement",
+				"it":"Contesto",
+				"rm":"Stgalims da furmaziun",
+				"en":"School context"
+			},
+			"description":{
+				"de":"",
+				"fr":"",
+				"it":"",
+				"rm":"",
+				"en":""
+			},
+			"terms":{
+				"compulsory education":{
+					"identifier":"compulsory education",
+					"name":{
+						"de":"Obligatorische Schule",
+						"fr":"Scolarit\u00e9 obligatoire",
+						"it":"Scuola dell'obbligo",
+						"rm":"Scola obligatorica",
+						"en":"Compulsory education"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LREv3.0",
+					"url":"",
+					"deprecated":"0",
+					"order":"0"
+				},
+				"post compulsory education":{
+					"identifier":"post compulsory education",
+					"name":{
+						"de":"Sekundarstufe II",
+						"fr":"Degr\u00e9 secondaire II",
+						"it":"Livello secondario II",
+						"rm":"Stgalim secundar II",
+						"en":"Post-compulsory education"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.0",
+					"url":"",
+					"deprecated":"0",
+					"order":"0"
+				},
+				"tertiary level":{
+					"identifier":"tertiary level",
+					"name":{
+						"de":"Terti\u00e4rstufe",
+						"fr":"Degr\u00e9 tertiaire",
+						"it":"Livello terziario",
+						"rm":"Stgalim terziar",
+						"en":"Tertiary level"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.2",
+					"url":"",
+					"deprecated":"0",
+					"order":"0"
+				},
+				"special needs education":{
+					"identifier":"special needs education",
+					"name":{
+						"de":"Sonderp\u00e4dagogik",
+						"fr":"P\u00e9dagogie sp\u00e9cialis\u00e9e",
+						"it":"Pedagogia curativa e speciale",
+						"rm":"Pedagogia curativa e speziala",
+						"en":"Special needs education "
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.2",
+					"url":"",
+					"deprecated":"0",
+					"order":"0"
+				},
+				"independent of levels":{
+					"identifier":"independent of levels",
+					"name":{
+						"de":"Stufenunabh\u00e4ngig",
+						"fr":"Ind\u00e9pendant des degr\u00e9s",
+						"it":"Indipendente dai livelli",
+						"rm":"Independent of levels",
+						"en":"Independent of levels"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.2",
+					"url":"",
+					"deprecated":"0",
+					"order":"0"
+				},
+				"distance learning":{
+					"identifier":"distance learning",
+					"name":{
+						"de":"Fernunterricht",
+						"fr":"Enseignement \u00e0 distance",
+						"it":"Formazione a Distanza",
+						"rm":"Instrucziun a distanza",
+						"en":"Distance learning"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.2",
+					"url":"",
+					"deprecated":"0",
+					"order":"0"
+				},
+				"main others":{
+					"identifier":"main others",
+					"name":{
+						"de":"Andere",
+						"fr":"Autre",
+						"it":"Altri",
+						"rm":"Autras",
+						"en":"Others"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.2",
+					"url":"",
+					"deprecated":"0",
+					"order":"0"
+				},
+				"cycle 1":{
+					"identifier":"cycle 1",
+					"name":{
+						"de":"1. Zyklus (bis 4. Schuljahr)",
+						"fr":"Cycle 1 (1\u00e8re \u00e0 4\u00e8me ann\u00e9e scolaire) ",
+						"it":"1\u00b0 ciclo",
+						"rm":"Emprim ciclus",
+						"en":"1st cycle (up to 4th school year)"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.2",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"compulsory education"
+					]
+				},
+				"cycle 2":{
+					"identifier":"cycle 2",
+					"name":{
+						"de":"2. Zyklus (5. bis 8. Schuljahr)",
+						"fr":"Cycle 2 (5\u00e8me \u00e0 8\u00e8me ann\u00e9e scolaire) ",
+						"it":"2\u00b0 ciclo",
+						"rm":"Segund ciclus",
+						"en":"2nd cycle (5th to 8th school year)"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.2",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"compulsory education"
+					]
+				},
+				"cycle 3":{
+					"identifier":"cycle 3",
+					"name":{
+						"de":"3. Zyklus (9. bis 11. Schuljahr)",
+						"fr":"Cycle 3 (9\u00e8me \u00e0 11\u00e8me ann\u00e9e scolaire)",
+						"it":"3\u00b0 ciclo",
+						"rm":"Terz ciclus",
+						"en":"3rd cycle (9th to 11th school year)"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.2",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"compulsory education"
+					]
+				},
+				"1st and 2nd year":{
+					"identifier":"1st and 2nd year",
+					"name":{
+						"de":"1. und 2. Schuljahr (Kindergarten)",
+						"fr":"1e et 2e ann\u00e9e (\u00e9cole enfantine)",
+						"it":"1\u00b0 e 2\u00b0 anno scolastico (scuola dell'infanzia)",
+						"rm":"Emprim e segund onn da scola (ccolina)",
+						"en":"1st and 2nd year (kindergarten)"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.2",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"cycle 1"
+					]
+				},
+				"3rd and 4th year":{
+					"identifier":"3rd and 4th year",
+					"name":{
+						"de":"3. und 4. Schuljahr",
+						"fr":"3e et 4e ann\u00e9e",
+						"it":"3\u00b0 e 4\u00b0 anno scolastico",
+						"rm":"3. e 4. classa",
+						"en":"3rd and 4th year"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.2",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"cycle 1"
+					]
+				},
+				"5th and 6th year":{
+					"identifier":"5th and 6th year",
+					"name":{
+						"de":"5. und 6. Schuljahr",
+						"fr":"5e et 6e ann\u00e9e",
+						"it":"5\u00b0 e 6\u00b0 anno scolastico",
+						"rm":"5. e 6. classa",
+						"en":"5th and 6th year"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.2",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"cycle 2"
+					]
+				},
+				"7th and 8th year":{
+					"identifier":"7th and 8th year",
+					"name":{
+						"de":"7. und 8. Schuljahr",
+						"fr":"7e et 8e ann\u00e9e",
+						"it":"7\u00b0 e 8\u00b0 anno scolastico",
+						"rm":"7. e 8. classa",
+						"en":"7th and 8th year"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.2",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"cycle 2"
+					]
+				},
+				"9th year":{
+					"identifier":"9th year",
+					"name":{
+						"de":"9. Schuljahr",
+						"fr":"9e ann\u00e9e",
+						"it":"9\u00b0 anno scolastico",
+						"rm":"9. classa",
+						"en":"9th year"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.2",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"cycle 3"
+					]
+				},
+				"10th year":{
+					"identifier":"10th year",
+					"name":{
+						"de":"10. Schuljahr",
+						"fr":"10e ann\u00e9e",
+						"it":"10\u00b0 anno scolastico",
+						"rm":"10. classa",
+						"en":"10th year"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.2",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"cycle 3"
+					]
+				},
+				"11th year":{
+					"identifier":"11th year",
+					"name":{
+						"de":"11. Schuljahr",
+						"fr":"11e ann\u00e9e",
+						"it":"11\u00b0 anno scolastico",
+						"rm":"11. classa",
+						"en":"11th year"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.2",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"cycle 3"
+					]
+				},
+				"vocational schools":{
+					"identifier":"vocational schools",
+					"name":{
+						"de":"Berufsbildende Schulen",
+						"fr":"\u00c9coles de formation professionnelle",
+						"it":"Scuole professionali",
+						"rm":"Furmaziun fundamentala professiunala",
+						"en":"Vocational schools"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LREv3.0",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"post compulsory education"
+					]
+				},
+				"matura schools":{
+					"identifier":"matura schools",
+					"name":{
+						"de":"Maturit\u00e4tsschulen",
+						"fr":"\u00c9coles de maturit\u00e9",
+						"it":"Scuole di maturit\u00e0",
+						"rm":"Scolas da maturitad",
+						"en":"Matura schools "
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.2",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"post compulsory education"
+					]
+				},
+				"middle schools":{
+					"identifier":"middle schools",
+					"name":{
+						"de":"Mittelschulen",
+						"fr":"\u00c9coles moyennes",
+						"it":"Scuole specializzate",
+						"rm":"Scolas medias",
+						"en":"Middle schools"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.2",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"post compulsory education"
+					]
+				},
+				"post compulsory education others":{
+					"identifier":"post compulsory education others",
+					"name":{
+						"de":"Andere",
+						"fr":"Autre",
+						"it":"Altri",
+						"rm":"Autras",
+						"en":"Others"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.2",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"post compulsory education"
+					]
+				},
+				"technical college":{
+					"identifier":"technical college",
+					"name":{
+						"de":"Gewerblich-industrielle Berufsfachschule",
+						"fr":"\u00c9coles professionnelles artisanales et industrielles",
+						"it":"Scuola professionale artigianale e industriale",
+						"rm":"Scola professiunala cun direcziun artisanadi\/industria",
+						"en":"Technical college"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.2",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"vocational schools"
+					]
+				},
+				"business college":{
+					"identifier":"business college",
+					"name":{
+						"de":"Kaufm\u00e4nnische Berufsfachschule",
+						"fr":"\u00c9coles professionnelles commerciales",
+						"it":"Scuola professionale commerciale",
+						"rm":"Scola professiunala commerziala",
+						"en":"Business college"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.2",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"vocational schools"
+					]
+				},
+				"design college":{
+					"identifier":"design college",
+					"name":{
+						"de":"Berufsfachschule f\u00fcr Gestaltung",
+						"fr":"\u00c9coles d'art",
+						"it":"Scuola d'arte o d'arte applicata",
+						"rm":"Scola d'art e d'art applitg\u00e0",
+						"en":"Design college"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.2",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"vocational schools"
+					]
+				},
+				"social school":{
+					"identifier":"social school",
+					"name":{
+						"de":"Schule f\u00fcr Soziale Berufe",
+						"fr":"\u00c9coles pr\u00e9parant aux professions sociales",
+						"it":"Scuola sociale",
+						"rm":"Scola preparatorica per professiuns socialas",
+						"en":"Social school"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.2",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"vocational schools"
+					]
+				},
+				"nursing school":{
+					"identifier":"nursing school",
+					"name":{
+						"de":"Schule f\u00fcr Pflegeberufe",
+						"fr":"\u00c9coles pr\u00e9parant aux professions de la sant\u00e9",
+						"it":"Scuola sanitaria",
+						"rm":"Scola preparatorica per professiuns da sanadad",
+						"en":"Nursing school"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.2",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"vocational schools"
+					]
+				},
+				"agricultural school":{
+					"identifier":"agricultural school",
+					"name":{
+						"de":"Landwirtschaftliche Schule",
+						"fr":"\u00c9coles d'agriculture",
+						"it":"Scuola agraria",
+						"rm":"Scola professiunala d'agricultura",
+						"en":"Agicultural school"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.2",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"vocational schools"
+					]
+				},
+				"specialised middle school":{
+					"identifier":"specialised middle school",
+					"name":{
+						"de":"Fachmaturit\u00e4tsschulen",
+						"fr":"\u00c9coles de maturit\u00e9 sp\u00e9cialis\u00e9e",
+						"it":"Scuola di maturit\u00e0 specializzata",
+						"rm":"Scolas medias spezialisadas",
+						"en":"Specialised middle school "
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.2",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"matura schools"
+					]
+				},
+				"vocational baccalaureate school":{
+					"identifier":"vocational baccalaureate school",
+					"name":{
+						"de":"Berufsmaturit\u00e4tsschulen",
+						"fr":"\u00c9cole de maturit\u00e9 professionnelle",
+						"it":"Scuola di maturit\u00e0 professionale",
+						"rm":"Scolas medias professiunalas",
+						"en":"Vocational baccalaureate school "
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.2",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"matura schools"
+					]
+				},
+				"gymnasium":{
+					"identifier":"gymnasium",
+					"name":{
+						"de":"Gymnasien",
+						"fr":"\u00c9coles de maturit\u00e9 gymnasiale",
+						"it":"Scuole di maturit\u00e0 liceale",
+						"rm":"Scolas da maturitad gimnasiala (gimnasis)",
+						"en":"Matura school "
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.2",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"matura schools"
+					]
+				},
+				"middle school":{
+					"identifier":"middle school",
+					"name":{
+						"de":"Fachmittelschulen (FMS)",
+						"fr":"\u00c9coles de culture g\u00e9n\u00e9rale (ECG)",
+						"it":"Scuola specializzata",
+						"rm":"Scolas medias spezialisadas",
+						"en":"Middle school"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.2",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"middle schools"
+					]
+				},
+				"bridging courses":{
+					"identifier":"bridging courses",
+					"name":{
+						"de":"Br\u00fcckenangebote",
+						"fr":"Solutions transitoires",
+						"it":"Soluzioni transitorie",
+						"rm":"Soluziuns transitoricas",
+						"en":"Bridging courses"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.2",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"middle schools"
+					]
+				},
+				"colleges of higher vocational education":{
+					"identifier":"colleges of higher vocational education",
+					"name":{
+						"de":"Schulen der h\u00f6heren Berufsbildung (H\u00f6here Fachschulen)",
+						"fr":"\u00c9coles de formation professionelle sup\u00e9rieure",
+						"it":"Scuole delle formazione professionale superiore",
+						"rm":"Scolas da furmaziun professiunala superiura",
+						"en":"Colleges of higher vocational education and training"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.2",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"tertiary level"
+					]
+				},
+				"universities of applied sciences":{
+					"identifier":"universities of applied sciences",
+					"name":{
+						"de":"Fachhochschulen",
+						"fr":"Hautes \u00e9coles sp\u00e9cialis\u00e9es",
+						"it":"Scuole universitarie professionali",
+						"rm":"Scolas autas professiunalas",
+						"en":"Universities of Applied sciences "
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.2",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"tertiary level"
+					]
+				},
+				"teacher training colleges":{
+					"identifier":"teacher training colleges",
+					"name":{
+						"de":"P\u00e4dagogische Hochschulen",
+						"fr":"Hautes \u00e9coles p\u00e9dagogiques",
+						"it":"Alte scuole pedagogice",
+						"rm":"Scolas autas pedagogicas",
+						"en":"Teacher training colleges"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.2",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"tertiary level"
+					]
+				},
+				"universities":{
+					"identifier":"universities",
+					"name":{
+						"de":"Universit\u00e4re Hochschulen",
+						"fr":"Hautes \u00e9coles universitaires",
+						"it":"Universit\u00e0 e politecnico federale",
+						"rm":"Scolas autas universitaras (universitads)",
+						"en":"Universities"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.0",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"tertiary level"
+					]
+				},
+				"tertiary level others":{
+					"identifier":"tertiary level others",
+					"name":{
+						"de":"Andere",
+						"fr":"Autres",
+						"it":"Altri",
+						"rm":"Autras",
+						"en":"Others"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.2",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"tertiary level"
+					]
+				},
+				"training center":{
+					"identifier":"training center",
+					"name":{
+						"de":"Ausbildungsst\u00e4tte",
+						"fr":"\u00c9tablissement de formation",
+						"it":"Centro di formazione",
+						"rm":"Center da furmaziun",
+						"en":"Training center"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.2",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"special needs education"
+					]
+				},
+				"school for handicapped children":{
+					"identifier":"school for handicapped children",
+					"name":{
+						"de":"Sonderschulen",
+						"fr":"\u00c9cole enseignement sp\u00e9cialis\u00e9",
+						"it":"Scuola ortopedagogica",
+						"rm":"Scola speziala",
+						"en":"School for handicapped children"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.2",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"special needs education"
+					]
+				},
+				"music school":{
+					"identifier":"music school",
+					"name":{
+						"de":"Musikschule",
+						"fr":"\u00c9cole de musique",
+						"it":"Scuola di musica",
+						"rm":"Scola da musica",
+						"en":"Music school"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.2",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"independent of levels"
+					]
+				},
+				"independent of levels others":{
+					"identifier":"independent of levels others",
+					"name":{
+						"de":"Andere",
+						"fr":"Autre",
+						"it":"Altri",
+						"rm":"Autras",
+						"en":"Others"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.2",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"independent of levels"
+					]
+				}
+			}
+		},
+		"school subjects":{
+			"identifier":"school subjects",
+			"name":{
+				"de":"F\u00e4cher",
+				"fr":"Disciplines",
+				"it":"Materie",
+				"rm":"Roms",
+				"en":"Subjects"
+			},
+			"description":{
+				"de":"",
+				"fr":"",
+				"it":"",
+				"rm":"",
+				"en":""
+			},
+			"terms":{
+				"languages":{
+					"identifier":"languages",
+					"name":{
+						"de":"Sprachen",
+						"fr":"Langues",
+						"it":"Lingue",
+						"rm":"Languages",
+						"en":"Languages"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.0",
+					"url":"",
+					"deprecated":"0",
+					"order":"0"
+				},
+				"mathematics":{
+					"identifier":"mathematics",
+					"name":{
+						"de":"Mathematik",
+						"fr":"Math\u00e9matiques",
+						"it":"Matematica",
+						"rm":"Mathematics",
+						"en":"Mathematics"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.0",
+					"url":"",
+					"deprecated":"0",
+					"order":"0"
+				},
+				"computer science":{
+					"identifier":"computer science",
+					"name":{
+						"de":"Informatik",
+						"fr":"Informatique ",
+						"it":"Informatica ",
+						"rm":"Computer science",
+						"en":"Computer science"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.2",
+					"url":"",
+					"deprecated":"0",
+					"order":"0"
+				},
+				"natural sciences":{
+					"identifier":"natural sciences",
+					"name":{
+						"de":"Naturwissenschaften",
+						"fr":"Sciences de la nature",
+						"it":"Scienze naturali",
+						"rm":"Roh_Natural sciences",
+						"en":"Natural Sciences"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.0",
+					"url":"",
+					"deprecated":"0",
+					"order":"0"
+				},
+				"social and human sciences":{
+					"identifier":"social and human sciences",
+					"name":{
+						"de":"Sozial- und Geisteswissenschaften",
+						"fr":"Sciences humaines et sociales",
+						"it":"Scienze umane e sociali",
+						"rm":"Roh_Social and Human Sciences",
+						"en":"Social and Human Sciences"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.0",
+					"url":"",
+					"deprecated":"0",
+					"order":"0"
+				},
+				"arts":{
+					"identifier":"arts",
+					"name":{
+						"de":"Musik, Kunst und Gestalten",
+						"fr":"Arts",
+						"it":"Arte",
+						"rm":"Arts",
+						"en":"Arts"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.0",
+					"url":"",
+					"deprecated":"0",
+					"order":"0"
+				},
+				"motion health":{
+					"identifier":"motion health",
+					"name":{
+						"de":"Bewegung und Gesundheit",
+						"fr":"Mouvement et sant\u00e9",
+						"it":"Movimento fisico e salute",
+						"rm":"Roh_Sport",
+						"en":"Physical Activity and Health"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.2",
+					"url":"",
+					"deprecated":"0",
+					"order":"0"
+				},
+				"domestic science":{
+					"identifier":"domestic science",
+					"name":{
+						"de":"Hauswirtschaft ",
+						"fr":"\u00c9conomie familiale",
+						"it":"Educazione alimentare",
+						"rm":"Roh_Domestic Science",
+						"en":"Domestic Science"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.0",
+					"url":"",
+					"deprecated":"0",
+					"order":"0"
+				},
+				"interdisciplinary topics skills":{
+					"identifier":"interdisciplinary topics skills",
+					"name":{
+						"de":"F\u00e4cher\u00fcbergreifende Themen und transversale Kompetenzbereiche",
+						"fr":"Th\u00e8mes et domaines de comp\u00e9tences transversales",
+						"it":"Educazione generale",
+						"rm":"General_education",
+						"en":"Interdisciplinary topics and transverse skill domains "
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.2",
+					"url":"",
+					"deprecated":"0",
+					"order":"0"
+				},
+				"german school language":{
+					"identifier":"german school language",
+					"name":{
+						"de":"Deutsch (Schulsprache)",
+						"fr":"Allemand (langue de scolarisation)",
+						"it":"Tedesco (Lingua scolastica)",
+						"rm":"Roh_German school language",
+						"en":"German (school language)"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.0",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"languages"
+					]
+				},
+				"german foreign language":{
+					"identifier":"german foreign language",
+					"name":{
+						"de":"Deutsch (Fremdsprache)",
+						"fr":"Allemand (langue \u00e9trang\u00e8re)",
+						"it":"Tedesco (Lingua straniera)",
+						"rm":"Roh_German foreign language",
+						"en":"German (foreign language)"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.0",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"languages"
+					]
+				},
+				"french school language":{
+					"identifier":"french school language",
+					"name":{
+						"de":"Franz\u00f6sisch (Schulsprache)",
+						"fr":"Fran\u00e7ais (langue de scolarisation)",
+						"it":"Francese (Lingua scolastica)",
+						"rm":"French_school_language",
+						"en":"French (school language)"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.0",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"languages"
+					]
+				},
+				"french foreign language":{
+					"identifier":"french foreign language",
+					"name":{
+						"de":"Franz\u00f6sisch (Fremdsprache)",
+						"fr":"Fran\u00e7ais (langue \u00e9trang\u00e8re)",
+						"it":"Francese (Lingua straniera)",
+						"rm":"Roh_French foreign language",
+						"en":"French (foreign language)"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.0",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"languages"
+					]
+				},
+				"italian school language":{
+					"identifier":"italian school language",
+					"name":{
+						"de":"Italienisch (Schulsprache)",
+						"fr":"Italien (langue de scolarisation)",
+						"it":"Italiano (Lingua scolastica)",
+						"rm":"Italian_school_language",
+						"en":"Italian (school language)"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.2",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"languages"
+					]
+				},
+				"italian foreign language":{
+					"identifier":"italian foreign language",
+					"name":{
+						"de":"Italienisch (Fremdsprache)",
+						"fr":"Italien (langue \u00e9trang\u00e8re)",
+						"it":"Italiano (Lingua straniera)",
+						"rm":"Roh_Italian foreign language",
+						"en":"Italian (foreign language)"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.0",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"languages"
+					]
+				},
+				"rhaeto-romanic school language":{
+					"identifier":"rhaeto-romanic school language",
+					"name":{
+						"de":"R\u00e4toromanisch (Schulsprache)",
+						"fr":"Romanche (langue de scolarisation)",
+						"it":"Retoromanzo (Lingua scolastica)",
+						"rm":"Rhaeto-Romanic_school_language",
+						"en":"Rhaeto-Romanic (school language)"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.2",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"languages"
+					]
+				},
+				"rhaeto-romanic foreign language":{
+					"identifier":"rhaeto-romanic foreign language",
+					"name":{
+						"de":"R\u00e4toromanisch (Fremdsprache)",
+						"fr":"Romanche (langue \u00e9trang\u00e8re)",
+						"it":"",
+						"rm":"",
+						"en":"Rhaeto-Romanic (foreign language)"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.2",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"languages"
+					]
+				},
+				"english foreign language":{
+					"identifier":"english foreign language",
+					"name":{
+						"de":"Englisch (Fremdsprache)",
+						"fr":"Anglais (langue \u00e9trang\u00e8re)",
+						"it":"Inglese (Lingua straniera)",
+						"rm":"Roh_English foreign language",
+						"en":"English (foreign language)"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.0",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"languages"
+					]
+				},
+				"ancient languages":{
+					"identifier":"ancient languages",
+					"name":{
+						"de":"Alte Sprachen",
+						"fr":"Langues anciennes",
+						"it":"Lingue antiche",
+						"rm":"Roh_Ancient languages",
+						"en":"Ancient languages"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.0",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"languages"
+					]
+				},
+				"spanish foreign language":{
+					"identifier":"spanish foreign language",
+					"name":{
+						"de":"Spanisch (Fremdsprache)",
+						"fr":"Espagnol (langue \u00e9trang\u00e8re)",
+						"it":"Spagnolo (Lingua straniera)",
+						"rm":"Spanish_foreign_language",
+						"en":"Spanish (foreign language)"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.2",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"languages"
+					]
+				},
+				"chinese foreign language":{
+					"identifier":"chinese foreign language",
+					"name":{
+						"de":"Chinesisch (Fremdsprache)",
+						"fr":"Chinois (langue \u00e9trang\u00e8re)",
+						"it":"Cinese (Lingua straniera)",
+						"rm":"Chinese_foreign_language",
+						"en":"Chinese (foreign language)"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.2",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"languages"
+					]
+				},
+				"russian foreign language":{
+					"identifier":"russian foreign language",
+					"name":{
+						"de":"Russisch (Fremdsprache)",
+						"fr":"Russe (langue \u00e9trang\u00e8re)",
+						"it":"Russo (Lingua straniera)",
+						"rm":"Russian_foreign_language",
+						"en":"Russian (foreign language)"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.2",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"languages"
+					]
+				},
+				"latin":{
+					"identifier":"latin",
+					"name":{
+						"de":"Latein",
+						"fr":"Latin",
+						"it":"Latino",
+						"rm":"Latin",
+						"en":"Latin"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.0",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"ancient languages"
+					]
+				},
+				"greek":{
+					"identifier":"greek",
+					"name":{
+						"de":"Griechisch",
+						"fr":"Grec",
+						"it":"Greco",
+						"rm":"Greek",
+						"en":"Greek"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.0",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"ancient languages"
+					]
+				},
+				"hebrew":{
+					"identifier":"hebrew",
+					"name":{
+						"de":"Hebr\u00e4isch",
+						"fr":"H\u00e9breu",
+						"it":"Ebraico",
+						"rm":"Hebrew",
+						"en":"Hebrew"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.0",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"ancient languages"
+					]
+				},
+				"biology":{
+					"identifier":"biology",
+					"name":{
+						"de":"Biologie",
+						"fr":"Biologie",
+						"it":"Biologia",
+						"rm":"Biology",
+						"en":"Biology"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.0",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"natural sciences"
+					]
+				},
+				"chemistry":{
+					"identifier":"chemistry",
+					"name":{
+						"de":"Chemie",
+						"fr":"Chimie",
+						"it":"Chimica",
+						"rm":"Chemistry",
+						"en":"Chemistry"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.0",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"natural sciences"
+					]
+				},
+				"physics":{
+					"identifier":"physics",
+					"name":{
+						"de":"Physik",
+						"fr":"Physique",
+						"it":"Fisica",
+						"rm":"Physics",
+						"en":"Physics"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.0",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"natural sciences"
+					]
+				},
+				"geography":{
+					"identifier":"geography",
+					"name":{
+						"de":"Geografie",
+						"fr":"G\u00e9ographie",
+						"it":"Geografia",
+						"rm":"Geography",
+						"en":"Geography"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.0",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"social and human sciences"
+					]
+				},
+				"history":{
+					"identifier":"history",
+					"name":{
+						"de":"Geschichte",
+						"fr":"Histoire",
+						"it":"Storia",
+						"rm":"History",
+						"en":"History"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.0",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"social and human sciences"
+					]
+				},
+				"politics":{
+					"identifier":"politics",
+					"name":{
+						"de":"Politik",
+						"fr":"Politique",
+						"it":"",
+						"rm":"",
+						"en":"Politics"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.2",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"social and human sciences"
+					]
+				},
+				"economy":{
+					"identifier":"economy",
+					"name":{
+						"de":"Wirtschaft",
+						"fr":"\u00c9conomie",
+						"it":"Economia",
+						"rm":"Economy",
+						"en":"Economy"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.0",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"social and human sciences"
+					]
+				},
+				"law":{
+					"identifier":"law",
+					"name":{
+						"de":"Recht",
+						"fr":"Droit",
+						"it":"Diritto",
+						"rm":"Law",
+						"en":"Law"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.0",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"social and human sciences"
+					]
+				},
+				"pedagogy":{
+					"identifier":"pedagogy",
+					"name":{
+						"de":"P\u00e4dagogik",
+						"fr":"P\u00e9dagogie",
+						"it":"Pedagogia",
+						"rm":"Pedagogy",
+						"en":"Pedagogy"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.0",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"social and human sciences"
+					]
+				},
+				"psychology":{
+					"identifier":"psychology",
+					"name":{
+						"de":"Psychologie",
+						"fr":"Psychologie",
+						"it":"Psicologia",
+						"rm":"Psychology",
+						"en":"Psychology"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.0",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"social and human sciences"
+					]
+				},
+				"philosophy":{
+					"identifier":"philosophy",
+					"name":{
+						"de":"Philosophie",
+						"fr":"Philosophie",
+						"it":"Filosofia",
+						"rm":"Philosophy",
+						"en":"Philosophy"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.0",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"social and human sciences"
+					]
+				},
+				"sociology":{
+					"identifier":"sociology",
+					"name":{
+						"de":"Soziologie",
+						"fr":"Sociologie",
+						"it":"",
+						"rm":"",
+						"en":"Sociology"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.0",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"social and human sciences"
+					]
+				},
+				"religious instruction":{
+					"identifier":"religious instruction",
+					"name":{
+						"de":"Konfessioneller Religionsunterricht",
+						"fr":"Enseignement religieux confessionnel",
+						"it":"Educazione religiosa",
+						"rm":"Roh_Religious instruction",
+						"en":"Religious instruction"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.0",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"social and human sciences"
+					]
+				},
+				"ethics religions communities":{
+					"identifier":"ethics religions communities",
+					"name":{
+						"de":"Ethik, Religionen und Gemeinschaften",
+						"fr":"\u00c9thique et cultures religieuses",
+						"it":"Etica e religione",
+						"rm":"Roh_Ethics and religions",
+						"en":"Ethics, religions and communities"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.2",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"social and human sciences"
+					]
+				},
+				"economics":{
+					"identifier":"economics",
+					"name":{
+						"de":"Volkswirtschaft",
+						"fr":"Economie politique",
+						"it":"",
+						"rm":"",
+						"en":"Economics"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.2",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"economy"
+					]
+				},
+				"accounting finance":{
+					"identifier":"accounting finance",
+					"name":{
+						"de":"Finanz- und Rechnungswesen",
+						"fr":"Finances et comptabilit\u00e9",
+						"it":"Contabilit\u00e0",
+						"rm":"Accounting",
+						"en":"Accounting and Finance"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.2",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"economy"
+					]
+				},
+				"visual arts":{
+					"identifier":"visual arts",
+					"name":{
+						"de":"Bildnerisches Gestalten",
+						"fr":"Arts visuels",
+						"it":"Arti visive",
+						"rm":"Roh_Visual arts",
+						"en":"Visual arts"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.0",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"arts"
+					]
+				},
+				"art craft design":{
+					"identifier":"art craft design",
+					"name":{
+						"de":"Textiles und Technisches Gestalten",
+						"fr":"Activit\u00e9s cr\u00e9atrices et manuelles",
+						"it":"Attivit\u00e0 creative",
+						"rm":"Roh_Creative activities",
+						"en":"Art, Craft and Design"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.2",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"arts"
+					]
+				},
+				"music":{
+					"identifier":"music",
+					"name":{
+						"de":"Musik",
+						"fr":"Musique",
+						"it":"Musica",
+						"rm":"Music",
+						"en":"Music"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.0",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"arts"
+					]
+				},
+				"motion and sport":{
+					"identifier":"motion and sport",
+					"name":{
+						"de":"Sport und Bewegung",
+						"fr":"\u00c9ducation physique",
+						"it":"Allenamento fisico",
+						"rm":"Roh_Motion and sport",
+						"en":"Sport and motion"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.0",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"motion health"
+					]
+				},
+				"nutrition":{
+					"identifier":"nutrition",
+					"name":{
+						"de":"Ern\u00e4hrung",
+						"fr":"Education nutritionelle",
+						"it":"",
+						"rm":"",
+						"en":"Nutrition"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.2",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"motion health"
+					]
+				},
+				"media and ict":{
+					"identifier":"media and ict",
+					"name":{
+						"de":"Medien und ICT",
+						"fr":"MITIC",
+						"it":"Media e ICT",
+						"rm":"Roh_Media and ICT",
+						"en":"Media and ICT"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.0",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"interdisciplinary topics skills"
+					]
+				},
+				"development":{
+					"identifier":"development",
+					"name":{
+						"de":"Bildung f\u00fcr nachhaltige Entwicklung",
+						"fr":"Education au d\u00e9veloppement durable",
+						"it":"Educazione allo sviluppo sostenibile",
+						"rm":"Furmaziun per in svilup persistent ",
+						"en":"Education for Sustainable Development"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.0",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"interdisciplinary topics skills"
+					]
+				},
+				"communication":{
+					"identifier":"communication",
+					"name":{
+						"de":"Kommunikation",
+						"fr":"Communication",
+						"it":"",
+						"rm":"",
+						"en":"Communication"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.1",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"interdisciplinary topics skills"
+					]
+				},
+				"identity":{
+					"identifier":"identity",
+					"name":{
+						"de":"Identit\u00e4t",
+						"fr":"Identit\u00e9",
+						"it":"Identit\u00e0",
+						"rm":"Identity",
+						"en":"Identity"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.0",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"interdisciplinary topics skills"
+					]
+				},
+				"professional orientation":{
+					"identifier":"professional orientation",
+					"name":{
+						"de":"Berufliche Orientierung",
+						"fr":"Orientation professionnelle",
+						"it":"",
+						"rm":"",
+						"en":"Professional orientation"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.2",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"interdisciplinary topics skills"
+					]
+				},
+				"life of the class and of the school":{
+					"identifier":"life of the class and of the school",
+					"name":{
+						"de":"Zusammenleben in der Klasse und der Schule",
+						"fr":"Vivre ensemble \u00e0 l\u2019\u00e9cole et en classe",
+						"it":"Convivere in classe e a scuola",
+						"rm":"",
+						"en":"Life of the class and of the school"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.2",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"interdisciplinary topics skills"
+					]
+				},
+				"projects":{
+					"identifier":"projects",
+					"name":{
+						"de":"Realisierung von Projekten",
+						"fr":"R\u00e9alisation de projets",
+						"it":"Progetti collettivi",
+						"rm":"",
+						"en":"Projects"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.0",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"interdisciplinary topics skills"
+					]
+				},
+				"learning strategies working methods":{
+					"identifier":"learning strategies working methods",
+					"name":{
+						"de":"Lernstrategien und Arbeitstechniken",
+						"fr":"Strat\u00e9gies d'apprentissage et m\u00e9thodes de travail",
+						"it":"",
+						"rm":"",
+						"en":"Learning strategies and working methods"
+					},
+					"description":{
+						"de":"",
+						"fr":"",
+						"it":"",
+						"rm":"",
+						"en":""
+					},
+					"context":"LOM-CHv1.2",
+					"url":"",
+					"deprecated":"0",
+					"order":null,
+					"parents":[
+						"interdisciplinary topics skills"
+					]
+				}
+			}
+		}
+	}
+}

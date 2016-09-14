@@ -1,0 +1,98 @@
+--- root:root
+    +-- school context:school context
+        +-- context:compulsory education
+            +-- school_level:cycle 1
+                +-- school_level:1st and 2nd year
+                +-- school_level:3rd and 4th year
+            +-- school_level:cycle 2
+                +-- school_level:5th and 6th year
+                +-- school_level:7th and 8th year
+            +-- school_level:cycle 3
+                +-- school_level:9th year
+                +-- school_level:10th year
+                +-- school_level:11th year
+        +-- context:post compulsory education
+            +-- school_level:vocational schools
+                +-- school_level:technical college
+                +-- school_level:business college
+                +-- school_level:design college
+                +-- school_level:social school
+                +-- school_level:nursing school
+                +-- school_level:agricultural school
+            +-- school_level:matura schools
+                +-- school_level:specialised middle school
+                +-- school_level:vocational baccalaureate school
+                +-- school_level:gymnasium
+            +-- school_level:middle schools
+                +-- school_level:middle school
+                +-- school_level:bridging courses
+            +-- school_level:post compulsory education others
+        +-- context:tertiary level
+            +-- school_level:colleges of higher vocational education
+            +-- school_level:universities of applied sciences
+            +-- school_level:teacher training colleges
+            +-- school_level:universities
+            +-- school_level:tertiary level others
+        +-- context:special needs education
+            +-- school_level:training center
+            +-- school_level:school for handicapped children
+        +-- context:independent of levels
+            +-- school_level:music school
+            +-- school_level:independent of levels others
+        +-- context:distance learning
+        +-- context:main others
+    +-- school subjects:school subjects
+        +-- discipline:languages
+            +-- discipline:german school language
+            +-- discipline:german foreign language
+            +-- discipline:french school language
+            +-- discipline:french foreign language
+            +-- discipline:italian school language
+            +-- discipline:italian foreign language
+            +-- discipline:rhaeto-romanic school language
+            +-- discipline:rhaeto-romanic foreign language
+            +-- discipline:english foreign language
+            +-- discipline:ancient languages
+                +-- discipline:latin
+                +-- discipline:greek
+                +-- discipline:hebrew
+            +-- discipline:spanish foreign language
+            +-- discipline:chinese foreign language
+            +-- discipline:russian foreign language
+        +-- discipline:mathematics
+        +-- discipline:computer science
+        +-- discipline:natural sciences
+            +-- discipline:biology
+            +-- discipline:chemistry
+            +-- discipline:physics
+        +-- discipline:social and human sciences
+            +-- discipline:geography
+            +-- discipline:history
+            +-- discipline:politics
+            +-- discipline:economy
+                +-- discipline:economics
+                +-- discipline:accounting finance
+            +-- discipline:law
+            +-- discipline:pedagogy
+            +-- discipline:psychology
+            +-- discipline:philosophy
+            +-- discipline:sociology
+            +-- discipline:religious instruction
+            +-- discipline:ethics religions communities
+        +-- discipline:arts
+            +-- discipline:visual arts
+            +-- discipline:art craft design
+            +-- discipline:music
+        +-- discipline:motion health
+            +-- discipline:motion and sport
+            +-- discipline:nutrition
+        +-- discipline:domestic science
+        +-- discipline:interdisciplinary topics skills
+            +-- discipline:media and ict
+            +-- discipline:development
+            +-- discipline:communication
+            +-- discipline:identity
+            +-- discipline:professional orientation
+            +-- discipline:life of the class and of the school
+            +-- discipline:projects
+            +-- discipline:learning strategies working methods
