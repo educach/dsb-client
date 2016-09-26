@@ -9,7 +9,7 @@ namespace Educa\DSB\Client\Curriculum;
 
 use Educa\DSB\Client\Utils;
 use Educa\DSB\Client\Curriculum\Term\TermInterface;
-use Educa\DSB\Client\Curriculum\Term\BaseTerm;
+use Educa\DSB\Client\Curriculum\Term\EducaTerm;
 use Educa\DSB\Client\Curriculum\CurriculumInvalidContextException;
 
 class EducaCurriculum extends BaseCurriculum
@@ -147,18 +147,19 @@ class EducaCurriculum extends BaseCurriculum
         // curriculum tree easier to manage.
         $list = array();
 
-        $root = new BaseTerm('root', 'root');
+        $root = new EducaTerm('root', 'root');
 
         foreach ($data->vocabularies as $vocabulary) {
             $dictionary[$vocabulary->identifier] = (object) array(
                 'name' => $vocabulary->name,
-                'type' => $vocabulary->identifier,
+                'type' => $vocabulary->identifier
             );
 
-            $list[$vocabulary->identifier]['root'] = new BaseTerm(
+            $list[$vocabulary->identifier]['root'] = new EducaTerm(
                 $vocabulary->identifier,
                 $vocabulary->identifier,
-                $vocabulary->name
+                $vocabulary->name,
+                'LOM-CHv1.0'
             );
 
             $root->addChild($list[$vocabulary->identifier]['root']);
@@ -173,7 +174,8 @@ class EducaCurriculum extends BaseCurriculum
                 // Store the term definition in the dictionary.
                 $dictionary[$term->identifier] = (object) array(
                     'name' => $term->name,
-                    'type' => $type
+                    'type' => $type,
+                    'context' => $term->context
                 );
 
                 // Did we already create this term, on a temporary basis?
@@ -184,7 +186,7 @@ class EducaCurriculum extends BaseCurriculum
                     $item->setDescription($type, $term->identifier, $term->name);
                 } else {
                     // Prepare the term element.
-                    $item = new BaseTerm($type, $term->identifier, $term->name);
+                    $item = new EducaTerm($type, $term->identifier, $term->name, $term->context);
                     $list[$vocabulary->identifier][$term->identifier] = $item;
                 }
 
@@ -202,7 +204,7 @@ class EducaCurriculum extends BaseCurriculum
                         // There is no parent item ready yet. We need to
                         // create a temporary one, which will be enhanced as
                         // soon as we reach the actual parent term.
-                        $parent = new BaseTerm('temp', 'temp');
+                        $parent = new EducaTerm('temp', 'temp');
 
                         // Store it already; later, we will update its
                         // description data.
@@ -289,10 +291,21 @@ class EducaCurriculum extends BaseCurriculum
      */
     protected function termFactory($type, $taxonId, $name = null)
     {
-        return new BaseTerm(
-            $type,
-            $taxonId,
-            $name
-        );
+        $context = null;
+        if (isset($this->curriculumDictionary[$taxonId])) {
+            $definition = $this->curriculumDictionary[$taxonId];
+
+            if (isset($definition->context)) {
+                $context = $definition->context;
+            }
+
+            // Always fetch the name from the local data. The data passed may be
+            // stale, as it usually comes from the dsb API. Normally, local data
+            // is refreshed on regular bases, so should be more up-to-date.
+            if (isset($definition->name)) {
+                $name = $definition->name;
+            }
+        }
+        return new EducaTerm($type, $taxonId, $name, $context);
     }
 }

@@ -43,6 +43,7 @@ class EducaCurriculumTest extends \PHPUnit_Framework_TestCase
                     'rm' => "Roh_Commercial accounting",
                     'en' => "Commercial accounting"
                 ),
+                'context' => 'LOM-CHv1.0',
             ),
             $data->dictionary['commercial accounting'],
             "Found the correct data in the dictionary for item 'commercial accounting'."
@@ -57,6 +58,7 @@ class EducaCurriculumTest extends \PHPUnit_Framework_TestCase
                     'rm' => "Emprim ciclus",
                     'en' => "1st cycle (up to 4th school year)"
                 ),
+                'context' => 'LOM-CHv1.0',
             ),
             $data->dictionary['cycle_1'],
             "Found the correct data in the dictionary for item 'cycle_1'."

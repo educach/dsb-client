@@ -9,7 +9,7 @@ namespace Educa\DSB\Client\Curriculum;
 
 use Educa\DSB\Client\Utils;
 use Educa\DSB\Client\Curriculum\Term\TermInterface;
-use Educa\DSB\Client\Curriculum\Term\BaseTerm;
+use Educa\DSB\Client\Curriculum\Term\EducaTerm;
 use Educa\DSB\Client\Curriculum\CurriculumInvalidContextException;
 
 class ClassificationSystemCurriculum extends EducaCurriculum implements MappableCurriculumInterface
@@ -66,7 +66,10 @@ class ClassificationSystemCurriculum extends EducaCurriculum implements Mappable
      */
     public function mapTerm($source, $target, TermInterface $term)
     {
-        if ($source == 'educa' && $target == 'classification system') {
+        if (
+            ($source == 'educa' && $target == 'classification system') ||
+            ($source == 'classification system' && $target == 'educa')
+        ) {
             $description = $term->describe();
 
             $map = [
@@ -91,22 +94,59 @@ class ClassificationSystemCurriculum extends EducaCurriculum implements Mappable
                 'personal_projects' => 'projects',
             ];
 
-            $description->id = isset($map[$description->id]) ?
-                $map[$description->id] :
-                // We have many keys in common, actually. But of those in
-                // common, "educa" uses underscores, whereas we use spaces. If
-                // it is neither of those, it's probably one of our own keys
-                // anyway; let it pass through.
-                str_replace('_', ' ', $description->id);
+            if ($source == 'educa') {
+                $taxonId = isset($map[$description->id]) ?
+                    $map[$description->id] :
+                    // We have many keys in common, actually. But of those in
+                    // common, "educa" uses underscores, whereas we use spaces. If
+                    // it is neither of those, it's probably one of our own keys
+                    // anyway; let it pass through.
+                    str_replace('_', ' ', $description->id);
 
-            return new BaseTerm(
+                // Set the context. If the identifier is the same as the
+                // original term, use the context of the original term. If it's
+                // not, or the original term is not available, use "LOM-CHv1.2".
+                $context = $description->id == $taxonId && method_exists($term, 'getContext') ?
+                    $term->getContext() :
+                    'LOM-CHv1.2';
+
+            } else {
+                // Set a default value.
+                $context = 'LOM-CHv1.0';
+
+                $taxonId = ($i = array_search($description->id, $map)) ?
+                    $i :
+                    // This is a bit more tricky. We don't know exactly which
+                    // keys got translated from underscores to spaces. But all
+                    // keys that have a context that is different from LOM-CH,
+                    // or have a context that is lower than LOM-CHv1.2 are
+                    // probably unaltered. Check the context, if it exists. If
+                    // it does, and it is not LOM-CH, or lower than LOM-CHv1.2,
+                    // leave the key as-is. Otherwise, try translating spaces to
+                    // underscores, and hope for the best,
+                    (
+                        method_exists($term, 'getContext') &&
+                        ($context = $term->getContext()) &&
+                        (
+                            !preg_match('/^LOM-CH/', $context) ||
+                            version_compare($context, 'LOM-CHv1.2', '<')
+                        ) ?
+                            $description->id :
+                            str_replace(' ', '_', $description->id)
+                    );
+            }
+
+            return new EducaTerm(
                 $description->type,
-                $description->id,
-                isset($description->name) ? $description->name : null
+                $taxonId,
+                isset($description->name) ? $description->name : null,
+                $context
             );
         }
 
+        // @codeCoverageIgnoreStart
         return null;
+        // @codeCoverageIgnoreEnd
     }
 
     /**
@@ -161,7 +201,7 @@ class ClassificationSystemCurriculum extends EducaCurriculum implements Mappable
      */
     protected function termFactory($type, $taxonId, $name = null)
     {
-        $term = new BaseTerm($type, $taxonId, $name);
+        $term = parent::termFactory($type, $taxonId, $name);
         return $this->mapTerm('educa', 'classification system', $term);
     }
 
@@ -177,7 +217,7 @@ class ClassificationSystemCurriculum extends EducaCurriculum implements Mappable
         // We might get data from an "educa" source. Map it to our own data,
         // which requires an actual term. Create a dummy one, and use the
         // mapTerm() method to fetch a new identifier, if needed.
-        $term = new BaseTerm('temp', $identifier);
+        $term = new EducaTerm('temp', $identifier);
         $term = $this->mapTerm('educa', 'classification system', $term);
         return $term->describe()->id;
     }
