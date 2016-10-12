@@ -140,7 +140,7 @@ class LP21Curriculum extends BaseCurriculum
                 ),
             ),
             (object) array(
-                'type' => 'handlungs-themenaspekt',
+                'type' => 'handlungs_themenaspekt',
                 'purpose' => array(
                     'LOM-CHv1.2' => 'objective',
                 ),
