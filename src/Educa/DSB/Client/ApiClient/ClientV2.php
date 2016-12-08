@@ -59,11 +59,17 @@ class ClientV2 extends AbstractClient
                     throw new ClientAuthenticationException(sprintf("Authentication failed. Status was correct, but couldn't find a token in the body. Body: %s", $response->getBody()));
                 }
             } else {
-                throw new ClientAuthenticationException(sprintf("Authentication failed. Status: %s. Error message: %s", $response->getStatusCode(), $response->getBody()));
+                throw new ClientAuthenticationException(
+                    sprintf("Authentication failed. Status: %s. Error message: %s", $response->getStatusCode(), $response->getBody()),
+                    $response->getStatusCode()
+                );
             }
             // @codeCoverageIgnoreStart
         } catch (GuzzleRequestException $e) {
-            throw new ClientAuthenticationException(sprintf("Authentication failed. Status: %s. Error message: %s", $e->getCode(), $e->getMessage()));
+            throw new ClientAuthenticationException(
+                sprintf("Authentication failed. Status: %s. Error message: %s", $e->getResponse()->getStatusCode(), $e->getMessage()),
+                $e->getResponse()->getStatusCode()
+            );
             // @codeCoverageIgnoreEnd
         }
 
@@ -105,11 +111,17 @@ class ClientV2 extends AbstractClient
             if ($response->getStatusCode() == 200) {
                 return json_decode($response->getBody(), true);
             } else {
-                throw new ClientRequestException(sprintf("Request to /search failed. Status: %s. Error message: %s", $response->getStatusCode(), $response->getBody()));
+                throw new ClientRequestException(
+                    sprintf("Request to /search failed. Status: %s. Error message: %s", $response->getStatusCode(), $response->getBody()),
+                    $response->getStatusCode()
+                );
             }
             // @codeCoverageIgnoreStart
         } catch(GuzzleRequestException $e) {
-            throw new ClientRequestException(sprintf("Request to /search failed. Status: %s. Error message: %s", $e->getCode(), $e->getMessage()));
+            throw new ClientRequestException(
+                sprintf("Request to /search failed. Status: %s. Error message: %s", $e->getResponse()->getStatusCode(), $e->getMessage()),
+                $e->getResponse()->getStatusCode()
+            );
             // @codeCoverageIgnoreEnd
         }
     }
@@ -135,11 +147,17 @@ class ClientV2 extends AbstractClient
             if ($response->getStatusCode() == 200) {
                 return json_decode($response->getBody(), true);
             } else {
-                throw new ClientRequestException(sprintf("Request to /suggest failed. Status: %s. Error message: %s", $response->getStatusCode(), $response->getBody()));
+                throw new ClientRequestException(
+                    sprintf("Request to /suggest failed. Status: %s. Error message: %s", $response->getStatusCode(), $response->getBody()),
+                    $response->getStatusCode()
+                );
             }
             // @codeCoverageIgnoreStart
         } catch(GuzzleRequestException $e) {
-            throw new ClientRequestException(sprintf("Request to /suggest failed. Status: %s. Error message: %s", $e->getCode(), $e->getMessage()));
+            throw new ClientRequestException(
+                sprintf("Request to /suggest failed. Status: %s. Error message: %s", $e->getResponse()->getStatusCode(), $e->getMessage()),
+                $e->getResponse()->getStatusCode()
+            );
             // @codeCoverageIgnoreEnd
         }
     }
@@ -158,11 +176,17 @@ class ClientV2 extends AbstractClient
             if ($response->getStatusCode() == 200) {
                 return json_decode($response->getBody(), true);
             } else {
-                throw new ClientRequestException(sprintf("Request to /description/%s failed. Status: %s. Error message: %s", $lomId, $response->getStatusCode(), $response->getBody()));
+                throw new ClientRequestException(
+                    sprintf("Request to /description/%s failed. Status: %s. Error message: %s", $lomId, $response->getStatusCode(), $response->getBody()),
+                    $response->getStatusCode()
+                );
             }
             // @codeCoverageIgnoreStart
         } catch(GuzzleRequestException $e) {
-            throw new ClientRequestException(sprintf("Request to /description/%s failed. Status: %s. Error message: %s", $lomId, $e->getCode(), $e->getMessage()));
+            throw new ClientRequestException(
+                sprintf("Request to /description/%s failed. Status: %s. Error message: %s", $lomId, $e->getResponse()->getStatusCode(), $e->getMessage()),
+                $e->getResponse()->getStatusCode()
+            );
             // @codeCoverageIgnoreEnd
         }
     }
@@ -184,11 +208,17 @@ class ClientV2 extends AbstractClient
             if ($response->getStatusCode() == 200) {
                 return json_decode($response->getBody(), true);
             } else {
-                throw new ClientRequestException(sprintf("Request to /ontology/%s/%s failed. Status: %s. Error message: %s", $type, implode(',', $vocabularyIds), $response->getStatusCode(), $response->getBody()));
+                throw new ClientRequestException(
+                    sprintf("Request to /ontology/%s/%s failed. Status: %s. Error message: %s", $type, implode(',', $vocabularyIds), $response->getStatusCode(), $response->getBody()),
+                    $response->getStatusCode()
+                );
             }
             // @codeCoverageIgnoreStart
         } catch(GuzzleRequestException $e) {
-            throw new ClientRequestException(sprintf("Request to /ontology/%s/%s failed. Status: %s. Error message: %s", $type, implode(',', $vocabularyIds), $e->getCode(), $e->getMessage()));
+            throw new ClientRequestException(
+                sprintf("Request to /ontology/%s/%s failed. Status: %s. Error message: %s", $type, implode(',', $vocabularyIds), $e->getResponse()->getStatusCode(), $e->getMessage()),
+                $e->getResponse()->getStatusCode()
+            );
             // @codeCoverageIgnoreEnd
         }
     }
@@ -208,11 +238,17 @@ class ClientV2 extends AbstractClient
             if ($response->getStatusCode() == 200) {
                 return json_decode($response->getBody(), true);
             } else {
-                throw new ClientRequestException(sprintf("Request to /partner failed. Status: %s. Error message: %s", $response->getStatusCode(), $response->getBody()));
+                throw new ClientRequestException(
+                    sprintf("Request to /partner failed. Status: %s. Error message: %s", $response->getStatusCode(), $response->getBody()),
+                    $response->getStatusCode()
+                );
             }
             // @codeCoverageIgnoreStart
         } catch(GuzzleRequestException $e) {
-            throw new ClientRequestException(sprintf("Request to /partner failed. Status: %s. Error message: %s", $e->getCode(), $e->getMessage()));
+            throw new ClientRequestException(
+                sprintf("Request to /partner failed. Status: %s. Error message: %s", $e->getResponse()->getStatusCode(), $e->getMessage()),
+                $e->getResponse()->getStatusCode()
+            );
             // @codeCoverageIgnoreEnd
         }
     }
@@ -232,11 +268,17 @@ class ClientV2 extends AbstractClient
             if ($response->getStatusCode() == 200) {
                 return json_decode($response->getBody(), true);
             } else {
-                throw new ClientRequestException(sprintf("Request to /partner/%s failed. Status: %s. Error message: %s", $partner, $response->getStatusCode(), $response->getBody()));
+                throw new ClientRequestException(
+                    sprintf("Request to /partner/%s failed. Status: %s. Error message: %s", $partner, $response->getStatusCode(), $response->getBody()),
+                    $response->getStatusCode()
+                );
             }
             // @codeCoverageIgnoreStart
         } catch(GuzzleRequestException $e) {
-            throw new ClientRequestException(sprintf("Request to /partner/%s failed. Status: %s. Error message: %s", $partner, $e->getCode(), $e->getMessage()));
+            throw new ClientRequestException(
+                sprintf("Request to /partner/%s failed. Status: %s. Error message: %s", $partner, $e->getResponse()->getStatusCode(), $e->getMessage()),
+                $e->getResponse()->getStatusCode()
+            );
             // @codeCoverageIgnoreEnd
         }
     }
@@ -260,11 +302,17 @@ class ClientV2 extends AbstractClient
             if ($response->getStatusCode() == 200) {
                 return json_decode($response->getBody(), true);
             } else {
-                throw new ClientRequestException(sprintf("Request to /partner/%s failed. Status: %s. Error message: %s", $partner, $response->getStatusCode(), $response->getBody()));
+                throw new ClientRequestException(
+                    sprintf("Request to /partner/%s failed. Status: %s. Error message: %s", $partner, $response->getStatusCode(), $response->getBody()),
+                    $response->getStatusCode()
+                );
             }
             // @codeCoverageIgnoreStart
         } catch(GuzzleRequestException $e) {
-            throw new ClientRequestException(sprintf("Request to /partner/%s failed. Status: %s. Error message: %s", $partner, $e->getCode(), $e->getMessage()));
+            throw new ClientRequestException(
+                sprintf("Request to /partner/%s failed. Status: %s. Error message: %s", $partner, $e->getResponse()->getStatusCode(), $e->getMessage()),
+                $e->getResponse()->getStatusCode()
+            );
             // @codeCoverageIgnoreEnd
         }
     }
@@ -289,7 +337,9 @@ class ClientV2 extends AbstractClient
             return json_decode($response->getBody(), true);
             // @codeCoverageIgnoreStart
         } catch(GuzzleRequestException $e) {
-            throw new ClientRequestException(sprintf("Request to /validate failed. Status: %s. Error message: %s", $e->getCode(), $e->getMessage()));
+            throw new ClientRequestException(
+                sprintf("Request to /validate failed. Status: %s. Error message: %s", $e->getResponse()->getStatusCode(), $e->getMessage())
+            );
             // @codeCoverageIgnoreEnd
         }
     }
@@ -336,11 +386,17 @@ class ClientV2 extends AbstractClient
             if ($response->getStatusCode() == 200) {
                 return json_decode($response->getBody(), true);
             } else {
-                throw new ClientRequestException(sprintf("POST request to /description failed. Status: %s. Error message: %s", $response->getStatusCode(), $response->getBody()));
+                throw new ClientRequestException(
+                    sprintf("POST request to /description failed. Status: %s. Error message: %s", $response->getStatusCode(), $response->getBody()),
+                    $response->getStatusCode()
+                );
             }
             // @codeCoverageIgnoreStart
         } catch(GuzzleRequestException $e) {
-            throw new ClientRequestException(sprintf("Post request to /description failed. Status: %s. Error message: %s", $e->getCode(), $e->getMessage()));
+            throw new ClientRequestException(
+                sprintf("Post request to /description failed. Status: %s. Error message: %s", $e->getResponse()->getStatusCode(), $e->getMessage()),
+                $e->getResponse()->getStatusCode()
+            );
             // @codeCoverageIgnoreEnd
         }
     }
@@ -369,12 +425,18 @@ class ClientV2 extends AbstractClient
             if ($response->getStatusCode() == 200) {
                 return json_decode($response->getBody(), true);
             } else {
-                throw new ClientRequestException(sprintf("Put request to /description/%s failed. Status: %s. Error message: %s", urlencode($id), $response->getStatusCode(), $response->getBody()));
+                throw new ClientRequestException(
+                    sprintf("Put request to /description/%s failed. Status: %s. Error message: %s", urlencode($id), $response->getStatusCode(), $response->getBody()),
+                    $response->getStatusCode()
+                );
             }
             return json_decode($response->getBody(), true);
             // @codeCoverageIgnoreStart
         } catch(GuzzleRequestException $e) {
-            throw new ClientRequestException(sprintf("Put request to /description/$id/$catalogs failed. Status: %s. Error message: %s", $e->getCode(), $e->getMessage()));
+            throw new ClientRequestException(
+                sprintf("Put request to /description/$id/$catalogs failed. Status: %s. Error message: %s", $e->getResponse()->getStatusCode(), $e->getMessage()),
+                $e->getResponse()->getStatusCode()
+            );
             // @codeCoverageIgnoreEnd
         }
     }
@@ -393,7 +455,9 @@ class ClientV2 extends AbstractClient
             return json_decode($response->getBody(), true);
             // @codeCoverageIgnoreStart
         } catch(GuzzleRequestException $e) {
-            throw new ClientRequestException(sprintf("Delete request to /description/$id failed. Status: %s. Error message: %s", $e->getCode(), $e->getMessage()));
+            throw new ClientRequestException(
+                sprintf("Delete request to /description/$id failed. Status: %s. Error message: %s", $e->getResponse()->getStatusCode(), $e->getMessage())
+            );
             // @codeCoverageIgnoreEnd
         }
     }
@@ -426,7 +490,9 @@ class ClientV2 extends AbstractClient
             return json_decode($response->getBody(), true);
             // @codeCoverageIgnoreStart
         } catch(GuzzleRequestException $e) {
-            throw new ClientRequestException(sprintf("Request to /stats/$partnerId/$from/$to/$aggregationMethod failed. Status: %s. Error message: %s", $e->getCode(), $e->getMessage()));
+            throw new ClientRequestException(
+                sprintf("Request to /stats/$partnerId/$from/$to/$aggregationMethod failed. Status: %s. Error message: %s", $e->getResponse()->getStatusCode(), $e->getMessage())
+            );
             // @codeCoverageIgnoreEnd
         }
     }
@@ -460,7 +526,9 @@ class ClientV2 extends AbstractClient
             return json_decode($response->getBody(), true);
             // @codeCoverageIgnoreStart
         } catch(GuzzleRequestException $e) {
-            throw new ClientRequestException(sprintf("Request to /file failed. Status: %s. Error message: %s", $e->getCode(), $e->getMessage()));
+            throw new ClientRequestException(
+                sprintf("Request to /file failed. Status: %s. Error message: %s", $e->getResponse()->getStatusCode(), $e->getMessage())
+            );
             // @codeCoverageIgnoreEnd
         }
     }

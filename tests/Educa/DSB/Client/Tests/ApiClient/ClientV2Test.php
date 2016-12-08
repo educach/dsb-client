@@ -83,6 +83,11 @@ class ClientV2Test extends \PHPUnit_Framework_TestCase
             $this->fail("An unsuccessful authentication throws an exception.");
         } catch(ClientAuthenticationException $e) {
             $this->assertTrue(true, "An unsuccessful authentication should throw an exception.");
+            $this->assertEquals(
+                400,
+                $e->getCode(),
+                "The HTTP status code is passed as the Exception code."
+            );
         }
 
         // A status different from 200 throws an exception.
