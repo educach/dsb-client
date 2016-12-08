@@ -36,9 +36,9 @@ interface ClientInterface
      *    If the request fails, will throw an exception
      *
      * @param string $query = ''
-     * @param string $useFacets = array()
-     * @param string $filters = array()
-     * @param string $additionalFields = array()
+     * @param array $useFacets = array()
+     * @param array $filters = array()
+     * @param array $additionalFields = array()
      * @param int $offset = 0
      * @param int $limit = 50
      * @param string $sortBy = 'random'
@@ -72,7 +72,7 @@ interface ClientInterface
      *    If the request fails, will throw an exception
      *
      * @param string $query = ''
-     * @param string $filters = array()
+     * @param array $filters = array()
      *
      * @return array
      *    A list of suggestions. Each suggestion is an object with the following
