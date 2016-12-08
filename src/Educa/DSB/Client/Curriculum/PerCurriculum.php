@@ -371,6 +371,10 @@ class PerCurriculum extends BaseCurriculum
                     // years information, which is not provided in the global
                     // call.
                     $rawData = json_decode(@file_get_contents("$url/objectifs/" . $objectiveId), true);
+                    if (empty($rawData)) {
+                        continue;
+                    }
+
                     foreach ($rawData['progressions'] as $progressionGroup) {
                         $objectiveSchoolYears = array_merge(
                             $objectiveSchoolYears,
