@@ -21,7 +21,7 @@ Documentation
 
 * Documentation for the client library can be found [here](http://dsb-client.readthedocs.org/en/latest/).
 * Documentation for the REST API can be found [here](https://dsb-api.educa.ch/latest/doc/).
-* Documentation for the LOM-CH standard (v1.1) can be found here: [German](https://dsb-api.educa.ch/lom-ch/LOM-CHv1.1_de.pdf), [French](https://dsb-api.educa.ch/lom-ch/LOM-CHv1.1_fr.pdf)
+* Documentation for the LOM-CH standard (v1.2) can be found here: [German](https://dsb-api.educa.ch/lom-ch/lom-chv1.2_de.pdf), [French](https://dsb-api.educa.ch/lom-ch/lom-chv1.2_fr.pdf), [Italian](https://dsb-api.educa.ch/lom-ch/lom-chv1.2_it.pdf)
 
 Contributing
 ------------
