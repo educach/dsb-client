@@ -380,9 +380,9 @@ Simple validation script:
     $f = 'lom_object.json';
     try {
         $json = file_get_contents($f);
-        $client->authenticate()->validateDescription($json);
+        $result = $client->authenticate()->validateDescription($json);
         echo "Using file $f\n";
-        if( isset($response['valid']) && $response['valid'] ) {
+        if (!empty($response['valid'])) {
             echo "\n> Description is valid.";
         } else {
             echo "\n> Description is invalid.\n";
@@ -393,10 +393,10 @@ Simple validation script:
         }
     } catch(ClientRequestException $e) {
         // The request failed.
-        print_r("The post request failed. (" . $e->getMessage() . ')');
+        print "The post request failed. (" . $e->getMessage() . ')';
     } catch(ClientAuthenticationException $e) {
         // The authentication failed.
-        print_r("The authentification failed. (" . $e->getMessage() . ')');
+        print "The authentification failed. (" . $e->getMessage() . ')';
     }
     echo "\n";
 
