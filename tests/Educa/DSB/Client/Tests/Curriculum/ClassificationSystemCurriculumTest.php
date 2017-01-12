@@ -127,5 +127,27 @@ class ClassificationSystemCurriculumTest extends \PHPUnit_Framework_TestCase
             )->describe()->id,
             "Found the correct mapped term for item 'visual arts'."
         );
+
+        $term = new EducaTerm('discipline', 'mathematics', [], 'LOM-CHv1.0');
+        $this->assertEquals(
+            'mathematics',
+            $curriculum->mapTerm(
+                'classification system',
+                'educa',
+                $term
+            )->describe()->id,
+            "Found the correct mapped term for item 'mathematics'."
+        );
+
+        $term = new EducaTerm('discipline', 'pre-school', [], 'LOM-CHv1.0');
+        $this->assertEquals(
+            'pre-school',
+            $curriculum->mapTerm(
+                'classification system',
+                'educa',
+                $term
+            )->describe()->id,
+            "Found the correct mapped term for item 'pre-school'."
+        );
     }
 }
