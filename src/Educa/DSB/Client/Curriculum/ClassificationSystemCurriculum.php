@@ -72,8 +72,7 @@ class ClassificationSystemCurriculum extends EducaCurriculum implements Mappable
         ) {
             $description = $term->describe();
 
-            $map = [
-                // "educa" keys => "classification system" keys.
+            $educa2ClassSysMap = [
                 'computer_science_programming' => 'computer science',
                 'ethics and religions' => 'ethics religions communities',
                 'accounting' => 'accounting finance',
@@ -94,9 +93,24 @@ class ClassificationSystemCurriculum extends EducaCurriculum implements Mappable
                 'personal_projects' => 'projects',
             ];
 
+            $classSys2EducaMap = [
+                'computer science' => 'computer_science_programming',
+                'ethics religions communities' => 'ethics and religions',
+                'accounting finance' => 'accounting',
+                'art craft design' => 'creative activities',
+                'motion health' => 'sport',
+                'interdisciplinary topics skills' => 'general_education',
+                'projects' => 'collective_projects',
+                'independent of levels' => 'indipendent_of_levels',
+                'independent of levels others' => 'indipendent_of_levels_others',
+                'home economics' => 'domestic science',
+                'media and ict' => 'office_and_typing',
+                'development' => 'environment_and_dependencies',
+            ];
+
             if ($source == 'educa') {
-                $taxonId = isset($map[$description->id]) ?
-                    $map[$description->id] :
+                $taxonId = isset($educa2ClassSysMap[$description->id]) ?
+                    $educa2ClassSysMap[$description->id] :
                     // We have many keys in common, actually. But of those in
                     // common, "educa" uses underscores, whereas we use spaces. If
                     // it is neither of those, it's probably one of our own keys
@@ -114,8 +128,8 @@ class ClassificationSystemCurriculum extends EducaCurriculum implements Mappable
                 // Set a default value.
                 $context = 'LOM-CHv1.0';
 
-                $taxonId = ($i = array_search($description->id, $map)) ?
-                    $i :
+                $taxonId = isset($classSys2EducaMap[$description->id]) ?
+                    $classSys2EducaMap[$description->id] :
                     // This is a bit more tricky. We don't know exactly which
                     // keys got translated from underscores to spaces. But all
                     // keys that have a context that is different from LOM-CH,
