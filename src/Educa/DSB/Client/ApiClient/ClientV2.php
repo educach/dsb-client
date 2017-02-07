@@ -549,7 +549,14 @@ class ClientV2 extends AbstractClient
             $termId = urlencode($termId);
 
             $response = $this->get("/curriculum/map/$from/$to/$termId");
-            return json_decode($response->getBody(), true);
+            if ($response->getStatusCode() == 200) {
+                return json_decode($response->getBody(), true);
+            } else {
+                throw new ClientRequestException(
+                    sprintf("Request to /curriculum/map/$from/$to/$termId failed. Status: %s. Error message: %s", $response->getStatusCode(), $response->getBody()),
+                    $response->getStatusCode()
+                );
+            }
             // @codeCoverageIgnoreStart
         } catch(GuzzleRequestException $e) {
             throw new ClientRequestException(
