@@ -340,4 +340,17 @@ class TestClient extends AbstractClient
             'fileUrl' => 'http://dev-dsb-api.educa.ch/v2/file/default/' . md5($filePath) . ".$extension",
         );
     }
+
+    /**
+     * @{inheritdoc}
+     */
+    public function getCurriculaMappingSuggestions($from, $to, $termId)
+    {
+        return [
+            $termId => [
+                "lorem-ipsum",
+                "dolor-sit-amet",
+            ]
+        ];
+    }
 }

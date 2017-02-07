@@ -533,5 +533,31 @@ class ClientV2 extends AbstractClient
         }
     }
 
+    /**
+     * @{inheritdoc}
+     */
+    public function getCurriculaMappingSuggestions($from, $to, $termId)
+    {
+        if (empty($this->tokenKey)) {
+            throw new ClientAuthenticationException("No token found. Cannot load partner statistics without a token.");
+        }
+
+        try {
+            // Prepare the URL arguments.
+            $from = urlencode($from);
+            $to = urlencode($to);
+            $termId = urlencode($termId);
+
+            $response = $this->get("/curriculum/map/$from/$to/$termId");
+            return json_decode($response->getBody(), true);
+            // @codeCoverageIgnoreStart
+        } catch(GuzzleRequestException $e) {
+            throw new ClientRequestException(
+                sprintf("Request to /curriculum/map/$from/$to/$termId failed. Status: %s. Error message: %s", $e->getResponse()->getStatusCode(), $e->getMessage())
+            );
+            // @codeCoverageIgnoreEnd
+        }
+    }
+
 }
 

@@ -504,6 +504,47 @@ class ClientV2Test extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test loading mapping suggestions.
+     */
+    public function testGetMappingSuggestions()
+    {
+        // Prepare a new client.
+        $guzzle = $this->getGuzzleTestClient([
+            new Response(200, [], Psr7\stream_for('{"token":"asjhasd987asdhasd87"}')),
+            new Response(200),
+            new Response(400),
+            new Response(304),
+        ]);
+
+        // Prepare a client.
+        $client = new ClientV2(
+            'http://localhost',
+            'user@site.com',
+            FIXTURES_DIR . '/user/privatekey_nopassphrase.pem'
+        );
+        $client->setClient($guzzle);
+
+        // Fetching mapping suggestions without being authenticated throws an
+        // error.
+        try {
+            $client->getCurriculaMappingSuggestions('per', 'lp21', 'term-1');
+            $this->fail("Fetching mapping suggestions without being authenticated should throw an exception.");
+        } catch(ClientAuthenticationException $e) {
+            $this->assertTrue(true, "Fetching mapping suggestions without being authenticated throws an exception.");
+        }
+
+        // Fetching mapping suggestions while authenticated doesn't throw an
+        // error.
+        try {
+            $client->authenticate();
+            $client->getCurriculaMappingSuggestions('per', 'lp21', 'term-1');
+            $this->assertTrue(true, "Fetching mapping suggestions while being authenticated does not throw an exception.");
+        } catch(ClientAuthenticationException $e) {
+            $this->fail("Fetching mapping suggestions while being authenticated should not throw an exception.");
+        }
+    }
+
+    /**
      * Test creating a new description.
      */
     public function testPostDescription()

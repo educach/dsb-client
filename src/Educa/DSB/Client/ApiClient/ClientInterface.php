@@ -306,4 +306,29 @@ interface ClientInterface
      */
     public function uploadFile($filePath);
 
+    /**
+     * Get suggestions for mapping a curriculum to another.
+     *
+     * The REST API provides suggestions for mapping a term from one curriculum
+     * to another.
+     *
+     * @throws \Educa\DSB\Client\ApiClient\ClientAuthenticationException
+     *    If not authenticated, will throw an exception. If not authorized, will
+     *    also throw an exception.
+     * @throws \Educa\DSB\Client\ApiClient\ClientRequestException
+     *    If the request fails, will throw an exception.
+     *
+     * @param string $from
+     *    The curriculum the mapped term belongs to.
+     * @param string $to
+     *    The curriculum the term should be mapped to.
+     * @param string $termId
+     *    The term identifier. Check the REST API documentation for more
+     *    information, as some curricula have specific formats.
+     *
+     * @return array
+     *    A list of suggestions, keyed by term ID.
+     */
+    public function getCurriculaMappingSuggestions($from, $to, $termId);
+
 }
