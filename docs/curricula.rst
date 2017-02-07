@@ -394,3 +394,32 @@ A curriculum tree consists of ``TermInterface`` elements, just as for the other 
 * ``getVersion()`` and ``setVersion()``: Get the version of the Lehrplan this item is meant for (mostly applies to *Kompetenzstufe*)
 * ``getCantons()`` and ``setCantons()``: Get the *Cantons* this item is meant for (mostly applies to *Fachbereiche*)
 * ``getCycles()`` and ``setCycles()``: Get the *cycles* this item applies to (mostly applies to *Kompetenzstufe*)
+
+Mapping between curricula
+=========================
+
+It is possible to map certain *terms* from one curriculum to another. Not all curricula support being mapped to, or from. Check the `REST API documentation <https://dsb-api.educa.ch/latest/doc/>`_ for more information.
+
+Mapping is achieved by passing the *source* curriculum ID, the *target* curriculum ID, and the ID of the term to map:
+
+.. code-block:: php
+
+    use Educa\DSB\Client\ApiClient\ClientV2;
+    use Educa\DSB\Client\ApiClient\ClientAuthenticationException;
+    use Educa\DSB\Client\ApiClient\ClientRequestException;
+
+    $client = new ClientV2('https://dsb-api.educa.ch/v2', 'user@site.com', '/path/to/privatekey.pem', 'passphrase');
+
+    try {
+        $suggestions = $client->authenticate()->getCurriculaMappingSuggestions(
+            'per',
+            'classification_system',
+            'objectifs-1'
+        );
+    } catch(ClientRequestException $e) {
+        // The request failed.
+    } catch(ClientAuthenticationException $e) {
+        // The authentication failed.
+    }
+
+This will return a list, keyed by term identifier, each containing a list of suggestions.
