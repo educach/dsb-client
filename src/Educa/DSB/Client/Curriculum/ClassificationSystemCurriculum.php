@@ -104,7 +104,7 @@ class ClassificationSystemCurriculum extends EducaCurriculum implements Mappable
                 'independent of levels' => 'indipendent_of_levels',
                 'independent of levels others' => 'indipendent_of_levels_others',
                 'home economics' => 'domestic science',
-                'media and ict' => 'office_and_typing',
+                'media and ict' => 'media and ict',
                 'development' => 'environment_and_dependencies',
             ];
 
