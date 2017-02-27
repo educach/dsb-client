@@ -278,11 +278,16 @@ interface ClientInterface
      * @param string $aggregationMethod
      *    (optional) The aggregation method for the views. Can be either "day",
      *    "month" or "year". Defaults to "day".
+     * @param int $limit
+     *    (optional) The limit of statistics to return. Defaults to null.
+     * @param int $offset
+     *    (optional) The offset of the statistics. Used for pagination. Defaults
+     *    to null.
      *
      * @return array
      *    The list of content partners.
      */
-    public function loadPartnerStatistics($partnerId, $from, $to, $aggregationMethod = 'day');
+    public function loadPartnerStatistics($partnerId, $from, $to, $aggregationMethod = 'day', $limit = null, $offset = null);
 
     /**
      * Upload a file.

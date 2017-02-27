@@ -290,7 +290,7 @@ class TestClient extends AbstractClient
     /**
      * @{inheritdoc}
      */
-    public function loadPartnerStatistics($partnerId, $from, $to, $aggregationMethod = 'day')
+    public function loadPartnerStatistics($partnerId, $from, $to, $aggregationMethod = 'day', $limit = null, $offset = null)
     {
         $fromTime = strtotime($from);
         $toTime = strtotime($to);
