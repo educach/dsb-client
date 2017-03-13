@@ -278,6 +278,9 @@ interface ClientInterface
      * @param string $aggregationMethod
      *    (optional) The aggregation method for the views. Can be either "day",
      *    "month" or "year". Defaults to "day".
+     * @param string $lomId
+     *    (optional) The LOM ID to filter the results by. Defaults to null,
+     *    which means all description statistics are returned.
      * @param int $limit
      *    (optional) The limit of statistics to return. Defaults to null.
      * @param int $offset
@@ -287,7 +290,7 @@ interface ClientInterface
      * @return array
      *    The list of content partners.
      */
-    public function loadPartnerStatistics($partnerId, $from, $to, $aggregationMethod = 'day', $limit = null, $offset = null);
+    public function loadPartnerStatistics($partnerId, $from, $to, $aggregationMethod = 'day', $lomId = null, $limit = null, $offset = null);
 
     /**
      * Upload a file.

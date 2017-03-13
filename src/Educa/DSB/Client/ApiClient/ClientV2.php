@@ -465,7 +465,7 @@ class ClientV2 extends AbstractClient
     /**
      * @{inheritdoc}
      */
-    public function loadPartnerStatistics($partnerId, $from, $to, $aggregationMethod = 'day', $limit = null, $offset = null)
+    public function loadPartnerStatistics($partnerId, $from, $to, $aggregationMethod = 'day', $lomId = null, $limit = null, $offset = null)
     {
         if (empty($this->tokenKey)) {
             throw new ClientAuthenticationException("No token found. Cannot load partner statistics without a token.");
@@ -495,7 +495,13 @@ class ClientV2 extends AbstractClient
                 $options['query']['limit'] = $limit;
             }
 
-            $response = $this->get("/stats/$partnerId/$from/$to/$aggregationMethod", $options);
+            $url = "/stats/$partnerId/$from/$to/$aggregationMethod";
+
+            if (!empty($lomId)) {
+                $url .= '/' . urlencode($lomId);
+            }
+
+            $response = $this->get($url, $options);
             return json_decode($response->getBody(), true);
             // @codeCoverageIgnoreStart
         } catch(GuzzleRequestException $e) {

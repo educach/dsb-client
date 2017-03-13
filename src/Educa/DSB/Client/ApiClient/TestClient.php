@@ -290,7 +290,7 @@ class TestClient extends AbstractClient
     /**
      * @{inheritdoc}
      */
-    public function loadPartnerStatistics($partnerId, $from, $to, $aggregationMethod = 'day', $limit = null, $offset = null)
+    public function loadPartnerStatistics($partnerId, $from, $to, $aggregationMethod = 'day', $lomId = null, $limit = null, $offset = null)
     {
         $fromTime = strtotime($from);
         $toTime = strtotime($to);
@@ -302,9 +302,9 @@ class TestClient extends AbstractClient
         $fromYear = date('Y', $fromTime);
         $toYear = date('Y', $toTime);
 
-        return array_map(function() use($fromYear, $toYear, $aggregationMethod) {
+        return array_map(function() use($fromYear, $toYear, $aggregationMethod, $lomId) {
             $result = [
-                'lomId' => uniqid(),
+                'lomId' => !empty($lomId) ? $lomId : uniqid(),
                 'views' => rand(1, 300),
                 // At least put some realistic values for the years.
                 'year' => $fromYear == $toYear ? $fromYear : rand($fromYear, $toYear),
