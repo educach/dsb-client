@@ -56,7 +56,7 @@ class ClientV2Test extends \PHPUnit_Framework_TestCase
             new Response(200, [], Psr7\stream_for('{"not":"what you expect"}')),
             new Response(400),
             new Response(204),
-            new Response(200, [], Psr7\stream_for('{"token":"asjhasd987asdhasd87"}')),
+            new Response(200, [], Psr7\stream_for('{"expire":"2016-02-02","token":"asjhasd987asdhasd87"}')),
         ]);
 
         // Prepare a client with a correct passphrase.
@@ -110,8 +110,8 @@ class ClientV2Test extends \PHPUnit_Framework_TestCase
         // a new client, but with a history subscriber.
         $transactions = array();
         $guzzle = $this->getGuzzleTestClient([
-            new Response(200, [], Psr7\stream_for('{"token":"asjhasd987asdhasd87"}')),
-            new Response(200, [], Psr7\stream_for('{"token":"asjhasd987asdhasd87"}')),
+            new Response(200, [], Psr7\stream_for('{"expire":"2016-02-02","token":"asjhasd987asdhasd87"}')),
+            new Response(200, [], Psr7\stream_for('{"expire":"2016-02-02","token":"asjhasd987asdhasd87"}')),
         ], $transactions);
 
         // Prepare a client with the correct passphrase.
@@ -176,7 +176,7 @@ class ClientV2Test extends \PHPUnit_Framework_TestCase
         // Prepare a new client, with a history subscriber.
         $transactions = array();
         $guzzle = $this->getGuzzleTestClient([
-            new Response(200, [], Psr7\stream_for('{"token":"asjhasd987asdhasd87"}')),
+            new Response(200, [], Psr7\stream_for('{"expire":"2016-02-02","token":"asjhasd987asdhasd87"}')),
             new Response(200),
             new Response(400),
             new Response(204),
@@ -281,7 +281,7 @@ class ClientV2Test extends \PHPUnit_Framework_TestCase
     {
         // Prepare a new client.
         $guzzle = $this->getGuzzleTestClient([
-            new Response(200, [], Psr7\stream_for('{"token":"asjhasd987asdhasd87"}')),
+            new Response(200, [], Psr7\stream_for('{"expire":"2016-02-02","token":"asjhasd987asdhasd87"}')),
             new Response(200, ['X-DSB-LOMID' => 'asdjkl89qwe798asdkj']),
             new Response(400),
             new Response(304),
@@ -342,7 +342,7 @@ class ClientV2Test extends \PHPUnit_Framework_TestCase
     {
         // Prepare a new client.
         $guzzle = $this->getGuzzleTestClient([
-            new Response(200, [], Psr7\stream_for('{"token":"asjhasd987asdhasd87"}')),
+            new Response(200, [], Psr7\stream_for('{"expire":"2016-02-02","token":"asjhasd987asdhasd87"}')),
             new Response(200, [], Psr7\stream_for('[{"suggestion":"Suggestion A","context":"The context of Suggestion A is this."},{"suggestion":"Suggestion B","context":"The context of Suggestion B is this."}]')),
             new Response(400),
             new Response(304),
@@ -398,7 +398,7 @@ class ClientV2Test extends \PHPUnit_Framework_TestCase
     {
         // Prepare a new client.
         $guzzle = $this->getGuzzleTestClient([
-            new Response(200, [], Psr7\stream_for('{"token":"asjhasd987asdhasd87"}')),
+            new Response(200, [], Psr7\stream_for('{"expire":"2016-02-02","token":"asjhasd987asdhasd87"}')),
             new Response(200),
             new Response(400),
             new Response(304),
@@ -454,7 +454,7 @@ class ClientV2Test extends \PHPUnit_Framework_TestCase
     {
         // Prepare a new client.
         $guzzle = $this->getGuzzleTestClient([
-            new Response(200, [], Psr7\stream_for('{"token":"asjhasd987asdhasd87"}')),
+            new Response(200, [], Psr7\stream_for('{"expire":"2016-02-02","token":"asjhasd987asdhasd87"}')),
             new Response(200),
             new Response(400),
             new Response(304),
@@ -510,7 +510,7 @@ class ClientV2Test extends \PHPUnit_Framework_TestCase
     {
         // Prepare a new client.
         $guzzle = $this->getGuzzleTestClient([
-            new Response(200, [], Psr7\stream_for('{"token":"asjhasd987asdhasd87"}')),
+            new Response(200, [], Psr7\stream_for('{"expire":"2016-02-02","token":"asjhasd987asdhasd87"}')),
             new Response(200),
             new Response(400),
             new Response(304),
@@ -551,7 +551,7 @@ class ClientV2Test extends \PHPUnit_Framework_TestCase
     {
         // Prepare a new client.
         $guzzle = $this->getGuzzleTestClient([
-            new Response(200, [], Psr7\stream_for('{"token":"asjhasd987asdhasd87"}')),
+            new Response(200, [], Psr7\stream_for('{"expire":"2016-02-02","token":"asjhasd987asdhasd87"}')),
             new Response(200),
             new Response(200),
             new Response(200),
@@ -630,7 +630,7 @@ class ClientV2Test extends \PHPUnit_Framework_TestCase
     {
         // Prepare a new client.
         $guzzle = $this->getGuzzleTestClient([
-            new Response(200, [], Psr7\stream_for('{"token":"asjhasd987asdhasd87"}')),
+            new Response(200, [], Psr7\stream_for('{"expire":"2016-02-02","token":"asjhasd987asdhasd87"}')),
             new Response(200),
             new Response(200),
         ]);
@@ -690,7 +690,7 @@ class ClientV2Test extends \PHPUnit_Framework_TestCase
     {
         // Prepare a new client.
         $guzzle = $this->getGuzzleTestClient([
-            new Response(200, [], Psr7\stream_for('{"token":"asjhasd987asdhasd87"}')),
+            new Response(200, [], Psr7\stream_for('{"expire":"2016-02-02","token":"asjhasd987asdhasd87"}')),
             new Response(200),
         ]);
 
@@ -727,7 +727,7 @@ class ClientV2Test extends \PHPUnit_Framework_TestCase
     {
         // Prepare a new client.
         $guzzle = $this->getGuzzleTestClient([
-            new Response(200, [], Psr7\stream_for('{"token":"asjhasd987asdhasd87"}')),
+            new Response(200, [], Psr7\stream_for('{"expire":"2016-02-02","token":"asjhasd987asdhasd87"}')),
             new Response(200),
             new Response(400),
             new Response(304),
@@ -783,7 +783,7 @@ class ClientV2Test extends \PHPUnit_Framework_TestCase
     {
         // Prepare a new client.
         $guzzle = $this->getGuzzleTestClient([
-            new Response(200, [], Psr7\stream_for('{"token":"asjhasd987asdhasd87"}')),
+            new Response(200, [], Psr7\stream_for('{"expire":"2016-02-02","token":"asjhasd987asdhasd87"}')),
             new Response(200),
             new Response(400),
             new Response(304),
@@ -839,7 +839,7 @@ class ClientV2Test extends \PHPUnit_Framework_TestCase
     {
         // Prepare a new client.
         $guzzle = $this->getGuzzleTestClient([
-            new Response(200, [], Psr7\stream_for('{"token":"asjhasd987asdhasd87"}')),
+            new Response(200, [], Psr7\stream_for('{"expire":"2016-02-02","token":"asjhasd987asdhasd87"}')),
             new Response(200),
             new Response(400),
             new Response(304),
@@ -925,7 +925,7 @@ class ClientV2Test extends \PHPUnit_Framework_TestCase
 
         // Prepare a new client.
         $guzzle = $this->getGuzzleTestClient([
-            new Response(200, [], Psr7\stream_for('{"token":"asjhasd987asdhasd87"}')),
+            new Response(200, [], Psr7\stream_for('{"expire":"2016-02-02","token":"asjhasd987asdhasd87"}')),
             new Response(200),
             new Response(200),
         ]);
