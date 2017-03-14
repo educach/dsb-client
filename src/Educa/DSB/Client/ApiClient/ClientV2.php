@@ -17,6 +17,8 @@ use Educa\DSB\Client\ApiClient\ClientRequestException;
 class ClientV2 extends AbstractClient
 {
 
+    protected $tokenExpiresOn;
+
     /**
      * @{inheritdoc}
      */
@@ -54,6 +56,7 @@ class ClientV2 extends AbstractClient
                 $data = json_decode($response->getBody(), true);
                 if (!empty($data['token'])) {
                     $this->tokenKey = $data['token'];
+                    $this->tokenExpiresOn = $data['expire'];
                 }
                 else {
                     throw new ClientAuthenticationException(sprintf("Authentication failed. Status was correct, but couldn't find a token in the body. Body: %s", $response->getBody()));
