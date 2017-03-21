@@ -204,10 +204,39 @@ class PerCurriculum extends BaseCurriculum
      */
     public static function fetchCurriculumData($url)
     {
-        if (preg_match('/\/$/', $url)) {
-            $url = rtrim($url, '/');
-        }
+        // Step 1.
+        list(
+            $root,
+            $dictionary
+        ) = self::prepareFetch();
 
+        // Step 2.
+        list(
+            $root,
+            $dictionary,
+            $objectiveIds
+        ) = self::fetchDomainsAndDisciplines($url, $root, $dictionary);
+
+        // Step 3.
+        list(
+            $root,
+            $dictionary
+        ) = self::fetchObjectivesAndProgressions(
+            $url,
+            $root,
+            $dictionary,
+            $objectiveIds
+        );
+
+        // Return the parsed data.
+        return (object) array(
+            'curriculum' => $root,
+            'dictionary' => $dictionary,
+        );
+    }
+
+    public static function prepareFetch()
+    {
         $dictionary = array();
 
         // First, we want to prepare our 3 cycle base terms. In the Per logic,
@@ -240,40 +269,35 @@ class PerCurriculum extends BaseCurriculum
             $dictionary["cycles:{$id}"] = $description;
         }
 
+        // Return the data.
+        return array($root, $dictionary);
+    }
+
+    public static function fetchDomainsAndDisciplines($url, $root, $dictionary)
+    {
+        if (preg_match('/\/$/', $url)) {
+            $url = rtrim($url, '/');
+        }
+
+        // We need to fetch the objectives, because the relationship between
+        // objectives, domains and disciplines is stored there.
         $objectives = json_decode(@file_get_contents(
             defined('RUNNING_PHPUNIT') && RUNNING_PHPUNIT ?
                 "$url/objectifs_all" :
                 "$url/objectifs"
         ), true);
-        $themes = array();
+        $objectiveIds = array();
         $domains = array();
         $disciplines = array();
 
-        // Prepare a little function for reducing school year lists.
-        $reduceSchoolYears = function($schoolYears) {
-            return array_values(array_filter(
-                array_map(function($item) {
-                switch ($item) {
-                    case 1:
-                        return '1-2';
-                    case 3:
-                        return '3-4';
-                    case 5:
-                        return '5-6';
-                    case 7:
-                        return '7-8';
-                    case 9:
-                    case 10:
-                    case 11:
-                        return (string) $item;
-                }
-                return null;
-            }, array_unique($schoolYears))));
-        };
+        // Fetch the cycles.
+        $cycle1 = $root->findChildByIdentifier(1);
+        $cycle2 = $root->findChildByIdentifier(2);
+        $cycle3 = $root->findChildByIdentifier(3);
 
         if (!empty($objectives)) {
             foreach ($objectives as $objectiveData) {
-                $objectiveId = $objectiveData['id'];
+                $objectiveIds[] = $objectiveData['id'];
                 $cycleNum = (string) $objectiveData['cycle'];
 
                 // To which cycle does it apply?
@@ -290,7 +314,7 @@ class PerCurriculum extends BaseCurriculum
 
                     default:
                         throw new CurriculumInvalidDataStructureException(
-                            sprintf("Couldn't find valid cycle information for the objectif with ID %d", $objectiveId)
+                            sprintf("Couldn't find valid cycle information for the objectif with ID %d", $objectiveData['id'])
                         );
                         break;
                 }
@@ -319,13 +343,6 @@ class PerCurriculum extends BaseCurriculum
                     $dictionary["domaines:{$domainId}"] = $description;
                 }
 
-                // Prepare all theme names.
-                foreach ($objectiveData['thematiques'] as $themeData) {
-                    if (!isset($themes[$themeData['id']])) {
-                        $themes[$themeData['id']] = $themeData['nom'];
-                    }
-                }
-
                 // Treat all disciplines.
                 foreach ($objectiveData['disciplines'] as $disciplineData) {
                     $disciplineId = $disciplineData['id'];
@@ -349,73 +366,131 @@ class PerCurriculum extends BaseCurriculum
                         unset($description->id);
                         $dictionary["disciplines:{$disciplineId}"] = $description;
                     }
-
-                    // We can now set the objectives. Prepare the names. They
-                    // are based on the Thématiques, as they make more sense.
-                    $names = array();
-                    foreach ($objectiveData['thematiques'] as $themeData) {
-                        $names[] = sprintf('%s (%s)', $themes[$themeData['id']], $objectiveData['code']);
-                    }
-
-                    // Objectives are not unique. They can be "shared" by
-                    // disciplines, meaning we actually have to duplicate them.
-                    $objective = new PerTerm('objectifs', $objectiveId, array(
-                        'fr' => implode("\n", $names),
-                    ));
-                    $discipline->addChild($objective);
-
-                    // Prepare a list for the objective's school years.
-                    $objectiveSchoolYears = array();
-
-                    // Load the raw objective data, we need it for the school
-                    // years information, which is not provided in the global
-                    // call.
-                    $rawData = json_decode(@file_get_contents("$url/objectifs/" . $objectiveId), true);
-                    if (empty($rawData)) {
-                        continue;
-                    }
-
-                    foreach ($rawData['progressions'] as $progressionGroup) {
-                        $objectiveSchoolYears = array_merge(
-                            $objectiveSchoolYears,
-                            $progressionGroup['annees']
-                        );
-
-                        // Fetch the "progressions".
-                        foreach ($progressionGroup['items'] as $item) {
-                            if (!empty($item['contenus'])) {
-                                foreach ($item['contenus'] as $content) {
-                                    $progression = new PerTerm('progressions', $content['id'], array(
-                                        'fr' => $content['texte'],
-                                    ));
-                                    $progression->setSchoolYears($reduceSchoolYears($progressionGroup['annees']));
-                                    $objective->addChild($progression);
-                                    $description = $progression->describe();
-                                    $description->schoolYears = $progression->getSchoolYears();
-                                    unset($description->id);
-                                    $dictionary["progressions:{$content['id']}"] = $description;
-                                }
-                            }
-                        }
-                    }
-
-                    $objective->setSchoolYears($reduceSchoolYears($objectiveSchoolYears));
-                    $objective->setCode($objectiveData['code']);
-
-                    $description = $objective->describe();
-                    $description->code = $objectiveData['code'];
-                    $description->schoolYears = $objective->getSchoolYears();
-                    unset($description->id);
-                    $dictionary["objectifs:{$objectiveId}"] = $description;
                 }
             }
         }
 
-        // Return the parsed data.
-        return (object) array(
-            'curriculum' => $root,
-            'dictionary' => $dictionary,
-        );
+        // Return the data.
+        return array($root, $dictionary, $objectiveIds);
+    }
+
+    public static function fetchObjectivesAndProgressions($url, $root, $dictionary, $objectiveIds)
+    {
+        if (preg_match('/\/$/', $url)) {
+            $url = rtrim($url, '/');
+        }
+
+        // Prepare a little function for reducing school year lists.
+        $reduceSchoolYears = function($schoolYears) {
+            return array_values(array_filter(
+                array_map(function($item) {
+                switch ($item) {
+                    case 1:
+                        return '1-2';
+                    case 3:
+                        return '3-4';
+                    case 5:
+                        return '5-6';
+                    case 7:
+                        return '7-8';
+                    case 9:
+                    case 10:
+                    case 11:
+                        return (string) $item;
+                }
+                return null;
+            }, array_unique($schoolYears))));
+        };
+
+        foreach ($objectiveIds as $objectiveId) {
+            $names = array();
+
+            // Load the objective data. This call contains more information
+            // then the one used in self::fetchDomainsAndDisciplines().
+            $objectiveData = json_decode(@file_get_contents("$url/objectifs/$objectiveId"), true);
+
+            // To fetch the disciplines this objective belongs to, we need the
+            // domain. And for the domain, we need the cycle.
+            $cycle = $root->findChildByIdentifier($objectiveData['cycle']);
+            $domain = $cycle->findChildByIdentifier($objectiveData['domaine']['id']);
+            if (!$domain) {
+                throw new CurriculumInvalidDataStructureException(sprintf(
+                    "Couldn't find domain with ID %d for the objective with ID %d",
+                    $objectiveData['domaine']['id'],
+                    $objectiveId
+                ));
+            }
+
+            // Prepare all theme names.
+            foreach ($objectiveData['thematiques'] as $themeData) {
+                $names[] = sprintf(
+                    '%s (%s)',
+                    $themeData['nom'],
+                    $objectiveData['code']
+                );
+            }
+
+            // Objectives are not unique. They can be "shared" by
+            // disciplines, meaning we actually have to create one per
+            // discipline.
+            foreach ($objectiveData['disciplines'] as $disciplineData) {
+                // Fetch the discipline.
+                $discipline = $domain->findChildByIdentifier($disciplineData['id']);
+
+                if (!$discipline) {
+                    throw new CurriculumInvalidDataStructureException(sprintf(
+                        "Couldn't find discipline with ID %d for the objective with ID %d",
+                        $disciplineData['id'],
+                        $objectiveId
+                    ));
+                }
+
+                $objective = new PerTerm('objectifs', $objectiveId, array(
+                    'fr' => implode("\n", $names),
+                ));
+                $discipline->addChild($objective);
+
+                // Prepare a list for the objective's school years.
+                $objectiveSchoolYears = array();
+
+                // Fetch the progressions.
+                foreach ($objectiveData['progressions'] as $progressionGroup) {
+                    $objectiveSchoolYears = array_merge(
+                        $objectiveSchoolYears,
+                        $progressionGroup['annees']
+                    );
+
+                    // Fetch the "progressions".
+                    foreach ($progressionGroup['items'] as $item) {
+                        if (!empty($item['contenus'])) {
+                            foreach ($item['contenus'] as $content) {
+                                $progression = new PerTerm('progressions', $content['id'], array(
+                                    'fr' => $content['texte'],
+                                ));
+                                $progression->setSchoolYears($reduceSchoolYears($progressionGroup['annees']));
+                                $objective->addChild($progression);
+                                $description = $progression->describe();
+                                $description->schoolYears = $progression->getSchoolYears();
+                                unset($description->id);
+                                $dictionary["progressions:{$content['id']}"] = $description;
+                            }
+                        }
+                    }
+                }
+
+                $objective->setSchoolYears($reduceSchoolYears($objectiveSchoolYears));
+                $objective->setCode($objectiveData['code']);
+
+                $description = $objective->describe();
+                $description->code = $objectiveData['code'];
+                $description->schoolYears = $objective->getSchoolYears();
+                unset($description->id);
+                $dictionary["objectifs:{$objectiveId}"] = $description;
+            }
+        }
+
+        // Return the data.
+        return array($root, $dictionary);
     }
 
     /**
