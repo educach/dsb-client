@@ -192,7 +192,7 @@ class PerCurriculum extends BaseCurriculum
      * @param string $url
      *    The curriculum definition endpoint URL.
      *
-     * @return array
+     * @return object
      *    An object with 2 properties:
      *    - curriculum: A parsed and prepared curriculum tree. It uses
      *      Educa\DSB\Client\Curriculum\Term\PerTerm elements to define
@@ -201,6 +201,9 @@ class PerCurriculum extends BaseCurriculum
      *      information for each one of them.
      *
      * @see \Educa\DSB\Client\Curriculum\PerCurriculum::setCurriculumDictionary()
+     * @see \Educa\DSB\Client\Curriculum\PerCurriculum::prepareFetch()
+     * @see \Educa\DSB\Client\Curriculum\PerCurriculum::fetchDomainsAndDisciplines()
+     * @see \Educa\DSB\Client\Curriculum\PerCurriculum::fetchObjectivesAndProgressions()
      */
     public static function fetchCurriculumData($url)
     {
@@ -235,6 +238,19 @@ class PerCurriculum extends BaseCurriculum
         );
     }
 
+    /**
+     * Prepare the data structures necessary for the fetch.
+     *
+     * @return array
+     *    An array with 2 values:
+     *    - A parsed and prepared curriculum tree. It uses
+     *      Educa\DSB\Client\Curriculum\Term\PerTerm elements to define
+     *      the curriculum tree.
+     *    - A dictionary of term identifiers, with name and type
+     *      information for each one of them.
+     *
+     * @see \Educa\DSB\Client\Curriculum\PerCurriculum::fetchCurriculumData()
+     */
     public static function prepareFetch()
     {
         $dictionary = array();
@@ -273,6 +289,32 @@ class PerCurriculum extends BaseCurriculum
         return array($root, $dictionary);
     }
 
+    /**
+     * Fetch domains and disciplines.
+     *
+     * This is the second step in fetching curriculum information. It must be
+     * performed after prepareFetch().
+     *
+     * @param string $url
+     *    The curriculum definition endpoint URL.
+     * @param Educa\DSB\Client\Curriculum\Term\PerTerm $root
+     *    The curriculum tree to add new elements to.
+     * @param array $dictionary
+     *    The dictionary of term identifiers.
+     *
+     * @return array
+     *    An array with 3 values:
+     *    - A parsed and prepared curriculum tree. It uses
+     *      Educa\DSB\Client\Curriculum\Term\PerTerm elements to define
+     *      the curriculum tree.
+     *    - A dictionary of term identifiers, with name and type
+     *      information for each one of them.
+     *    - A list of found objective identifiers, as returned by the BDPER
+     *      REST API.
+     *
+     * @see \Educa\DSB\Client\Curriculum\PerCurriculum::prepareFetch()
+     * @see \Educa\DSB\Client\Curriculum\PerCurriculum::fetchCurriculumData()
+     */
     public static function fetchDomainsAndDisciplines($url, $root, $dictionary)
     {
         if (preg_match('/\/$/', $url)) {
@@ -374,6 +416,33 @@ class PerCurriculum extends BaseCurriculum
         return array($root, $dictionary, $objectiveIds);
     }
 
+    /**
+     * Fetch objectives and progressions.
+     *
+     * This is the third and final step in fetching curriculum information. It
+     * must be performed after fetchDomainsAndDisciplines().
+     *
+     * @param string $url
+     *    The curriculum definition endpoint URL.
+     * @param Educa\DSB\Client\Curriculum\Term\PerTerm $root
+     *    The curriculum tree to add new elements to.
+     * @param array $dictionary
+     *    The dictionary of term identifiers.
+     * @param array $objectiveIds
+     *    A list of found objective identifiers to treat. This doesn't have to
+     *    be the complete list.
+     *
+     * @return array
+     *    An array with 3 values:
+     *    - A parsed and prepared curriculum tree. It uses
+     *      Educa\DSB\Client\Curriculum\Term\PerTerm elements to define
+     *      the curriculum tree.
+     *    - A dictionary of term identifiers, with name and type
+     *      information for each one of them.
+     *
+     * @see \Educa\DSB\Client\Curriculum\PerCurriculum::fetchDomainsAndDisciplines()
+     * @see \Educa\DSB\Client\Curriculum\PerCurriculum::fetchCurriculumData()
+     */
     public static function fetchObjectivesAndProgressions($url, $root, $dictionary, $objectiveIds)
     {
         if (preg_match('/\/$/', $url)) {
