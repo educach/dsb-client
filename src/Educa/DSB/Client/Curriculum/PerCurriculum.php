@@ -185,7 +185,7 @@ class PerCurriculum extends BaseCurriculum
     /**
      * Load the curriculum definition from the BDPER API.
      *
-     * By passing the official curriculum definition file (XML), this method
+     * By passing the path to the official definition REST API, this method
      * will parse it and return a curriculum definition it can understand and
      * treat. It mainly needs a "dictionary" of term types.
      *
