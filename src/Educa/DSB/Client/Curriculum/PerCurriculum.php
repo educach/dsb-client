@@ -12,6 +12,7 @@ use Educa\DSB\Client\Curriculum\Term\TermInterface;
 use Educa\DSB\Client\Curriculum\Term\PerTerm;
 use Educa\DSB\Client\Curriculum\CurriculumInvalidContextException;
 use Educa\DSB\Client\Curriculum\CurriculumInvalidDataStructureException;
+use Educa\DSB\Client\Curriculum\PerCurriculumEndpointNotAvailableException;
 
 /**
  * @codeCoverageIgnore
@@ -323,11 +324,26 @@ class PerCurriculum extends BaseCurriculum
 
         // We need to fetch the objectives, because the relationship between
         // objectives, domains and disciplines is stored there.
-        $objectives = json_decode(@file_get_contents(
-            defined('RUNNING_PHPUNIT') && RUNNING_PHPUNIT ?
-                "$url/objectifs_all" :
-                "$url/objectifs"
-        ), true);
+        // We cannot use cURL to fetch local data, so if in context of a unit
+        // test, we use file_get_contents(), and fetch a local file. We could
+        // use file_get_contents() for loading JSON data over HTTP, but this
+        // doesn't work if the application is sitting behind a proxy.
+        if (defined('RUNNING_PHPUNIT') && RUNNING_PHPUNIT) {
+            $json = file_get_contents("$url/objectifs_all");
+        } else {
+            $ch = curl_init("$url/objectifs");
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $json = curl_exec($ch);
+            curl_close($ch);
+        }
+
+        if (empty($json)) {
+            throw new PerCurriculumEndpointNotAvailableException(
+                "Could not load data from the BDPER endpoint!"
+            );
+        }
+
+        $objectives = json_decode($json, true);
         $objectiveIds = array();
         $domains = array();
         $disciplines = array();
@@ -476,7 +492,27 @@ class PerCurriculum extends BaseCurriculum
 
             // Load the objective data. This call contains more information
             // then the one used in self::fetchDomainsAndDisciplines().
-            $objectiveData = json_decode(@file_get_contents("$url/objectifs/$objectiveId"), true);
+            // We cannot use cURL to fetch local data, so if in context of a
+            // unit test, we use file_get_contents(), and fetch a local file. We
+            // could use file_get_contents() for loading JSON data over HTTP,
+            // but this doesn't work if the application is sitting behind a
+            // proxy.
+            if (defined('RUNNING_PHPUNIT') && RUNNING_PHPUNIT) {
+                $json = file_get_contents("$url/objectifs/$objectiveId");
+            } else {
+                $ch = curl_init("$url/objectifs/$objectiveId");
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                $json = curl_exec($ch);
+                curl_close($ch);
+            }
+
+            if (empty($json)) {
+                throw new PerCurriculumEndpointNotAvailableException(
+                    "Could not load data from the BDPER endpoint!"
+                );
+            }
+
+            $objectiveData = json_decode($json, true);
 
             // To fetch the disciplines this objective belongs to, we need the
             // domain. And for the domain, we need the cycle.
