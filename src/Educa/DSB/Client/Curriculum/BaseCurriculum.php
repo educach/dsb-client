@@ -153,6 +153,10 @@ abstract class BaseCurriculum implements CurriculumInterface
         foreach ($paths as $path) {
             // Cast to an array, just in case.
             $path = (array) $path;
+            // Failsafe to prevent Notices.
+            if (empty($path)) {
+                continue;
+            }
             $pathPurpose = $path['purpose']['value'];
 
             if (in_array($pathPurpose, $purpose)) {
