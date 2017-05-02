@@ -170,6 +170,14 @@ class ClientV2 extends AbstractClient
      */
     public function loadDescription($lomId)
     {
+        return $this->getDescription($lomId);
+    }
+
+    /**
+     * @{inheritdoc}
+     */
+    public function getDescription($lomId)
+    {
         if (empty($this->tokenKey)) {
             throw new ClientAuthenticationException("No token found. Cannot load a LOM description without a token.");
         }
@@ -198,6 +206,14 @@ class ClientV2 extends AbstractClient
      * @{inheritdoc}
      */
     public function loadOntologyData($type = 'list', array $vocabularyIds = null)
+    {
+        return $this->getOntologyData($type, $vocabularyIds);
+    }
+
+    /**
+     * @{inheritdoc}
+     */
+    public function getOntologyData($type = 'list', array $vocabularyIds = null)
     {
         if (empty($this->tokenKey)) {
             throw new ClientAuthenticationException("No token found. Cannot load Ontology data without a token.");
@@ -231,29 +247,7 @@ class ClientV2 extends AbstractClient
      */
     public function loadPartners()
     {
-        if (empty($this->tokenKey)) {
-            throw new ClientAuthenticationException("No token found. Cannot load a partner without a token.");
-        }
-
-        try {
-            $response = $this->get('/partner');
-
-            if ($response->getStatusCode() == 200) {
-                return json_decode($response->getBody(), true);
-            } else {
-                throw new ClientRequestException(
-                    sprintf("Request to /partner failed. Status: %s. Error message: %s", $response->getStatusCode(), $response->getBody()),
-                    $response->getStatusCode()
-                );
-            }
-            // @codeCoverageIgnoreStart
-        } catch(GuzzleRequestException $e) {
-            throw new ClientRequestException(
-                sprintf("Request to /partner failed. Status: %s. Error message: %s", $e->getResponse()->getStatusCode(), $e->getMessage()),
-                $e->getResponse()->getStatusCode()
-            );
-            // @codeCoverageIgnoreEnd
-        }
+        return $this->getPartner();
     }
 
     /**
@@ -261,25 +255,47 @@ class ClientV2 extends AbstractClient
      */
     public function loadPartner($partner)
     {
+        return $this->getPartner($partner);
+    }
+
+    /**
+     * @{inheritdoc}
+     */
+    public function getPartner($partner = null)
+    {
         if (empty($this->tokenKey)) {
             throw new ClientAuthenticationException("No token found. Cannot load a partner without a token.");
         }
 
         try {
-            $response = $this->get('/partner/' . urlencode($partner));
+            if (isset($partner)) {
+                $response = $this->get('/partner/' . urlencode($partner));
+            } else {
+                $response = $this->get('/partner');
+            }
 
             if ($response->getStatusCode() == 200) {
                 return json_decode($response->getBody(), true);
             } else {
                 throw new ClientRequestException(
-                    sprintf("Request to /partner/%s failed. Status: %s. Error message: %s", $partner, $response->getStatusCode(), $response->getBody()),
+                    sprintf(
+                        "Request to /partner%s failed. Status: %s. Error message: %s",
+                        isset($partner) ? '/' . $partner : '',
+                        $response->getStatusCode(),
+                        $response->getBody()
+                    ),
                     $response->getStatusCode()
                 );
             }
             // @codeCoverageIgnoreStart
         } catch(GuzzleRequestException $e) {
             throw new ClientRequestException(
-                sprintf("Request to /partner/%s failed. Status: %s. Error message: %s", $partner, $e->getResponse()->getStatusCode(), $e->getMessage()),
+                sprintf(
+                    "Request to /partner%s failed. Status: %s. Error message: %s",
+                    isset($partner) ? '/' . $partner : '',
+                    $e->getResponse()->getStatusCode(),
+                    $e->getMessage()
+                ),
                 $e->getResponse()->getStatusCode()
             );
             // @codeCoverageIgnoreEnd
@@ -468,7 +484,31 @@ class ClientV2 extends AbstractClient
     /**
      * @{inheritdoc}
      */
-    public function loadPartnerStatistics($partnerId, $from, $to, $aggregationMethod = 'day', $lomId = null, $limit = null, $offset = null)
+    public function loadPartnerStatistics(
+        $partnerId,
+        $from,
+        $to,
+        $aggregationMethod = 'day',
+        $lomId = null,
+        $limit = null,
+        $offset = null
+    )
+    {
+        return $this->getPartnerStatistics($partnerId, $from, $to, $aggregationMethod, $lomId, $limit, $offset);
+    }
+
+    /**
+     * @{inheritdoc}
+     */
+    public function getPartnerStatistics(
+        $partnerId,
+        $from,
+        $to,
+        $aggregationMethod = 'day',
+        $lomId = null,
+        $limit = null,
+        $offset = null
+    )
     {
         if (empty($this->tokenKey)) {
             throw new ClientAuthenticationException("No token found. Cannot load partner statistics without a token.");
@@ -519,6 +559,14 @@ class ClientV2 extends AbstractClient
      * @{inheritdoc}
      */
     public function uploadFile($filePath)
+    {
+        return $this->postFile($filePath);
+    }
+
+    /**
+     * @{inheritdoc}
+     */
+    public function postFile($filePath)
     {
         if (empty($this->tokenKey)) {
             throw new ClientAuthenticationException("No token found. Cannot upload a file without a token.");

@@ -182,6 +182,15 @@ class TestClient extends AbstractClient
      */
     public function loadDescription($lomId)
     {
+        return $this->getDescription($lomId);
+    }
+
+    /**
+     * @{inheritdoc}
+     * @todo
+     */
+    public function getDescription($lomId)
+    {
         return array(
             'lomId' => $lomId,
         );
@@ -226,9 +235,17 @@ class TestClient extends AbstractClient
 
     /**
      * @{inheritdoc}
-     * @todo
      */
     public function loadOntologyData($type = 'list', array $vocabularyIds = null)
+    {
+        return $this->getOntologyData($type, $vocabularyIds);
+    }
+
+    /**
+     * @{inheritdoc}
+     * @todo
+     */
+    public function getOntologyData($type = 'list', array $vocabularyIds = null)
     {
         return null;
     }
@@ -244,9 +261,17 @@ class TestClient extends AbstractClient
 
     /**
      * @{inheritdoc}
-     * @todo
      */
     public function loadPartner($partner)
+    {
+        return $this->getPartner($partner);
+    }
+
+    /**
+     * @{inheritdoc}
+     * @todo
+     */
+    public function getPartner($partner = null)
     {
         return null;
     }
@@ -292,6 +317,14 @@ class TestClient extends AbstractClient
      */
     public function loadPartnerStatistics($partnerId, $from, $to, $aggregationMethod = 'day', $lomId = null, $limit = null, $offset = null)
     {
+        return $this->getPartnerStatistics($partnerId, $from, $to, $aggregationMethod, $lomId, $limit, $offset);
+    }
+
+    /**
+     * @{inheritdoc}
+     */
+    public function getPartnerStatistics($partnerId, $from, $to, $aggregationMethod = 'day', $lomId = null, $limit = null, $offset = null)
+    {
         $fromTime = strtotime($from);
         $toTime = strtotime($to);
 
@@ -334,6 +367,14 @@ class TestClient extends AbstractClient
      * @{inheritdoc}
      */
     public function uploadFile($filePath)
+    {
+        return $this->postFile($filePath);
+    }
+
+    /**
+     * @{inheritdoc}
+     */
+    public function postFile($filePath)
     {
         $extension = @end(explode('.', $filePath));
         return array(
