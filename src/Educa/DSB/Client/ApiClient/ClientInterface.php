@@ -463,4 +463,25 @@ interface ClientInterface
      */
     public function getCurriculaMappingSuggestions($from, $to, $termId);
 
+    /**
+     * Post a new description action.
+     *
+     * @throws \Educa\DSB\Client\ApiClient\ClientAuthenticationException
+     *    If not authenticated, will throw an exception. If not authorized, will
+     *    also throw an exception.
+     * @throws \Educa\DSB\Client\ApiClient\ClientRequestException
+     *    If the request fails, will throw an exception.
+     *
+     * @param string $id
+     *    The ID of the description.
+     * @param string $actionType
+     *    The type of the action.
+     * @param array $actionParams
+     *    (optional) The parameters for the action. Defaults to null.
+     *
+     * @return array
+     *    The creation result, as returned by the REST API.
+     */
+    public function postDescriptionAction($id, $actionType, array $actionParams = null);
+
 }

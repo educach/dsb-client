@@ -632,5 +632,37 @@ class ClientV2 extends AbstractClient
         }
     }
 
+    /**
+     * @{inheritdoc}
+     */
+    public function postDescriptionAction($id, $actionType, array $actionParams = null)
+    {
+        if (empty($this->tokenKey)) {
+            throw new ClientAuthenticationException("No token found. Cannot create an action without a token.");
+        }
+
+        $payload = [
+            'type' => $actionType,
+        ];
+
+        if (!empty($actionParams)) {
+            $payload['params'] = $actionParams;
+        }
+
+        try {
+            $params = [
+                'body' => json_encode($payload),
+            ];
+            $response = $this->post('/description/' . urlencode($id) . '/action', $params);
+            return json_decode($response->getBody(), true);
+            // @codeCoverageIgnoreStart
+        } catch(GuzzleRequestException $e) {
+            throw new ClientRequestException(
+                sprintf("Request to /description/%s/action failed. Status: %s. Error message: %s", $id, $e->getResponse()->getStatusCode(), $e->getMessage())
+            );
+            // @codeCoverageIgnoreEnd
+        }
+    }
+
 }
 

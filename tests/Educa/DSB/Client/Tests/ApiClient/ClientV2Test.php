@@ -624,6 +624,47 @@ class ClientV2Test extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test creating a new description action.
+     */
+    public function testPostDescriptionAction()
+    {
+        // Prepare a new client.
+        $guzzle = $this->getGuzzleTestClient([
+            new Response(200, [], Psr7\stream_for('{"expire":"2016-02-02","token":"asjhasd987asdhasd87"}')),
+            new Response(200),
+            new Response(200),
+            new Response(200),
+            new Response(200),
+            new Response(200),
+        ]);
+
+        // Prepare a client.
+        $client = new ClientV2(
+            'http://localhost',
+            'user@site.com',
+            FIXTURES_DIR . '/user/privatekey_nopassphrase.pem'
+        );
+        $client->setClient($guzzle);
+
+        // Creating a description action without being authenticated throws an error.
+        try {
+            $client->postDescriptionAction('some-id', 'unpublish_description');
+            $this->fail("Creating a description action without being authenticated should throw an exception.");
+        } catch(ClientAuthenticationException $e) {
+            $this->assertTrue(true, "Creating a description action without being authenticated throws an exception.");
+        }
+
+        // Creating a description action while authenticated doesn't throw an error.
+        try {
+            $client->authenticate();
+            $client->postDescriptionAction('some-id', 'unpublish_description');
+            $this->assertTrue(true, "Creating a description action while being authenticated does not throw an exception.");
+        } catch(ClientAuthenticationException $e) {
+            $this->fail("Creating a description action while being authenticated should not throw an exception.");
+        }
+    }
+
+    /**
      * Test updating a description.
      */
     public function testPutDescription()

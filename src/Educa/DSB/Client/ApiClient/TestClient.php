@@ -394,4 +394,12 @@ class TestClient extends AbstractClient
             ]
         ];
     }
+
+    /**
+     * @{inheritdoc}
+     * @todo
+     */
+    public function postDescriptionAction($id, $actionType, array $actionParams = null){
+        return null;
+    }
 }
