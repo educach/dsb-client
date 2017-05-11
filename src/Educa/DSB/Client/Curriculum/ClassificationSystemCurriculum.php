@@ -24,7 +24,7 @@ class ClassificationSystemCurriculum extends EducaCurriculum implements Mappable
      *
      * @var array
      */
-    protected $taxonPathSources = array('educa', 'classification system');
+    protected $taxonPathSources = array('educa', 'classification system', 'classification systems');
 
     /**
      * {@inheritdoc}
